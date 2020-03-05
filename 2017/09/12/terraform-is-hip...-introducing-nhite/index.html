@@ -1,0 +1,290 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Terraform is hip... Introducing Nhite - Unladen swallow - Olivier Wulveryck</title><meta name=renderer content=webkit><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=MobileOptimized content=width><meta name=HandheldFriendly content=true><meta name=applicable-device content=pc,mobile><meta name=theme-color content=#f8f5ec><meta name=msapplication-navbutton-color content=#f8f5ec><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=#f8f5ec><meta name=mobile-web-app-capable content=yes><meta name=author content="Olivier Wulveryck"><meta name=description content="This is a second part of the last article. I now really dig into Terraform. This article will explain how to use the Terraform sub-packages in order to create a brand new binary that acts as a gRPC server instead of a cli."><meta name=keywords content=Go,Dev,IT><meta name=generator content="Hugo 0.58.3"><link rel=canonical href=https://owulveryck.github.io/2017/09/12/terraform-is-hip...-introducing-nhite/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media=screen crossorigin=anonymous><meta property=og:title content="Terraform is hip... Introducing Nhite"><meta property=og:description content="This is a second part of the last article. I now really dig into Terraform. This article will explain how to use the Terraform sub-packages in order to create a brand new binary that acts as a gRPC server instead of a cli."><meta property=og:type content=article><meta property=og:url content=https://owulveryck.github.io/2017/09/12/terraform-is-hip...-introducing-nhite/><meta property=og:image content=https://nhite.github.io/images/logo.png><meta property=article:published_time content=2017-09-12T13:28:36+02:00><meta property=article:modified_time content=2017-09-12T13:28:36+02:00><meta itemprop=name content="Terraform is hip... Introducing Nhite"><meta itemprop=description content="This is a second part of the last article. I now really dig into Terraform. This article will explain how to use the Terraform sub-packages in order to create a brand new binary that acts as a gRPC server instead of a cli."><meta itemprop=datePublished content=2017-09-12T13:28:36&#43;02:00><meta itemprop=dateModified content=2017-09-12T13:28:36&#43;02:00><meta itemprop=wordCount content=1885><meta itemprop=image content=https://nhite.github.io/images/logo.png><meta itemprop=keywords content><meta name=twitter:card content=summary_large_image><meta name=twitter:image content=https://nhite.github.io/images/logo.png><meta name=twitter:title content="Terraform is hip... Introducing Nhite"><meta name=twitter:description content="This is a second part of the last article. I now really dig into Terraform. This article will explain how to use the Terraform sub-packages in order to create a brand new binary that acts as a gRPC server instead of a cli."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-69673850-1','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>owulveryck's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://owulveryck.github.io/>This is Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://owulveryck.github.io/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://owulveryck.github.io/tags/>Tags</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://owulveryck.github.io/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://owulveryck.github.io/about/>About</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>owulveryck's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://owulveryck.github.io/>This is Home</a></li><li class=menu-item><a class=menu-item-link href=https://owulveryck.github.io/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://owulveryck.github.io/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=https://owulveryck.github.io/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://owulveryck.github.io/about/>About</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Terraform is hip... Introducing Nhite</h1><div class=post-meta><time datetime=2017-09-12 class=post-time>2017-09-12</time></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Table of Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#the-terraform-structure>The Terraform structure</a><ul><li><ul><li><a href=#the-cli-implementation>The cli implementation</a></li><li><a href=#the-command-package>The <em>command</em> package</a></li></ul></li></ul></li><li><a href=#creating-a-new-binary>Creating a new binary</a><ul><li><a href=#the-grpc-contract>The gRPC contract</a></li><li><a href=#fulfilling-the-contract>Fulfilling the contract</a></li><li><a href=#how-to-initialize-the-grpccommand-object>How to initialize the <em>grpcCommand</em> object</a></li><li><a href=#about-the-ui>About the UI</a><ul><li><a href=#a-custom-ui>A custom UI</a></li></ul></li></ul></li><li><a href=#what-did-we-miss>What did we miss?</a><ul><li><a href=#multi-stack>Multi-stack</a></li><li><a href=#implementing-a-new-push-command>Implementing a new <em>push</em> command</a><ul><li><a href=#principle>Principle</a></li></ul></li></ul></li><li><a href=#going-further>going further&hellip;</a><ul><li><a href=#implementing-a-micro-service-of-backend>Implementing a micro-service of backend</a></li></ul></li><li><a href=#hip-1-is-cooler-than-cool-introducing-nhite>Hip<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup> is <em>cooler than cool</em>: Introducing <em>Nhite</em></a></li></ul></nav></div></div><div class=post-content><p>In a previous post, I did some experiments with gRPC, protocol buffer and Terraform.
+The idea was to transform the &ldquo;Terraform&rdquo; cli tool into a micro-service thanks to gRPC.</p><p>This post is the second part of the experiment. I will go deeper in the code and see if it is possible
+to create a brand new utility, without hacking Terraform. The idea is to import some packages that compose the binary
+and create my own service based on gRPC.</p><h1 id=the-terraform-structure>The Terraform structure</h1><p>Terraform is a binary utility written in <code>go</code>.
+The <code>main</code> package resides in the root directory of the <code>terraform</code> directory.
+As usual with go projects, all other subdirectories are different modules.</p><p>The whole business logic of Terraform is coded into the subpackages. The &ldquo;<code>main</code>&rdquo; package is simply an enveloppe for kick-starting the utility (env variables, etc.) and to initiate the command line.</p><h3 id=the-cli-implementation>The cli implementation</h3><p>The command line flags are instantiated by Mitchell Hashimoto&rsquo;s cli package.
+As explained in the previous post, this cli package is calling a specific function for every action.</p><h3 id=the-command-package>The <em>command</em> package</h3><p>Every single action is fulfilling the <code>cli.Command</code> interface and is implemented in the <a href=https://godoc.org/github.com/hashicorp/terraform/command><code>command</code></a> subpackage.
+Therefore, every &ldquo;action&rdquo; of Terraform has a definition in the command package and the logic is coded into a <code>Run(args []string) int</code> method (see the <a href=https://godoc.org/github.com/mitchellh/cli#Command>doc of the Command interface for a complete definition</a>.</p><h1 id=creating-a-new-binary>Creating a new binary</h1><p>The idea is not to hack any of the packages of Terraform to allow an easier maintenance of my code.
+In order to create a custom service, I will instead implement a new utility; therefore a new <code>main</code> package.
+This package will implement a gRPC server. This server will implement wrappers around the functions declared in the <code>terraform.Command</code> package.</p><p>For the purpose of my POC, I will only implement three actions of Terraform:</p><ul><li><code>terraform init</code></li><li><code>terraform plan</code></li><li><code>terraform apply</code></li></ul><h2 id=the-grpc-contract>The gRPC contract</h2><p>In order to create a gRPC server, we need a service definition.
+To keep it simple, let&rsquo;s consider the contract defined in the previous post (<a href=https://blog.owulveryck.info/2017/09/02/from-command-line-tools-to-microservices---the-example-of-hashicorp-tools-terraform-and-grpc.html#creating-the-protobuf-contract>cf the section: Creating the protobuf contract</a>).
+I simply add the missing procedure calls:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-protobuf data-lang=protobuf><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-protobuf data-lang=protobuf><span class=n>syntax</span> <span class=o>=</span> <span class=s>&#34;proto3&#34;</span><span class=p>;</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=kn>package</span> <span class=nn>pbnhite</span><span class=p>;</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=kd>service</span> <span class=n>Terraform</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=k>rpc</span> <span class=n>Init</span> <span class=p>(</span><span class=n>Arg</span><span class=p>)</span> <span class=k>returns</span> <span class=p>(</span><span class=n>Output</span><span class=p>)</span> <span class=p>{}</span><span class=err>
+</span><span class=err></span>    <span class=k>rpc</span> <span class=n>Plan</span> <span class=p>(</span><span class=n>Arg</span><span class=p>)</span> <span class=k>returns</span> <span class=p>(</span><span class=n>Output</span><span class=p>)</span> <span class=p>{}</span><span class=err>
+</span><span class=err></span>    <span class=k>rpc</span> <span class=n>Apply</span> <span class=p>(</span><span class=n>Arg</span><span class=p>)</span> <span class=k>returns</span> <span class=p>(</span><span class=n>Output</span><span class=p>)</span> <span class=p>{}</span><span class=err>
+</span><span class=err></span><span class=p>}</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=kd>message</span> <span class=nc>Arg</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=k>repeated</span> <span class=kt>string</span> <span class=n>args</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span><span class=err>
+</span><span class=err></span><span class=p>}</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=kd>message</span> <span class=nc>Output</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=kt>int32</span> <span class=n>retcode</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span><span class=err>
+</span><span class=err></span>    <span class=kt>bytes</span>  <span class=n>stdout</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span><span class=err>
+</span><span class=err></span>    <span class=kt>bytes</span> <span class=n>stderr</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span><span class=err>
+</span><span class=err></span><span class=p>}</span></code></pre></td></tr></table></div></div><h2 id=fulfilling-the-contract>Fulfilling the contract</h2><p>As described previously, I am creating a <code>grpcCommand</code> structure that will have the required methods to fulfill the contract:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>grpcCommands</span> <span class=kd>struct</span> <span class=p>{}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcCommands</span><span class=p>)</span> <span class=nf>Init</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span> <span class=nx>in</span> <span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Arg</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=o>...</span><span class=p>.</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcCommands</span><span class=p>)</span> <span class=nf>Plan</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span> <span class=nx>in</span> <span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Arg</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=o>...</span><span class=p>.</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcCommands</span><span class=p>)</span> <span class=nf>Apply</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span> <span class=nx>in</span> <span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Arg</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=o>...</span><span class=p>.</span>
+<span class=p>}</span></code></pre></td></tr></table></div></div><p>In the previous post, I have filled the <code>grpcCommand</code> structure with a <code>map</code> filled with the command definition.
+The idea was to keep the same CLI interface.
+As we are now building a completely new binary with only a gRPC interface, we don&rsquo;t need that anymore.
+Indeed, there is still a need to execute the <code>Run</code> method of every Terraform command.</p><p>Let&rsquo;s take the example of the Init command.</p><p>Let&rsquo;s see the definition of the command by looking at the <a href=https://godoc.org/github.com/hashicorp/terraform/command#InitCommand>godoc</a>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>InitCommand</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>Meta</span>
+    <span class=c1>// contains filtered or unexported fields
+</span><span class=c1></span><span class=p>}</span></code></pre></td></tr></table></div></div><p>This command holds a substructure called <code>Meta</code>. <code>Meta</code> is defined <a href=https://godoc.org/github.com/hashicorp/terraform/command#Meta>here</a> and holds <em>the meta-options that are available on all or most commands</em>. Obviously we need a Meta definition in the command to make it work properly.</p><p>For now, let&rsquo;s add it to the <code>grpcCommand</code> globally, and we will see later how to implement it.</p><p>Here is the gRPC implementation of the contract:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>grpcCommands</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>meta</span> <span class=nx>command</span><span class=p>.</span><span class=nx>Meta</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcCommands</span><span class=p>)</span> <span class=nf>Init</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span> <span class=nx>in</span> <span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Arg</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// ...
+</span><span class=c1></span>    <span class=nx>tfCommand</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>command</span><span class=p>.</span><span class=nx>InitCommand</span><span class=p>{</span>
+        <span class=nx>Meta</span><span class=p>:</span> <span class=nx>g</span><span class=p>.</span><span class=nx>meta</span><span class=p>,</span>
+    <span class=p>}</span>
+    <span class=nx>ret</span> <span class=o>:=</span> <span class=nb>int32</span><span class=p>(</span><span class=nx>tfCommand</span><span class=p>.</span><span class=nf>Run</span><span class=p>(</span><span class=nx>in</span><span class=p>.</span><span class=nx>Args</span><span class=p>))</span>
+    <span class=k>return</span> <span class=o>&amp;</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>{</span><span class=nx>ret</span><span class=p>,</span> <span class=nx>stdout</span><span class=p>,</span> <span class=nx>stderr</span><span class=p>},</span> <span class=nx>err</span>
+<span class=p>}</span></code></pre></td></tr></table></div></div><h2 id=how-to-initialize-the-grpccommand-object>How to initialize the <em>grpcCommand</em> object</h2><p>Now that we have a proper <code>grpcCommand</code> than can be registered to the grpc server, let&rsquo;s see how to create an instance.
+As the grpcCommand only contains one field, we simply need to create a <code>meta</code> object.</p><p>Let&rsquo;s simply copy/paste the code done in Terraform&rsquo;s main package and we now have:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>PluginOverrides</span> <span class=nx>command</span><span class=p>.</span><span class=nx>PluginOverrides</span>
+<span class=nx>meta</span> <span class=o>:=</span> <span class=nx>command</span><span class=p>.</span><span class=nx>Meta</span><span class=p>{</span>
+    <span class=nx>Color</span><span class=p>:</span>            <span class=kc>false</span><span class=p>,</span>
+    <span class=nx>GlobalPluginDirs</span><span class=p>:</span> <span class=nf>globalPluginDirs</span><span class=p>(),</span>
+    <span class=nx>PluginOverrides</span><span class=p>:</span>  <span class=o>&amp;</span><span class=nx>PluginOverrides</span><span class=p>,</span>
+    <span class=nx>Ui</span><span class=p>:</span>               <span class=o>&amp;</span><span class=nx>grpcUI</span><span class=p>{},</span>
+<span class=p>}</span>
+<span class=nx>pb</span><span class=p>.</span><span class=nf>RegisterTerraformServer</span><span class=p>(</span><span class=nx>grpcServer</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>grpcCommands</span><span class=p>{</span><span class=nx>meta</span><span class=p>:</span> <span class=nx>meta</span><span class=p>})</span></code></pre></td></tr></table></div></div><p>According to the comments in the code, the <code>globalPluginDirs()</code> <em>returns directories that should be searched for
+globally-installed plugins (not specific to the current configuration)</em>.
+I will simply copy the function into my main package</p><h2 id=about-the-ui>About the UI</h2><p>In the example CLI that I developed in the previous post, what I did was to redirect stdout and stderr to an array of bytes, in order to capture it and send it back to a gRPC client.
+I noticed that this was not working with Terraform.
+This is because of the UI!
+UI is an interface whose purpose is to get the output stream and write it down to a specific io.Writer.</p><p>Our tool will need a custom UI.</p><h3 id=a-custom-ui>A custom UI</h3><p>As UI is an interface (<a href=https://godoc.org/github.com/mitchellh/cli#Ui>see the doc here</a>), it is easy to implement our own. Let&rsquo;s define a structure that holds two array of bytes called <code>stdout</code> and <code>stderr</code>. Then let&rsquo;s implement the methods that will write into these elements:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>grpcUI</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>stdout</span> <span class=p>[]</span><span class=kt>byte</span>
+    <span class=nx>stderr</span> <span class=p>[]</span><span class=kt>byte</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcUI</span><span class=p>)</span> <span class=nf>Output</span><span class=p>(</span><span class=nx>msg</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>g</span><span class=p>.</span><span class=nx>stdout</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>g</span><span class=p>.</span><span class=nx>stdout</span><span class=p>,</span> <span class=p>[]</span><span class=nb>byte</span><span class=p>(</span><span class=nx>msg</span><span class=p>)</span><span class=o>...</span><span class=p>)</span>
+<span class=p>}</span></code></pre></td></tr></table></div></div><p><em>Note 1</em>: I omit the methods <code>Info</code>, <code>Warn</code>, and <code>Error</code> for brevity.</p><p><em>Note 2</em>: For now, I do not implement any logic into the <code>Ask</code> and <code>AskSecret</code> methods. Therefore, my client will not be able to ask something. But as gRPC is bidirectional, it would be possible to implement such an interaction.</p><p>Now, we can instantiate this UI for every call, and assign it to the meta-options of the command:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>stdout</span> <span class=p>[]</span><span class=kt>byte</span>
+<span class=kd>var</span> <span class=nx>stderr</span> <span class=p>[]</span><span class=kt>byte</span>
+<span class=nx>myUI</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>grpcUI</span><span class=p>{</span>
+    <span class=nx>stdout</span><span class=p>:</span> <span class=nx>stdout</span><span class=p>,</span>
+    <span class=nx>stderr</span><span class=p>:</span> <span class=nx>stderr</span><span class=p>,</span>
+<span class=p>}</span>
+<span class=nx>tfCommand</span><span class=p>.</span><span class=nx>Meta</span><span class=p>.</span><span class=nx>Ui</span> <span class=p>=</span> <span class=nx>myUI</span></code></pre></td></tr></table></div></div><p>So far, so good: we now have a new Terraform binary, that is working via gRPC with a very little code.</p><h1 id=what-did-we-miss>What did we miss?</h1><h2 id=multi-stack>Multi-stack</h2><p>It is fun but not usable for real purpose because the server needs to be launched from the directory where the <em>tf</em> files are&hellip;
+Therefore the service can only be used for one single Terraform stack&hellip; Come on!</p><p>Let&rsquo;s change that and pass as a parameter of the RPC call the directory where the server needs to work. It is as simple as adding an extra argument to the <code>message Arg</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-protobuf data-lang=protobuf><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-protobuf data-lang=protobuf><span class=kd>message</span> <span class=nc>Arg</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=kt>string</span> <span class=n>workingDir</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span><span class=err>
+</span><span class=err></span>    <span class=k>repeated</span> <span class=kt>string</span> <span class=n>args</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span><span class=err>
+</span><span class=err></span><span class=p>}</span></code></pre></td></tr></table></div></div><p>and then, simply do a <code>change directory</code> in the implementation of the command:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcCommands</span><span class=p>)</span> <span class=nf>Init</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span> <span class=nx>in</span> <span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Arg</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>err</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Chdir</span><span class=p>(</span><span class=nx>in</span><span class=p>.</span><span class=nx>WorkingDir</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=o>&amp;</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>{</span><span class=nb>int32</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span> <span class=kc>nil</span><span class=p>,</span> <span class=kc>nil</span><span class=p>},</span> <span class=nx>err</span>
+    <span class=p>}</span>
+    <span class=nx>tfCommand</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>command</span><span class=p>.</span><span class=nx>InitCommand</span><span class=p>{</span>
+        <span class=nx>Meta</span><span class=p>:</span> <span class=nx>g</span><span class=p>.</span><span class=nx>meta</span><span class=p>,</span>
+    <span class=p>}</span>
+    <span class=kd>var</span> <span class=nx>stdout</span> <span class=p>[]</span><span class=kt>byte</span>
+    <span class=kd>var</span> <span class=nx>stderr</span> <span class=p>[]</span><span class=kt>byte</span>
+    <span class=nx>myUI</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>grpcUI</span><span class=p>{</span>
+        <span class=nx>stdout</span><span class=p>:</span> <span class=nx>stdout</span><span class=p>,</span>
+        <span class=nx>stderr</span><span class=p>:</span> <span class=nx>stderr</span><span class=p>,</span>
+    <span class=p>}</span>
+    <span class=nx>ret</span> <span class=o>:=</span> <span class=nb>int32</span><span class=p>(</span><span class=nx>tfCommand</span><span class=p>.</span><span class=nf>Run</span><span class=p>(</span><span class=nx>in</span><span class=p>.</span><span class=nx>Args</span><span class=p>))</span>
+    <span class=k>return</span> <span class=o>&amp;</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Output</span><span class=p>{</span><span class=nx>ret</span><span class=p>,</span> <span class=nx>stdout</span><span class=p>,</span> <span class=nx>stderr</span><span class=p>},</span> <span class=nx>err</span>
+<span class=p>}</span></code></pre></td></tr></table></div></div><h2 id=implementing-a-new-push-command>Implementing a new <em>push</em> command</h2><p>I have a Terraform service. Alright.
+Can an &ldquo;Operator&rdquo; use it?</p><p>The service we have deployed is working exactly like Terraform. I have only changed the user interface.
+Therefore, in order to deploy a stack, the &lsquo;tf&rsquo; files must be present locally on the host.</p><p>Obviously we do not want to give access to the server that hosts Terraform. This is not how micro-services work.</p><p>Terraform has a push command that Hashicorp has implemented to communicate with Terraform enterprise.
+This command is linked with their close-source product called &ldquo;Atlas&rdquo; and is therefore useless for us.</p><p>Let&rsquo;s take the same principle and implement our own <em>push</em> command.</p><h3 id=principle>Principle</h3><p>The push command will zip all the <code>tf</code> files of the current directory in memory, and transfer the zip via a specific message to the server.
+The server will then decompress the zip into a unique temporary directory and send back the ID of that directory.
+Then every other Terraform command can use the id of the directory and use the stack (as before).</p><p>Let&rsquo;s implement a protobuf contract:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-protobuf data-lang=protobuf><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-protobuf data-lang=protobuf><span class=kd>service</span> <span class=n>Terraform</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=c1>// ...
+</span><span class=c1></span>    <span class=k>rpc</span> <span class=n>Push</span><span class=p>(</span><span class=n>stream</span> <span class=n>Body</span><span class=p>)</span> <span class=k>returns</span> <span class=p>(</span><span class=n>Id</span><span class=p>)</span> <span class=p>{}</span><span class=err>
+</span><span class=err></span><span class=p>}</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=kd>message</span> <span class=nc>Body</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=kt>bytes</span> <span class=n>zipfile</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span><span class=err>
+</span><span class=err></span><span class=p>}</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=kd>message</span> <span class=nc>Id</span> <span class=p>{</span><span class=err>
+</span><span class=err></span>    <span class=kt>string</span> <span class=n>tmpdir</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span><span class=err>
+</span><span class=err></span><span class=p>}</span> </code></pre></td></tr></table></div></div><p><em>Note</em>: By now I assume that the whole zip can fit into a single message. I will probably have to implement chunking later</p><p>Then instantiate the definition into the code of the server:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>g</span> <span class=o>*</span><span class=nx>grpcCommands</span><span class=p>)</span> <span class=nf>Push</span><span class=p>(</span><span class=nx>stream</span> <span class=nx>pb</span><span class=p>.</span><span class=nx>Terraform_PushServer</span><span class=p>)</span> <span class=kt>error</span> <span class=p>{</span>
+    <span class=nx>workdir</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>ioutil</span><span class=p>.</span><span class=nf>TempDir</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span> <span class=s>&#34;.terraformgrpc&#34;</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>err</span>
+    <span class=p>}</span>
+    <span class=nx>err</span> <span class=p>=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Chdir</span><span class=p>(</span><span class=nx>workdir</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>err</span>
+    <span class=p>}</span>
+
+    <span class=nx>body</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>stream</span><span class=p>.</span><span class=nf>Recv</span><span class=p>()</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>==</span> <span class=nx>io</span><span class=p>.</span><span class=nx>EOF</span> <span class=o>||</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=c1>// We have all the file
+</span><span class=c1></span>        <span class=c1>// Now let&#39;s extract the zipfile
+</span><span class=c1></span>        <span class=c1>// ...
+</span><span class=c1></span>    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>err</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>stream</span><span class=p>.</span><span class=nf>SendAndClose</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>pb</span><span class=p>.</span><span class=nx>Id</span><span class=p>{</span>
+            <span class=nx>Tmpdir</span><span class=p>:</span> <span class=nx>workdir</span><span class=p>,</span>
+    <span class=p>})</span>
+<span class=p>}</span></code></pre></td></tr></table></div></div><h1 id=going-further>going further&hellip;</h1><p>The problem with this architecture is that it&rsquo;s stateful, and therefore easily scalable.</p><p>A solution would be to store the zip file in a third party service, identify it with a unique id.
+And then call the Terraform commands with this ID as a parameter.
+The Terraform engine would then grab the zip file from the third party service if needed and process the file</p><h2 id=implementing-a-micro-service-of-backend>Implementing a micro-service of backend</h2><p>I want to keep the same logic, therefore the storage service can be a gRPC microservice.
+We can then have different services (such as s3, google storage, dynamodb, NAS, &hellip;) written in different languages.</p><p>The Terraform service will act as a client of this &ldquo;backend&rdquo; service (take care, it is not the same backend as the one defined within Terraform).</p><p>Our Terraform-service can then be configured in runtime to call the host/port of the correct backend-service. We can even imagine the backend address being served via consul.</p><p>This is a work in progress and may be part of another blog post.</p><h1 id=hip-1-is-cooler-than-cool-introducing-nhite>Hip<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup> is <em>cooler than cool</em>: Introducing <em>Nhite</em></h1><p>I have talked to some people about all this stuff and I feel that people are interested.
+Therefore, I have set up a GitHub organisation and a GitHub project to centralize what I will do around that.</p><p>The project is called Nhite.</p><ul><li>The GitHub organization is called <a href=https://github.com/nhite>nhite</a></li><li>The web page is <a href=https://nhite.github.io>https://nhite.github.io</a></li></ul><p>There is still a lot to do, but I really think that this could make sense to create a community. It may give a product by the end, or go in my attic of dead projects.
+Anyway, so far I&rsquo;ve had a lot of fun!</p><div class=footnotes><hr><ol><li id=fn:1><a href=https://en.wikipedia.org/wiki/Hip_(slang)>hip definition on wikipedia</a>
+<a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li></ol></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>Olivier Wulveryck</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2017-09-12</span></p><p class=copyright-item><span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><nav class=post-nav><a class=prev href=/2017/10/29/about-recurrent-neural-network-shakespeare-and-go/><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417l277.93508-310.326815c11.338233-12.190647 11.035334-32.285311-.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"/></svg></i><span class="prev-text nav-default">About Recurrent Neural Network, Shakespeare and GO</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/2017/09/02/from-command-line-tools-to-microservices-the-example-of-hashicorp-tools-terraform-and-grpc/><span class="next-text nav-default">From command line tools to microservices - The example of Hashicorp tools (terraform) and gRPC</span>
+<span class="prev-text nav-mobile">Next</span>
+<i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"/></svg></i></a></nav></footer></article><div class=disqus-comment><div class=disqus-button id=load_disqus onclick=load_disqus()>Show Disqus Comments</div><div id=disqus_thread></div><script type=text/javascript>var disqus_config=function(){this.page.url="https://owulveryck.github.io/2017/09/12/terraform-is-hip...-introducing-nhite/";};function load_disqus(){if(window.location.hostname==='localhost')return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='owulveryck';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);$('#load_disqus').remove();};</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://twitter.com/owulveryck rel="me noopener" class=iconfont title=twitter target=_blank><svg class="icon" viewBox="0 0 1264 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M1229.8616 18.043658c0 0-117.852626 63.135335-164.151872 67.344358-105.225559-164.151872-505.082682-92.598492-437.738325 223.078185C278.622548 312.675223 89.216542 47.506814 89.216542 47.506814s-117.852626 189.406006 75.762402 345.139833C127.097743 396.85567 55.544363 371.601535 55.544363 371.601535S26.081207 535.753407 253.368414 615.724832c-21.045112 29.463156-113.643603 8.418045-113.643603 8.418045s25.254134 143.10676 231.496229 180.987961c-143.10676 130.479693-387.230056 92.598492-370.393967 105.225559 206.242095 189.406006 1119.599946 231.496229 1128.01799-643.98042C1179.353331 249.539887 1263.533778 123.269217 1263.533778 123.269217s-130.479693 37.881201-138.897738 33.672179C1225.652577 98.015083 1229.8616 18.043658 1229.8616 18.043658"/></svg></a><a href=https://www.linkedin.com/in/olivierwulveryck/ rel="me noopener" class=iconfont title=linkedin target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33"><path d="M872.405333 872.618667H720.768v-237.610667c0-56.661333-1.152-129.578667-79.018667-129.578667-79.061333.0-91.136 61.653333-91.136 125.397334v241.792H398.976V384H544.64v66.602667h1.962667c20.352-38.4 69.845333-78.933333 143.786666-78.933334 153.642667.0 182.058667 101.12 182.058667 232.746667v268.202667zM227.712 317.141333a87.978667 87.978667.0 0 1-88.021333-88.106666A88.064 88.064.0 1 1 227.712 317.141333zm76.032 555.477334H151.68V384h152.064v488.618667zM948.266667.0h-872.704C33.792.0.0 33.024.0 73.770667v876.458666C0 991.018667 33.792 1024 75.562667 1024h872.576C989.866667 1024 1024 991.018667 1024 950.229333V73.770667C1024 33.024 989.866667.0 948.138667.0h.128z"/></svg></a><a href=http://github.com/owulveryck rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=https://owulveryck.github.io/index.xml rel="noopener alternate" type=application/rss&#43;xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 0 1 140.501333 140.586667A140.928 140.928.0 0 1 140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2015 -
+2020
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>Olivier Wulveryck</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777v0zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

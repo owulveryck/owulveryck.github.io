@@ -1,5 +1,10 @@
 name: check
 
+on:
+  pull_request:
+    branches:
+      - develop
+
 jobs:
   build:
     runs-on: ubuntu-18.04

@@ -1,13 +1,7 @@
-name: github pages
-
-on:
-  push:
-    branches:
-    - develop
-
+name: check
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
@@ -22,9 +16,3 @@ jobs:
 
     - name: Build
       run: hugo --minify
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_DIR: ./public
-        PUBLISH_BRANCH: master

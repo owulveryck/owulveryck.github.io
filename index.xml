@@ -1991,37 +1991,36 @@ Then the VM should have pluggable encoder and decoder. gRPC would be an excellen
 &lt;p&gt;The main difference between this and the &lt;a href=&#34;https://google.github.io/seq2seq/&#34;&gt;seq2seq&lt;/a&gt; Tensorflow framework would be in the exploitation. You would not need to handle all the dependencies of the SDK just to run the code. And this code could be run wherever a Go binary can be compiled: from an ARM-based machine to a serverless architecture. Flexibility at all levels!&lt;/p&gt;
 &lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
 &lt;p&gt;In this TED talk, Lera Boroditsky exposes the way that language shapes the way we think. According to me, this will become a significant concern in the coming years. The software is eating the world, but the code 2.0 may consume the software. A giant step in computer science would be to implement a new language that could shape the way we think the software and find even better use-cases.&lt;/p&gt;
-&lt;div style=&#34;max-width:854px&#34;&gt;&lt;div style=&#34;position:relative;height:0;padding-bottom:56.25%&#34;&gt;&lt;iframe src=&#34;https://embed.ted.com/talks/lera_boroditsky_how_language_shapes_the_way_we_think&#34; width=&#34;854&#34; height=&#34;480&#34; style=&#34;position:absolute;left:0;top:0;width:100%;height:100%&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</description></item><item><title>Parsing mathematical equation to generate computation graphs - First step from software 1.0 to 2.0 in go</title><link>https://owulveryck.github.io/2017/12/18/parsing-mathematical-equation-to-generate-computation-graphs-first-step-from-software-1.0-to-2.0-in-go/</link><pubDate>Mon, 18 Dec 2017 16:47:27 +0100</pubDate><guid>https://owulveryck.github.io/2017/12/18/parsing-mathematical-equation-to-generate-computation-graphs-first-step-from-software-1.0-to-2.0-in-go/</guid><description>
-&lt;p&gt;In a previous article, I described an implementation of an RNN from scratch in go.
+&lt;div style=&#34;max-width:854px&#34;&gt;&lt;div style=&#34;position:relative;height:0;padding-bottom:56.25%&#34;&gt;&lt;iframe src=&#34;https://embed.ted.com/talks/lera_boroditsky_how_language_shapes_the_way_we_think&#34; width=&#34;854&#34; height=&#34;480&#34; style=&#34;position:absolute;left:0;top:0;width:100%;height:100%&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</description></item><item><title>Parsing mathematical equation to generate computation graphs - First step from software 1.0 to 2.0 in go</title><link>https://owulveryck.github.io/2017/12/18/parsing-mathematical-equation-to-generate-computation-graphs-first-step-from-software-1.0-to-2.0-in-go/</link><pubDate>Mon, 18 Dec 2017 16:47:27 +0100</pubDate><guid>https://owulveryck.github.io/2017/12/18/parsing-mathematical-equation-to-generate-computation-graphs-first-step-from-software-1.0-to-2.0-in-go/</guid><description>&lt;p&gt;In a previous article, I described an implementation of an RNN from scratch in go.
 The target is to use the RNN as a processing unit. The ultimate goal is to create a portable tool cross platform and able to grab and process data where they are.
 I have many applications in mind such as finding the root-cause of an incident or managing the capacity of an infrastructure.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note&lt;/em&gt; I stick to the Go language for many reasons:
 Some of them a personnal and not opposable (I simply like it). But another reason is that, in a distant future, this tool could act as a node of a processing network that would communicate via a tuple space (see my previous posts about Linda &lt;a href=&#34;https://blog.owulveryck.info/2017/02/03/linda-31yo-with-5-starving-philosophers....html&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://blog.owulveryck.info/2017/02/28/to-go-and-touch-lindas-lisp.html&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://blog.owulveryck.info/2017/03/13/lindas-evalc-a-tuplespace-oddity.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;All the node would work in a choreography. The set of nodes would be a kind of distributed bot that could monitor a complete IT system. But that&amp;rsquo;s for another story in a couple of years&amp;hellip;&lt;/p&gt;
+&lt;p&gt;All the node would work in a choreography. The set of nodes would be a kind of distributed bot that could monitor a complete IT system. But that&#39;s for another story in a couple of years...&lt;/p&gt;
 &lt;p&gt;Back to 2017-2018: the purpose of this article is to describe a way to code in software 1.0 an execution machine for a software 2.0.&lt;/p&gt;
 &lt;p&gt;I will first explain the concepts.
 Then I will explain why a LSTM (a certain kind of neural network) is a software 2.0.
 Then I will describe a way to parse and execute this software 2.0 on a machine coded in Go (software 1.0).&lt;/p&gt;
-&lt;h1 id=&#34;considerations-about-software-1-0-and-software-2-0&#34;&gt;Considerations about software 1.0 and software 2.0&lt;/h1&gt;
+&lt;h1 id=&#34;considerations-about-software-10-and-software-20&#34;&gt;Considerations about software 1.0 and software 2.0&lt;/h1&gt;
 &lt;h2 id=&#34;what-is-a-software&#34;&gt;What is a software?&lt;/h2&gt;
 &lt;p&gt;It is a sequence of bits and bytes that can be computed, and that produces a result (the solution of a problem for example).&lt;/p&gt;
-&lt;p&gt;To build a software until now, a compiler is used. Its goal is to turn a &amp;ldquo;human readable sequence of characters&amp;rdquo;, called code, into the sequence of bytes.&lt;/p&gt;
+&lt;p&gt;To build a software until now, a compiler is used. Its goal is to turn a &amp;quot;human readable sequence of characters&amp;quot;, called code, into the sequence of bytes.&lt;/p&gt;
 &lt;p&gt;This sequence of bytes is evaluated and executed by a machine at run time. Depending on the input, the execution produces (hopefully) the expected output.&lt;/p&gt;
 &lt;p&gt;The art of programming, is, in essence, the faculty for a human to describe the solution of a problem and to express it in a computer language.&lt;/p&gt;
-&lt;h2 id=&#34;what-is-software-2-0&#34;&gt;What is software 2.0?&lt;/h2&gt;
-&lt;p&gt;I discovered the concept of software 2.0 thanks to &lt;a href=&#34;https://medium.com/@karpathy/software-2-0-a64152b37c35&#34;&gt;Andrej Karpathy&amp;rsquo;s blog&lt;/a&gt;.
+&lt;h2 id=&#34;what-is-software-20&#34;&gt;What is software 2.0?&lt;/h2&gt;
+&lt;p&gt;I discovered the concept of software 2.0 thanks to &lt;a href=&#34;https://medium.com/@karpathy/software-2-0-a64152b37c35&#34;&gt;Andrej Karpathy&#39;s blog&lt;/a&gt;.
 The idea is similar to any software: a compiler is used to turn a sequence of code into a sequence of bytes. This sequence is interpreted by a machine.&lt;/p&gt;
-&lt;p&gt;The difference is that the code is a sequence of mathematical equations (called model). Those equations are composed of variables and &amp;ldquo;constants&amp;rdquo;. Let&amp;rsquo;s call the constants &amp;ldquo;the weights&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;The difference is that the code is a sequence of mathematical equations (called model). Those equations are composed of variables and &amp;quot;constants&amp;quot;. Let&#39;s call the constants &amp;quot;the weights&amp;quot;.&lt;/p&gt;
 &lt;p&gt;The compiler is a software 1.0 that is able to transpile the equations into a sequence of bytes that will be evaluated by a machine (note that the compiler itself is a machine).&lt;/p&gt;
 &lt;p&gt;So what is the difference between 1.0 and 2.0? Is it just a matter of language?&lt;/p&gt;
 &lt;p&gt;No, the major difference is in the art of programming and the use case.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
 &lt;p&gt;A programmer &lt;strong&gt;cannot&lt;/strong&gt; write an algorithm that will &lt;strong&gt;solve a specific problem&lt;/strong&gt; (ex: I need to recognize a cat in photo).&lt;/p&gt;
 &lt;p&gt;So, the programmer will write a set of equations &lt;strong&gt;able to solve a kind of problem&lt;/strong&gt; (recognize objects on any photo).&lt;/p&gt;
-&lt;p&gt;The solution to the specific problem will be given by the evaluation of the &lt;em&gt;equation&lt;/em&gt; &lt;strong&gt;for a specific&lt;/strong&gt; &lt;em&gt;set of weights&lt;/em&gt; (a cat is an object that corresponds to the specific set of weights: for example {0,1,3,2,45,6,6,5,3,4,6,&amp;hellip;.}.)&lt;/p&gt;
+&lt;p&gt;The solution to the specific problem will be given by the evaluation of the &lt;em&gt;equation&lt;/em&gt; &lt;strong&gt;for a specific&lt;/strong&gt; &lt;em&gt;set of weights&lt;/em&gt; (a cat is an object that corresponds to the specific set of weights: for example {0,1,3,2,45,6,6,5,3,4,6,....}.)&lt;/p&gt;
 &lt;p&gt;And what makes the software 2.0 so specific? The amount of weights is so important that it cannot be determined manually. It is determined empirically. And a computer is faster than any human in this learning process.&lt;/p&gt;
 &lt;p&gt;Yes, machine learning is a discipline of software 2.0&lt;/p&gt;
-&lt;h1 id=&#34;example-of-a-software-2-0-deep-learning&#34;&gt;Example of a software 2.0: Deep learning&lt;/h1&gt;
+&lt;h1 id=&#34;example-of-a-software-20-deep-learning&#34;&gt;Example of a software 2.0: Deep learning&lt;/h1&gt;
 &lt;p&gt;Neural networks are the perfect representation of the software 2.0.
 In my last &lt;a href=&#34;https://owulveryck.github.io/2017/10/29/about-recurrent-neural-network-shakespeare-and-go.html&#34;&gt;blog post&lt;/a&gt; I have implemented a recurrent neural network in pure go.&lt;/p&gt;
 &lt;p&gt;My toy is working, but I have been disappointed by the results: the generated text is poor and repetitive (for example it generates: &lt;code&gt;hello, the the the the the the...&lt;/code&gt;). Vanillas RNNs are suffering from the &lt;a href=&#34;https://en.wikipedia.org/wiki/Vanishing_gradient_problem&#34;&gt;vanishing gradient problem&lt;/a&gt; which is most likely the root cause of this weird behavior.&lt;/p&gt;
@@ -2030,22 +2029,24 @@ In my last &lt;a href=&#34;https://owulveryck.github.io/2017/10/29/about-recurre
 Form more information about LSTM, I strongly encourage you to read &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;Understanding LSTM Networks&lt;/a&gt; from Christopher Olah.&lt;/p&gt;
 &lt;h2 id=&#34;lstm&#34;&gt;LSTM&lt;/h2&gt;
 &lt;p&gt;LSTM are a bit more complex than vanilla RNN. Therefore, a naive Go implementation as made for the RNN is harder to code.&lt;/p&gt;
-&lt;p&gt;As one of my goal is to understand how things deeply works (some articles such as &amp;ldquo;&lt;a href=&#34;https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b&#34;&gt;Yes you should understand backprop&lt;/a&gt;&amp;rdquo; makes me confident that it is not a waste of time).&lt;/p&gt;
+&lt;p&gt;As one of my goal is to understand how things deeply works (some articles such as &amp;quot;&lt;a href=&#34;https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b&#34;&gt;Yes you should understand backprop&lt;/a&gt;&amp;quot; makes me confident that it is not a waste of time).&lt;/p&gt;
 &lt;p&gt;The tricky part of the implementation is in the process called backpropagation.
 I have tried to implement the back propagation mechanism manually without any luck.
 I have search the web for an algorithm. The best explanation I have found so far is in the &lt;a href=&#34;http://cs231n.github.io/optimization-2/&#34;&gt;cs231n course from Stanford&lt;/a&gt;.
 It is a clear explanation of how the process works. And it is obvious that a graphical representation of the equations helps a lot in the computation of the gradient.&lt;/p&gt;
 &lt;h2 id=&#34;equations-are-graphs&#34;&gt;Equations are graphs&lt;/h2&gt;
-&lt;p&gt;So equations are graphs&amp;hellip;&lt;/p&gt;
+&lt;p&gt;So equations are graphs...&lt;/p&gt;
 &lt;p&gt;This &lt;a href=&#34;http://gopherdata.io/post/deeplearning_in_go_part_1/&#34;&gt;post&lt;/a&gt; from &lt;a href=&#34;https://twitter.com/chewxy&#34;&gt;Chewxy&lt;/a&gt; is a perfect illustration of how the expression of a mathematical expression is turned into a graph at a compiler level.&lt;/p&gt;
 &lt;p&gt;So my software 1.0 must be made of graphs.&lt;/p&gt;
-&lt;h1 id=&#34;writing-the-machinery-software-1-0&#34;&gt;Writing the machinery: software 1.0&lt;/h1&gt;
+&lt;h1 id=&#34;writing-the-machinery-software-10&#34;&gt;Writing the machinery: software 1.0&lt;/h1&gt;
 &lt;p&gt;So far, we have understood that machine learning is about graphs and tensors (multidimensional arrays). It exists some optimized library to transpile the equations into graphs. Tensorflow is one of those.
 Tensorflow is highly optimized, but the setup of the working environment may be tricky from times to time. As of today, it is not a good candidate for my &lt;em&gt;skynet robot&lt;/em&gt; :).&lt;/p&gt;
 &lt;h2 id=&#34;gorgonia&#34;&gt;Gorgonia&lt;/h2&gt;
 &lt;p&gt;The author of the post about equation I quoted previously, is also the author of the Gorgonia project.&lt;/p&gt;
-&lt;p&gt;Gorgonia is self-describe like this in its documentation:
-&amp;gt; Package Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. Do differentiation with them just as easily.&lt;/p&gt;
+&lt;p&gt;Gorgonia is self-describe like this in its documentation:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Package Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. Do differentiation with them just as easily.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This is exactly the answer to my problem.&lt;/p&gt;
 &lt;p&gt;I have talked to the author on the channel #data-science on &lt;a href=&#34;gophers.slack.com&#34;&gt;gophers.slack.com&lt;/a&gt;. He is really committed, and very active. On top of that I am really attracted by the idea of such a library in go.
 I have decided to give Gorgonia a try.&lt;/p&gt;
@@ -2055,19 +2056,19 @@ A graph is composed of &lt;a href=&#34;https://godoc.org/github.com/Gorgonia/Gor
 A node is any element in the graph. It is a placeholder that will host a &lt;a href=&#34;https://godoc.org/github.com/Gorgonia/Gorgonia#Value&#34;&gt;&lt;code&gt;Value&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A &lt;code&gt;Value&lt;/code&gt; is an interface. A &lt;a href=&#34;https://godoc.org/Gorgonia.org/tensor#Tensor&#34;&gt;&lt;code&gt;Tensor&lt;/code&gt;&lt;/a&gt; is a type of &lt;code&gt;Value&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Tensors&lt;/code&gt; are multidimensional arrays that contains elements of the same &lt;a href=&#34;https://godoc.org/Gorgonia.org/tensor#Dtype&#34;&gt;&lt;code&gt;Dtype&lt;/code&gt;&lt;/a&gt;. All those elements are stored in concrete arrays of elements (for example &lt;code&gt;[]float32&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;To actually compute the graph, Gorgonia is using &amp;ldquo;a machine&amp;rdquo;:&lt;/p&gt;
+&lt;p&gt;To actually compute the graph, Gorgonia is using &amp;quot;a machine&amp;quot;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;a &lt;a href=&#34;https://godoc.org/Gorgonia.org/Gorgonia#NewLispMachine&#34;&gt;&lt;code&gt;lispMachine&lt;/code&gt;&lt;/a&gt; or&lt;/li&gt;
 &lt;li&gt;a &lt;a href=&#34;https://godoc.org/Gorgonia.org/Gorgonia#NewTapeMachine&#34;&gt;&lt;code&gt;tapeMachine&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;building-a-graph&#34;&gt;Building a graph&lt;/h4&gt;
-&lt;p&gt;Let&amp;rsquo;s see a very simple example of a Gorgonia implementation.&lt;/p&gt;
+&lt;p&gt;Let&#39;s see a very simple example of a Gorgonia implementation.&lt;/p&gt;
 &lt;p&gt;To transform a mathematical equation into a graph, we first need to create a graph, then create the Values, assign them to some nodes and add the nodes to the graph.&lt;/p&gt;
 &lt;p&gt;For example, this equation:&lt;/p&gt;
-&lt;p&gt;$$z = W \cdot x$$
+&lt;p&gt;&lt;span class=&#34;math&#34;&gt;\(z = W \cdot x\)&lt;/span&gt;
 With
-$$W = \begin{bmatrix}0.95 &amp;amp; 0,8 \\ 0 &amp;amp; 0\end{bmatrix}, x = \begin{bmatrix}1 \\ 1\end{bmatrix}$$&lt;/p&gt;
-&lt;p&gt;Is written like this in &amp;ldquo;Gorgonia&amp;rdquo;:&lt;/p&gt;
+&lt;span class=&#34;math&#34;&gt;\(W = \begin{bmatrix}0.95 &amp; 0,8 \\\ 0 &amp; 0\end{bmatrix}, x = \begin{bmatrix}1 \\\ 1\end{bmatrix}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Is written like this in &amp;quot;Gorgonia&amp;quot;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2150,7 +2151,7 @@ $$W = \begin{bmatrix}0.95 &amp;amp; 0,8 \\ 0 &amp;amp; 0\end{bmatrix}, x = \begi
 &lt;p&gt;The problem is:&lt;/p&gt;
 &lt;p&gt;The more complex the model is, the more verbose the code will be, the harder to debug.
 For example, a LSTM with a forget gate is expressed like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://wikimedia.org/api/rest_v1/media/math/render/svg/2db2cba6a0d878e13932fa27ce6f3fb71ad99cf1&#34; alt=&#34;Wikipedia&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://wikimedia.org/api/rest_v1/media/math/render/svg/2db2cba6a0d878e13932fa27ce6f3fb71ad99cf1&#34; alt=&#34;Wikipedia&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Source: &lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34;&gt;wikipedia&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Transpiling it with Gorgonia will lead to something like this:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2228,15 +2229,15 @@ For example, a LSTM with a forget gate is expressed like this:&lt;/p&gt;
 &lt;span class=&#34;nx&#34;&gt;ht&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;parser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;`oₜ*hc`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;em&gt;Note&lt;/em&gt; If you don&amp;rsquo;t have the correct font to display the unicode character click &lt;a href=&#34;https://owulveryck.github.io/assets/lstm/uni-code.png&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;good-ol-software-1-0&#34;&gt;Good ol&amp;rsquo; software 1.0&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt; If you don&#39;t have the correct font to display the unicode character click &lt;a href=&#34;https://owulveryck.github.io/assets/lstm/uni-code.png&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;good-ol-software-10&#34;&gt;Good ol&#39; software 1.0&lt;/h2&gt;
 &lt;p&gt;What I will do is to write a lexer and a parser to analyze the mathematical equations written in unicode and generate the corresponding Gorgonia execution graph.&lt;/p&gt;
-&lt;h3 id=&#34;lexer-parser&#34;&gt;Lexer/Parser&lt;/h3&gt;
+&lt;h3 id=&#34;lexerparser&#34;&gt;Lexer/Parser&lt;/h3&gt;
 &lt;p&gt;My first attempt was to use a simple lexer and a simple parser. This is described in many posts over the internet all based on a talk by Rob Pike: &lt;a href=&#34;https://talks.golang.org/2011/lex.slide#1&#34;&gt;Lexical Scanning in GO&lt;/a&gt;.
 I have been able to write the lexer easily.
 The parser was more difficult to write because of the mathematical &lt;a href=&#34;https://en.wikipedia.org/wiki/Order_of_operations&#34;&gt;operator precedence&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After a bunch of documentation about LALR parser, I have decided to call an old friend: &lt;em&gt;yacc&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;br /&gt;
+&lt;p&gt;&lt;center&gt;
 &lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;dude you sound so quadragenarian!&lt;/p&gt;&amp;mdash; Pierre (@p_grandin) &lt;a href=&#34;https://twitter.com/p_grandin/status/941817771863584768?ref_src=twsrc%5Etfw&#34;&gt;December 15, 2017&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
 &lt;/center&gt;&lt;/p&gt;
@@ -2337,7 +2338,7 @@ For this purpose, I add a dictionary of elements. It is a map whose key is the r
 &lt;p&gt;I will not describe the rest of the parser because the implementation is straightforward and easy to read.
 You can find the complete implementation &lt;a href=&#34;https://raw.githubusercontent.com/owulveryck/charRNN/colah/parser/src/expr.y&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;generating-the-package&#34;&gt;Generating the package&lt;/h3&gt;
-&lt;p&gt;This is the &amp;ldquo;pure&amp;rdquo; Go part.
+&lt;p&gt;This is the &amp;quot;pure&amp;quot; Go part.
 The yacc tools actually generates a parser in go. I have chosen to declare it in its own package.
 The command &lt;code&gt;goyacc -o ../expr.go -p &amp;quot;Gorgonia&amp;quot; expr.y&lt;/code&gt; will generate the file &lt;code&gt;expr.go&lt;/code&gt; which holds an implementation able to parse my unicode equations.&lt;/p&gt;
 &lt;p&gt;I have also added a couple of helpers function to avoid public methods. My Parser API is therefore simple:&lt;/p&gt;
@@ -2347,7 +2348,7 @@ func (p *Parser) Parse(s string) (*G.Node, error)
 func (p *Parser) Set(ident string, value *G.Node)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;(see &lt;a href=&#34;https://godoc.org/github.com/owulveryck/charRNN/parser&#34;&gt;godoc&lt;/a&gt; for more details).&lt;/p&gt;
-&lt;h1 id=&#34;does-it-work&#34;&gt;Does it work ?&lt;/h1&gt;
+&lt;h1 id=&#34;does-it-work-&#34;&gt;Does it work ?&lt;/h1&gt;
 &lt;p&gt;Yes ! With my parser, I am able to write a LSTM step easily and to generate an execution graph:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2397,10 +2398,10 @@ func (p *Parser) Set(ident string, value *G.Node)
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;which leads to:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://owulveryck.github.io/assets/lstm/LSTM.png&#34; alt=&#34;image&#34; /&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://owulveryck.github.io/assets/lstm/LSTM.png&#34; alt=&#34;image&#34;&gt;&lt;/figure&gt;
 Now I will be able to work deeply on the software 2.0 part.&lt;/p&gt;
 &lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;As Karpathy&amp;rsquo;s explained: we will still need software 1.0 to build software 2.0. I have used very old concepts to build some tools for writing and processing a software 2.0.
+&lt;p&gt;As Karpathy&#39;s explained: we will still need software 1.0 to build software 2.0. I have used very old concepts to build some tools for writing and processing a software 2.0.
 In my example, the software 2.0 is the combination of the equations written in unicode and the values of the tensors which are arrays of floats.&lt;/p&gt;
 &lt;p&gt;A better step would be to parse a complete set of equations such as:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2426,7 +2427,7 @@ In my example, the software 2.0 is the combination of the equations written in u
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;The software 2.0, once trained, can be backed up as a unicode text file and a couple of floating point numbers.
-It would then be independent of the execution machine. A parser could transpile it into a Gorgonia execution graph, or a tensorflow execution graph, &amp;hellip;&lt;/p&gt;
+It would then be independent of the execution machine. A parser could transpile it into a Gorgonia execution graph, or a tensorflow execution graph, ...&lt;/p&gt;
 &lt;p&gt;A true and independent software 2.0.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;“A journey of a thousand miles must begin with a single step.”&lt;/em&gt; – &lt;em&gt;Lao Tzu&lt;/em&gt;&lt;/p&gt;

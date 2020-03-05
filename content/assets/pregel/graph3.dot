@@ -1,0 +1,10 @@
+digraph G {
+  σ -> add [label="E"];
+  add -> mul [label="C"];
+  add -> mul2 [label="D"];
+  mul -> X [label="A"];
+  mul -> W [label="B"];
+  mul2 -> X2   [label="F"];
+  mul2 -> W2 [label="G"];
+  mul2    [label="mul"];
+}

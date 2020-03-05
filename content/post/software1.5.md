@@ -5,13 +5,23 @@ draft = false
 title = "Parsing mathematical equation to generate computation graphs - First step from software 1.0 to 2.0 in go"
 date = 2017-12-18T16:47:27+01:00
 author = "Olivier Wulveryck"
+# mathjax: true
+
+# Use KaTeX
+# See https://github.com/KaTeX/KaTeX
+katex: true
+
+# Use Mmark
+# See https://gohugo.io/content-management/formats/#mmark
+markup: mmark
+
 +++
 
 In a previous article, I described an implementation of an RNN from scratch in go.
 The target is to use the RNN as a processing unit. The ultimate goal is to create a portable tool cross platform and able to grab and process data where they are.
-I have many applications in mind such as finding the root-cause of an incident or managing the capacity of an infrastructure. 
+I have many applications in mind such as finding the root-cause of an incident or managing the capacity of an infrastructure.
 
-_Note_ I stick to the Go language for many reasons: 
+_Note_ I stick to the Go language for many reasons:
 Some of them a personnal and not opposable (I simply like it). But another reason is that, in a distant future, this tool could act as a node of a processing network that would communicate via a tuple space (see my previous posts about Linda [here](https://blog.owulveryck.info/2017/02/03/linda-31yo-with-5-starving-philosophers....html), [here](https://blog.owulveryck.info/2017/02/28/to-go-and-touch-lindas-lisp.html) and [here](https://blog.owulveryck.info/2017/03/13/lindas-evalc-a-tuplespace-oddity.html).
 
 All the node would work in a choreography. The set of nodes would be a kind of distributed bot that could monitor a complete IT system. But that's for another story in a couple of years...
@@ -26,13 +36,13 @@ Then I will describe a way to parse and execute this software 2.0 on a machine c
 
 ## What is a software?
 
-It is a sequence of bits and bytes that can be computed, and that produces a result (the solution of a problem for example). 
+It is a sequence of bits and bytes that can be computed, and that produces a result (the solution of a problem for example).
 
-To build a software until now, a compiler is used. Its goal is to turn a "human readable sequence of characters", called code, into the sequence of bytes. 
+To build a software until now, a compiler is used. Its goal is to turn a "human readable sequence of characters", called code, into the sequence of bytes.
 
 This sequence of bytes is evaluated and executed by a machine at run time. Depending on the input, the execution produces (hopefully) the expected output.
 
-The art of programming, is, in essence, the faculty for a human to describe the solution of a problem and to express it in a computer language. 
+The art of programming, is, in essence, the faculty for a human to describe the solution of a problem and to express it in a computer language.
 
 ## What is software 2.0?
 
@@ -45,13 +55,13 @@ The compiler is a software 1.0 that is able to transpile the equations into a se
 
 So what is the difference between 1.0 and 2.0? Is it just a matter of language?
 
-No, the major difference is in the art of programming and the use case. 
+No, the major difference is in the art of programming and the use case.
 
 For example:
 
 A programmer __cannot__ write an algorithm that will __solve a specific problem__ (ex: I need to recognize a cat in photo).
 
-So, the programmer will write a set of equations __able to solve a kind of problem__ (recognize objects on any photo). 
+So, the programmer will write a set of equations __able to solve a kind of problem__ (recognize objects on any photo).
 
 The solution to the specific problem will be given by the evaluation of the _equation_ __for a specific__ _set of weights_ (a cat is an object that corresponds to the specific set of weights: for example {0,1,3,2,45,6,6,5,3,4,6,....}.)
 
@@ -68,7 +78,7 @@ My toy is working, but I have been disappointed by the results: the generated te
 
 One solution is to change the core model for a more robust network called __L__ong __S__hort __T__erm __M__emory network (LSTM for short).
 
-The software 2.0 will be an implementation of the equations of the LSTM. 
+The software 2.0 will be an implementation of the equations of the LSTM.
 Form more information about LSTM, I strongly encourage you to read [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) from Christopher Olah.
 
 ## LSTM
@@ -84,7 +94,7 @@ It is a clear explanation of how the process works. And it is obvious that a gra
 
 ## Equations are graphs
 
-So equations are graphs... 
+So equations are graphs...
 
 This [post](http://gopherdata.io/post/deeplearning_in_go_part_1/) from [Chewxy](https://twitter.com/chewxy) is a perfect illustration of how the expression of a mathematical expression is turned into a graph at a compiler level.
 
@@ -97,15 +107,15 @@ Tensorflow is highly optimized, but the setup of the working environment may be 
 
 ## Gorgonia
 
-The author of the post about equation I quoted previously, is also the author of the Gorgonia project. 
+The author of the post about equation I quoted previously, is also the author of the Gorgonia project.
 
 Gorgonia is self-describe like this in its documentation:
 > Package Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. Do differentiation with them just as easily.
 
 This is exactly the answer to my problem.
 
-I have talked to the author on the channel #data-science on [gophers.slack.com](gophers.slack.com). He is really committed, and very active. On top of that I am really attracted by the idea of such a library in go. 
-I have decided to give Gorgonia a try. 
+I have talked to the author on the channel #data-science on [gophers.slack.com](gophers.slack.com). He is really committed, and very active. On top of that I am really attracted by the idea of such a library in go.
+I have decided to give Gorgonia a try.
 
 ### Machines, Graphs, Nodes, Values and Backends
 
@@ -117,7 +127,7 @@ A `Value` is an interface. A [`Tensor`](https://godoc.org/Gorgonia.org/tensor#Te
 
 `Tensors` are multidimensional arrays that contains elements of the same [`Dtype`](https://godoc.org/Gorgonia.org/tensor#Dtype). All those elements are stored in concrete arrays of elements (for example `[]float32`).
 
-To actually compute the graph, Gorgonia is using "a machine": 
+To actually compute the graph, Gorgonia is using "a machine":
 
 * a [`lispMachine`](https://godoc.org/Gorgonia.org/Gorgonia#NewLispMachine) or
 * a [`tapeMachine`](https://godoc.org/Gorgonia.org/Gorgonia#NewTapeMachine)
@@ -131,8 +141,8 @@ To transform a mathematical equation into a graph, we first need to create a gra
 For example, this equation:
 
 $$z = W \cdot x$$
-With 
-$$W = \begin{bmatrix}0.95 & 0,8 \\\ 0 & 0\end{bmatrix}, x = \begin{bmatrix}1 \\\ 1\end{bmatrix}$$ 
+With
+$$W = \begin{bmatrix}0.95 & 0,8 \\\ 0 & 0\end{bmatrix}, x = \begin{bmatrix}1 \\\ 1\end{bmatrix}$$
 
 Is written like this in "Gorgonia":
 
@@ -153,10 +163,10 @@ vec := G.NewVector(g,
 )
 matB := []float32{0.95,0.8,0,0}
 matT := tensor.New(tensor.WithBacking(matB), tensor.WithShape(2, 2))
-mat := G.NewMatrix(g, 
-        tensor.Float32, 
-        G.WithName("W"), 
-        G.WithShape(2, 2), 
+mat := G.NewMatrix(g,
+        tensor.Float32,
+        G.WithName("W"),
+        G.WithShape(2, 2),
         G.WithValue(matT),
 )
 
@@ -221,9 +231,9 @@ Actually the concept is close to the Reverse Polish Notation. But what would mak
 
 ```go
 set(`iₜ`, `σ(Wᵢ·xₜ+Uᵢ·hₜ₋₁+Bᵢ)`)
-set(`fₜ`, `σ(Wf·xₜ+Uf·hₜ₋₁+Bf)`) 
+set(`fₜ`, `σ(Wf·xₜ+Uf·hₜ₋₁+Bf)`)
 set(`oₜ`, `σ(Wₒ·xₜ+Uₒ·hₜ₋₁+Bₒ)`)
-set(`ĉₜ`, `tanh(Wc·xₜ+Uc·hₜ₋₁+Bc)`) 
+set(`ĉₜ`, `tanh(Wc·xₜ+Uc·hₜ₋₁+Bc)`)
 ct := set(`cₜ`, `fₜ*cₜ₋₁+iₜ*ĉₜ`)
 set(`hc`, `tanh(cₜ)`)
 ht, _ := l.parser.Parse(`oₜ*hc`)
@@ -238,12 +248,12 @@ What I will do is to write a lexer and a parser to analyze the mathematical equa
 ### Lexer/Parser
 
 My first attempt was to use a simple lexer and a simple parser. This is described in many posts over the internet all based on a talk by Rob Pike: [Lexical Scanning in GO](https://talks.golang.org/2011/lex.slide#1).
-I have been able to write the lexer easily. 
+I have been able to write the lexer easily.
 The parser was more difficult to write because of the mathematical [operator precedence](https://en.wikipedia.org/wiki/Order_of_operations).
 
 After a bunch of documentation about LALR parser, I have decided to call an old friend: _yacc_
 
-<center>  
+<center>
 {{< tweet 941817771863584768 >}}
 </center>
 
@@ -302,7 +312,7 @@ expr2:
 
 ### The parser and the lexer
 
-The lexer implementation is a struct type that fulfills the interface 
+The lexer implementation is a struct type that fulfills the interface
 
 ```go
 type yyLexer interface {
@@ -326,7 +336,7 @@ type exprLex struct {
 }
 ```
 
-I also add `Let` method that sets an entry in the dictionary. 
+I also add `Let` method that sets an entry in the dictionary.
 
 ```go
 func (x *exprLex) Let(ident  string, value *G.Node) {
@@ -382,14 +392,14 @@ func (l *lstm) fwd(inputVector, prevHidden, prevCell *G.Node) (hidden, cell *G.N
 }
 ```
 
-which leads to: 
+which leads to:
 
 ![image](/assets/lstm/LSTM.png)
-Now I will be able to work deeply on the software 2.0 part. 
+Now I will be able to work deeply on the software 2.0 part.
 
 # Conclusion
 
-As Karpathy's explained: we will still need software 1.0 to build software 2.0. I have used very old concepts to build some tools for writing and processing a software 2.0. 
+As Karpathy's explained: we will still need software 1.0 to build software 2.0. I have used very old concepts to build some tools for writing and processing a software 2.0.
 In my example, the software 2.0 is the combination of the equations written in unicode and the values of the tensors which are arrays of floats.
 
 A better step would be to parse a complete set of equations such as:
@@ -408,6 +418,6 @@ hₜ=oₜ*tanh(cₜ)
 The software 2.0, once trained, can be backed up as a unicode text file and a couple of floating point numbers.
 It would then be independent of the execution machine. A parser could transpile it into a Gorgonia execution graph, or a tensorflow execution graph, ...
 
-A true and independent software 2.0. 
+A true and independent software 2.0.
 
 > _“A journey of a thousand miles must begin with a single step.”_ – _Lao Tzu_

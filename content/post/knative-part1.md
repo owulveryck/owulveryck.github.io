@@ -1,8 +1,42 @@
 ---
-title: "Coupling: _divide et impera_"
+title: "Coupling in software: divide et impera"
 date: 2020-04-26T15:47:57+02:00
 draft: true
 ---
+
+# Introduction
+
+TODO: Expose why coupling is a problem:
+
+- maintenance cost
+- new features
+
+# Coupling inside the code
+
+## Connascence
+
+## Modern connascence: IA application
+
+### Decoupling software 1.0 and software 2.0
+
+_Transition_: 
+
+# Coupling inside the software
+
+## Splitting the application by domain design
+
+#### Seeing the problem on a map
+
+### Separate the infrastructure from the application
+
+> A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
+
+### Event-based architecture
+
+# Conclusion
+
+
+
 
 
 The first article would be about coupling in software (I recently learned about the word connascence). 
@@ -85,6 +119,5 @@ Process
 
 In this article, I explain why event base architecture is relevant in some of the recent use cases I encounter.
 
-> A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
 
 > The notion of a document change; a document is no longer a container with a set of sentences; a document is a process with a set of changes - Jeffrey Snower

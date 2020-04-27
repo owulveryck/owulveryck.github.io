@@ -23,11 +23,11 @@ In chapter 12[^1] of his book [_In search of Certainty_](http://markburgess.org/
 A software is symbolized by a composition of elements (objects, services, functions, etc.) that are interacting, hence
 the paradigm of coupling applies to software engineering.
 
-The strength of coupling is roughly evaluated but not correctly measured. Nevertheless, it feeds numerous discussions about the quality and reliability of the application.
+From my experience, the strength of coupling is roughly evaluated but not correctly measured. Nevertheless, it feeds numerous discussions about the quality and reliability of the application.
 
-In modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level.
+Actually, in modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level.
 
-This article is about coupling in an application powered by some IA technique.
+This article is about coupling in an application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in some futures articles.
 
 ## Coupling inside the code
 

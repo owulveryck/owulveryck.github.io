@@ -7,19 +7,24 @@ draft: true
 
 ## What is _coupling_?
 
-Software is a composition of elements (objects, services, functions, etc.) that are interacting.
 In physics, two objects are said to be coupled when they are interacting with each other (source [wikipedia](https://en.wikipedia.org/wiki/Coupling_(physics))).
-This paradigm of coupling applies to software engineering. The notion of weak and strong coupling is a common language in IT.
 
-Two elements are strongly coupled when a perturbation on the first element induces a perturbation on the second that impact on its behavior strongly.
-A corollary is that two systems are weakly coupled if the perturbation induced on an element from the excitation of another one if low.
+This paradigm of coupling applies to software engineering. Hence the notion of weak and strong coupling is a common language in IT.
 
-In chapter 12 of his book [_In search of Certainty_](http://markburgess.org/certainty.html), [Mark Burgess](https://twitter.com/markburgess_osl) discuss the notion of coupling in physics. Some of the conclusions exposed in chapter 13 are:
+Representation of software is a composition of elements (objects, services, functions, etc.) that are interacting.
+
+Two elements are strongly coupled when a perturbation on the first element induces a disturbance on the second that impact on its behavior strongly.
+A corollary is that two systems are weakly coupled if the perturbation induced on a component from the excitation of another one is low.
+
+In chapter 12[^1] of his book [_In search of Certainty_](http://markburgess.org/certainty.html), [Mark Burgess](https://twitter.com/markburgess_osl) discusses the notion of coupling in physics. Some of the conclusions exposed in chapter 13 are [^2]:
 
 - strong coupling leads to precision but the fragility;
 - weakly coupled components can be rearranged, taken apart and made into something else, assembled into a meaningful composition;
 
-In modern software, coupling arises at different levels. Inside the code, *and* at the architecture level. 
+[^1]: Chapter 12: _Orchestration And Creative Instability: Or why the conductor does not promise to blow every trumpet_, page 383
+[^2]: Chapter 13: _Orchestration And Creative Instability: Or why the conductor does not promise to blow every trumpet_, page 422
+
+In modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level. 
 
 ## Coupling inside the code
 

@@ -9,10 +9,6 @@ draft: true
 
 In physics, two objects are said to be coupled when they are interacting with each other (source [wikipedia](https://en.wikipedia.org/wiki/Coupling_(physics))).
 
-This paradigm of coupling applies to software engineering. Hence the notion of weak and strong coupling is a common language in IT.
-
-Representation of software is a composition of elements (objects, services, functions, etc.) that are interacting.
-
 Two elements are strongly coupled when a perturbation on the first element induces a disturbance on the second that impact on its behavior strongly.
 A corollary is that two systems are weakly coupled if the perturbation induced on a component from the excitation of another one is low.
 
@@ -24,7 +20,14 @@ In chapter 12[^1] of his book [_In search of Certainty_](http://markburgess.org/
 [^1]: Chapter 12: _Orchestration And Creative Instability: Or why the conductor does not promise to blow every trumpet_, page 383
 [^2]: Chapter 13: _Orchestration And Creative Instability: Or why the conductor does not promise to blow every trumpet_, page 422
 
-In modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level. 
+A software is symbolized by a composition of elements (objects, services, functions, etc.) that are interacting, hence
+the paradigm of coupling applies to software engineering.
+
+The strength of coupling is roughly evaluated but not correctly measured. Nevertheless, it feeds numerous discussions about the quality and reliability of the application.
+
+In modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level.
+
+This article is about coupling in an application powered by some IA technique.
 
 ## Coupling inside the code
 

@@ -17,8 +17,8 @@ In chapter 12[^1] of his book [_In search of Certainty_](http://markburgess.org/
 - strong coupling leads to precision but the fragility;
 - weakly coupled components can be rearranged, taken apart and made into something else, assembled into a meaningful composition;
 
-[^1]: Chapter 12: _Orchestration And Creative Instability: Or why the conductor does not promise to blow every trumpet_, page 383
-[^2]: Chapter 13: _Orchestration And Creative Instability: Or why the conductor does not promise to blow every trumpet_, page 422
+[^1]: Chapter 12: Molecular and Material Infrastructure: _Elastic, plastic and brittle design_, page 383
+[^2]: Chapter 13: Orchestration And Creative Instability: _Or why the conductor does not promise to blow every trumpet_, page 422
 
 A software is symbolized by a composition of elements (objects, services, functions, etc.) that are interacting, hence
 the paradigm of coupling applies to software engineering.
@@ -27,7 +27,7 @@ From my experience, the strength of coupling is roughly evaluated but not correc
 
 Actually, in modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level.
 
-This article is about coupling in an application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in some futures articles.
+This article is about coupling in an application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in futures articles.
 
 ## Coupling inside the code
 

@@ -31,9 +31,9 @@ This article is about coupling in  application powered by nowadays IA techniques
 
 ## Coupling inside the code
 
-In the book [Reliable software through composite design](https://archive.org/details/reliablesoftware00myer) from 1957, Glenford Myers exposes why designing a system to avoid strong coupling is important. A stronly couple system induces complexity and a high cost of maintenance. This makes the software "fragile" (as seen in the previous paragraph).
+In the book [Reliable software through composite design](https://archive.org/details/reliablesoftware00myer) from 1957, Glenford Myers exposes why designing a system to master coupling is essential. A strongly coupled system induces complexity and a high cost of maintenance. It makes the software "fragile" (as seen in the previous paragraph).
 
-Here is an illustration of this complexisy in function of time (compiled from Myers's book and from [Notes on the Synthesis of form](https://en.wikipedia.org/wiki/Notes_on_the_Synthesis_of_Form) from Christopher Alexander).
+Here is an illustration of this complexity in the function of time (compiled from Myers's book and [Notes on the Synthesis of form](https://en.wikipedia.org/wiki/Notes_on_the_Synthesis_of_Form) from Christopher Alexander).
 
 {{< blockquote author="Glenford Myers" source="Reliable software through composite design" >}} 
 Consider a system of 100 lamps where a lamp could represent a statement or a segment in a program. Each lamp can be in one of two states, off or on.
@@ -50,7 +50,10 @@ If a lamp is off, it will stay off as long as all of the lamps directly connecte
 [^3]: average time for a lamp to go off
 [^4]: average time for all lamp to go off
 
-## Connascence
+This time-based illustration gives the feeling that coupling can be painful and have a substantial impact on the velocity of new development.
+For dozen of years, developers have switched from paradigm to paradigm in to fight coupling in the code.
+
+Object-oriented programming is, for example, such a paradigm. This paradigm introduces the notion of [connascence](https://en.wikipedia.org/wiki/Connascence) as a metric to measure complexity.
 
 ### Modern connascence: IA application
 

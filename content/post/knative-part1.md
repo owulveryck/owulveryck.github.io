@@ -27,9 +27,28 @@ From my experience, the strength of coupling is roughly evaluated but not correc
 
 Actually, in modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level.
 
-This article is about coupling in an application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in futures articles.
+This article is about coupling in  application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in futures articles.
 
 ## Coupling inside the code
+
+In the book [Reliable software through composite design](https://archive.org/details/reliablesoftware00myer) from 1957, Glenford Myers exposes why designing a system to avoid strong coupling is important. A stronly couple system induces complexity and a high cost of maintenance. This makes the software "fragile" (as seen in the previous paragraph).
+
+Here is an illustration of this complexisy in function of time (compiled from Myers's book and from [Notes on the Synthesis of form](https://en.wikipedia.org/wiki/Notes_on_the_Synthesis_of_Form) from Christopher Alexander).
+
+{{< blockquote author="Glenford Myers" source="Reliable software through composite design" >}} 
+Consider a system of 100 lamps where a lamp could represent a statement or a segment in a program. Each lamp can be in one of two states, off or on.
+The lamps can be connected together in any fashion. If a lamp is on, the probability of its going off in the next second is 50% if at least one adjoining lamp is on.
+If a lamp is off, it will stay off as long as all of the lamps directly connecter to it are off.
+{{< /blockquote >}}
+
+| Test case                                      | Time to reach equilibrium                     |
+| ---------------------------------------------- | --------------------------------------------- |
+| no connection between any lamp                 | around 2s (2<sup>1</sup>s)[^3]                |
+| all lamps are connected                        | around 2.4e24 years (2<sup>100</sup>s) [^4] |
+| 10 independant groups of fully connected lamps | around 17 minutes (2<sup>10</sup>s)           |
+
+[^3]: average time for a lamp to go off
+[^4]: average time for all lamp to go off
 
 ## Connascence
 

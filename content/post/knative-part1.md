@@ -45,15 +45,20 @@ If a lamp is off, it will stay off as long as all of the lamps directly connecte
 | ---------------------------------------------- | --------------------------------------------- |
 | no connection between any lamp                 | around 2s (2<sup>1</sup>s)[^3]                |
 | all lamps are connected                        | around 2.4e24 years (2<sup>100</sup>s) [^4] |
-| 10 independant groups of fully connected lamps | around 17 minutes (2<sup>10</sup>s)           |
+| 10 independent groups of fully connected lamps | around 17 minutes (2<sup>10</sup>s)           |
 
 [^3]: average time for a lamp to go off
 [^4]: average time for all lamp to go off
 
 This time-based illustration gives the feeling that coupling can be painful and have a substantial impact on the velocity of new development.
-For dozen of years, developers have switched from paradigm to paradigm in to fight coupling in the code.
+For dozens of years, developers have switched from paradigm to paradigm to fight coupling in the code.
 
 Object-oriented programming is, for example, such a paradigm. This paradigm introduces the notion of [connascence](https://en.wikipedia.org/wiki/Connascence) as a metric to measure complexity.
+
+Those concepts and paradigms helped the developers to structure their code, rising the need to package, and modularized it. 
+This introduced the concept of the lifecycle of modules and thus the need for versioning.
+
+Let's now consider IA based application where the business logic is using compute libraries with a lifecycle that is independent of the development language. 
 
 ### Modern connascence: IA application
 

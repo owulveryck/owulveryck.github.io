@@ -5,6 +5,31 @@ description: "This article is about coupling in IT; divide et impera - divide an
 draft: true
 ---
 
+In 2020, an old debate has risen from the ashes:
+
+_Monolith or micro-services?_
+
+In the past years, I have been working on IT products that were designed to work at scale.
+The micro-services pattern was well suited for this need and was usually the paradigm of choice.
+
+And application composed of micro-services is supposed to be scalable; the main pitfall is to 
+design the service contracts and avoid the distributed monolith.
+The secret is to manage the coupling between the components in the same way developers have learned to handle coupling
+inside the code over the years.
+
+By mastering the coupling, the design paradigms have shown good results on quality and reliability of softwares.
+
+How do those paradigms apply to IA based applications?
+
+In this series of articles, I plan to dig in the design of code and hosting applied to IA software.
+This first article is about concepts.
+Then I may write a second article technical to expose a concrete example and illustrate the concepts.
+Eventually, a third article will show how to use managed services to transform products into commodities.
+
+<center>
+{{< tweet 988334146954170368 >}}
+</center>
+
 ## What is _coupling_?
 
 In physics, two objects are said to be coupled when they are interacting with each other (source [wikipedia](https://en.wikipedia.org/wiki/Coupling_(physics))).
@@ -56,6 +81,9 @@ For dozens of years, developers have switched from paradigm to paradigm to fight
 Object-oriented programming is, for example, such a paradigm. This paradigm introduces the notion of [connascence](https://en.wikipedia.org/wiki/Connascence) as a metric to measure complexity.
 
 Those concepts and paradigms helped the developers to structure their code, rising the need to package, and modularized it.
+
+The goal is to reduce the connascence level, from the most dangerous (Connascence of identity) to the less dangerous (Connascence of name). See the [wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
+
 This introduced the concept of the lifecycle of modules and thus the need for versioning.
 
 Let's now consider IA based application where the business logic is using compute libraries with a lifecycle that is independent of the development language.
@@ -63,9 +91,31 @@ Let's now consider IA based application where the business logic is using comput
 ### Coupling between software 1.0 and 2.0
 
 An IA model is a mathematical representation associated with some values. Let's call it a software 2.0 (this term has been introduced in late 2017 by Andrej Karpathy in a [blog post](https://medium.com/@karpathy/software-2-0-a64152b37c35), and is slowly becoming a common language in the data world).
+In this paradigm, software 1.0 is the result of regular code. Its usage is to glue the interfaces, I/O; it acts as a host for the IA/ML algorithm.
 
-To create an IA based application, there is a need to transcribe this mathematical model into something understandable by a computer, eg. a sequence of bytes.
-To achieve this, the best way is to switch from the mathematical language to a computing language.
+To create a software 2.0, there is a need to transcribe this mathematical model into something understandable by a computer, eg. a sequence of bytes. Then, we need two different types of software 1.0:
+
+- one will act as a helper for the training phase
+- the other one will handle the inference (the runtime of software 2.0)
+
+Those softwares are linked by the algorithm. The algorithm is expressed in code and therefore become an entity shared by each element.
+
+This is [connascence of identity](https://connascence.io/identity.html) and this is a major coupling that introduce a maintenance problem.
+
+#### Decoupling software 1.0 and software 2.0
+
+The learning phase usually involve gradient computation. There are multiple ways to automate the computation.
+One of the method is to use symbolic differentiation. This gives a new mathematical function.
+It is then possible to decouple the training software and the learning software; each of them would run its own mathematical equation; only the data would migrate from an implementation to the other.
+This is a [connascence of data]()
+
+This setup introduces coupling between the elements.
+
+> time can run backward locally, as long as the process doesn't depend strongly on what happens around it.
+https://youtu.be/lDFQiS9T_xk?t=2598
+
+
+
 However, this introduces a coupling between the algorithm and the software itself.
 
 The regular software acts as a host for the machine learning algorithm.
@@ -73,6 +123,7 @@ The regular software acts as a host for the machine learning algorithm.
 Let me give an example of such a coupling:
 
 A machine learning software's lifecycle is composed of two phases: the training phase and the inference phase (to perform prediction). 
+
 To different types of software 1.0 are required to process a machine learning algorithm. 
 One for the training phase, and a second one for inference.
 The two software have different goals; They are linked together via the algorithm and its implementation.
@@ -82,16 +133,8 @@ Therefore, coupling the software 2.0 with its host
 
 The software 1.0 and the software 2.0 and tidily linked by the language, framework, and modules they are built with.
 
-
-
-
-Actual deep learning algorithms are sometimes considered as being softwares [^5].
-
-[^5]: I had the seldom pleasure to talk about this in [dotAI](https://www.youtube.com/watch?v=Gf-pmc7Mykc) a couple of years ago
-
 ### a Babel fish for deep learning 
 
-### Decoupling software 1.0 and software 2.0
 
 _Transition_: TODO
 
@@ -108,36 +151,6 @@ TODO Explain the problem to run at scale, and the need to seperate concerns
 ### Event-based architecture
 
 ## Conclusion
-
-In a second article, I would introduce the sample app of sentiment analysis. I will describe the software 1.0/software 2.0 mechanism as I did in the presentation I gave you.
-Then I will add the need for decoupling the application, as seen in the previous article. This will be a lever for the knative eventing part (the one deployed on k8s).
-
-In conclusion, I am thinking of mentioning that this decoupling mechanism has excellent benefits, but it induces some extra work on the infrastructure level. It introduces a separation of concerns between the infrastructure and the application. As shown on a Wardley Map, the infrastructure should come from a product to a commodity. This will introduce the third article:
-
-Third article: cloud-run eventing
-The introduction would be a wrap up of the first two articles.
-It will show that the knative-eventing product is becoming a commodity etc. then it quickly goes into the technical setup of the application.
-
-Introduction
-From a container of data to a data processor
-
-Object storage and cloud computing have changed the paradigm of data storage: you don't unmarshal the data to make it fit in structured storage anymore. Nowadays, you use blob storage to store the document as close as possible to its original form.
-
-The value is not gold by the document itself anymore. What's important now is the history of changes applied to the document.
-
-the paradigm shift
-
-For a long time in the history of IT, people have stored data, and building an application was, more or less, designing a view on top of the data storage.
-
-> The next generation of enterprise data platform architecture requires a paradigm shift towards ubiquitous data with a distributed data mesh. - Zhamak Dehghani
-
- paradigm shift
-
-Digital world
-Container of data
-Process
-
-In this article, I explain why event base architecture is relevant in some of the recent use cases I encounter.
 
 > A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
 > The notion of a document change; a document is no longer a container with a set of sentences; a document is a process with a set of changes - Jeffrey Snower

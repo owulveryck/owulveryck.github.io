@@ -1,7 +1,7 @@
 ---
 title: "Coupling: divide et impera"
 date: 2020-04-26T15:47:57+02:00
-description: "this article is about coupling in IT; divide et impera - divide and conquer"
+description: "This article is about coupling in IT; divide et impera - divide and conquer"
 draft: true
 ---
 
@@ -27,7 +27,7 @@ From my experience, the strength of coupling is roughly evaluated but not correc
 
 Actually, in modern software, **coupling** arises at different levels, **inside the code**, *and* at the **architecture** level.
 
-This article is about coupling in  application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in futures articles.
+This article is about coupling in application powered by nowadays IA techniques; This article does not show any code and focuses on two principles about the separation of concern. I will eventually develop them as proof of concept in futures articles.
 
 ## Coupling inside the code
 
@@ -41,11 +41,11 @@ The lamps can be connected together in any fashion. If a lamp is on, the probabi
 If a lamp is off, it will stay off as long as all of the lamps directly connecter to it are off.
 {{< /blockquote >}}
 
-| Test case                                      | Time to reach equilibrium                     |
-| ---------------------------------------------- | --------------------------------------------- |
-| no connection between any lamp                 | around 2s (2<sup>1</sup>s)[^3]                |
-| all lamps are connected                        | around 2.4e24 years (2<sup>100</sup>s) [^4] |
-| 10 independent groups of fully connected lamps | around 17 minutes (2<sup>10</sup>s)           |
+| Test case                              | Time to reach equilibrium                   |
+| -------------------------------------- | ------------------------------------------- |
+| no connection between any lamp         | around 2s (2<sup>1</sup>s)[^3]              |
+| all lamps are connected                | around 2.4e24 years (2<sup>100</sup>s) [^4] |
+| 10 independent groups of fully connected lamps | around 17 minutes (2<sup>10</sup>s) |
 
 [^3]: average time for a lamp to go off
 [^4]: average time for all lamp to go off
@@ -55,20 +55,49 @@ For dozens of years, developers have switched from paradigm to paradigm to fight
 
 Object-oriented programming is, for example, such a paradigm. This paradigm introduces the notion of [connascence](https://en.wikipedia.org/wiki/Connascence) as a metric to measure complexity.
 
-Those concepts and paradigms helped the developers to structure their code, rising the need to package, and modularized it. 
+Those concepts and paradigms helped the developers to structure their code, rising the need to package, and modularized it.
 This introduced the concept of the lifecycle of modules and thus the need for versioning.
 
-Let's now consider IA based application where the business logic is using compute libraries with a lifecycle that is independent of the development language. 
+Let's now consider IA based application where the business logic is using compute libraries with a lifecycle that is independent of the development language.
 
-### Modern connascence: IA application
+### Coupling between software 1.0 and 2.0
+
+An IA model is a mathematical representation associated with some values. Let's call it a software 2.0 (this term has been introduced in late 2017 by Andrej Karpathy in a [blog post](https://medium.com/@karpathy/software-2-0-a64152b37c35), and is slowly becoming a common language in the data world).
+
+To create an IA based application, there is a need to transcribe this mathematical model into something understandable by a computer, eg. a sequence of bytes.
+To achieve this, the best way is to switch from the mathematical language to a computing language.
+However, this introduces a coupling between the algorithm and the software itself.
+
+The regular software acts as a host for the machine learning algorithm.
+
+Let me give an example of such a coupling:
+
+A machine learning software's lifecycle is composed of two phases: the training phase and the inference phase (to perform prediction). 
+To different types of software 1.0 are required to process a machine learning algorithm. 
+One for the training phase, and a second one for inference.
+The two software have different goals; They are linked together via the algorithm and its implementation.
+
+Refactoring the software 2.0 to enhance its efficiency requires to the, the actual value of the software 1.0 is in the prediction phase.
+Therefore, coupling the software 2.0 with its host 
+
+The software 1.0 and the software 2.0 and tidily linked by the language, framework, and modules they are built with.
+
+
+
+
+Actual deep learning algorithms are sometimes considered as being softwares [^5].
+
+[^5]: I had the seldom pleasure to talk about this in [dotAI](https://www.youtube.com/watch?v=Gf-pmc7Mykc) a couple of years ago
+
+### a Babel fish for deep learning 
 
 ### Decoupling software 1.0 and software 2.0
 
 _Transition_: TODO
 
-## Coupling inside the software
-
 ### Splitting the application by domain design
+
+TODO Explain the problem to run at scale, and the need to seperate concerns
 
 #### Seeing the problem on a map
 

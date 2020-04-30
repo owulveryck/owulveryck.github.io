@@ -1,5 +1,5 @@
 ---
-title: "Coupling: divide et impera"
+title: "Divide et impera - part I: coupling"
 date: 2020-04-26T15:47:57+02:00
 description: "This article is about coupling in IT; divide et impera - divide and conquer"
 draft: true
@@ -24,11 +24,9 @@ How do those paradigms apply to IA based applications?
 In this series of articles, I plan to dig in the design of code and hosting applied to IA software.
 This first article is about concepts.
 Then I may write a second article technical to expose a concrete example and illustrate the concepts.
-Eventually, a third article will show how to use managed services to transform products into commodities.
+Eventually, a third article will show how to use managed services to transform products into commodities[^1].
 
-<center>
-{{< tweet 988334146954170368 >}}
-</center>
+[^1]: Simon Wardley's book, chapter 7 [Finding a new purpose](https://medium.com/wardleymaps/finding-a-new-purpose-8c60c9484d3b)
 
 ## What is _coupling_?
 
@@ -37,13 +35,13 @@ In physics, two objects are said to be coupled when they are interacting with ea
 Two elements are strongly coupled when a perturbation on the first element induces a disturbance on the second that impact on its behavior strongly.
 A corollary is that two systems are weakly coupled if the perturbation induced on a component from the excitation of another one is low.
 
-In chapter 12[^1] of his book [_In search of Certainty_](http://markburgess.org/certainty.html), [Mark Burgess](https://twitter.com/markburgess_osl) discusses the notion of coupling in physics. Some of the conclusions exposed in chapter 13 are [^2]:
+In chapter 12[^2] of his book [_In search of Certainty_](http://markburgess.org/certainty.html), [Mark Burgess](https://twitter.com/markburgess_osl) discusses the notion of coupling in physics. Some of the conclusions exposed in chapter 13 are [^3]:
 
 - strong coupling leads to precision but the fragility;
 - weakly coupled components can be rearranged, taken apart and made into something else, assembled into a meaningful composition;
 
-[^1]: Chapter 12: Molecular and Material Infrastructure: _Elastic, plastic and brittle design_, page 383
-[^2]: Chapter 13: Orchestration And Creative Instability: _Or why the conductor does not promise to blow every trumpet_, page 422
+[^2]: Chapter 12: Molecular and Material Infrastructure: _Elastic, plastic and brittle design_, page 383
+[^3]: Chapter 13: Orchestration And Creative Instability: _Or why the conductor does not promise to blow every trumpet_, page 422
 
 A software is symbolized by a composition of elements (objects, services, functions, etc.) that are interacting, hence
 the paradigm of coupling applies to software engineering.
@@ -68,12 +66,12 @@ If a lamp is off, it will stay off as long as all of the lamps directly connecte
 
 | Test case                              | Time to reach equilibrium                   |
 | -------------------------------------- | ------------------------------------------- |
-| no connection between any lamp         | around 2s (2<sup>1</sup>s)[^3]              |
-| all lamps are connected                | around 2.4e24 years (2<sup>100</sup>s) [^4] |
+| no connection between any lamp         | around 2s (2<sup>1</sup>s)[^4]              |
+| all lamps are connected                | around 2.4e24 years (2<sup>100</sup>s) [^5] |
 | 10 independent groups of fully connected lamps | around 17 minutes (2<sup>10</sup>s) |
 
-[^3]: average time for a lamp to go off
-[^4]: average time for all lamp to go off
+[^4]: average time for a lamp to go off
+[^5]: average time for all lamp to go off
 
 This time-based illustration gives the feeling that coupling can be painful and have a substantial impact on the velocity of new development.
 For dozens of years, developers have switched from paradigm to paradigm to fight coupling in the code.

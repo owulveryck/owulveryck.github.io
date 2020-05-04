@@ -17,7 +17,7 @@ The secret is to manage the coupling between the components in the same way deve
 
 By mastering the coupling, the design paradigms have shown excellent results on the quality and reliability of software.
 
-How do those paradigms apply to AI based applications?
+How do those paradigms apply to AI-based applications?
 
 In this series of articles, I plan to dig into the design of code and hosting applied to AI software.
 This first article is about concepts.
@@ -51,7 +51,7 @@ Let's first analyze the coupling of an AI base application, and then see how the
 
 ## Coupling inside the code
 
-In the book [Reliable software through composite design](https://archive.org/details/reliablesoftware00myer) from 1957, Glenford Myers exposes why designing a system to master coupling is essential. A strongly coupled system induces complexity and a high cost of maintenance. It makes the software "fragile" (as seen in the previous paragraph).
+In the book [Reliable software through composite design](https://archive.org/details/reliablesoftware00myer) (written in 1957!), Glenford Myers exposes why designing a system to master coupling is essential. A strongly coupled system induces complexity and a high cost of maintenance. It makes the software "fragile" (as seen in the previous paragraph).
 
 To bring an intuition of the problem, let's consider this illustration (compiled from Myers's book and [Notes on the Synthesis of form](https://en.wikipedia.org/wiki/Notes_on_the_Synthesis_of_Form) from Christopher Alexander).
 
@@ -77,9 +77,9 @@ To fight this problem, IT developers are applying programming paradigms, tools a
 
 [Connascence](https://en.wikipedia.org/wiki/Connascence) is such a metric to measure complexity (mainly in object-oriented paradigm).
 
-The goal of this tool is to evaluate a level in the code. Then the developper can apply any technique to reduce the connascence level, from the most dangerous (Connascence of identity) to the less dangerous (Connascence of name). See the [Wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
+The goal of this tool is to evaluate a level in the code. Then the developer can apply any technique to reduce the connascence level, from the most dangerous (Connascence of identity) to the less dangerous (Connascence of name). See the [Wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
 
-Let's now consider AI based application where the business logic is using compute libraries with a lifecycle that is independent of the development language.
+Let's now consider AI-based applications where the business logic is using compute libraries with a lifecycle that is independent of the development language.
 
 ## AI application
 
@@ -131,7 +131,7 @@ _Transition_: TODO
 
 ### Running at scale
 
-Before thinking further, let's define the notion of scale:
+Before thinking further, let's define  notion of scale:
 
 {{< blockquote author="Mark Burgess" source="Smart Spacetime (page 100)" >}} 
 [_scale is_] a region of uniformity, or compatibility, a measure of compatible things, whether by distance, weight, size, color, etc.
@@ -149,6 +149,3 @@ https://youtu.be/lDFQiS9T_xk?t=2598
 ### Event-based architecture
 
 ## Conclusion
-
-> A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
-> The notion of a document change; a document is no longer a container with a set of sentences; a document is a process with a set of changes - Jeffrey Snower

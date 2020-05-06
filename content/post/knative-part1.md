@@ -90,10 +90,10 @@ In this paradigm, software 1.0 is the result of regular code. Its usage is to gl
 
 To create a software 2.0, there is a need to transcribe this mathematical model into something understandable by a computer, eg. a sequence of bytes. Then, we need two different types of software 1.0:
 
-- one will act as a helper for the training phase
+- one will act as a helper for the training phase (the build phase of the software 2.0)
 - the other one will handle the inference (the runtime of software 2.0)
 
-The algorithm act as a link between the components. On top of that, the algorithm itself is transpiled into some code, usually using the same language as its host. This makes the software 2.0 an entity of the software 1.0; therefore this is comparable to [connascence of identity](https://connascence.io/identity.html).
+The algorithm act as a link between the components. On top of that, the algorithm itself is transpiled into some code, usually using the same language as its host. This makes the software 2.0 an entity of software 1.0; therefore this is comparable to [connascence of identity](https://connascence.io/identity.html).
 
 <center>
 ![Venn diagram](https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/e39ed3495f9c4ab99f5c32a39ec91cacbabcf6cc/diagram1.svg)
@@ -101,43 +101,24 @@ The algorithm act as a link between the components. On top of that, the algorith
 
 #### Decoupling software 1.0 and software 2.0
 
-Connascence of entity's impact is 
-The learning phase usually involves gradient computation. There are multiple ways to automate computation.
-One of the methods is to use symbolic differentiation. This gives a new mathematical function.
-It is then possible to decouple the training software and the learning software; each of them would run its own mathematical equation; only the data would migrate from implementation to the other.
-This is a [connascence of data]()
+Dealing with this connascence if identity is mostly dealing with this duality of training/inference phase.
 
-This setup introduces coupling between the elements. 
+One idea is to turn the entity representing the software 2.0 into data. Therefore, we lower the connascence into [connascence of data]().
 
-
-However, this introduces a coupling between the algorithm and the software itself.
-
-The regular software acts as a host for the machine learning algorithm.
-
-Let me give an example of such a coupling:
-
-A machine learning software's lifecycle is composed of two phases: the training phase and the inference phase (to perform prediction). 
-
-To different types of software 1.0 are required to process a machine learning algorithm. 
-One for the training phase, and a second one for inference.
-The two software have different goals; They are linked together via the algorithm and its implementation.
-
-Refactoring the software 2.0 to enhance its efficiency requires to the, the actual value of the software 1.0 is in the prediction phase.
-Therefore, coupling the software 2.0 with its host 
-
-The software 1.0 and the software 2.0 and tidily linked by the language, framework, and modules they are built with.
 
 _Transition_: TODO
 
 ### Running at scale
 
-Before thinking further, let's define  notion of scale:
+Before going further, let's define the notion of scale:
 
 {{< blockquote author="Mark Burgess" source="Smart Spacetime (page 100)" >}} 
 [_scale is_] a region of uniformity, or compatibility, a measure of compatible things, whether by distance, weight, size, color, etc.
 {{< /blockquote >}}
 
 #### Data pipeline and time reference
+
+A data pipeline is a serie of data processing steps.
 
 > time can run backward locally, as long as the process doesn't depend strongly on what happens around it.
 https://youtu.be/lDFQiS9T_xk?t=2598

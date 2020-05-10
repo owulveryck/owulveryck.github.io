@@ -175,9 +175,9 @@ Claude Shannon explains in detail the notion of communication channel is [the ma
 - A rigid channel is something that couple the components strongly, therefore information is received synchronously from point A to point B (such as an in-memory semaphore for example).
 - A smooth channel is an element that carries information that will eventually flow from point A to point B.
 
-The nature of the communication channel is, the next axis of work. As seen in the first paragraph, a rigid channel will lead to precision but fragility, and a smooth channel is more robust but less precise.
+The nature of the communication channel is the next axis of work. As seen in the first paragraph, a rigid channel will lead to precision but fragility, and a smooth channel is more robust but less precise.
 
-For example, with a smooth channel, even _time can run backward locally_ [^8] which is very usefull for elements of the pipeline that deals with databases.
+For example, with a smooth channel, even _time can run backward locally_ [^8] which is very useful for elements of the pipeline that deals with databases.
 
 [^8]: _time can run backward locally, as long as the process doesn't depend strongly on what happens around it._ Mark Burgess - [Bigger, Faster, Smarter - Episode 1](https://youtu.be/lDFQiS9T_xk?t=2598)
 

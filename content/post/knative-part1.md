@@ -107,19 +107,37 @@ The algorithm act as a link between the components. On top of that, the algorith
 
 Dealing with this connascence of identity is mostly dealing with this duality of the training/inference phase.
 
-One idea is to turn the entity representing the software 2.0 into data. Therefore, we lower the connascence from [dynamic connascence]() to [static connascence]()
+One idea is to turn the entity representing the software 2.0 into data. Therefore, we lower the connascence from _dynamic connascence_ to _static connascence_.
 
-The best way to achieve this is to use a domain-specific language (DSL) to represent the software 2.0. Using the mathematical representation is a perfect example of this.
+One way to achieve this is to think the model (software 2.0) as data.
+Training and inference software must agree on the data type of the software 2.0. 
 
-This DSL could, eventually be encoded into a format that would become the bablefish for deep-learning[^6].
+One way to do that is to use a domain-specific language (DSL) to represent the software 2.0. Using the mathematical representation is a perfect example of this.
+
+This DSL could, eventually, be encoded into a format that would become the bablefish for AI[^6].
 
 [^6]: I gave a lightning talk about it at dotAI in 2018: [_software 2.0 a babelfish for deep learning_](https://www.youtube.com/watch?v=Gf-pmc7Mykc)
 
-
 ![babel fish](/assets/babel-fish.jpg)
 
+Developing AI applications is a combination of several processes that are loosely coupled:
 
-_Transition_: TODO
+- creating an algorithm and describing it with a mathematical representation;
+- expressing the formulae in the IA DSL;
+- creating a software 1.0 that can read the formulae and feed it with data for learning;
+- creating another software 1.0 that can read the formulae and feed it with realtime data for inference;
+
+_Note_ For example, [Open Neural Network eXchange (ONNX)](https://onnx.ai) is an example of such a DSL; but deeping into the technical implementation is out of the scope of this article and will eventually come in a future post.
+
+{{< blockquote author="Titus Winter">}}
+software engineering is programming integrated over time.
+{{< /blockquote >}}
+
+So far, decoupling the process gives the opportunity to properly do engineering work to develop a maintainable application.[^7]
+
+[^7]: as mentioned by Russ Cox in his blog, _It's worth seven minutes of your time to see [his presentation of this idea at CppCon 2017](https://www.youtube.com/watch?v=tISy7EJQPzI&t=8m17s), from 8:17 to 15:00 in the video._
+
+Let's now consider the runtime, and whether we can run it smoothly "at scale".
 
 ### Running at scale
 
@@ -129,9 +147,10 @@ Before going further, let's define the notion of scale:
 [_scale is_] a region of uniformity, or compatibility, a measure of compatible things, whether by distance, weight, size, color, etc.
 {{< /blockquote >}}
 
+_TODO_ 
 #### Data pipeline and time reference
 
-A data pipeline is a serie of data processing steps.
+A data pipeline is a sseriesof data processing steps.
 
 > time can run backward locally, as long as the process doesn't depend strongly on what happens around it.
 https://youtu.be/lDFQiS9T_xk?t=2598

@@ -158,22 +158,36 @@ On both parts, data usually need to be pre-processed before they can feed the so
 
 A data pipeline is a series of data processing steps.
 
-To illustrate, I will introduce [C4](https://c4model.com), a method to design an application (and to take care of coupling).
+To illustrate, let's use [C4](https://c4model.com), a method to design an application (and to take care of coupling).
 This method defines the concepts of _container_ and _components_.
 
 - a container (_not docker!_) which is _something that needs to be running in order for the overall software system to work._
 - a component is _a grouping of related functionality encapsulated behind a well-defined interface_
 
-Building a data pipeline, brings the ability to split the components into their own containers.
+Building a data pipeline, brings the ability to split the components into the containers.
 
+Each container defines its own scale. As a consequence, the overall system can adapt smoothly, at scale.
 
-> time can run backward locally, as long as the process doesn't depend strongly on what happens around it.
-https://youtu.be/lDFQiS9T_xk?t=2598
+The different _containers_ communicates through channels of communication where they can exchange messages.
+
+Claude Shannon explains in detail the notion of communication channel is [the mathematical theory of communication](https://en.wikipedia.org/wiki/Information_theory#Channel_capacity). For our explanation, let's classify the communication channels: _rigid_ and _robust_.
+
+- A rigid channel is something that couple the components strongly, therefore information is received synchronously from point A to point B (such as an in-memory semaphore for example).
+- A smooth channel is an element that carries information that will eventually flow from point A to point B.
+
+The nature of the communication channel is, the next axis of work. As seen in the first paragraph, a rigid channel will lead to precision but fragility, and a smooth channel is more robust but less precise.
+
+For example, with a smooth channel, even _time can run backward locally_ [^8] which is very usefull for elements of the pipeline that deals with databases.
+
+[^8]: _time can run backward locally, as long as the process doesn't depend strongly on what happens around it._ Mark Burgess - [Bigger, Faster, Smarter - Episode 1](https://youtu.be/lDFQiS9T_xk?t=2598)
+
+### Event-based architecture
+
+Event-based architecture is an example of design that allows weakly coupling in a process-pipeline, allowing data to flow asynchronously from a process to another.
 
 ### Separate the infrastructure from the application
 
 > A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
 
-### Event-based architecture
 
 ## Conclusion

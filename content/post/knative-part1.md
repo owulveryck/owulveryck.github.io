@@ -118,6 +118,7 @@ This DSL could, eventually, be encoded into a format that would become the bable
 
 [^6]: I gave a lightning talk about it at dotAI in 2018: [_software 2.0 a babelfish for deep learning_](https://www.youtube.com/watch?v=Gf-pmc7Mykc)
 
+
 ![babel fish](/assets/babel-fish.jpg)
 
 Developing AI applications is a combination of several processes that are loosely coupled:
@@ -127,7 +128,7 @@ Developing AI applications is a combination of several processes that are loosel
 - creating a software 1.0 that can read the formulae and feed it with data for learning;
 - creating another software 1.0 that can read the formulae and feed it with realtime data for inference;
 
-_Note_ For example, [Open Neural Network eXchange (ONNX)](https://onnx.ai) is an example of such a DSL; but deeping into the technical implementation is out of the scope of this article and will eventually come in a future post.
+_Note_ [Open Neural Network eXchange (ONNX)](https://onnx.ai) is an example of such a DSL; but deeping into the technical implementation is out of the scope of this article and will eventually come in a future post.
 
 {{< blockquote author="Titus Winter">}}
 software engineering is programming integrated over time.

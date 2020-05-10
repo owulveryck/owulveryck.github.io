@@ -79,6 +79,10 @@ To fight this problem, IT developers are applying programming paradigms, tools a
 
 The goal of this tool is to evaluate a level in the code. Then the developer can apply any technique to reduce the connascence level, from the most dangerous (Connascence of identity) to the less dangerous (Connascence of name). See the [Wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
 
+<center>
+![Connascence](https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/5ad99b3c3833120e780a34f9d4c2a54473d219a2/connascence.svg)
+</center>
+
 Let's now consider AI-based applications where the business logic is using compute libraries with a lifecycle that is independent of the development language.
 
 ## AI application
@@ -101,9 +105,18 @@ The algorithm act as a link between the components. On top of that, the algorith
 
 #### Decoupling software 1.0 and software 2.0
 
-Dealing with this connascence if identity is mostly dealing with this duality of training/inference phase.
+Dealing with this connascence of identity is mostly dealing with this duality of the training/inference phase.
 
-One idea is to turn the entity representing the software 2.0 into data. Therefore, we lower the connascence into [connascence of data]().
+One idea is to turn the entity representing the software 2.0 into data. Therefore, we lower the connascence from [dynamic connascence]() to [static connascence]()
+
+The best way to achieve this is to use a domain-specific language (DSL) to represent the software 2.0. Using the mathematical representation is a perfect example of this.
+
+This DSL could, eventually be encoded into a format that would become the bablefish for deep-learning[^6].
+
+[^6]: I gave a lightning talk about it at dotAI in 2018: [_software 2.0 a babelfish for deep learning_](https://www.youtube.com/watch?v=Gf-pmc7Mykc)
+
+
+![babel fish](/assets/babel-fish.jpg)
 
 
 _Transition_: TODO

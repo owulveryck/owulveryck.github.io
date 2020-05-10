@@ -181,9 +181,13 @@ For example, with a smooth channel, even _time can run backward locally_ [^8] wh
 
 [^8]: _time can run backward locally, as long as the process doesn't depend strongly on what happens around it._ Mark Burgess - [Bigger, Faster, Smarter - Episode 1](https://youtu.be/lDFQiS9T_xk?t=2598)
 
-### Event-based architecture
+### Event-driven architecture
 
-Event-based architecture is an example of design that allows weakly coupling in a process-pipeline, allowing data to flow asynchronously from a process to another.
+Event-driven architecture is a set of models that allows weakly coupling in a process-pipeline.
+
+Basically, a process emits an event in a communication channel, and this event is received by any process listening on the same channel.
+
+Back to our AI system TODO
 
 ### Separate the infrastructure from the application
 
@@ -191,3 +195,15 @@ Event-based architecture is an example of design that allows weakly coupling in 
 
 
 ## Conclusion
+
+AI, deep-learning and other machine learning mechanisms are constantly improving. POCs, papers, startup, and academic works are opening new perspectives to business and research to the digital world.
+
+But the diffusion of innovation is conditioned by the ability to develop and run qualitative software that can run reliably.
+We saw in this article that mastering coupling is one of the keys to shit from application development to software engineering.
+
+A lot of products exist nowadays to facilitate the application of the concepts described in this post. Some of them are even becoming commodities thanks to cloud providers.
+
+In upcoming articles, I will describe an example of AI application development on top of products such as Kubernetes. Then I will end this series by showing how a managed version of some service help in managing the TCO of the software.
+
+Stay tuned!
+

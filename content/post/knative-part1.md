@@ -148,10 +148,24 @@ Before going further, let's define the notion of scale:
 [_scale is_] a region of uniformity, or compatibility, a measure of compatible things, whether by distance, weight, size, color, etc.
 {{< /blockquote >}}
 
-_TODO_ 
+According to this definition, a system can run "at scale", if it's processing power is compatible with the expected usage.
+
+Luckily, the decoupling we made before made it simpler to adapt the processing power for both the training and the inference process.
+
+On both parts, data usually need to be pre-processed before they can feed the software 2.0. This is where the data-pipeline comes in.
+
 #### Data pipeline and time reference
 
-A data pipeline is a sseriesof data processing steps.
+A data pipeline is a series of data processing steps.
+
+To illustrate, I will introduce [C4](https://c4model.com), a method to design an application (and to take care of coupling).
+This method defines the concepts of _container_ and _components_.
+
+- a container (_not docker!_) which is _something that needs to be running in order for the overall software system to work._
+- a component is _a grouping of related functionality encapsulated behind a well-defined interface_
+
+Building a data pipeline, brings the ability to split the components into their own containers.
+
 
 > time can run backward locally, as long as the process doesn't depend strongly on what happens around it.
 https://youtu.be/lDFQiS9T_xk?t=2598

@@ -148,7 +148,7 @@ Before going further, let's define the notion of scale:
 [_scale is_] a region of uniformity, or compatibility, a measure of compatible things, whether by distance, weight, size, color, etc.
 {{< /blockquote >}}
 
-According to this definition, a system can run "at scale", if it's processing power is compatible with the expected usage.
+According to this definition, a system can run "at scale" if it's processing power is compatible with the expected usage.
 
 Luckily, the decoupling we made before made it simpler to adapt the processing power for both the training and the inference process.
 
@@ -161,8 +161,8 @@ A data pipeline is a series of data processing steps.
 To illustrate, let's use [C4](https://c4model.com), a method to design an application (and to take care of coupling).
 This method defines the concepts of _containers_ and _components_.
 
-- a container (_not docker!_) which is _something that needs to be running in order for the overall software system to work._
-- a component is _a grouping of related functionality encapsulated behind a well-defined interface_
+- A container (_not docker!_) is _something that needs to be running in order for the overall software system to work._
+- A component is _a grouping of related functionality encapsulated behind a well-defined interface_
 
 Building a data pipeline brings the ability to split the components into the containers.
 

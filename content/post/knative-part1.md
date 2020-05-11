@@ -77,7 +77,11 @@ To fight this problem, IT developers are applying programming paradigms, tools, 
 
 [Connascence](https://en.wikipedia.org/wiki/Connascence) is such a metric to measure complexity (mainly in the object-oriented paradigm).
 
-The goal of this tool is to evaluate a level in the code. Then to apply any technique to reduce the connascence level, from the most dangerous (Connascence of identity) to the less dangerous (Connascence of name). See the [Wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
+{{< blockquote author="Lord Kelvin" >}}
+When you can measure what you are speaking about, and express it in numbers, you know something about it, when you cannot express it in numbers, your knowledge is of a meager and unsatisfactory kind; it may be the beginning of knowledge, but you have scarely, in your thoughts advanced to the stage of science.
+{{< /blockquote >}}
+
+Reducing the connascence level, from the most dangerous (Connascence of identity) to the less risky (Connascence of name), is a way to manage flexibility within the development. See the [Wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
 
 <center>
 ![Connascence](https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/5ad99b3c3833120e780a34f9d4c2a54473d219a2/connascence.svg)
@@ -97,7 +101,7 @@ Creating a software 2.0 is roughly transcribing this mathematical model into som
 - one will act as a helper for the training phase (the build phase of the software 2.0)
 - the other one will handle the inference (the runtime of software 2.0)
 
-The algorithm act as a link between the components. On top of that, the algorithm itself is transpiled into some code, usually using the same language as its host. This makes software 2.0 an entity of software 1.0; therefore, this is comparable to the [connascence of identity](https://connascence.io/identity.html).
+The algorithm act as a link between the components. On top of that, the algorithm itself is transpiled into code, usually using the same language as its host. This makes software 2.0 an entity of software 1.0; therefore, this is comparable to the [connascence of identity](https://connascence.io/identity.html).
 
 <center>
 ![Venn diagram](https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/e39ed3495f9c4ab99f5c32a39ec91cacbabcf6cc/diagram1.svg)
@@ -161,7 +165,7 @@ A data pipeline is a series of data processing steps.
 To illustrate, let's use [C4](https://c4model.com), a method to design an application (and to take care of coupling).
 This method defines the concepts of _containers_ and _components_.
 
-- A container (_not docker!_) is _something that needs to be running in order for the overall software system to work._
+- A container (_not docker!_) is something that needs to be running for the overall software system to work.
 - A component is _a grouping of related functionality encapsulated behind a well-defined interface_
 
 Building a data pipeline brings the ability to split the components into the containers.

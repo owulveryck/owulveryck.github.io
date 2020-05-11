@@ -49,7 +49,7 @@ Actually, in modern software, **coupling** arises at different levels, **inside 
 
 Let's first analyze the coupling of an AI base application, and then see how the notion of scalability may lead to the need for decoupling the application in different components.
 
-## Coupling inside the code
+### Application in the code
 
 In the book [Reliable software through composite design](https://archive.org/details/reliablesoftware00myer) (written in 1957!), Glenford Myers exposes why designing a system to master coupling is essential. A strongly coupled system induces complexity and a high cost of maintenance. It makes the software "fragile" (as seen in the previous paragraph).
 
@@ -85,9 +85,9 @@ The goal of this tool is to evaluate a level in the code. Then the developer can
 
 Let's now consider AI-based applications where the business logic is using compute libraries with a lifecycle that is independent of the development language.
 
-## AI application
+## In modern applications: the AI case
 
-### Coupling between software 1.0 and 2.0
+### About the link between software 1.0 and 2.0
 
 An AI model is a mathematical representation associated with some values. Let's call it a software 2.0 (this term has been introduced in late 2017 by Andrej Karpathy in a [blog post](https://medium.com/@karpathy/software-2-0-a64152b37c35), and is slowly becoming a common language in the data world).
 In this paradigm, software 1.0 is the result of regular code. Its usage is to glue the interfaces, I/O; it acts as a host for the AI/ML algorithm.
@@ -103,7 +103,7 @@ The algorithm act as a link between the components. On top of that, the algorith
 ![Venn diagram](https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/e39ed3495f9c4ab99f5c32a39ec91cacbabcf6cc/diagram1.svg)
 </center>
 
-#### Decoupling software 1.0 and software 2.0
+#### Soften the link
 
 Dealing with this connascence of identity is mostly dealing with this duality of the training/inference phase.
 
@@ -140,7 +140,7 @@ So far, decoupling the process gives the opportunity to properly do engineering 
 
 Let's now consider the runtime, and whether we can run it smoothly "at scale".
 
-### Running at scale
+## Running AI at scale
 
 Before going further, let's define the notion of scale:
 
@@ -154,7 +154,7 @@ Luckily, the decoupling we made before made it simpler to adapt the processing p
 
 On both parts, data usually need to be pre-processed before they can feed the software 2.0. This is where the data-pipeline comes in.
 
-#### Data pipeline and time reference
+### Data pipeline and time reference
 
 A data pipeline is a series of data processing steps.
 
@@ -187,12 +187,15 @@ Event-driven architecture is a set of models that allows weakly coupling in a pr
 
 Basically, a process emits an event in a communication channel, and this event is received by any process listening on the same channel.
 
-Back to our AI system TODO
+Back to our AI system 
 
-### Separate the infrastructure from the application
+**TODO**
+
+#### Separate the infrastructure from the application
 
 > A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
 
+**TODO**
 
 ## Conclusion
 

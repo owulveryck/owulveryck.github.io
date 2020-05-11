@@ -81,7 +81,7 @@ To fight this problem, IT developers are applying programming paradigms, tools, 
 When you can measure what you are speaking about, and express it in numbers, you know something about it, when you cannot express it in numbers, your knowledge is of a meager and unsatisfactory kind; it may be the beginning of knowledge, but you have scarely, in your thoughts advanced to the stage of science.
 {{< /blockquote >}}
 
-Reducing the connascence level, from the most dangerous (Connascence of identity) to the less risky (Connascence of name), is a way to manage flexibility within the development. See the [Wikipedia page](https://en.wikipedia.org/wiki/Connascence) for the complete list and classification.
+Reducing the connascence level, from the most dangerous (Connascence of identity) to the less risky (Connascence of name), is a way to manage flexibility within the development.
 
 <center>
 ![Connascence](https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/5ad99b3c3833120e780a34f9d4c2a54473d219a2/connascence.svg)
@@ -132,7 +132,7 @@ Developing AI applications is a combination of several processes that are loosel
 - creating a software 1.0 that can read the formulae and feed it with data for learning;
 - creating another software 1.0 that can read the formulae and feed it with realtime data for inference;
 
-_Note_ [Open Neural Network eXchange (ONNX)](https://onnx.ai) is an example of such a DSL, but digging into the technical implementation is out of the scope of this article and will eventually come in a future post.
+_Note:_ [Open Neural Network eXchange (ONNX)](https://onnx.ai) is an example of such a DSL, but digging into the technical implementation is out of the scope of this article and will eventually come in a future post.
 
 {{< blockquote author="Titus Winter">}}
 Software engineering is programming integrated over time.
@@ -208,9 +208,13 @@ AI, deep learning, and other machine learning mechanisms are continually improvi
 But the diffusion of innovation is conditioned by the ability to develop and run qualitative software that can run reliably.
 We saw in this article that mastering coupling is one of the keys to shit from application development to software engineering.
 
-A lot of products exist nowadays to facilitate the application of the concepts described in this post. Some of them are even becoming commodities, thanks to cloud providers.
+**_So, Divide and Conquer?_**
+
+Dividing the application brings flexibility, but managing the lifecycle of each part **and** the communication between the pieces is the next challenge.
+This is why, in my opinion, people switch from the monolith to the microservice paradigm and vice-versa. _In fine_, it's all about the evaluation of the strength, the total cost of ownership (TCO), and risk analysis.
+
+The popularity of the microservice architecture is at the origin of a lot of methods and tooling (service-mesh, for example). A lot of products exist nowadays to facilitate their applications. Some of them are even becoming commodities, thanks to cloud providers.
 
 In upcoming articles, I will describe an example of AI application development on top of products such as Kubernetes. Then I will end this series by showing how a managed version of some service help in managing the TCO of the software.
 
 Stay tuned!
-

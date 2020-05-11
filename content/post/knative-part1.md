@@ -174,7 +174,7 @@ Each container defines its own scale. As a consequence, the overall system can a
 
 The different _containers_ communicate through channels of communication where they can exchange messages.
 
-Claude Shannon explains in detail the notion of communication channel is [the mathematical theory of communication](https://en.wikipedia.org/wiki/Information_theory#Channel_capacity). For our explanation, let's classify the communication channels: _rigid_ and _robust_.
+Claude Shannon explains in detail the notion of communication channel in his [mathematical theory of communication](https://en.wikipedia.org/wiki/Information_theory#Channel_capacity). For our explanation, let's classify the communication channels: _rigid_ and _robust_.
 
 - A rigid channel is something that couple the components strongly, therefore information is received synchronously from point A to point B (such as an in-memory semaphore, for example).
 - A smooth channel is an element that carries information that will eventually flow from point A to point B.

@@ -170,7 +170,7 @@ This method defines the concepts of _containers_ and _components_.
 
 Building a data pipeline brings the ability to split the components into the containers.
 
-Each container defines its own scale. As a consequence, the overall system can adapt smoothly, at scale.
+Each container defines its own scale. As a consequence, the overall system can adapt smoothly, and be compatible with the requests made against it.
 
 The different _containers_ communicate through channels of communication where they can exchange messages.
 
@@ -191,9 +191,17 @@ The event-driven architecture is a set of models that allows weakly coupling in 
 
 For example, A process emits an event in a communication channel, and this event is received by any process listening on the same channel.
 
-Back to our AI system 
+An event is fired when a state changes. This architecture is suitable for AI system.
+In a data pipeline, every container processes the data; touching the data is modifying its state.
 
-**TODO**
+Building a data pipeline in an event driven-architecture is a way to implement a scalable, decoupled architecture. As seen before, this architecture is more robust. The main drawback is the balance that needs to be done between scalability and real-time processing.
+
+Another concern about this design is the ordering of the events. 
+We saw in the last paragraph that time can run backward locally as long as the process doesn't depend strongly on what happens around it.
+
+Giving a warranty on event order is, once again, solidifying the link between components. As a consequence, deploying an event-driven architecture is, like every design pattern, be chosen wisely with regard to the business requirements.
+
+For more information about ordering (in channels), cf this article [Ordering messages](https://cloud.google.com/pubsub/docs/ordering) on the Google Cloud Plateform's documentation.
 
 #### Separate the infrastructure from the application
 

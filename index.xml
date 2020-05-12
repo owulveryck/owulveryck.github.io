@@ -1,4 +1,194 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unladen swallow - Olivier Wulveryck</title><link>https://owulveryck.github.io/</link><description>Recent content on Unladen swallow - Olivier Wulveryck</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Olivier Wulveryck</copyright><lastBuildDate>Mon, 14 Oct 2019 22:26:42 +0200</lastBuildDate><atom:link href="https://owulveryck.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://owulveryck.github.io/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>https://owulveryck.github.io/about/</guid><description>&lt;p&gt;I am Olivier Wulveryck and this is my personal blog.&lt;/p&gt;</description></item><item><title>Think like a vertex: using Go&#39;s concurrency for graph computation</title><link>https://owulveryck.github.io/2019/10/14/think-like-a-vertex-using-gos-concurrency-for-graph-computation/</link><pubDate>Mon, 14 Oct 2019 22:26:42 +0200</pubDate><guid>https://owulveryck.github.io/2019/10/14/think-like-a-vertex-using-gos-concurrency-for-graph-computation/</guid><description>&lt;p&gt;I am often asked this question:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unladen swallow - Olivier Wulveryck</title><link>https://owulveryck.github.io/</link><description>Recent content on Unladen swallow - Olivier Wulveryck</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Olivier Wulveryck</copyright><lastBuildDate>Sun, 26 Apr 2020 15:47:57 +0200</lastBuildDate><atom:link href="https://owulveryck.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://owulveryck.github.io/about/</link><pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate><guid>https://owulveryck.github.io/about/</guid><description>&lt;p&gt;I am Olivier Wulveryck and this is my personal blog.&lt;/p&gt;</description></item><item><title>Divide et impera - part I: coupling</title><link>https://owulveryck.github.io/2020/04/26/divide-et-impera-part-i-coupling/</link><pubDate>Sun, 26 Apr 2020 15:47:57 +0200</pubDate><guid>https://owulveryck.github.io/2020/04/26/divide-et-impera-part-i-coupling/</guid><description>
+&lt;p&gt;In 2020, an old debate has risen from the ashes:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Monolith or micro-services?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the past years, I have been working on IT products designed to work at scale.
+The micro-services pattern suits this need and is, therefore, the paradigm chosen &lt;em&gt;de facto&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;An application composed of micro-services is supposed to be scalable; the main pitfall is to think and design accurate service contracts to avoid the antipattern of a distributed monolith.
+The secret is to manage the coupling between the components in the same way developers have learned to handle coupling inside the code over the years.&lt;/p&gt;
+&lt;p&gt;By mastering the coupling, the design paradigms have shown excellent results on the quality and reliability of software.&lt;/p&gt;
+&lt;p&gt;How do those paradigms apply to AI-based applications?&lt;/p&gt;
+&lt;p&gt;In this series of articles, I plan to dig into the design of code and hosting applied to AI software.
+This first article is about concepts.
+Then I may write a second article, more technical, to expose a concrete example and illustrate the concepts.
+Eventually, a third article will show how to use managed services to transform products into commodities&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-coupling&#34;&gt;What is &lt;em&gt;coupling&lt;/em&gt;?&lt;/h2&gt;
+&lt;p&gt;In physics, two objects are said to be coupled when they are interacting with each other (source &lt;a href=&#34;https://en.wikipedia.org/wiki/Coupling_(physics)&#34;&gt;Wikipedia&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Two elements are strongly coupled when a perturbation on the first element induces a disturbance on the second that impacts its behavior significantly.
+A corollary is that two systems are weakly coupled if the perturbation induced on a component from the excitation of another one is low.&lt;/p&gt;
+&lt;p&gt;In chapter 12&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; of his book &lt;a href=&#34;http://markburgess.org/certainty.html&#34;&gt;&lt;em&gt;In Search of Certainty&lt;/em&gt;&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/markburgess_osl&#34;&gt;Mark Burgess&lt;/a&gt; discusses the notion of coupling in physics. Some of the conclusions exposed in chapter 13 are &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;strong coupling leads to precision but the fragility;&lt;/li&gt;
+&lt;li&gt;weakly coupled components can be rearranged, taken apart and made into something else, assembled into a meaningful composition;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A software is roughly a composition of elements (objects, services, functions, etc.) that are interacting, hence the paradigm of coupling applies to software engineering.&lt;/p&gt;
+&lt;p&gt;From my experience, the strength of coupling is roughly evaluated but not correctly measured (nevertheless, it feeds numerous discussions about the quality and reliability of the application).&lt;/p&gt;
+&lt;p&gt;Actually, in modern software, &lt;strong&gt;coupling&lt;/strong&gt; arises at different levels, &lt;strong&gt;inside the code&lt;/strong&gt;, &lt;em&gt;and&lt;/em&gt; at the &lt;strong&gt;architecture&lt;/strong&gt; level.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s first analyze the coupling of an AI base application, and then see how the notion of scalability may lead to the need for decoupling the application in different components.&lt;/p&gt;
+&lt;h3 id=&#34;application-in-the-code&#34;&gt;Application in the code&lt;/h3&gt;
+&lt;p&gt;In the book &lt;a href=&#34;https://archive.org/details/reliablesoftware00myer&#34;&gt;Reliable software through composite design&lt;/a&gt; (written in 1957!), Glenford Myers exposes why designing a system to master coupling is essential. A strongly coupled system induces complexity and a high cost of maintenance. It makes the software &amp;ldquo;fragile&amp;rdquo; (as seen in the previous paragraph).&lt;/p&gt;
+&lt;p&gt;To bring an intuition of the problem, let&amp;rsquo;s consider this illustration (compiled from Myers&amp;rsquo;s book and &lt;a href=&#34;https://en.wikipedia.org/wiki/Notes_on_the_Synthesis_of_Form&#34;&gt;Notes on the Synthesis of form&lt;/a&gt; from Christopher Alexander).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Consider a system of 100 lamps where a lamp could represent a statement or a segment in a program. Each lamp can be in one of two states, off or on.
+The lamps can be connected together in any fashion. If a lamp is on, the probability of its going off in the next second is 50% if at least one adjoining lamp is on.
+If a lamp is off, it will stay off as long as all of the lamps directly connecter to it are off.&lt;/p&gt;
+&lt;footer&gt;
+&lt;strong&gt;Glenford Myers&lt;/strong&gt;
+&lt;cite&gt;Reliable software through composite design&lt;/cite&gt;
+&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Test case&lt;/th&gt;
+&lt;th&gt;Time to reach equilibrium&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;no connection between any lamp&lt;/td&gt;
+&lt;td&gt;around 2s (2&lt;sup&gt;1&lt;/sup&gt;s)&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;all lamps are connected&lt;/td&gt;
+&lt;td&gt;around 2.4e24 years (2&lt;sup&gt;100&lt;/sup&gt;s) &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ten independent groups of fully connected lamps&lt;/td&gt;
+&lt;td&gt;around 17 minutes (2&lt;sup&gt;10&lt;/sup&gt;s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The notion of equilibrium is more or less relative to what computer scientists call stability.
+The time-based illustration gives the feeling that coupling is risky and has a substantial impact on the velocity of new development.&lt;/p&gt;
+&lt;p&gt;To fight this problem, IT developers are applying programming paradigms, tools, and methods that are evolving over the years.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Connascence&#34;&gt;Connascence&lt;/a&gt; is such a metric to measure complexity (mainly in the object-oriented paradigm).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you can measure what you are speaking about, and express it in numbers, you know something about it, when you cannot express it in numbers, your knowledge is of a meager and unsatisfactory kind; it may be the beginning of knowledge, but you have scarely, in your thoughts advanced to the stage of science.&lt;/p&gt;
+&lt;footer&gt;
+&lt;strong&gt;Lord Kelvin&lt;/strong&gt;
+&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Reducing the connascence level, from the most dangerous (Connascence of identity) to the less risky (Connascence of name), is a way to manage flexibility within the development.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img src=&#34;https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/5ad99b3c3833120e780a34f9d4c2a54473d219a2/connascence.svg&#34; alt=&#34;Connascence&#34; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s now consider AI-based applications where the business logic is using compute libraries with a lifecycle that is independent of the development language.&lt;/p&gt;
+&lt;h2 id=&#34;in-modern-applications-the-ai-case&#34;&gt;In modern applications: the AI case&lt;/h2&gt;
+&lt;h3 id=&#34;about-the-link-between-software-1-0-and-2-0&#34;&gt;About the link between software 1.0 and 2.0&lt;/h3&gt;
+&lt;p&gt;An AI model is a mathematical representation associated with some values. Let&amp;rsquo;s call it a software 2.0 (this term has been introduced in late 2017 by Andrej Karpathy in a &lt;a href=&#34;https://medium.com/@karpathy/software-2-0-a64152b37c35&#34;&gt;blog post&lt;/a&gt;, and is slowly becoming a common language in the data world).
+In this paradigm, software 1.0 is the result of regular code. Its usage is to glue the interfaces, I/O; it acts as a host for the AI/ML algorithm.&lt;/p&gt;
+&lt;p&gt;Creating a software 2.0 is roughly transcribing this mathematical model into something understandable by a computer, e.g., a sequence of bytes. Then, we need two different types of software 1.0:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;one will act as a helper for the training phase (the build phase of the software 2.0)&lt;/li&gt;
+&lt;li&gt;the other one will handle the inference (the runtime of software 2.0)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The algorithm act as a link between the components. On top of that, the algorithm itself is transpiled into code, usually using the same language as its host. This makes software 2.0 an entity of software 1.0; therefore, this is comparable to the &lt;a href=&#34;https://connascence.io/identity.html&#34;&gt;connascence of identity&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img src=&#34;https://gist.githubusercontent.com/owulveryck/df65079edbd273d33805f00e3d5d51a6/raw/e39ed3495f9c4ab99f5c32a39ec91cacbabcf6cc/diagram1.svg&#34; alt=&#34;Venn diagram&#34; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;h4 id=&#34;soften-the-link&#34;&gt;Soften the link&lt;/h4&gt;
+&lt;p&gt;Dealing with this connascence of identity is mostly dealing with this duality of the training/inference phase.&lt;/p&gt;
+&lt;p&gt;One idea is to turn the entity representing the software 2.0 into data. Therefore, we lower the connascence from &lt;em&gt;dynamic connascence&lt;/em&gt; to &lt;em&gt;static connascence&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;One way to achieve this is to think of the model (software 2.0) as data.
+Training and inference software must agree on the data type of the software 2.0.&lt;/p&gt;
+&lt;p&gt;One way to do that is to use a domain-specific language (DSL) to represent the software 2.0. Using the mathematical representation is a perfect example of this.&lt;/p&gt;
+&lt;p&gt;This DSL could, eventually, be encoded into a format that would become the Babelfish for AI&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:6&#34;&gt;&lt;a href=&#34;#fn:6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://owulveryck.github.io/assets/babel-fish.jpg&#34; alt=&#34;babel fish&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Developing AI applications is a combination of several processes that are loosely coupled:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;creating an algorithm and describing it with a mathematical representation;&lt;/li&gt;
+&lt;li&gt;expressing the formulae in the IA DSL;&lt;/li&gt;
+&lt;li&gt;creating a software 1.0 that can read the formulae and feed it with data for learning;&lt;/li&gt;
+&lt;li&gt;creating another software 1.0 that can read the formulae and feed it with real-time data for inference;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; &lt;a href=&#34;https://onnx.ai&#34;&gt;Open Neural Network eXchange (ONNX)&lt;/a&gt; is an example of such a DSL, but digging into the technical implementation is out of the scope of this article and will eventually come in a future post.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Software engineering is programming integrated over time.&lt;/p&gt;
+&lt;footer&gt;
+&lt;strong&gt;Titus Winter&lt;/strong&gt;
+&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So far, decoupling the process allows doing engineering work and developing a maintainable application&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:7&#34;&gt;&lt;a href=&#34;#fn:7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s now consider the runtime, and whether we can run it smoothly &amp;ldquo;at scale.&amp;rdquo;&lt;/p&gt;
+&lt;h2 id=&#34;running-ai-at-scale&#34;&gt;Running AI at scale&lt;/h2&gt;
+&lt;p&gt;Before going further, let&amp;rsquo;s define the notion of scale:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[&lt;em&gt;scale is&lt;/em&gt;] a region of uniformity, or compatibility, a measure of compatible things, whether by distance, weight, size, color, etc.&lt;/p&gt;
+&lt;footer&gt;
+&lt;strong&gt;Mark Burgess&lt;/strong&gt;
+&lt;cite&gt;Smart Spacetime (page 100)&lt;/cite&gt;
+&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;According to this definition, a system can run &amp;ldquo;at scale&amp;rdquo; if it&amp;rsquo;s processing power is compatible with the expected usage.&lt;/p&gt;
+&lt;p&gt;Luckily, the decoupling we made before made it simpler to adapt the processing power for both the training and the inference process.&lt;/p&gt;
+&lt;p&gt;On both parts, data usually need to be pre-processed before they can feed the software 2.0. This is where the data-pipeline comes in.&lt;/p&gt;
+&lt;h3 id=&#34;data-pipeline-and-time-reference&#34;&gt;Data pipeline and time reference&lt;/h3&gt;
+&lt;p&gt;A data pipeline is a series of data processing steps.&lt;/p&gt;
+&lt;p&gt;To illustrate, let&amp;rsquo;s use &lt;a href=&#34;https://c4model.com&#34;&gt;C4&lt;/a&gt;, a method to design an application (and to take care of coupling).
+This method defines the concepts of &lt;em&gt;containers&lt;/em&gt; and &lt;em&gt;components&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A container (&lt;em&gt;not docker!&lt;/em&gt;) is something that needs to be running for the overall software system to work.&lt;/li&gt;
+&lt;li&gt;A component is &lt;em&gt;a grouping of related functionality encapsulated behind a well-defined interface&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Building a data pipeline brings the ability to split the components into the containers.&lt;/p&gt;
+&lt;p&gt;Each container defines its own scale. As a consequence, the overall system can adapt smoothly, and be compatible with the requests made against it.&lt;/p&gt;
+&lt;p&gt;The different &lt;em&gt;containers&lt;/em&gt; communicate through channels of communication where they can exchange messages.&lt;/p&gt;
+&lt;p&gt;Claude Shannon explains in detail the notion of communication channel in his &lt;a href=&#34;https://en.wikipedia.org/wiki/Information_theory#Channel_capacity&#34;&gt;mathematical theory of communication&lt;/a&gt;. For our explanation, let&amp;rsquo;s classify the communication channels: &lt;em&gt;rigid&lt;/em&gt; and &lt;em&gt;robust&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A rigid channel is something that couple the components strongly, therefore information is received synchronously from point A to point B (such as an in-memory semaphore, for example).&lt;/li&gt;
+&lt;li&gt;A smooth channel is an element that carries information that will eventually flow from point A to point B.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The nature of the communication channel is the next axis of work. As seen in the first paragraph, a rigid channel will lead to precision but fragility, and a smooth channel is more robust but less precise.&lt;/p&gt;
+&lt;p&gt;For example, with a smooth channel, even &lt;em&gt;time can run backward locally&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:8&#34;&gt;&lt;a href=&#34;#fn:8&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/em&gt;, which is very useful for elements of the pipeline that deals with databases.&lt;/p&gt;
+&lt;h3 id=&#34;event-driven-architecture&#34;&gt;Event-driven architecture&lt;/h3&gt;
+&lt;p&gt;The event-driven architecture is a set of models that allows weakly coupling in a process-pipeline.&lt;/p&gt;
+&lt;p&gt;For example, A process emits an event in a communication channel, and this event is received by any process listening on the same channel.&lt;/p&gt;
+&lt;p&gt;An event is fired when a state changes. This architecture is suitable for an AI system.
+In a data pipeline, every container processes the data; touching the data is modifying its state.&lt;/p&gt;
+&lt;p&gt;Building a data pipeline in an event driven-architecture is a way to implement a scalable, decoupled architecture. As seen before, this architecture is more robust. The main drawback is the balance that needs to be done between scalability and real-time processing.&lt;/p&gt;
+&lt;p&gt;Another concern about this design is the ordering of the events.
+We saw in the last paragraph that time could run backward locally as long as the process doesn&amp;rsquo;t depend strongly on what happens around it.&lt;/p&gt;
+&lt;p&gt;Giving a warranty on event order is, once again, solidifying the link between components. As a consequence, deploying an event-driven architecture is, like every design pattern, be chosen wisely with regard to the business requirements.&lt;/p&gt;
+&lt;p&gt;For more information about ordering (in channels), cf this article &lt;a href=&#34;https://cloud.google.com/pubsub/docs/ordering&#34;&gt;Ordering messages&lt;/a&gt; on the Google Cloud Platform&amp;rsquo;s documentation.&lt;/p&gt;
+&lt;h4 id=&#34;separate-the-infrastructure-from-the-application&#34;&gt;Separate the infrastructure from the application&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;On a value chain, infrastructure stands far away from the business value. It is important to couple weakly the containers (in the C4 definition) from the infrastructure.
+It is fairly easy nowadays to decouple the execution of a process from the computer thanks to containerization: Docker is the &lt;em&gt;lingua franca&lt;/em&gt;. It is a sort of &lt;em&gt;connascence of type&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;More pitfall arises when we are dealing with messaging products. First of all, there is no standard in the message/event definition yet. On top of that, the need for ordering usually imposes to define a common link between the messages and the underlying infrastructure (e.g., shard keys).&lt;/p&gt;
+&lt;p&gt;Once again, thinking on how coupled the application and the infrastructure are is a decent way to manage the scalability while remaining flexible and agile in the developments.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;AI, deep learning, and other machine learning mechanisms are continually improving. POCs, papers, startup, and academic works are opening new perspectives to business and research to the digital world.&lt;/p&gt;
+&lt;p&gt;But the diffusion of innovation is conditioned by the ability to develop and run qualitative software that can run reliably.
+We saw in this article that mastering coupling is one of the keys to shit from application development to software engineering.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;So, Divide and Conquer?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Dividing the application brings flexibility, but managing the lifecycle of each part &lt;strong&gt;and&lt;/strong&gt; the communication between the pieces is the next challenge.
+This is why, in my opinion, people switch from the monolith to the microservice paradigm and vice-versa. &lt;em&gt;In fine&lt;/em&gt;, it&amp;rsquo;s all about the evaluation of the strength, the total cost of ownership (TCO), and risk analysis.&lt;/p&gt;
+&lt;p&gt;The popularity of the microservice architecture is at the origin of a lot of methods and tooling (service-mesh, for example). A lot of products exist nowadays to facilitate their applications. Some of them are even becoming commodities, thanks to cloud providers.&lt;/p&gt;
+&lt;p&gt;In upcoming articles, I will describe an example of AI application development on top of products such as Kubernetes. Then I will end this series by showing how a managed version of some service help in managing the TCO of the software.&lt;/p&gt;
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;Chapter 7 of Simon Wardley&amp;rsquo;s book (&lt;a href=&#34;https://medium.com/wardleymaps/finding-a-new-purpose-8c60c9484d3b&#34;&gt;Finding a new purpose&lt;/a&gt;) gives more explanation of the evolution of a product to a commodity.
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;Chapter 12: Molecular and Material Infrastructure: &lt;em&gt;Elastic, plastic and brittle design&lt;/em&gt;, page 383
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;Chapter 13: Orchestration And Creative Instability: &lt;em&gt;Or why the conductor does not promise to blow every trumpet&lt;/em&gt;, page 422
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;average time for a lamp to go off
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;average time for all lamp to go off
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:6&#34;&gt;I gave a lightning talk about it at dotAI in 2018: &lt;a href=&#34;https://www.youtube.com/watch?v=Gf-pmc7Mykc&#34;&gt;&lt;em&gt;software 2.0 a Babelfish for deep learning&lt;/em&gt;&lt;/a&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:7&#34;&gt;as mentioned by Russ Cox in his blog, &lt;em&gt;It&amp;rsquo;s worth seven minutes of your time to see &lt;a href=&#34;https://www.youtube.com/watch?v=tISy7EJQPzI&amp;amp;t=8m17s&#34;&gt;Titus Winter&amp;rsquo;s presentation of this idea at CppCon 2017&lt;/a&gt;, from 8:17 to 15:00 in the video.&lt;/em&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:7&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:8&#34;&gt;&lt;em&gt;time can run backward locally, as long as the process doesn&amp;rsquo;t depend strongly on what happens around it.&lt;/em&gt; Mark Burgess - &lt;a href=&#34;https://youtu.be/lDFQiS9T_xk?t=2598&#34;&gt;Bigger, Faster, Smarter - Episode 1&lt;/a&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:8&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>Think like a vertex: using Go&#39;s concurrency for graph computation</title><link>https://owulveryck.github.io/2019/10/14/think-like-a-vertex-using-gos-concurrency-for-graph-computation/</link><pubDate>Mon, 14 Oct 2019 22:26:42 +0200</pubDate><guid>https://owulveryck.github.io/2019/10/14/think-like-a-vertex-using-gos-concurrency-for-graph-computation/</guid><description>&lt;p&gt;I am often asked this question:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Why do you do machine learning in Go?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Of course, the main reason is that I like the language. But there are other, more generic, reasons.&lt;/p&gt;
 &lt;p&gt;In the fifth episode of the third season of &lt;a href=&#34;https://www.redhat.com/en/command-line-heroes/season-3/the-infrastructure-effect&#34;&gt;Command Line Heroes&lt;/a&gt;,
@@ -6232,138 +6422,4 @@ I will use the same technique as found on internet: I will put the query as argu
 What I like most is that it has forced me to think in graph instead of the traditional relational model.&lt;/p&gt;
 &lt;p&gt;The piece of code is on &lt;a href=&#34;https://github.com/owulveryck/graphql-test&#34;&gt;github&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;edit&lt;/strong&gt;: I have included a graphiql interpreter for testing. It works great. Everything is on github:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://owulveryck.github.io/assets/images/graphiql.png&#34; alt=&#34;GraphiQL&#34; /&gt;&lt;/p&gt;</description></item><item><title>Linda&#39;s evalc, a (tuple)space oddity</title><link>https://owulveryck.github.io/2017/03/13/lindas-evalc-a-tuplespace-oddity/</link><pubDate>Mon, 13 Mar 2017 20:54:27 +0100</pubDate><guid>https://owulveryck.github.io/2017/03/13/lindas-evalc-a-tuplespace-oddity/</guid><description>
-&lt;p&gt;For a change, I will start with a good soundtrack&lt;/p&gt;
-&lt;iframe src=&#34;https://embed.spotify.com/?uri=spotify:track:72Z17vmmeQKAg8bptWvpVG&amp;theme=white&#34; width=&#34;220&#34; height=&#34;80&#34; frameborder=&#34;0&#34; allowtransparency=&#34;true&#34;&gt;&lt;/iframe&gt;
-&lt;p&gt;(&lt;a href=&#34;https://www.youtube.com/watch?v=iYYRH4apXDo&#34;&gt;youtube version&lt;/a&gt; for those who are spotify-less)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;This is my third article about the distributed coordination language Linda.&lt;/p&gt;
-&lt;p&gt;The final target of the work is to use this coordination mechanism to deploy and maintain applications based on the description of their topology (using, for example, TOSCA as a DSL).&lt;/p&gt;
-&lt;p&gt;Last time, I introduced a lisp based language (zygomys) as an embedded programing mechanism to describe the business logic.&lt;/p&gt;
-&lt;p&gt;Today I will explain how I have implemented a new &lt;em&gt;action&lt;/em&gt; in the linda language to achieve a new step: to distribute the work among different nodes.&lt;/p&gt;
-&lt;p&gt;My test scenario remains the &amp;ldquo;dining of the philosophers&amp;rdquo;.&lt;/p&gt;
-&lt;h1 id=&#34;introducing-evalc&#34;&gt;Introducing &lt;em&gt;evalc&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;Linda is a coordination language, but the language which is more than 30 years old, has not been designed with the idea of running on multiple hosts.
-The basic primitives of the language do not allow remote execution.&lt;/p&gt;
-&lt;p&gt;What I need is a sort of &lt;em&gt;eval&lt;/em&gt; function that would trigger the execution of the evaluation on another host instead of another goroutine.&lt;/p&gt;
-&lt;p&gt;I do not care about catching the result of the execution as it will be posted to the tuple space.
-Indeed, if more coordination between the actors of this RPC is needed, it can be encoded using the in/out mechanism of linda.&lt;/p&gt;
-&lt;p&gt;Therefore, I have decided to introduce a new primitive called &lt;em&gt;evalc&lt;/em&gt; (for eval compute&amp;hellip; Yeah I know, I have imagination)&lt;/p&gt;
-&lt;h1 id=&#34;implementing-evalc&#34;&gt;Implementing &lt;em&gt;evalc&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;The evalc will not trigger a function on a new host.
-Instead, each participating host will run a sort of agent (actually a clone of the zygo interpreter) that will watch a certain type of event (tainted with the evalc) and will then execute a function.&lt;/p&gt;
-&lt;p&gt;The tuple space acts like a communication channel and this implementation is like a kind of &lt;a href=&#34;https://en.wikipedia.org/wiki/Communicating_sequential_processes&#34;&gt;CSP&lt;/a&gt; which I like a lot.&lt;/p&gt;
-&lt;p&gt;The &lt;em&gt;evalc&lt;/em&gt; will work exactly as its equivalent &lt;em&gt;eval&lt;/em&gt;. Therefore the function declaration in go will look like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;l&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Linda&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;EvalC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;env&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;zygo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Glisp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;args&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;zygo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Sexp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;zygo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Sexp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;zygo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;SexpNull&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;first-attempt&#34;&gt;First attempt&lt;/h2&gt;
-&lt;p&gt;At first I thought I could simply gob/encode the &lt;code&gt;args&lt;/code&gt; which contains the &lt;code&gt;SexpFunction&lt;/code&gt;, post it in the tuple space under a prefixed key. Then the worker would read an execute it in a newly created &lt;code&gt;glisp&lt;/code&gt; env.&lt;/p&gt;
-&lt;p&gt;That didn&amp;rsquo;t work mainly because the &lt;code&gt;SexpFunction&lt;/code&gt; does not have any exported fields, therefore I cannot easily encode/decode it.&lt;/p&gt;
-&lt;p&gt;I though then that I could encode the &lt;code&gt;datastack&lt;/code&gt; and post it in the tuple space. I could then decode it in the worker.&lt;/p&gt;
-&lt;p&gt;I asked for some advice to the author of zygomys &lt;a href=&#34;https://www.linkedin.com/in/jason-e-aten-ph-d-45a31318&#34;&gt;Jason E. Aten&lt;/a&gt; (aka &lt;a href=&#34;https://github.com/glycerine&#34;&gt;glycerine&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Here is what he told me (thank you Jason btw):&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Evaluating an arbitrary expression remotely will be challenging because an expression can refer to any variable in the environment, and so would theoretically require a copying of the whole environment&amp;ndash;the heap as well as the datastack.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;And of course he is right!
-So I will keep the idea of encoding the whole environment and send it to the workers for a later implementation.
-It would need to change the zygomys implementation a lot so export and import both stack. That is too much for now.&lt;/p&gt;
-&lt;h2 id=&#34;second-attempt&#34;&gt;Second attempt&lt;/h2&gt;
-&lt;p&gt;What I did as a temporary solution is a lot simpler and not elegant at all: I have posted the function and the variables in the tuple space and then I am evaluating it in a newly created env.&lt;/p&gt;
-&lt;p&gt;The main problem is that I cannot access to variables and user function defined outside of the scope of the function. But that will do the trick for now.&lt;/p&gt;
-&lt;p&gt;Regarding the problem of the philosopher, I had to change the definition of &lt;code&gt;phil&lt;/code&gt; within my lisp code so it do not call &lt;code&gt;(eat)&lt;/code&gt; and &lt;code&gt;(think)&lt;/code&gt; functions anymore.&lt;/p&gt;
-&lt;p&gt;Here is what is posted in the tuple space when the evalc function is called:
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;defn&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;phil&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;[i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;begin&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;begin&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v is thinking\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;sleep&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/%v is thinking\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;room ticket&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v is in the room\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v took the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v took the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;begin&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v is eating\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;sleep&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/%v is eating\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v released the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v released the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v left the room\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;room ticket&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;phil&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))))&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;5&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;In the worker process, I am creating a new environment, loading the function (the &lt;code&gt;defn&lt;/code&gt; part), and constructing an expression to be evaluated by the env.
-This is what the environment evalutates:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;defn&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;phil&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;[i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;begin&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;begin&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v is thinking\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;sleep&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/%v is thinking\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;room ticket&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v is in the room\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v took the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v took the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;begin&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v is eating\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;sleep&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/%v is eating\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v released the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v released the %v&amp;#39;s chopstick\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;chopstick&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mod&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%v left the room\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;room ticket&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;phil&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))))&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;phil&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&#34;runtime&#34;&gt;Runtime&lt;/h1&gt;
-&lt;h2 id=&#34;running-it-locally-one-etcd-and-several-workers&#34;&gt;Running it locally: one etcd and several workers&lt;/h2&gt;
-&lt;p&gt;To run it locally I need:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a local instance of &lt;code&gt;etcd&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;5 workers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Each worker will watch for a new event in the tuple space.
-Then I can trigger the execution of the logic with a sixth worker that will read the lisp code, and execute it.&lt;/p&gt;
-&lt;p&gt;Here is a screenshot of the execution
-&lt;img src=&#34;https://raw.githubusercontent.com/ditrit/go-linda/master/doc/v0.3.png&#34; alt=&#34;Runtime screenshot&#34; /&gt;&lt;/p&gt;
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;Jason E. Aten also told me about &lt;em&gt;sigils&lt;/em&gt; as a way to discriminate the local variables from the variables present in the tuple space.
-I haven&amp;rsquo;t worked on it yet, but I think that I will use those &lt;em&gt;sigils&lt;/em&gt; to enhance my linda implementation. It can be usefull for the matching of templates and formals.&lt;/p&gt;
-&lt;p&gt;By now, I have something that is able to run a basic theorical coordination problem.&lt;/p&gt;
-&lt;p&gt;Now I think that I will go back to the application management task and see how I can encode the TOSCA workflow so it can be used by this mechanism.&lt;/p&gt;
-&lt;p&gt;Meanwhile, I will try to test this setup on a worldwide cluster (maybe based on CoreOS).&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Credit:&lt;/p&gt;
-&lt;p&gt;The illustration has been found &lt;a href=&#34;https://www.flickr.com/photos/joebehr/23704122254&#34;&gt;here&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;&lt;img src=&#34;https://owulveryck.github.io/assets/images/graphiql.png&#34; alt=&#34;GraphiQL&#34; /&gt;&lt;/p&gt;</description></item></channel></rss>

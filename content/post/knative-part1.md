@@ -191,7 +191,7 @@ The event-driven architecture is a set of models that allows weakly coupling in 
 
 For example, A process emits an event in a communication channel, and this event is received by any process listening on the same channel.
 
-An event is fired when a state changes. This architecture is suitable for AI system.
+An event is fired when a state changes. This architecture is suitable for an AI system.
 In a data pipeline, every container processes the data; touching the data is modifying its state.
 
 Building a data pipeline in an event driven-architecture is a way to implement a scalable, decoupled architecture. As seen before, this architecture is more robust. The main drawback is the balance that needs to be done between scalability and real-time processing.
@@ -207,7 +207,12 @@ For more information about ordering (in channels), cf this article [Ordering mes
 
 > A story cannot be written down without a medium; a process cannot exist without an enabling infrastructure - Mark Burgess
 
-**TODO**
+On a value chain, infrastructure stands far away from the business value. It is important to couple weakly the containers (in the C4 definition) from the infrastructure.
+It is fairly easy nowadays to decouple the execution of a process from the computer thanks to containerization: Docker is the _lingua franca_. It is a sort of _connascence of type_.
+
+More pitfall arises when we are dealing with messaging products. First of all, there is no standard in the message/event definition yet. On top of that, the need for ordering usually imposes to define a common link between the messages and the underlying infrastructure (e.g., shard keys).
+
+Once again, thinking on how coupled the application and the infrastructure are is a decent way to manage the scalability while remaining flexible and agile in the developments.
 
 ## Conclusion
 

@@ -130,7 +130,7 @@ Developing AI applications is a combination of several processes that are loosel
 - creating an algorithm and describing it with a mathematical representation;
 - expressing the formulae in the IA DSL;
 - creating a software 1.0 that can read the formulae and feed it with data for learning;
-- creating another software 1.0 that can read the formulae and feed it with realtime data for inference;
+- creating another software 1.0 that can read the formulae and feed it with real-time data for inference;
 
 _Note:_ [Open Neural Network eXchange (ONNX)](https://onnx.ai) is an example of such a DSL, but digging into the technical implementation is out of the scope of this article and will eventually come in a future post.
 
@@ -196,12 +196,12 @@ In a data pipeline, every container processes the data; touching the data is mod
 
 Building a data pipeline in an event driven-architecture is a way to implement a scalable, decoupled architecture. As seen before, this architecture is more robust. The main drawback is the balance that needs to be done between scalability and real-time processing.
 
-Another concern about this design is the ordering of the events. 
-We saw in the last paragraph that time can run backward locally as long as the process doesn't depend strongly on what happens around it.
+Another concern about this design is the ordering of the events.
+We saw in the last paragraph that time could run backward locally as long as the process doesn't depend strongly on what happens around it.
 
 Giving a warranty on event order is, once again, solidifying the link between components. As a consequence, deploying an event-driven architecture is, like every design pattern, be chosen wisely with regard to the business requirements.
 
-For more information about ordering (in channels), cf this article [Ordering messages](https://cloud.google.com/pubsub/docs/ordering) on the Google Cloud Plateform's documentation.
+For more information about ordering (in channels), cf this article [Ordering messages](https://cloud.google.com/pubsub/docs/ordering) on the Google Cloud Platform's documentation.
 
 #### Separate the infrastructure from the application
 

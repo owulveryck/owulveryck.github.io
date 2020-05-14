@@ -15,7 +15,7 @@ The micro-services pattern suits this need and is, therefore, the paradigm chose
 An application composed of micro-services is supposed to be scalable; the main pitfall is to think and design accurate service contracts to avoid the antipattern of a distributed monolith.
 The secret is to manage the coupling between the components in the same way developers have learned to handle coupling inside the code over the years.
 
-By mastering the coupling, the design paradigms have shown excellent results on the quality and reliability of software.
+The design paradigms have shown excellent results on the quality and reliability of software by mastering the coupling.
 
 How do those paradigms apply to AI-based applications?
 
@@ -25,6 +25,14 @@ Then I may write a second article, more technical, to expose a concrete example 
 Eventually, a third article will show how to use managed services to transform products into commodities[^1].
 
 [^1]: Chapter 7 of Simon Wardley's book ([Finding a new purpose](https://medium.com/wardleymaps/finding-a-new-purpose-8c60c9484d3b)) gives more explanation of the evolution of a product to a commodity.
+
+The article' structured is:
+
+- Understanding the notion of coupling applied to IT;
+- Understanding coupling inside the code of an application and the importance of managing it;
+- Understanding coupling inside a system (a composition of software) to see the strength and weakness of the event architecture pattern;
+
+Hopefully, at the end of the article, I have all the tools mandatory tools to answer those questions: is Caesar right: _divide and rule_? Monolith or microservices? (spoiler it depends)
 
 ## What is _coupling_?
 

@@ -5,12 +5,19 @@
 The micro-services pattern suits this need and is, therefore, the paradigm chosen &lt;em&gt;de facto&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;An application composed of micro-services is supposed to be scalable; the main pitfall is to think and design accurate service contracts to avoid the antipattern of a distributed monolith.
 The secret is to manage the coupling between the components in the same way developers have learned to handle coupling inside the code over the years.&lt;/p&gt;
-&lt;p&gt;By mastering the coupling, the design paradigms have shown excellent results on the quality and reliability of software.&lt;/p&gt;
+&lt;p&gt;The design paradigms have shown excellent results on the quality and reliability of software by mastering the coupling.&lt;/p&gt;
 &lt;p&gt;How do those paradigms apply to AI-based applications?&lt;/p&gt;
 &lt;p&gt;In this series of articles, I plan to dig into the design of code and hosting applied to AI software.
 This first article is about concepts.
 Then I may write a second article, more technical, to expose a concrete example and illustrate the concepts.
 Eventually, a third article will show how to use managed services to transform products into commodities&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;The article&amp;rsquo; structured is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Understanding the notion of coupling applied to IT;&lt;/li&gt;
+&lt;li&gt;Understanding coupling inside the code of an application and the importance of managing it;&lt;/li&gt;
+&lt;li&gt;Understanding coupling inside a system (a composition of software) to see the strength and weakness of the event architecture pattern;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hopefully, at the end of the article, I have all the tools mandatory tools to answer those questions: is Caesar right: &lt;em&gt;divide and rule&lt;/em&gt;? Monolith or microservices? (spoiler it depends)&lt;/p&gt;
 &lt;h2 id=&#34;what-is-coupling&#34;&gt;What is &lt;em&gt;coupling&lt;/em&gt;?&lt;/h2&gt;
 &lt;p&gt;In physics, two objects are said to be coupled when they are interacting with each other (source &lt;a href=&#34;https://en.wikipedia.org/wiki/Coupling_(physics)&#34;&gt;Wikipedia&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Two elements are strongly coupled when a perturbation on the first element induces a disturbance on the second that impacts its behavior significantly.

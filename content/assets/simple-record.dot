@@ -1,0 +1,4 @@
+graph {
+   "Peter Gabriel" -- "Artist"
+   "Peter Gabriel" -- "So"
+}

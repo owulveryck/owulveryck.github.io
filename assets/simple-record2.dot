@@ -1,0 +1,4 @@
+digraph {
+        "Peter Gabriel" -> "Artist"
+   "Peter Gabriel" -> "So" [label="sing"]
+}

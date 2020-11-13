@@ -18,6 +18,7 @@ copyright = "Olivier Wulveryck"            # default: author.name â†“        # é
 # language support # en / zh-cn / other... translations present in i18n/
 defaultContentLanguage = "en"           # Default language to use
 
+uglyURLs=true
 pygmentsUseClasses =true
 pygmentsCodeFences=true
 pygmentsOptions = "linenos=table"

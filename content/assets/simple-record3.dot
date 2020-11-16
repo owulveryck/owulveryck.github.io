@@ -1,5 +1,31 @@
-digraph {
-        "Peter Gabriel" -> "Artist"
-   "Peter Gabriel" -> "So" [label="sing"]
-   "Peter Gabriel" -> "So" [label="composer"]
+graph {
+        rankdir = LR;
+        graph [fontname=Arial, fontcolor=darkblue, fontsize=12 ];
+        node [ fontname=Arial, fontcolor=darkblue, fontsize=11];
+        edge [ fontname=Helvetica, fontcolor=darkred, fontsize=10 ];
+
+        "Peter Gabriel" [
+        shape = none
+        label = <<table border="0" cellspacing="0">
+                    <tr><td port="port1" border="1"><font color="darkgrey">Person</font></td></tr>
+                    <tr><td port="port2" border="1">Peter Gabriel</td></tr>
+                </table>>
+    ]
+        "Daniel Lanois" [
+        shape = none
+        label = <<table border="0" cellspacing="0">
+                    <tr><td port="port1" border="1"><font color="darkgrey">Person</font></td></tr>
+                    <tr><td port="port2" border="1">Daniel Lanois</td></tr>
+                </table>>
+    ]
+        "So" [
+        shape = none
+        label = <<table border="0" cellspacing="0">
+                    <tr><td port="port1" border="1"><font color="darkgrey">Album</font></td></tr>
+                    <tr><td port="port2" border="1">So</td></tr>
+                </table>>
+    ]
+        "Daniel Lanois" -- "So"  [label="Produce"]
+        "Peter Gabriel" -- "So"  [label="Sing"]
+
 }

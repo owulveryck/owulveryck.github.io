@@ -1,4 +1,23 @@
 graph {
-   "Peter Gabriel" -- "Artist"
-   "Peter Gabriel" -- "So"
+        rankdir = LR;
+        graph [fontname=Arial, fontcolor=darkblue, fontsize=12 ];
+        node [ fontname=Arial, fontcolor=darkblue, fontsize=11];
+        edge [ fontname=Helvetica, fontcolor=darkred, fontsize=10 ];
+
+        "Peter Gabriel" [
+        shape = none
+        label = <<table border="0" cellspacing="0">
+                    <tr><td port="port1" border="1"><font color="darkgrey">Person</font></td></tr>
+                    <tr><td port="port2" border="1">Peter Gabriel</td></tr>
+                </table>>
+    ]
+        "So" [
+        shape = none
+        label = <<table border="0" cellspacing="0">
+                    <tr><td port="port1" border="1"><font color="darkgrey">Album</font></td></tr>
+                    <tr><td port="port2" border="1">So</td></tr>
+                </table>>
+    ]
+        "Peter Gabriel" -- "So" 
+
 }

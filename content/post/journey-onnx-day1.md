@@ -5,7 +5,7 @@ lastmod: 2018-08-14T20:41:30+02:00
 draft: false
 keywords: []
 description: "This is the very begining of my journey with ONNX and Go. In this post I am describing how to decode a ONNX model from its protocol buffers serialized format to a computation graph. I am using the gonum package. Later I will switch to Gorgonia."
-tags: []
+tags: ["onnx", "golang", "graph", "deep-learning"]
 categories: []
 author: ""
 

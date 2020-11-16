@@ -6,7 +6,7 @@ draft: false
 keywords: []
 description: "This post is the second part of my experiments with ONNX and Go. In this post I am describing how to create a computation graph in Gorgonia (ExprGraph) from an ONNX Model."
 description: ""
-tags: []
+tags: ["onnx", "golang", "graph", "deep-learning"]
 categories: []
 author: ""
 

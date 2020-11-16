@@ -5,7 +5,7 @@ lastmod: 2019-04-03T20:33:42+02:00
 draft: false
 keywords: []
 description: "In this post, I am describing the state of the `onnx-go` project that I started a couple of months ago. The purpose of this post is to explain why I started the project, how I developed the idea, and what the package `onnx-go` is."
-tags: []
+tags: ["onnx", "golang", "graph", "deep-learning", "gorgonia"]
 categories: []
 author: "Olivier Wulveryck"
 

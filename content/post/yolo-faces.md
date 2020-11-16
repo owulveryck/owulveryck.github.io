@@ -5,7 +5,7 @@ lastmod: 2019-08-16T21:25:30+02:00
 draft: false
 keywords: ["onnx","DDD","Keras","Go","Neural Net","YOLO"]
 description: "This post describes how to build a face detection tool with a neural network. The full conception is described, from the design to the implementation."
-tags: []
+tags: ["YOLO", "computer vision", "onnx", "gorgonia", "golang", "AI"]
 categories: []
 author: ""
 

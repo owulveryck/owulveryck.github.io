@@ -1,8 +1,9 @@
 ---
 title: "Divide et impera - part I: coupling"
 date: 2020-04-26T15:47:57+02:00
-description: "This article is about coupling in IT; divide et impera - divide and conquer"
+summary: "This article is about coupling in IT; divide et impera - divide and conquer"
 draft: false
+tags: ["architecture", "coupling", "eventing", "AI"]
 ---
 
 In 2020, an old debate has risen from the ashes:

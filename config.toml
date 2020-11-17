@@ -2,7 +2,7 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
-baseurl = "https://owulveryck.github.io/"
+baseurl = "https://blog.owulveryck.info/"
 title = "Unladen swallow - Olivier Wulveryck"
 enableRobotsTXT = true
 enableEmoji = true
@@ -82,7 +82,7 @@ pygmentsOptions = "linenos=table"
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
+  customCSS = ['custom.css']            # if ['custom.css'], load '/static/css/custom.css' file
   customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
 
   [params.social]                                         # 社交链接

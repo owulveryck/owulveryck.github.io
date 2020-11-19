@@ -82,7 +82,7 @@ func main() {
 }
 {{</ highlight >}}
 
-Then we can test the parsing with the file we downloaded from schema.org previously:
+Then we can test the plumbing with the file we downloaded from schema.org previously:
 
 ```shell
 > cat schemaorg-current-http.ttl| go run main.go
@@ -96,21 +96,144 @@ We can check that roughly the number of triple matches what's expected by counti
 15329
 ```
 
-The numbers are not the same but they are alike (the grep command does not evaluate the litteral and some punctuation may be wrongly counted)
-
-### Understanding the graph structure
-
-Schema.org is using a lot of prefixes. Amongst all of those, a couple is interesting for the sake of this article:
-
-```turtle
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
-```
-
-https://schema.org/PostalAddress
-
+The numbers are not identical but alike (the grep command does not evaluate the literal and some punctuation may be wrongly counted)
 
 ## Generating a Graph
 
+### Understanding the graph structure
+
+We have an "RDF" graph in memory; sadly, this structure is not a directed graph. I mean that it is not _de facto_ possible to navigate from nodes to nodes or to identify the edges.
+
+To create a graph, the best option in Go is to rely on the abstraction created by [_gonum_](https://pkg.go.dev/gonum.org/v1/gonum/graph#Graph)
+
+In Gonum a graph is an interface that manages two objects fulfilling the `Node` and `Edge` such as:
+
+{{<highlight go>}}
+type Graph interface {
+	Node(id int64) Node
+	Nodes() Nodes
+	From(id int64) Nodes
+	HasEdgeBetween(xid, yid int64) bool
+	Edge(uid, vid int64) Edge
+}
+{{</ highlight >}}
+
+{{<highlight go>}}
+type Node interface {
+	ID() int64
+}
+{{</ highlight >}}
+
+{{<highlight go>}}
+type Edge interface {
+	From() Node
+	To() Node
+	ReversedEdge() Edge
+}
+{{</ highlight >}}
+
+_Note_: all comments have been removed for brevity. The full definition is available [here](https://pkg.go.dev/gonum.org/v1/gonum/graph#Graph)
+
+Once the graph objects are fulfilling those interfaces, it becomes possible to use all the graph algorithms that have been implemented by the gonum team.
+Please go to this link if you wish to learn more about the capabilities: [pkg.go.dev/gonum.org/v1/gonum/graph#section-directories](https://pkg.go.dev/gonum.org/v1/gonum/graph#section-directories)
+
+#### Our graph structure
+
+We will create a top level structure that will act as a receiver for our graph. For the graph itself, we rely on the [`simple.DirectedGraph`](https://pkg.go.dev/gonum.org/v1/gonum/graph/simple#DirectedGraph) implementation provided by the gonum's project.
+
+So we have:
+
+{{<highlight go>}}
+type Graph struct {
+	*simple.DirectedGraph
+}
+{{</ highlight >}}
+
+Then we will create a function to create and fill our graph from our rdfGraph.
+
+{{<highlight go>}}
+func NewGraph(rdfGraph *gon3.Graph) *Graph {
+   	g := simple.NewDirectedGraph()
+    // ... fill the graph
+    return &Graph{
+        DirectedGraph: g,
+    }
+}
+{{</ highlight >}}
+
+### Structure of the graph
+
+Remember that the rdf graph contains an array of triples. Each triple is a term.
+
+The object of a predicate is the subject of another triple. For example:
+
+```turtle
+schema:subject1 schema:predicate schema:object1 .
+schema:object1 schema:otherPredicate schema:object2 .
+```
+
+Would lead to the following graph:
+
+![](/assets/ontology/graph1.svg)
+
+This indicates a choice I’ve made: I want to produce a graph where its node corresponds to a subject declared **inside** the triplestore. 
+Therefore, in the example, _object2_ is not a node because it is not defined as a subject to a sentence. It is relatively easy to change this behavior and reference other nodes, but let’s keep that apart.
+
+#### Declaration of the node
+
+The node object declaration is pretty straightforward. A node is a structure holding:
+
+- an id 
+- a subject as seen before
+- and a map of predicates and objects associated with the predicate.
+
+{{<highlight go>}}
+type MyNode struct {
+	id              int64
+	Subject         rdf.Term
+	PredicateObject map[rdf.Term][]rdf.Term
+}
+{{</highlight>}}
+
+Adding a method `ID()` that returns an int64 makes it compatible with gonum's Node interface.
+Therefore it is possible to add it to a simple graph. So far, this codes compiles (but is useless):
+
+{{<highlight go>}}
+g := &Graph{
+    DirectedGraph: simple.NewDirectedGraph(),
+}
+g.DirectedGraph.AddNode(&MyNode{})
+{{</highlight>}}
+
+#### Declaration of the edge
+
+Using the same principle, we create a Edge structure that holds two nodes `From` and `To` as well as a term that defines the edge.
+
+{{<highlight go>}}
+type Edge struct {
+	F, T graph.Node
+	Term rdf.Term
+}
+{{</highlight>}}
+
+Therefore, this code compiles (but is useless):
+
+{{<highlight go>}}
+g := &Graph{
+    DirectedGraph: simple.NewDirectedGraph(),
+}
+n0:=&MyNode{id:0}
+n1:=&MyNode{id:1}
+g.DirectedGraph.AddNode(n0)
+g.DirectedGraph.AddNode(n1)
+e := Edge{F: n0, T: n1}
+g.SetEdge(e)
+{{</highlight>}}
+
+We have created a graph with two nodes and an edge between them.
+
+### Parsing the rdf graph to generate our directed graph
+
 ## Putting all together
+
+## Conclusion

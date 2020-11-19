@@ -1,0 +1,6 @@
+digraph {
+    rankdir=LR
+    node1 [shape=record label="subject1"]
+    node2 [shape=record label="object1|{otherPredicate|object2}"]
+    node1 -> node2 [label="predicate"]
+}

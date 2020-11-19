@@ -4,8 +4,8 @@ date: 2019-10-14T22:26:42+02:00
 lastmod: 2019-10-14T22:26:42+02:00
 draft: false
 keywords: []
-description: "In this article, I describe the prototype of a new computation machine for graph processing.  This machine takes its inspiration from the Pregel paradigm and uses Go's concurrency mechanism as a lever for a simple implementation."
-tags: []
+summary: "In this article, I describe the prototype of a new computation machine for graph processing.  This machine takes its inspiration from the Pregel paradigm and uses Go's concurrency mechanism as a lever for a simple implementation."
+tags: ["golang", "gorgonia", "pregel", "graph", "concurrency", "machine learning"]
 categories: []
 author: ""
 

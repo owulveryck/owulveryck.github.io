@@ -139,7 +139,7 @@ Please go to this link if you wish to learn more about the capabilities: [pkg.go
 
 #### Our graph structure
 
-We will create a top level structure that will act as a receiver for our graph. For the graph itself, we rely on the [`simple.DirectedGraph`](https://pkg.go.dev/gonum.org/v1/gonum/graph/simple#DirectedGraph) implementation provided by the gonum's project.
+We will create a top-level structure that will act as a receiver for our graph. For the graph itself, we rely on the [`simple.DirectedGraph`](https://pkg.go.dev/gonum.org/v1/gonum/graph/simple#DirectedGraph) implementation provided by the gonum's project.
 
 So we have:
 
@@ -207,7 +207,7 @@ g.DirectedGraph.AddNode(&MyNode{})
 
 #### Declaration of the edge
 
-Using the same principle, we create a Edge structure that holds two nodes `From` and `To` as well as a term that defines the edge.
+Using the same principle, we create an Edge structure that holds two nodes `From` and `To` as well as a term that defines the edge.
 
 {{<highlight go>}}
 type Edge struct {

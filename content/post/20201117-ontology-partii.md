@@ -1,7 +1,7 @@
 ---
 title: "Ontology, graphs and turtles - Part II"
 date: 2020-11-17T17:07:03+01:00
-draft: true
+draft: false
 tags: ["ontology", "taxonomy", "graph", "turtle", "rdf", "golang", "go"]
 summary: "This article is about parsing and extracting the knowledge from a triplestore to create a graph in-memory in Go."
 ---
@@ -110,25 +110,25 @@ In Gonum a graph is an interface that manages two objects fulfilling the `Node` 
 
 {{<highlight go>}}
 type Graph interface {
-	Node(id int64) Node
-	Nodes() Nodes
-	From(id int64) Nodes
-	HasEdgeBetween(xid, yid int64) bool
-	Edge(uid, vid int64) Edge
+    Node(id int64) Node
+    Nodes() Nodes
+    From(id int64) Nodes
+    HasEdgeBetween(xid, yid int64) bool
+    Edge(uid, vid int64) Edge
 }
 {{</ highlight >}}
 
 {{<highlight go>}}
 type Node interface {
-	ID() int64
+    ID() int64
 }
 {{</ highlight >}}
 
 {{<highlight go>}}
 type Edge interface {
-	From() Node
-	To() Node
-	ReversedEdge() Edge
+    From() Node
+    To() Node
+    ReversedEdge() Edge
 }
 {{</ highlight >}}
 
@@ -145,7 +145,7 @@ So we have:
 
 {{<highlight go>}}
 type Graph struct {
-	*simple.DirectedGraph
+    *simple.DirectedGraph
 }
 {{</ highlight >}}
 
@@ -189,9 +189,9 @@ The node object declaration is pretty straightforward. A node is a structure hol
 
 {{<highlight go>}}
 type MyNode struct {
-	id              int64
-	Subject         rdf.Term
-	PredicateObject map[rdf.Term][]rdf.Term
+    id              int64
+    Subject         rdf.Term
+    PredicateObject map[rdf.Term][]rdf.Term
 }
 {{</highlight>}}
 
@@ -211,8 +211,8 @@ Using the same principle, we create a Edge structure that holds two nodes `From`
 
 {{<highlight go>}}
 type Edge struct {
-	F, T graph.Node
-	Term rdf.Term
+    F, T graph.Node
+    Term rdf.Term
 }
 {{</highlight>}}
 
@@ -234,6 +234,169 @@ We have created a graph with two nodes and an edge between them.
 
 ### Parsing the rdf graph to generate our directed graph
 
+The first thing we'll do is to create a tree of terms. We do that thanks to a hash map.
+The key is a subject, and the value is another map. The map value's key is a predicate and the value is an array of objects (remember that a predicate can point to several objects)
+
+{{<highlight go>}}
+tree := make(map[gon3.Term]map[gon3.Term][]gon3.Term)
+{{</highlight>}}
+
+But before parsing the rdf graph to fill the tree, we have to address a little gotcha. a `Term` is an interface. Therefore it is a pointer. Therefore in the rdf graph, if we consider two `Terms` `t1` and `t2` such as:
+
+{{<highlight go>}}
+t1 := gon3.NewLiteral("bla")
+t2 := gon3.NewLiteral("bla")
+{{</highlight>}}
+
+`t1` is different from `t2` (even is their values are the same)
+
+To address this, we will track a dictionary of terms indexed by their `RawValue()`.
+
+{{<highlight go>}}
+type Dict map[string]rdf.Term
+
+func (d Dict) getOrInsert(t rdf.Term) rdf.Term {
+    //...
+}
+{{</highlight>}}
+
+Then we iter over the triples from our rdf graph to fille the tree and the dictionary.
+
+{{<highlight go>}}
+for s := range rdfGraph.IterTriples() {
+    // ... fill dict and tree
+}
+{{</highlight>}}
+
+_Note_: for convenience, we will also set the dictionary as an attribute to our graph for later. The structure becomes:
+
+{{<highlight go>}}
+type Graph struct {
+    *simple.DirectedGraph
+    Dict map[string]rdf.Term}
+{{</ highlight >}}
+
+We can now range over the tree, and create all the nodes in the graph for each subject:
+
+{{<highlight go>}}
+for s, po := range tree {
+    n := &Node{
+        id:              g.NewNode().ID(),
+        Subject:         s,
+        PredicateObject: po,
+    }
+    g.AddNode(n)
+    reference[s] = n
+}
+{{</ highlight >}}
+
+_Note_: once again, for convenience, we track the nodes in a hash map. This reference map has the subject as a key and the node as a value (its type is `map[rdf.Term]*Node`).
+
+Finally, we loop once again through the tree to create the edges:
+
+{{<highlight go>}}
+for s, po := range tree {
+    me := reference[s]
+    for predicate, objects := range po {
+        for _, object := range objects {
+            if me == to { // self edge
+                continue
+            }
+            to := reference[object]
+            e := Edge{ F: me, T: to, Term: predicate, }
+            g.SetEdge(e)
+        }
+    }
+}
+{{</ highlight >}}
+
+_Note_: error handling is omited for brevity
+
 ## Putting all together
 
+Now that we have the graph builder ok, we can test it with the data from schema.org we downloaded earlier.
+
+Let's write a simple program that creates the graph and do a simple query. For example, we may want to get all the nodes directly linked to the  `PostalAddress` in schema.org.
+
+
+{{<highlight go>}}
+baseURI := "https://example.org/foo"
+parser := rdf.NewParser(baseURI)
+gr, err := parser.Parse(os.Stdin)
+if err != nil {
+    log.Fatal(err)
+}
+g := graph.NewGraph(gr)
+postalAddress := g.Dict["http://schema.org/PostalAddress"]
+node := g.Reference[postalAddress]
+it := g.To(node.ID())
+for it.Next() {
+    n := it.Node().(*graph.Node) // need inference here because gonum's simple graph returns a type graph.Node which is an interface
+    fmt.Printf("%v -> %v\n", node.Subject, n.Subject)
+}
+{{</ highlight >}}
+
+
+This prints the following output:
+
+```text
+❯ cat schemaorg-current-http.ttl| go run main.go
+<http://schema.org/PostalAddress> -> <http://schema.org/deliveryAddress>
+<http://schema.org/PostalAddress> -> <http://schema.org/postalCode>
+<http://schema.org/PostalAddress> -> <http://schema.org/servicePostalAddress>
+<http://schema.org/PostalAddress> -> <http://schema.org/originAddress>
+<http://schema.org/PostalAddress> -> <http://schema.org/addressCountry>
+<http://schema.org/PostalAddress> -> <http://schema.org/location>
+<http://schema.org/PostalAddress> -> <http://schema.org/billingAddress>
+<http://schema.org/PostalAddress> -> <http://schema.org/addressLocality>
+<http://schema.org/PostalAddress> -> <http://schema.org/postOfficeBoxNumber>
+<http://schema.org/PostalAddress> -> <http://schema.org/streetAddress>
+<http://schema.org/PostalAddress> -> <http://schema.org/address>
+<http://schema.org/PostalAddress> -> <http://schema.org/addressRegion>
+<http://schema.org/PostalAddress> -> <http://schema.org/gameLocation>
+<http://schema.org/PostalAddress> -> <http://schema.org/itemLocation>
+```
+
+If we check on schema.org's website ([https://schema.org/PostalAddress](https://schema.org/PostalAddress)), we find those elements but in two different tables:
+
+![](/assets/ontology/schemaorg1.png)
+
+![](/assets/ontology/schemaorg2.png)
+
+Remember, we are dealing with ontology; therefore, the link has a meaning. And this meaning has been set as an attribute of the edge. If we tweak the code to display the edge like this:
+
+{{<highlight go>}}
+for it.Next() {
+    n := it.Node().(*graph.Node) // need inference here because gonum's simple graph returns a type graph.Node which is an interface
+    e := g.Edge(n.ID(), node.ID()).(graph.Edge)
+    fmt.Printf("%v -%v-> %v\n", node.Subject, e.Term, n.Subject)
+}
+{{</ highlight >}}
+
+we obtain:
+
+```text
+<http://schema.org/PostalAddress> -<http://schema.org/domainIncludes>-> <http://schema.org/addressRegion>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/billingAddress>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/servicePostalAddress>
+<http://schema.org/PostalAddress> -<http://schema.org/domainIncludes>-> <http://schema.org/streetAddress>
+<http://schema.org/PostalAddress> -<http://schema.org/domainIncludes>-> <http://schema.org/addressCountry>
+<http://schema.org/PostalAddress> -<http://schema.org/domainIncludes>-> <http://schema.org/postOfficeBoxNumber>
+<http://schema.org/PostalAddress> -<http://schema.org/domainIncludes>-> <http://schema.org/addressLocality>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/location>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/itemLocation>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/deliveryAddress>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/address>
+<http://schema.org/PostalAddress> -<http://schema.org/domainIncludes>-> <http://schema.org/postalCode>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/gameLocation>
+<http://schema.org/PostalAddress> -<http://schema.org/rangeIncludes>-> <http://schema.org/originAddress>
+```
+
 ## Conclusion
+
+We've built a graph structure in memory quickly. What's important is not the structure by itself. The important is the perspectives it opens.
+So far, we have worked on schemas, but the semantics applies to the data itself. On top of that, the graph we have generated is reasonably generic. Therefore, the same principle could be used to store our knowledge graph within a persistent database such as dgraph or maybe neo4j.
+
+In the next article, we will work with the graph and set up a template engine to create generic documentation of our knowledge graph using `go template`.
+
+Meanwhile, you can fetch the code (which is not production-ready) on my [github](https://pkg.go.dev/github.com/owulveryck/rdf2graph/graph/)

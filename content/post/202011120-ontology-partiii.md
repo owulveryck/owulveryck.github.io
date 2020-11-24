@@ -232,6 +232,105 @@ and the list of preficates are:
 
 ## A simple web service
 
+Now that we have built of the tools we need to render the graph, let's build a very simple webserver to present the information of the knowledge graph. As explained in introduction, we will use the ontology of schema.org as a database (the creation of the knowledge graph is explained in the previous article).
+
 ### Creating the template
 
+Each representation of a node is a single html page. It is accessed through a call to "http://serviceurl/NodeSubject".
+
+The skeleton of the page is a template. 
+To make things easier, we split the tamplate into three subtemplates.
+
+- a `main` template that will create the HTML structure and the outside table
+- a template to display a `class` as a `tbody` structure
+- a property template to display a line of the tbody structure
+
+{{<highlight go-text-template >}}
+{{ define "main" }}
+<!DOCTYPE html>
+<!-- boilerplate of the HTML file -->
+    <table class="blueTable">
+        <!-- header of the table -->
+        {{ template "rdfs:type rdfs:Class" . }}
+    </table>
+</html>
+{{ end }}
+
+{{ define "rdfs:type rdfs:Property" }}
+<tr>
+{{ calls to display the subjects and predicates }}
+</tr>
+{{ end }}
+
+{{ define "rdfs:type rdfs:Class" }}
+<tbody>
+    <tr>
+    <!-- The rest of the table structure -->
+    {{ range over the "To" nodes for the graph held in `Current` }}
+        {{ for each node, if its type is "property" }}
+            {{ template "rdfs:type rdfs:Property" . -}}
+    {{ range over the "From" nodes for the graph held in `Current` }}
+        {{ for each node, if its type is "class" }}
+                {{ template "rdfs:type rdfs:Class" . -}}
+    </tr>
+</tbody>
+{{ end }}
+{{</highlight>}}
+
+There is not much interest in displaying all the wiring inside this article.
+The full template is available [here](https://github.com/owulveryck/rdf2graph/blob/7a6127ae4428c5501a1d07eb541a16fb4ee3ad83/examples/webview/index.tmpl#L1-L59)
+
+This will display a nice formated page when mixed with a node of the graph.
+
+#### The web server
+
+To make things easier, let's encapsulate all of this inside a simple webserver. The goal is to be able to display any node of the graph when accessed through a URL.
+
+First, we create a structure that will implement the [http.Handler](https://golang.org/pkg/net/http/#Handler) interface.
+
+For convenience, this structure carries the graph, the template, and a hashmap of the rdf.IRI. The later is used to shorten the URLs (calling _http://myservice/blabla_ instead of _http://myservice/http://example.com/blabla_)
+
+{{<highlight go >}}
+type handler struct {
+	namespaces map[string]*rdf.IRI
+	g          graph.Graph
+	tmpl       *template.Template
+}
+
+func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {}
+{{</highlight >}}
+
+The ServeHTTP method is composed of three parts:
+
+- extract the node from the URL
+- check if the node exists
+- apply the template and write the result on the _ResponseWriter_
+
+I won't detail all the code to implement this. You can look at the implementation [on GitHub](https://github.com/owulveryck/rdf2graph/blob/7a6127ae4428c5501a1d07eb541a16fb4ee3ad83/examples/webview/main.go#L60-L77).
+
+We need to glue all the code from the articles together to:
+
+- parse a triplestore from an `io.Reader`;
+- create a graph in-memory;
+- read the template file and create the Go template;
+- create the handler to reference the graph and the template;
+- register the handler to serve an HTTP request;
+
+Sounds tricky, but it is reasonably easy and straightforward if you do a little bit of Go. Anyhow, a sample implementation is on [GitHub](https://github.com/owulveryck/rdf2graph/tree/main/examples/webview).To launch it, simply do:
+
+```bash
+curl -s https://schema.org/version/latest/schemaorg-current-http.ttl | go run main.go
+```
+
+Then point your browser to "http://localhost:8080/PostalAddress" and you should get something that looks like this:
+
+![](/assets/ontology/schemaorg_olwu.png)
+
 ## Conclusion
+
+This was the last article about ontology. Through the pieces, we’ve discovered a way to describe a knowledge graph to be easy to write for a human and efficient enough to parse for a machine. Then we’ve built a graph in-memory and exploited this graph to represent the knowledge. The representation layer can be seen as a projection layer that exposes the information required for a specific functional domain.
+
+Now let's have fun with ontology to:
+
+- document functional areas and act as a shared ubiquitous language
+- provide a map of information to locate and use a specific part of the knowledge of a system

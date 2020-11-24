@@ -1,9 +1,9 @@
 ---
 title: "Ontology, graphs and turtles - Part III"
-date: 2020-11-20T17:07:03+01:00
+date: 2020-11-20T20:07:03+01:00
 draft: false
 tags: ["ontology", "taxonomy", "graph", "turtle", "rdf", "golang", "go"]
-summary: "This article is about parsing and extracting the knowledge from a triplestore to create a graph in-memory in Go."
+summary: "This article is about using the graph in-memory from the build-in part II. In this article, I will show how to extract the graph's information using a template engine. Eventually, we will build a documentation webserver that looks like schema.org."
 ---
 
 In [a recent article](/2020/11/13/ontology-graphs-and-turtles-part-i.html), I introduced the notion of ontology and knowledge graph.

@@ -1,0 +1,46 @@
+@startuml C1 
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/go.puml
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.2.0
+!includeurl ICONURL/dev2/postgresql.puml
+!include DEVICONS/java.puml
+!include DEVICONS/redis.puml
+!include DEVICONS/facebook.puml
+!include FONTAWESOME/users.puml
+
+' LAYOUT_WITH_LEGEND()
+HIDE_STEREOTYPE()
+
+'LAYOUT_AS_SKETCH()
+
+' LAYOUT_WITH_LEGEND()
+
+System_Boundary(ux,"Applications Opérationnelles\n(producteurs de données)\nLes applications de ce système fournissent de la valeur au data-domaine.\n Le data-domaine permet aux applications d'améliorer leur TTM en fournissant un système fédéré") {
+    Person(producer1,"Mobile App")
+    Person(producer2,"e-commerce website")
+}
+System_Boundary(ux_consumer,"Applications Analytiques (consommateurs d'informations)") {
+    Person(ml,"data-scientists")
+    Person(bi,"BI")
+}
+System_Boundary(data_mesh,"Data-mesh") {
+    System_Boundary(data_domain,"Domaine de données") {
+        System(data,"Information X")
+    }
+    System_Boundary(data_domain2,"Domaine de données") {
+        System(data2,"Information B")
+    }
+    System_Boundary(data_domain3,"Domaine de données") {
+        System(data3,"Information A")
+    }
+    Lay_R(data_domain,data_domain2)
+    Lay_R(data_domain3,data_domain)
+}
+Rel(ux,data_domain,"utilise les capacités opérationnelles fournies par le domaine de donnée\nfournit de la donnée (ex: CRUD)")
+Rel_Back(data_domain,ux_consumer,"Utilise les données analytiques fournies par le domaine")
+Rel_Back(data_domain3,ux_consumer,"Utilise les données analytiques fournies par le domaine")
+@enduml

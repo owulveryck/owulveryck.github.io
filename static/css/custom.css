@@ -1,0 +1,20 @@
+body {
+        font-family: 'Roboto';
+        /*font-size: 0.95em;*/
+        line-height: 1.4;
+}
+p {
+        font-size: 0.95em;
+}
+.post {
+        margin: 0 0.5em 0.5em;
+}
+figure {
+        width: 75%;
+}
+.highlight {
+        font-family: 'Roboto';
+        /*font-size: 0.95em;*/
+        font-size: 0.95em;
+        line-height: 1;
+}

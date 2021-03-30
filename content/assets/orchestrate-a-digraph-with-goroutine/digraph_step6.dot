@@ -1,0 +1,15 @@
+digraph g {
+    node [ shape = polygon, sides = 4 ]
+    7 [color=green]
+    3 [color=grey]
+    5 [color=grey]
+    edge [color=green]
+    conductor -> 0
+    conductor -> 1
+    conductor -> 2
+    conductor -> 3
+    conductor -> 4
+    conductor -> 5
+    conductor -> 6
+    conductor -> 7
+}

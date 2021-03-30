@@ -8,6 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # The environment this job references
+    environment:
+      name: live
     steps:
         # Step 1 - Checks-out your repository under $GITHUB_WORKSPACE
     - name: Checkout

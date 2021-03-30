@@ -8,6 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # The environment this job references
+    environment:
+      name: live
     steps:
     - uses: actions/checkout@v1
       with:

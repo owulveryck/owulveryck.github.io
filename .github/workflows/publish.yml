@@ -22,10 +22,10 @@ jobs:
         hugo-version: '0.81.0'
         extended: true
 
-    - name: Build
+    - name: Build Website
       run: hugo -d ./public
-    - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
+      name: Publish on S3
       with:
         args: --acl public-read --follow-symlinks --delete
       env:

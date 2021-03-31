@@ -221,7 +221,7 @@ It is, therefore, a good practice to implement this security mechanism that will
 As I do not want anything difficult to maintain, I am generating a self-signed certificate that I am embedding on both the client and the server with the new `embed` command of the Go language.
 
 I also implement a mutual authentication mechanism. Therefore, only a known client can connect to the server.
-The certificate is generated per build. Therefore, if you want to enhance security, it is your responsibility to generate new binaries, and to store them in a safe place, somewhere on your computer (as they contain the certificate).
+The certificate is generated per build (via a set of `go:generate` commands). Therefore, if you want to enhance security, it is your responsibility to generate new binaries, and to store them in a safe place, somewhere on your computer (as they contain the certificate).
 I agree that it's not the most secure option, but it is good enough for most use cases.
 
 ### Generating the certificate
@@ -257,6 +257,8 @@ conn, err := grpc.Dial(c.ServerAddr, grpc.WithTransportCredentials(grpcCreds), g
 The tool seems to work as expected for most users. At least it is good enough for me. I do not plan to add any fancy features. Do not hesitate to give it a try if you own a tablet:
 
 [https://github.com/owulveryck/goMarkableStream](https://github.com/owulveryck/goMarkableStream)
+
+The repo also contains a `goreleaser` file if you want to build you own release with your own certificates.
 
 Here is a video of the final product:
 {{< youtube c4-hJ6xRzg4 >}}

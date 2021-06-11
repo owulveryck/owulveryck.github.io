@@ -14,9 +14,7 @@ Amongst the most valuable assets of the companies are the data. Big data's promi
 - step2: ?
 - step3: profit
 
-{{< figure src="/assets/datamesh/gnome_data.png" width=100 >}}
-
-> If we collect and manage the data, profit will come.
+{{< figure src="/assets/datamesh/gnome_data.png" title="The Gnome's business plan" width="200" >}}
 
 In this article, I will present a way to address **step 2** of the plan. I will take some concepts from the data-mesh paradigm, and, to avoid the [cargo cult](https://en.wikipedia.org/wiki/Cargo_cult), I will eventually illustrate them with a trivial technological implementation.
 
@@ -33,21 +31,69 @@ In essence, the paradigm shit is:
 - focusing on the distribution of ownership and technological architecture;
 - placing the data at the center of each distributed component.
 
-All the rest of the data mesh is about solving the problems that come with that.
+**All the rest of the data mesh is about solving the problems that come with that.**
 
 The datamesh is based on four pilars:
 
-- a federated computational governance
-- a domain-driven data ownership architecture
-- thinking data as a produt
-- relying on a self-serve infrastructure platform
+- A federated computational governance.
+- A domain-driven data ownership architecture.
+- Thinking data as a produt.
+- Relying on a self-serve infrastructure platform.
 
 ### The pilars of the data mesh in a glimpse
 
+#### Summary of the data product
 
-![](/assets/datamesh/Picture-of-the-schematic-diagram-of-a-general-communication-system-Claude-Shannon-on.png)
+- Discoverable: Declared on a catalog and a search engine
+- Understandable: provide semantic (meaning), syntactic (topology) and usage description (behavior)
+- Addressable: must participate in a global eco-system with a unique address that helps its users to programatically find and access it
+- Secure: Be able to be accessed security with global policies (role-base-access, GDPR, Info security, data sovereignty …)
+- Interoperable: Be able to reuse, correlate and stitch them together across namespaces for new use-cases
+- Trustworthy – Truthful: Provided data provenance and lineage and data quality from the owner
+- Natively Accessible: Provided multimodal access like Web services, event of file interfaces
+- Valuable on its own: Designed to higher insights when combined and correlatedCommitted to SLAs
+- Committed to SLOs: Must respect expected service levels, in terms of data availability
 
-## Why configuration
+### Mesh: a matter of communication
+
+The communication is mandatory for the mesh to exists.
+
+#### Modeling the communication
+
+In this section we will set an ubiquitous language that will help in the undrstanding of the technology settings that will follow.
+
+The basic model representing a communication system has been represented in 1948 by Claude Shannon.
+Let's borrow this  representation and the explanation from the essay [_A mathematical theory of communication_](http://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf):
+
+![shema of communication](/assets/datamesh/Picture-of-the-schematic-diagram-of-a-general-communication-system-Claude-Shannon-on.png)
+
+Let's put aside the noise source and focus on the other elements. As explained in - An _information source_ which produces a message or sequence of messages to be communicated to the receiver terminal. In our case, the message is a data to be communicated to other nodes of the mesh.
+
+- a _transmitter_ which operates on the message in some way to produce a _signal_ suitable for transmission over the channel.
+- the _channel_ is merely the medium used to transmit the signal from transmitter to receiver.
+- the _receiver_ ordinaly performs the inverse operation of that done by the transmitter, reconstrtucting  the message from the _signal_.
+- thte destination is the thing for whom the message is intended.
+
+_Note_ This communication model is a shallow pipeline.
+
+## A practical, and trivial implementation
+
+## Generic pipeline description
+
+`collect_data | marshal_data | emit_data | validate | marshal_event | send_to channel`
+
+`channel:=$(find channel for data)`
+
+`read_from channel | unmarshal_event | unmarshal_data | profit`
+
+### `emit_data`
+
+### `validate`
+
+![garbage in, garbage out!](/assets/datamesh/garbage_in_out.png)
+
+
+### Why configuration
 
 A configuration can be defined as a human-computer interface for modifying system behavior. (chapter 14  SRE book - Configuration Design and Best Practices)
 
@@ -71,20 +117,6 @@ We need a configuration language suitable to provide automation (federated *comp
 
 Managing the configuration of thoses products at scale is going to be an issue.
 
-## Generic pipeline description
-
-`collect_data | marshal_data | emit_data | validate | marshal_event | send_to channel`
-
-`channel:=$(find channel for data)`
-
-`read_from channel | unmarshal_event | unmarshal_data | profit`
-
-### `emit_data`
-
-### `validate`
-
-![garbage in, garbage out!](/assets/datamesh/garbage_in_out.png)
-
 ## Expcted properties of the language
 
 Some expected problems are:
@@ -100,45 +132,6 @@ Fundamental properties:
 
 > definig Schema is cumbersome, but keeping them sync is much worse
 
-## Summary of the data product
-
-![a set of data products](/assets/datamesh/set_data_products.png)
-
---- 
-
-![a set of data products](/assets/datamesh/data_mesh.png)
-
----
-
-![Streming Plateform](/assets/datamesh/data_streaming.png)
-
-
-- Discoverable
-Declared on a catalog and a search engine
-
-- Understandable
-provide semantic (meaning), syntactic (topology) and usage description (behavior)
-
-- Addressable
-must participate in a global eco-system with a unique address that helps its users to programatically find and access it
-
-- Secure
-Be able to be accessed security with global policies (role-base-access, GDPR, Info security, data sovereignty …)
-
-- Interoperable
-Be able to reuse, correlate and stitch them together across namespaces for new use-cases
-
-- Trustworthy – Truthful 
-Provided data provenance and lineage and data quality from the owner
-
-- Natively Accessible 
-Provided multimodal access like Web services, event of file interfaces
-
-- Valuable on its own 
-Designed to higher insights when combined and correlatedCommitted to SLAs
-
-- Committed to SLOs
-Must respect expected service levels, in terms of data availability
 
 ## Output data port
 
@@ -149,4 +142,14 @@ In this sense, it is composed of metadata.
 
 The role of the federated computational governance is to standardized the semantic of the metadata.
 It participates in the *addressable* and *interoperable* needs of the data products.
+
+![a set of data products](/assets/datamesh/set_data_products.png)
+
+--- 
+
+![a set of data products](/assets/datamesh/data_mesh.png)
+
+---
+
+![Streaming Plateform](/assets/datamesh/data_streaming.png)
 

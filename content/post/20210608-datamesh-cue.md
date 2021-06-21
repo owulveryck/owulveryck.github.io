@@ -159,7 +159,7 @@ CUE's tooling makes it easy for a computer to understand the syntax and facilita
 Changing the Last name from `Doe` to `doe` or setting an age above 130 would result in an error.
 The validation prevents sending noise or garbage over the channel:
 
-The validation prevents sending nois or garbage over the channel:
+The validation prevents sending noise or garbage over the channel:
 
 {{< figure src="/assets/datamesh/garbage_in_out.png" width="300px">}}
 

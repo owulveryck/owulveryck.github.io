@@ -430,7 +430,6 @@ sent to the channel ok
 
 #### Last note about performances
 
-
 The code we've generated is, obviously, not production-ready; nevertheless, the core is based on CUE, and we can legitimately wonder if it will scale. CUE is designed to be O(n), and this [simple benchmark](https://gist.github.com/owulveryck/08405837b13ed215de79214e40e20a3b#file-main_test-go-L150) shows that the code can ingest, validate, encode and send thousands of events into a local Kafka topic in 2.5 seconds:
 
 ```shell
@@ -447,6 +446,7 @@ ok      owulveryck.github.io/test1      2.503s
 ## Conclusion
 
 Through this article, we've built a complete communication and streaming mechanism to interconnect the nodes of a mesh.
+
 This streaming mechanism is part of a global platform and will be operated by a platform team (as defined by the book [team topologies](https://teamtopologies.com/?gclid=CjwKCAjwwqaGBhBKEiwAMk-FtC_rz8mdQvUzlCsxdQXtrrVCJDEXohosGNbN-2X_muxePhhfWpnsjBoCBksQAvD_BwE) from Matthew Skelton and Manuel Pais).
 
 The users of this capability are different stream-aligned teams (in the context of team topologies, a stream-aligned team is organized around the flow of work and can deliver value directly to the customer or end user)
@@ -454,6 +454,9 @@ The users of this capability are different stream-aligned teams (in the context 
 {{< figure src="/assets/datamesh/tt.png" link="/assets/datamesh/tt.png" title="Team Topologies" width="350px" >}}
 
 Within the stream-aligned team, the data-product-owner can use the CUE language to describe its data semantic and constraints; The developers will use the validation process to feed the stream with data.
+
 The consumers of data will exploit the data cataloging capability and build other products thanks to the data they will find on the wire.
+
 Meanwhile, the Cloudevents format ensures that the signal can be propagated through the infrastructure in an agnostic way. It also opens the possibility to build data-product on a pure serverless architecture, but let's keep that warm for another article.
+
 Final note: this article presents a single way to expose data through event streaming. To be complete, a "pull" mechanism should be defined as a standard to fetch the information via, for example, a set of REST APIs.

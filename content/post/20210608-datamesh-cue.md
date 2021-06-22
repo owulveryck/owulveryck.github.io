@@ -239,19 +239,19 @@ This is what the command `cue vet` we’ve issued before does under the hood. Bu
 
 ```go
 type DataProduct struct {
-	definition    cue.Value
-	// ...
+    definition    cue.Value
+    // ...
 }
 
 func (d *DataProduct) ExtractData(b []byte) (cue.Value, error) {
-	data := d.definition.Context().CompileBytes(b)
-	unified := d.definition.Unify(data)
-	opts := []cue.Option{
-		cue.Attributes(true),
-		cue.Definitions(true),
-		cue.Hidden(true),
-	}
-	return data, unified.Validate(opts...)
+    data := d.definition.Context().CompileBytes(b)
+    unified := d.definition.Unify(data)
+    opts := []cue.Option{
+        cue.Attributes(true),
+        cue.Definitions(true),
+        cue.Hidden(true),
+    }
+    return data, unified.Validate(opts...)
 }
 ```
 

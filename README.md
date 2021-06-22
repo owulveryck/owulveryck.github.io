@@ -1,3 +1,3 @@
-![github pages](https://github.com/owulveryck/owulveryck.github.io/workflows/github%20pages/badge.svg)
+[![Publish Website](https://github.com/owulveryck/owulveryck.github.io/actions/workflows/publish.yml/badge.svg)](https://github.com/owulveryck/owulveryck.github.io/actions/workflows/publish.yml)
 
--> https://owulveryck.github.io
+Personal blog: [blog.owulveryck.info](https://blog.owulveryck.info)

@@ -1,0 +1,56 @@
+@startuml C2 
+
+'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include /Users/olivierwulveryck/Documents/C4-PlantUML/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/go.puml
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.2.0
+!includeurl ICONURL/dev2/postgresql.puml
+!include DEVICONS/java.puml
+!include DEVICONS/redis.puml
+!include DEVICONS/facebook.puml
+!include FONTAWESOME/users.puml
+
+' LAYOUT_WITH_LEGEND()
+HIDE_STEREOTYPE()
+
+'LAYOUT_AS_SKETCH()
+
+' LAYOUT_WITH_LEGEND()
+
+System_Boundary(ux,"Applications Opérationnelles\n(producteurs de données)\nLes applications de ce système fournissent de la valeur au data-domaine.\n Le data-domaine permet aux applications d'améliorer leur TTM en fournissant un système fédéré") {
+    Person(producer1,"Mobile App")
+    Person(producer2,"Station météo connectée")
+}
+System_Boundary(ux_consumer,"Applications Analytiques (consommateurs d'informations)") {
+    Person(ml,"data-scientists")
+    Person(bi,"BI")
+    Person(consumer1,"Station météo connectée")
+}
+System_Boundary(data_mesh,"Data-mesh") {
+    System_Boundary(data_domain,"Domaine de données température") {
+        System_Boundary(oper1,"Donnée opérationnelle") {
+            ContainerDb(db1,"DB1","Relationelle")
+        }
+        System_Boundary(analytic1,"Donnée analytique - data product") {
+            ContainerQueue(topic,"historisation","journal d'évènements")
+            Container(job,"Job de consolidation", "Custom")
+            ContainerDb(db2,"Prévisions de températures météo","partie du datalake")
+            Rel(job,db2,"sauvegarde des données analytiques")
+            Rel_Back(job,topic,"lecture des évènements de manière temporelle")
+        }
+        Rel(oper1,topic,"")
+    }
+    System_Boundary(data_domain3,"Domaine de données\nemplacements") {
+        System(data3,"Informations de localisation")
+    }
+    Lay_R(data_domain3,data_domain)
+    BiRel(job, data_domain3, "récupération, agrégation, calcul")
+}
+
+Rel(ux,oper1,"utilise les capacités opérationnelles fournies par le domaine de donnée\nfournit de la donnée (ex: CRUD)")
+Rel(consumer1,analytic1,"")
+Rel_Back(data_mesh,ux_consumer,"Utilise les données analytiques fournies par le domaine")
+@enduml

@@ -18,3 +18,16 @@ figure {
         font-size: 0.95em;
         line-height: 1;
 }
+
+img {
+        display: block;
+        margin: 0 auto;
+}
+figure {
+        display: block;
+        margin: 0 auto;
+}
+
+.post .post-content code, .post .post-content pre {
+        font-size: .8em;
+}

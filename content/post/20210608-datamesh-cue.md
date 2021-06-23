@@ -5,7 +5,7 @@ draft: false
 summary: "a step by step implementation of a streaming plateform that will interconnect the nodes of a data mesh. The goal is to validate the concept of the platform as a support to the federated computed governance to support the data-products"
 ---
 
-_Note_: This article is cross-posted on the blog of [OCTO Technology](https://blog.octo.com/en/pov-a-streaming-…or-the-data-mesh/)
+_Note_: This article is cross-posted on the blog of [OCTO Technology](https://blog.octo.com/en/pov-a-streaming-communication-platform-for-the-data-mesh/)
 
 In 2021, a rich set of data is the soil that empowers the business of all the Internet Giants (GAFAM, NATU, …).
 

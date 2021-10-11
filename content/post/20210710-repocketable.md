@@ -329,7 +329,7 @@ Then, the methods of the go-epub library add it to the ePub.
 
 ### GetPocket integration
 
-To complete the work, we can create a GetPocket integration to grab all he elements from the GetPocket reading list and convert them to ePub.
+To complete the work, we can create a GetPocket integration to grab all the elements from the GetPocket reading list and convert them to ePub.
 The integration is straightforward as the API of getPocket allows retrieving a structure holding:
 
 - the original URL

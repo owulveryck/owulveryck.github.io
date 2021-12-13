@@ -42,14 +42,7 @@ On the technical side, I am using the following technologies:
 ### Overall picture 
 
 Those layers can represent the architecture of the tool:
-<center>
-<figure>
-  <img src="/assets/yolofaces/archi1.png" >
-  <figcaption>
-      <h4>An overall picture of the architecture</h4>
-  </figcaption>
-</figure>
-</center>
+![](/assets/yolofaces/archi1.png)
 
 The basic principle is that every layer is a "closed area"; therefore, it is accessible through API, and every layer is testable independently.
 Different paragraphs of this post describe each layer.
@@ -162,14 +155,7 @@ onnx.save(onnx_model, '../FACES/yolo.onnx')
 It is interesting to visualize the result of the conversion. I am using the tool `netron` which have a [web version](https://lutzroeder.github.io/netron/).
 
 Here is an extract of the picture it generates:
-<center>
-<figure>
-  <img src="/assets/yolofaces/netron-extract.png" link="/assets/yolofaces/netron.png" width="50%">
-  <figcaption>
-      <h4>Netron representation of the tiny YOLO v2 graph</h4>
-  </figcaption>
-</figure>
-</center>
+![](/assets/yolofaces/netron-extract.png)
 
 I made a copy of the full representation [here](/assets/yolofaces/netron.png) if you want to see how the model looks.
 
@@ -255,16 +241,9 @@ fmt.Println(string(b))
 }
 ```
 
-(the full graph is [here](/assets/yolofaces/yolo-gorgonia.png))
+(the full graph is [here](/assets/yolofaces/yolo-gorgonia.))
 
-<center>
-<figure>
-  <img src="/assets/yolofaces/onnx-gorgonia-preview.png" width="50%">
-  <figcaption>
-      <h4>Gorgonia representation of the tiny YOLO v2 graph</h4>
-  </figcaption>
-</figure>
-</center>
+![](/assets/yolofaces/onnx-gorgonia-preview.png)
 
 The infrastructure is ok, and is implementing the SPI! Let's move to the application part!
 
@@ -332,12 +311,7 @@ The repository is composed of:
 
 ## Example 
 I am using a famous meme as input.
-<center>
-<figure>
-  <img src="/assets/yolofaces/meme.jpg" width="30%">
-</figure>
-</center>
-
+![](/assets/yolofaces/meme.jpg)
 
 ```shell
 cd $GOPATH/src/github.com/owulveryck/gofaces/cmd
@@ -377,10 +351,8 @@ convert \
         -compose over -composite /tmp/result2.png
 ```
 
-<center>
-<img src="/assets/yolofaces/mask2.png" width="30%" style="border-width: 1px;border-color: black;border-style: solid;">
-<img src="/assets/yolofaces/result2.png" width="30%">
-</center>
+![](/assets/yolofaces/mask2.png)
+![](/assets/yolofaces/result2.png)
 
 # Conclusion
 

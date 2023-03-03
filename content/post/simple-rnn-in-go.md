@@ -109,13 +109,6 @@ This is where a RNN could shine and enhance our professional lives.
 In a pure IT context, for example, you have failures "every now-and-then". Even if you don't find the root cause, it could be useful to predict the next failure. 
 If you have enough data about the past failures, the RNN could learn the pattern, and tell you when the next failure will occur.
 
-----
-<center>
-{{< tweet 844561153229541376 >}}
-</center>
-
-----
-
 
 ### Experimenting with RNN
 

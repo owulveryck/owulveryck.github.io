@@ -8,29 +8,29 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    # The environment this job references
     environment:
       name: live
+    env:
+      HUGO_VERSION: 0.110.0
     steps:
-    - uses: actions/checkout@v1
-      with:
-        submodules: true
-
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.2.2
-      with:
-        hugo-version: '0.81.0'
-        extended: true
-
-    - name: Build Website
-      run: hugo -d ./public
-    - uses: jakejarvis/s3-sync-action@master
-      name: Publish on S3
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
-        SOURCE_DIR: './public'      # optional: defaults to entire repository
+      - name: Install Hugo CLI
+         run: |
+            npm install -g postcss-cli && \
+            wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+            && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build Website
+        run: hugo -d ./public
+      - uses: jakejarvis/s3-sync-action@master
+        name: Publish on S3
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
+          SOURCE_DIR: './public'      # optional: defaults to entire repository

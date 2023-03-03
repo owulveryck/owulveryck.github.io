@@ -1,0 +1,67 @@
+graph G {
+  graph [fontsize=20 labelloc="t" label="" splines=true overlap=false rankdir = "LR"];
+  ratio = auto;
+  "computeinstance" [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"><font color="white">Product Family</font></td>
+    </tr>
+    <tr> <td align="left" port="r0">name: Compute Instance</td> </tr>
+    </table>> ];
+  "t2-micro-virginia"  [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"> <font color="white">Product</font> </td>
+    </tr>
+    <tr> <td align="left" port="r0">SKU: HZC9FAP4F9Y8JW67</td> </tr>
+    <tr> <td align="left" port="r0">type: t2.micro</td> </tr>
+    <tr> <td align="left" port="r0">location: US East (N. Virginia)</td> </tr>
+    <tr> <td align="left" port="r0">tenancy: Shared</td> </tr>
+    <tr> <td align="left" port="r0">operatingSystem: Linux</td> </tr>
+    </table>> ];
+  "resource"  [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"> <font color="white">Resource</font> </td>
+    </tr>
+    <tr> <td align="left" port="r0">ID: i-12345</td> </tr>
+    </table>> ];
+  "offerOnDemand"  [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"> <font color="white">Offer Term</font> </td>
+    </tr>
+    <tr> <td align="left" port="r0">Term Code: JRTCKXETXF</td> </tr>
+    <tr> <td align="left" port="r0">Type: OnDemand</td> </tr>
+    </table>> ];
+  "offerOnDemandPrice1"  [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"> <font color="white">Price</font> </td>
+    </tr>
+    <tr> <td align="left" port="r0">Currecy: USD</td> </tr>
+    <tr> <td align="left" port="r0">Description: $0.012 per On Demand Linux t2.micro Instance Hour</td> </tr>
+    <tr> <td align="left" port="r0">price_per_unit: 0.012</td> </tr>
+    <tr> <td align="left" port="r0">unit: Hrs</td> </tr>
+    </table>> ];
+  "offerReserved"  [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"> <font color="white">Offer Term</font> </td>
+    </tr>
+    <tr> <td align="left" port="r0">Type: Reserved</td> </tr>
+    </table>> ];
+  "offerReserved1yr"  [ style = "filled, bold" penwidth = 1 fillcolor = "white" fontname = "Courier New" shape = "Mrecord" label =<
+    <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+    <tr>
+    <td bgcolor="black" align="center" colspan="2"> <font color="white">Offer Term</font> </td>
+    </tr>
+    <tr> <td align="left" port="r0">Type: Reserved</td> </tr>
+    </table>> ];
+  "computeinstance" -- "t2-micro-virginia";
+  "t2-micro-virginia" -- "resource";
+  "offerOnDemand" -- "offerOnDemandPrice1";
+  "t2-micro-virginia" -- "offerOnDemand" [ fontsize = 28 fontcolor = "black" label = "offer" ];
+  "t2-micro-virginia" -- "offerReserved" [ fontsize = 28 fontcolor = "black" label = "offer" ];
+
+}

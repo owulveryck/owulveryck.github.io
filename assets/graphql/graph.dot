@@ -1,0 +1,95 @@
+digraph G {
+    "Price1" [ label = "Price" style = "filled" fillcolor = "lightblue" ];
+    "Price21" [ label = "Price" style = "filled" fillcolor = "lightblue" ];
+    "Price22" [ label = "Price" style = "filled" fillcolor = "lightblue" ];
+    "Price3" [ label = "Price" style = "filled" fillcolor = "lightblue" ];
+
+
+    "Offer1" [ label = "Offer" style = "filled" fillcolor = "lightblue" ];
+    "Offer2" [ label = "Offer" style = "filled" fillcolor = "lightblue" ];
+    "Offer3" [ label = "Offer" style = "filled" fillcolor = "lightblue" ];
+    "PF1" [ label = "Product Family" style = "filled" fillcolor = "lightblue"];
+    "Product1" [ label = "Product" style = "filled" fillcolor = "lightblue"];
+    "PF1" -> "Compute Instance" [ label = "name" ];
+    "PF1" -> "Product1" [ label = "products" ];
+    "t2.micro" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "US East (N. Virginia)" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "HZC9FAP4F9Y8JW67" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Shared" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Compute Instance" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Linux" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Product1" -> "t2.micro" [ label = "type" ];
+    "Product1" -> "US East (N. Virginia)" [ label = "location" ]; 
+    "Product1" -> "HZC9FAP4F9Y8JW67" [ label = "SKU" ];
+    "Product1" -> "Shared" [ label = "tenancy" ];
+    "Product1" -> "Linux" [ label = "operatingSystem" ];
+    "Product1" -> "Offer1" [ label = "offers" ];
+    "Product1" -> "Offer2" [ label = "offers" ];
+    "Product1" -> "Offer3" [ label = "offers" ];
+
+    "OnDemand" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Reserved1" [ label = "Reserved" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Reserved2" [ label = "Reserved" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "JRTCKXETXF" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "NQ3QZPMQV9" [ style = "filled" shape = "oval" fillcolor = "lightpink" ];
+ 
+    "Offer1" -> "JRTCKXETXF" [ label = "code" ];
+    "Offer1" -> "OnDemand" [ label = "type" ];
+    "Offer2" -> "Reserved1" [ label = "type" ];
+    "Offer2" -> "NQ3QZPMQV9" [ label = "code" ];
+
+    "3yr2" [ label = "3yr" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "standard2" [ label = "standard" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "All Upfront2" [ label = "All Upfront" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "1yr3" [ label = "3yr" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "standard3" [ label = "standard" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "All Upfront3" [ label = "All Upfront" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Offer2" -> "3yr2" [ label = "LeaseContractLength" ];
+    "Offer2" -> "standard2" [ label = "OfferingClass" ];
+    "Offer2" -> "All Upfront2" [ label = "PurchaseOption" ];
+    "Offer3" -> "Reserved2" [ label = "type" ];
+    "Offer3" -> "1yr3" [ label = "LeaseContractLength" ];
+    "Offer3" -> "standard3" [ label = "OfferingClass" ];
+    "Offer3" -> "All Upfront3" [ label = "PurchaseOption" ];
+
+    "Offer1" -> "Price1" [ label = "prices" ];
+    "Offer2" -> "Price21" [ label = "prices" ];
+    "Offer2" -> "Price22" [ label = "prices" ];
+    "Offer3" -> "Price3" [ label = "prices" ];
+
+    "p3" [ label = "0.009" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Hrs3" [ label = "Hrs" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "USD3" [ label = "USD" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price3Description" [ label = "Linux/UNIX (Amazon VPC), t2.micro instance-hours used this month" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price3" -> "Price3Description" [ label = "description" ];
+    "Price3" -> "Hrs3" [ label = "unit" ];
+    "Price3" -> "USD3" [ label = "currency" ];
+    "Price3" -> "p3" [ label = "price" ];
+    "p1" [ label = "0.012" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Hrs1" [ label = "Hrs" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "USD1" [ label = "USD" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price1Description" [ label = "$0.012 per On Demand Linux t2.micro Instance Hour" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price1" -> "Price1Description" [ label = "description" ];
+    "Price1" -> "Hrs1" [ label = "unit" ];
+    "Price1" -> "USD1" [ label = "currency" ];
+    "Price1" -> "p1" [ label = "price" ];
+    "Hrs21" [ label = "Hrs" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "USD21" [ label = "USD" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price21" -> "Hrs21" [ label = "unit" ];
+    "Price21" -> "USD21" [ label = "currency" ];
+    "Price21" -> "Price21Description" [ label = "description" ];
+    "Price21" -> "p21" [ label = "price" ];
+    "p21" [ label = "0" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price22" -> "p22" [ label = "price" ];
+    "p22" [ label = "124" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price21Description" [ label = "USD 0.0 per Linux/UNIX (Amazon VPC), t2.micro instance-hour (or partial hour)" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price22Description" [ label = "Upfront Fee" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Hrs22" [ label = "Quantity" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "USD22" [ label = "USD" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "Price22" -> "Hrs22" [ label = "unit" ];
+    "Price22" -> "USD22" [ label = "currency" ];
+    "Price22" -> "Price22Description" [ label = "description" ];
+    "Hrs3" [ label = "Hrs" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+    "USD3" [ label = "USD" style = "filled" shape = "oval" fillcolor = "lightpink" ];
+
+}

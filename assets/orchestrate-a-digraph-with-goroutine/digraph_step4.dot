@@ -1,0 +1,25 @@
+digraph g {
+    node [ shape = polygon, sides = 4 ]
+    0 [color=black]
+    1 [color=black]
+    2 [color=black]
+    3 [color=orange]
+    4 [color=black]
+    5 [color=orange]
+    6 [color=black]
+    7 [color=green]
+    subgraph A {
+        edge [dir=none, color=white]
+        conductor -> 0 
+        conductor -> 1
+        conductor -> 2
+        conductor -> 4
+        conductor -> 6
+        conductor -> 7
+    }
+    subgraph B {
+        edge [color=green]
+        3 -> conductor
+        5 -> conductor
+    }
+}

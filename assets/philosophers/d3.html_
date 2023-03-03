@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var philosophers = 
+        [
+                {"value": "Dijkstra", "color": "black"},
+                {"value": "Hoare", "color": "red"},
+                {"value": "Brinch-Hansen", "color": "blue"},
+                {"value": "Wirth", "color": "green"},
+                {"value": "Dahl", "color": "yellow"}
+        ];
+var table = 
+        {
+                "value": "table",
+                "color": "darksalmon",
+        };
+var chairRadius = 16;
+var tableBoundary = 128;
+var margin = {top: 20, right: 20, bottom: 20, left: 20},
+        widthMax = 4*tableBoundary,
+        heightMax = 4*tableBoundary,
+    width = widthMax - margin.left - margin.right,
+    height = heightMax - margin.top - margin.bottom;
+var tableRadius = tableBoundary-chairRadius;
+var tableCX = widthMax/2;
+var tableCY = heightMax/2;
+var svg = d3.select("body").append("svg")
+    .attr("width", widthMax)
+    .attr("height", heightMax)
+        .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+var oneChairEnter = svg.selectAll("circle").data(philosophers).enter();
+oneChairEnter.append("circle")
+    .attr("cy", function(d,i) { return (tableCY + (tableBoundary+chairRadius)*(Math.cos(i*2*(Math.PI/philosophers.length)))) })
+    .attr("cx", function(d,i) { return (tableCX + (tableBoundary+chairRadius)*(Math.sin(i*2*(Math.PI/philosophers.length)))); })
+    .attr("r", chairRadius)
+        .attr("fill", function(d) { return(d.color); });
+svg.append("circle")
+        .attr("cy",tableCY)
+        .attr("cx",tableCX)
+        .attr("r",tableRadius)
+        .attr("fill","linen")
+        .attr("stroke","black")
+        .attr("stroke-width","2");
+        
+oneChairEnter.append("text")    
+        .attr("dx", function(d,i) { return (tableCX + chairRadius + (tableBoundary+chairRadius)*(Math.sin(i*2*(Math.PI/philosophers.length)))); })
+    .attr("dy", function(d,i) { return (tableCY + (tableBoundary+chairRadius)*(Math.cos(i*2*(Math.PI/philosophers.length)))) })
+        .text(function(d) { return (d.value); });
+svg.append("rect")      
+        .attr("fill","none")
+        .attr("x",margin.left)
+        .attr("y",margin.top)
+        .attr("width",width)
+        .attr("height",height)
+        .attr("stroke","black")
+        .attr("stroke-width","1");      
+</script>
+</body>
+</html>

@@ -19,6 +19,21 @@ contentCopyright: false
 reward: false
 mathjax: false
 ---
+
+Wardley Maps are a way of expressing business, market, or any other system through sketching. The Map is a sketch that offers situational awareness on a certain topic.
+
+As a sketch, the obvious way to draw a map is with paper and pen. 
+While it is an excellent starting point, a paper representation of a map has a problem: it is static.  
+What I mean by this is that adjusting the placement of some components in the design phase can be tedious (even with a good rubber pencil).
+
+Representing a map in a digital way presents a couple of advantages: they are easy to share, and easy to maintain and to exploit.
+
+Maintaining a map, is, in my context, the possibility to make some adjustements without changing its meaning (think of it as an adjustement that can occur after a discussion with some peers).
+Exploiting a map is about exploiting the representation to orient, and then decide and act. 
+
+An important point to keep in mind when mapping is that a map shall not be used to illustrate the story you want to tell, the story should be extracted from the map.
+
+
 ## Maps as code
 
 onlinewardleymap

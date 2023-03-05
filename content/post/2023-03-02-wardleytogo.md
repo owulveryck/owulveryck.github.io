@@ -206,16 +206,18 @@ You can build it step by step by following [this tutorial](https://owulveryck.gi
 ## Conclusion and references
 
 The `wtg` language suits my own need. I've made several maps with it.
-I added some small features to the demo such as the ability to hide links in the chain to have a better observation of the components.
 
 It is beyond the scope of this article to fully describe the grammar, and I started a website based on the [divio documenatation framework](https://documentation.divio.com/). 
 You can find the language reference [here](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
 
-There is an online version that can be used to create maps with the language easily. This online version is a demo, consider it as proof of value and not a production tool.
-On top of that, a set of tools in CLI are present in the [repository of the project](https://github.com/owulveryck/wardleyToGo). You will find a tool to monitor a wtg file and render it in 
-the browser live. Therefore wtg could be edited with your favorite text editor and you can present the map in a zoom call.
+There is an online version that can be used to create maps with the language easily. 
+Even if I added some small features to the demo such as the ability to hide links in the chain to have a better observation of the components,the online version is a demo. 
+Consider it as proof of value and not a production tool.
 
-A nice feature would be to add the ability to group some elements and let the computer draw the border around them.
+On top of that, a set of tools in CLI are present in the [repository of the project](https://github.com/owulveryck/wardleyToGo). For example, there is a tool to monitor a wtg file and render it in 
+the browser live. Therefore wtg could be edited with your favorite text editor and, you can present the map in a zoom call.
+
+A nice feature I'd like to see in the future is the ability to group some elements and let the computer add a surrounding border in the rendering phase.
 
 In conclusion, here is a simple map that tries to summarize the ideas exposed in this post:
 

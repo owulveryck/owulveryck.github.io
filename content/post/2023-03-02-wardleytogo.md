@@ -98,7 +98,7 @@ The design of the SDK is:
 
 As a kickstart, I implemented a parser to the `owm` language.
 
-So I can build my map with `onlinewardleymaps`, get the source code in `owm` and build a tool with the SDK to transpile `owm` into the intermediate representation, and render it into SVG.
+So I can build my map with `onlinewardleymaps`, extract the source code (the `owm` representation) and build a tool with the SDK to transpile `owm` into the intermediate representation, and render it into SVG.
 
 ## A high level language to express map "as data"
 
@@ -113,8 +113,49 @@ But what I was missing is a solution that allows a computer to assist me in the 
 
 ### The problem with the Euclidean representation
 
-### Wardley Map: toward system 1
+The problem I face when designing a map with a tool based on Euclidean representation (such as owm) is that it requires me to think about the exact position of a component on the canvas (in term of X and Y coordinates).
 
-### Thinking about value chain and components
+The main issue is with the vertical axis... that is not an axis:
+
+![](/assets/images/wardley_axis.png)
+[source](https://twitter.com/swardley/status/1237707981116055552)
+
+On top of that, the evolution axis is decomposed into 4 stages, and placing the components on a certain stage requires the use of our _system 2_ (as described in the book ["_thinking fast and slow_" by Daniel Kahneman](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow))
 
 ### A computer language to shape the way we think
+
+So, my goal is now:
+
+- to have a language that is easy enough to be used by my _system 1_ 
+- that shapes the way I think my map, and therefore will help me in the design phase.
+
+I can also add algorithms to assist me in the placement of the components.
+To do this, I need to implement a new language. 
+The design of the wardleyToGo SDK makes it fairly easy to design a language through trial and errors. The intermediate representation and the component libraries makes the rendering easy and therefore makes the feedback loop shorter.
+
+Let's now see what to expect from a new language.
+
+### Thinking about value chain and components: introducing wtg
+
+Designing a map is basically a process in two steps:
+
+1. creating the value chain
+2. evaluating the components on the evolution axis
+
+
+
+
+## Conclusion and references
+
+Now, `wtg` suits my own need. I've made several maps with it. There is an online version that can be used to create maps with the language easily. This online version is a demo, consider it as a proof of value and not a production tool.
+On top of that, a set of tools in CLI are present on the [repository of the project](https://github.com/owulveryck/wardleyToGo). You will find a tool to monitor a wtg file and render it in 
+the browser live. Therefore wtg could be edited with your favorite text editor and you can present the map in a zoom call.
+
+A nice feature would be to add the ability to group some elements and let the computer draw the border around then.
+
+As a conclusion, here is a simple map that tries to summarize the ideas exposed in this post:
+
+![](/assets/images/wardleyToGo.svg)
+
+You can play with the map by following [this link](https://owulveryck.github.io/wardleyToGo/demo/?url=https://raw.githubusercontent.com/owulveryck/wardleyToGo/main/docs/content/en/illustration.wtg)
+

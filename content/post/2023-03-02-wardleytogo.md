@@ -178,10 +178,35 @@ You can influence the placement within a stage by adding dots `.` before or afte
 
 It is also possible to type the components (`build, buy, outsource`) or add colors. Further options can be easily added later.
 
+The famous "tea shop" example looks like this in `wtg`:
+
+```dot
+business - cup of tea
+public - cup of tea
+cup of tea - cup
+cup of tea -- tea
+cup of tea --- hot water
+hot water - water
+hot water -- kettle
+kettle - power
+
+business:   |...|.....|...x.|..........|
+public:     |...|.....|.....|..x.......|
+cup of tea: |...|.....|..x..|..........|
+cup:        |...|.....|.....|.....x....|
+tea:        |...|.....|.....|.....x....|
+hot water:  |...|.....|.....|....x.....|
+water:      |...|.....|.....|.....x....|
+kettle:     |...|...x.|..>..|..........|
+power:      |...|.....|....x|.....>....|
+```
+
+You can build it step by step by following [this tutorial](https://owulveryck.github.io/wardleyToGo/tutorials/helloworld/)
+
 ## Conclusion and references
 
 The `wtg` language suits my own need. I've made several maps with it.
-I added some small features on the demo such as the ability to hide links in the chain to have a better observation of the components.
+I added some small features to the demo such as the ability to hide links in the chain to have a better observation of the components.
 
 It is beyond the scope of this article to fully describe the grammar, and I started a website based on the [divio documenatation framework](https://documentation.divio.com/). 
 You can find the language reference [here](https://owulveryck.github.io/wardleyToGo/reference/wtg/).

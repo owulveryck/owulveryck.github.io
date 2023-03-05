@@ -1,5 +1,5 @@
 ---
-title: "Rationale behind watdleyToGo"
+title: "Rationale behind wardleyToGo"
 date: 2023-03-02T21:23:17+02:00
 lastmod: 2023-03-02T21:23:17+02:00
 draft: false

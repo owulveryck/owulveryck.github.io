@@ -74,13 +74,42 @@ It makes it a bit difficult to take the map "to go" (or to take away depending o
 For years now, continuous integration (CI) and continuous delivery (CD) has proven some benefits in the release cycle of a digital asset. 
 The idea is that every revision that is committed triggers an automated build and test. With continuous delivery, code changes are automatically built, tested, and prepared for a release to production
 
-As I was able to commit the source code of my maps, I wanted to setup a CI/CD mechanism to compile my source code and render my maps. 
+As I was able to commit the source code of my maps, I wanted to use a CI/CD mechanism to compile my source code and render my maps. 
+
+onlinewardleymaps does not provide any SDK allowing me to use the rendering engine in a headless building process.
+As a geek, I could have raised an issue an start contributing to the project.
+But I wanted to build my own to deeply understand how to build a map from the inside and because I found it fun to have one more side project.
 
 ## Building an SDK to draw map "as code"
 
+I am a big fan of the Go language for various reasons. In a glimpse the reasons I am using Go for my SDK are:
 
+- I find it fun to code in Go;
+- I master the language enough to speed the development and to focus on the design of what I want to achieve;
+- the language is suitable to build "Ops tools".
+
+Naming things is hard, I named my SDK warldeyToGo (take your map "to go" with Go).
+
+The design of the SDK is:
+
+- a central package that acts as an intermediate representation of what a map is. (in a glimpse, it is a directed graph in which the nodes are components that are able to give their position in an euclidean canvas )
+- a set of componnets that implements the intermediate representation and that are able to represent themselves in SVG (for example, I have Wardley Component and Team Topologies components)
+- parsers to high level languages that transpile the representation into the intermediate representation.
+
+As a kickstart, I implemented a parser to the `owm` language.
+
+So I can build my map with `onlinewardleymaps`, get the source code in `owm` and build a tool with the SDK to transpile `owm` into the intermediate representation, and render it into SVG.
 
 ## A high level language to express map "as data"
+
+So the SDK is truly allowing to code Wardley Maps. The `owm` syntax is therefore simply a user interface between the need to express a map and the representation.
+
+> Just as user interfaces are the conduit between humans and the functionality of products, products are the conduit between customers and the team of people solving a particular problem.
+
+onlinewardleymaps is a solution to the need to represent a map digitally.
+wardleyToGo is a solution to code a map.
+
+But what I was missing is a solution that allows a computer to assist me in the design of a map.
 
 ### The problem with the Euclidean representation
 

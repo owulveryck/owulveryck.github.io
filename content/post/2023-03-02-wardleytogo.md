@@ -49,20 +49,40 @@ Tools like `git` provide capabilities to:
 - collaborate on the map (even asynchronously or remotely)
 - natively store the history of the map.
 
+[onlinewardleymaps](https://onlinewardleymaps.com/) is an online tool made by [@damonsk](https://twitter.com/damonsk).
+It is mature and widely used. To me, this tool has largely contributed to push maps-as-code into the _stage_ II of the evolution (as described by Simon Wardley).
 
-onlinewardleymap
+onlinewardleymaps definition language is called `owm`.
 
 ## Taking my map "to go"
 
+A first, the only version of the tool was an online version. This is good for the user experience as it does not require any setup to start mapping.
+The problem is the coupling between the tool to render the map and the language. You cannot use `owm` outside of the browser.
+
 ### Versioning the Map
 
-### Basic need: CI 
+The problem is that managing the source code was a bit tedious as it required a lot of copy/paste from and to the tools.
 
-## Building a SDK to draw map "as code"
+The Visual Studio extension, that appeared later, made is a bit simpler to manager the source code. In this sense, it heavily facilitates the versioning of the map.
+
+But there is no way to easily export the map to store it with a peculiar version of the code as you need to export the map manually.
+
+It makes it a bit difficult to take the map "to go" (or to take away depending on which flavor of English you practice (sic)).
+
+### Basic need: CI/CD 
+
+For years now, continuous integration (CI) and continuous delivery (CD) has proven some benefits in the release cycle of a digital asset. 
+The idea is that every revision that is committed triggers an automated build and test. With continuous delivery, code changes are automatically built, tested, and prepared for a release to production
+
+As I was able to commit the source code of my maps, I wanted to setup a CI/CD mechanism to compile my source code and render my maps. 
+
+## Building an SDK to draw map "as code"
+
+
 
 ## A high level language to express map "as data"
 
-### The Euclidean representation
+### The problem with the Euclidean representation
 
 ### Wardley Map: toward system 1
 

@@ -26,15 +26,29 @@ As a sketch, the obvious way to draw a map is with paper and pen.
 While it is an excellent starting point, a paper representation of a map has a problem: it is static.  
 What I mean by this is that adjusting the placement of some components in the design phase can be tedious (even with a good rubber pencil).
 
-Representing a map in a digital way presents a couple of advantages: they are easy to share, and easy to maintain and to exploit.
+Representing a map digitally presents a couple of advantages: they are easy to share and easy to **maintain** and **exploit**.
 
-Maintaining a map, is, in my context, the possibility to make some adjustements without changing its meaning (think of it as an adjustement that can occur after a discussion with some peers).
-Exploiting a map is about exploiting the representation to orient, and then decide and act. 
+- **Maintaining** a map, is, in my context, the possibility to make some adjustments without changing its meaning (think of tweaks that can occur after a discussion with some peers).
+- **Exploiting** a map is about understanding the landscape to orient future decisions.
 
-An important point to keep in mind when mapping is that a map shall not be used to illustrate the story you want to tell, the story should be extracted from the map.
+_Note_: An important point to keep in mind when mapping is: a map shall not be used to illustrate the story you want to tell, the story should be extracted from the map.
 
+In the orientation phase, being able to withdraw some elements from the map, for example, to focus on certain a path is useful.
+
+Of course, we could record the creation history and do a couple of undo/redo to have intermediate representation, but this would imply that the creation steps were reflecting the path.
+This is orthogonal with the idea of seeking strategy through observation **and then** orientation.
+
+The best way to have partial representation is, therefore, to have an intermediate representation of the map where we can easily comment blocks to hide elements.
 
 ## Maps as code
+
+In the design and maintenance phases, expressing a map as code present some flexibility. 
+The code is the source of the map and tooling and practices to manage source code are widespread (managing source code is a commodity). 
+Tools like `git` provide capabilities to:
+- version and tag the map;
+- collaborate on the map (even asynchronously or remotely)
+- natively store the history of the map.
+
 
 onlinewardleymap
 

@@ -77,7 +77,7 @@ The idea is that every revision that is committed triggers an automated build an
 As I was able to commit the source code of my maps, I wanted to use a CI/CD mechanism to compile my source code and render my maps. 
 
 onlinewardleymaps does not provide any SDK allowing me to use the rendering engine in a headless building process.
-As a geek, I could have raised an issue an start contributing to the project.
+As a geek, I could have raised an issue and start contributing to the project.
 But I wanted to build my own to deeply understand how to build a map from the inside and because I found it fun to have one more side project.
 
 ## Building an SDK to draw map "as code"
@@ -93,12 +93,12 @@ Naming things is hard, I named my SDK warldeyToGo (take your map "to go" with Go
 The design of the SDK is:
 
 - a central package that acts as an intermediate representation of what a map is. (in a glimpse, it is a directed graph in which the nodes are components that are able to give their position in an euclidean canvas )
-- a set of componnets that implements the intermediate representation and that are able to represent themselves in SVG (for example, I have Wardley Component and Team Topologies components)
-- parsers to high level languages that transpile the representation into the intermediate representation.
+- a set of components that implements the intermediate representation and that are able to represent themselves in SVG (for example, I have Wardley Component and Team Topologies components)
+- parsers to high-level languages that transpile the representation into the intermediate representation.
 
 As a kickstart, I implemented a parser to the `owm` language.
 
-So I can build my map with `onlinewardleymaps`, extract the source code (the `owm` representation) and build a tool with the SDK to transpile `owm` into the intermediate representation, and render it into SVG.
+So I can build my map with `onlinewardleymaps`, extract the source code (the `owm` representation) and build a tool with the SDK to transpile `owm` into the intermediate representation and render it into SVG.
 
 ## A high level language to express map "as data"
 
@@ -113,9 +113,9 @@ But what I was missing is a solution that allows a computer to assist me in the 
 
 ### The problem with the Euclidean representation
 
-The problem I face when designing a map with a tool based on Euclidean representation (such as owm) is that it requires me to think about the exact position of a component on the canvas (in term of X and Y coordinates).
+The problem I face when designing a map with a tool based on Euclidean representation (such as owm) is that it requires me to think about the exact position of a component on the canvas (in terms of X and Y coordinates).
 
-The main issue is with the vertical axis... that is not an axis:
+The main issue is with the vertical axis... which is not an axis:
 
 ![](/assets/images/wardley_axis.png)
 [source](https://twitter.com/swardley/status/1237707981116055552)
@@ -126,14 +126,14 @@ On top of that, the evolution axis is decomposed into 4 stages, and placing the 
 
 So, my goal is now:
 
-- to have a language that is easy enough to be used by my _system 1_ 
-- that shapes the way I think my map, and therefore will help me in the design phase.
+- To have a language that is easy enough to be used by my _system 1_ 
+- That shapes the way I think of my map and therefore will help me in the design phase.
 
 I can also add algorithms to assist me in the placement of the components.
 To do this, I need to implement a new language. 
-The design of the wardleyToGo SDK makes it fairly easy to design a language through trial and errors. The intermediate representation and the component libraries makes the rendering easy and therefore makes the feedback loop shorter.
+The design of the wardleyToGo SDK makes it fairly easy to design a language through trial and error. The intermediate representation and the component libraries make the rendering easy and therefore make the feedback loop shorter.
 
-Let's now see what to expect from a new language.
+Let's now see what to expect from this new language that we will call `wtg` (for WardleyToGo... naming things is very hard)
 
 ### Thinking about value chain and components: introducing wtg
 
@@ -142,18 +142,57 @@ Designing a map is basically a process in two steps:
 1. creating the value chain
 2. evaluating the components on the evolution axis
 
+In the design phase: the position of the component on the evolution axis does not impact the value chain, and the visibility of the component (its vertical placement) has no impact on its position on the evolution axis.
 
+On top of that, as seen before, the value chain is not an axis. Therefore, we can completely get rid of any euclidean representation in the first step.
 
+#### Value chain
+
+Visibility of the components is relative to other component.
+
+The way we describe a value chain in `wtg` is by using a dash (`-`) to link components together. So `a - b` means that `a` depends on `b`. Then to place the component vertically, we can add more dashes.
+
+For example: 
+
+```
+a - b 
+a -- c 
+a --- d
+```
+
+means that this:
+
+![](/assets/images/simplevc.svg)
+
+_Note_ that the horizontal placement is, by now, meaningless
+
+The vertical placement is computed by an algorithm. Therefore it allows me to focus on the value chain by itself.
+
+#### Evolution axis
+
+After building the value chain, we can place the components on the horizontal axis.
+This placement is a configuration of each component and independant of the value chain.
+
+The syntax to place a component looks like this: `|..|..x..|..|..|` where each interval between two pipes (`|`) is a stage of evolution and the `x` is the placement of the component.
+You can influence the placement within a stage by adding dots `.` before or after the `x`.
+
+It is also possible to type the components (`build, buy, outsource`) or add colors. Further options can be easily added later.
 
 ## Conclusion and references
 
-Now, `wtg` suits my own need. I've made several maps with it. There is an online version that can be used to create maps with the language easily. This online version is a demo, consider it as a proof of value and not a production tool.
-On top of that, a set of tools in CLI are present on the [repository of the project](https://github.com/owulveryck/wardleyToGo). You will find a tool to monitor a wtg file and render it in 
+The `wtg` language suits my own need. I've made several maps with it.
+I added some small features on the demo such as the ability to hide links in the chain to have a better observation of the components.
+
+It is beyond the scope of this article to fully describe the grammar, and I started a website based on the [divio documenatation framework](https://documentation.divio.com/). 
+You can find the language reference [here](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
+
+There is an online version that can be used to create maps with the language easily. This online version is a demo, consider it as proof of value and not a production tool.
+On top of that, a set of tools in CLI are present in the [repository of the project](https://github.com/owulveryck/wardleyToGo). You will find a tool to monitor a wtg file and render it in 
 the browser live. Therefore wtg could be edited with your favorite text editor and you can present the map in a zoom call.
 
-A nice feature would be to add the ability to group some elements and let the computer draw the border around then.
+A nice feature would be to add the ability to group some elements and let the computer draw the border around them.
 
-As a conclusion, here is a simple map that tries to summarize the ideas exposed in this post:
+In conclusion, here is a simple map that tries to summarize the ideas exposed in this post:
 
 ![](/assets/images/wardleyToGo.svg)
 

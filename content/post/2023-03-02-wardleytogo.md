@@ -207,7 +207,7 @@ You can build it step by step by following [this tutorial](https://owulveryck.gi
 
 The `wtg` language suits my own need. I've made several maps with it.
 
-It is beyond the scope of this article to fully describe the grammar. I started a website based on the [divio documenatation framework](https://documentation.divio.com/) as a companion to the language. 
+It is beyond the scope of this article to fully describe the grammar. I started a website based on the [divio documentation framework](https://documentation.divio.com/) as a companion to the language. 
 You can find the language reference [here](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
 
 There is an online version that can be used to create maps with the language easily. 

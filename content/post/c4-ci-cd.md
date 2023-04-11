@@ -27,7 +27,7 @@ mathjax: false
 
 C4 (Context, Containers, Components, and Code) is a powerful and flexible approach to visualizing software architectures. 
 
-In a [previous article](http://localhost:1313/2022/03/10/ccccue-generating-c4-diagrams-with-cue.html) I explained how I created a DSL to describe my C4 as data thanks to the [CUE](https://cuelang.org) language.
+In a [previous article](/2022/03/10/ccccue-generating-c4-diagrams-with-cue.html) I explained how I created a DSL to describe my C4 as data thanks to the [CUE](https://cuelang.org) language.
 
 In this article, we'll explore how I effectively use the C4 tool based on CUE to organize my code, handle tags, manage versioning, and integrate with Continuous Integration and Continuous Deployment (CI/CD) systems to generate and update diagrams. 
 We'll also discuss the benefits of generating diagrams on push and on demand, comparing it with other tools like Mermaid.
@@ -155,23 +155,29 @@ This is an example with [Team Topologies](https://github.com/owulveryck/cue4puml
 
 ### Applying the DevOps practices
 
-Automation is key to maintaining up-to-date architecture diagrams. 
 
-I see two key elements to take into consideration regarding this topic:
+When it comes to generating architecture diagrams, there are two main approaches: generation on push and generation on demand (such as via tools like Mermaid). 
 
-* CI/CD Integration for Diagram Generation
-* Generation on Push vs. Generation on Demand
+Recently, I had a discussion with a colleague and wanted to use this post to open up the discussion.
 
-Here, we'll discuss how I've integrated C4 into my CI/CD pipeline, automating the process of generating and updating diagrams whenever changes are made to the codebase.
+Instead of challenging the solution, let's challenge the problem. Two fundamental elements must be considered:
 
-When it comes to generating architecture diagrams, there are two main approaches: generation on push and generation on demand (via things like Mermaid). 
+- Firstly, when writing diagrams as data, the data is the reference, but in the context of C4, the goal is to get a visual representation.
+- Secondly, getting a short feedback loop is essential when designing a diagram, as nobody wants to wait hours for compilation to receive feedback anymore.
 
-I had a discussion with a partner recently, and I'd like to take the opportunity of this post to open the discussion.
+Mermaid is an excellent tool for obtaining quick feedback without requiring extensive desktop tooling for the designer. 
+It's a JavaScript-based solution that runs in the browser out-of-the-box and is included in GitHub, making it super easy to embed diagrams in a markdown file. 
+The drawback, however, is that the final pictures depend on both the version of the code and the version of the Mermaid toolkit. 
 
+This means that the representation may change over time, even if the code remains unchanged.
 
+This is one of the reason which makes me prefer a generation by a CI/CD pipeline. It allows generating a static picture that consitutes the references at the time of the commit. 
 
-TODO
+Another reason is that, setting a CI/CD mechanism will allow me to apply further compilation to the C4 data.
 
+I know that some C4 tooling propose some utilities to validate the diagram against the code of the asset it represents.
+
+As a simple conclusion to this short part, I can repeat that automation is key to maintaining up-to-date architecture diagrams. 
 
 So far, I have described some patterns I use to manage my diagrams as code. Although not strictly implemented with code, these patterns draw inspiration from software development practices.
 
@@ -223,21 +229,43 @@ Remember:
 
 ![](/assets/images/evolution.png)
 
-### About Conventions
+### From convention to model: enforcing best practices
 
-TODO
+Conventions refer to a set of standard practices and guidelines that enable consistency and ease of understanding across various teams and projects. 
+In the context of the C4 model, conventions can include naming conventions, diagram layout and formatting, and the use of notations to represent different elements of the architecture. 
+Adopting standard conventions helps teams to communicate more effectively and understand each other's work more easily.
 
-### A model of components and tags to enforce best practices
+One approach to establishing conventions for the C4 model is to develop a model of components and tags.
+This can help to enforce best practices for naming, labeling, and organizing the various elements of the architecture.
+For example, the model could include standardized names for different types of components, such as databases, servers, and services, as well as tags to indicate the role, status, or priority of each component.
 
-TODO 
+Using a model of components and tags can help to ensure consistency and promote best practices across teams and projects.
+It can also make it easier to integrate the C4 model into existing processes and tools, such as project management software or version control systems.
+
+An illustration of such a principle was evoked in the previous part:
+
+- We used the model documented by Team Topologies, which provides a set of standard practices and guidelines for organizing and communicating about team structures and interactions.
+- We also standardized the representation of architecture diagrams by making a set of tags available to everyone. This helped to ensure consistency and ease of understanding across teams and projects.
+
+By adopting these principles, we can help to establish a common language and approach for software architecture that promotes collaboration, consistency, and maintainability.
+
+However, it's important to note that conventions should not be seen as rigid rules that must be followed at all costs.
+Rather, they should be flexible enough to allow for variation and experimentation while still maintaining a consistent approach to architecture.
+Regular reviews and feedback can help to ensure that conventions are effective and relevant, and can be adapted as needed over time.
+
+This is why they should be an implementation of the governance principles that should be handled as code as well.
+
+My personal opinion is that a federated governance (like the one governing the web) is more an enabler to such practices.
 
 ## Conclusion and next steps
+
 The C4 model offers a powerful way to visualize software architecture, but harnessing its full potential requires careful organization, tagging, versioning, and automation. 
-By implementing these strategies and understanding the benefits of generating diagrams on push or on demand, you'll be well-equipped to create clear,
+
+By implementing these strategies and understanding the benefits, you'll be well-equipped to create clear,
 consistent, and up-to-date representations of your software systems that facilitate collaboration and understanding among stakeholders.
 
-### What's next? 
+Seeking efficiency in a diagramin model, extracting best practices can leverage the power of the C4 model at scale.
 
-#### Bi-temporality?
-
+Dealing with diagram as code also offers new perspectives that goes beyond the visual representation. We've evoked the notion of coherence between the architecture and the code of an asset.
+Some people colleagues told me that they were experimenting cost optimization by analysing the interaction of the various services thanks to the global C1/C2 view of their assets.
 

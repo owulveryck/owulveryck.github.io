@@ -29,10 +29,14 @@ C4 (Context, Containers, Components, and Code) is a powerful and flexible approa
 
 In a [previous article](/2022/03/10/ccccue-generating-c4-diagrams-with-cue.html) I explained how I created a DSL to describe my C4 as data thanks to the [CUE](https://cuelang.org) language.
 
-In this article, we'll explore how I effectively use the C4 tool based on CUE to organize my code, handle tags, manage versioning, and integrate with Continuous Integration and Continuous Deployment (CI/CD) systems to generate and update diagrams. 
+On [Wardley's evolution axis](https://blog.owulveryck.info/2023/04/04/should-you-read-this-article-about-wardley-maps.html#the-evolution-axis-horizontal) the initial article was in stage I of evolution: _making it work_
+	
+In this article, in a first part, we'll explore how I effectively use the C4 tool based on CUE to organize my code, handle tags, manage versioning, and integrate with Continuous Integration and Continuous Deployment (CI/CD) systems to generate and update diagrams. 
 We'll also discuss the benefits of generating diagrams on push and on demand, comparing it with other tools like Mermaid.
 
-On [Wardley's evolution axis](https://blog.owulveryck.info/2023/04/04/should-you-read-this-article-about-wardley-maps.html#the-evolution-axis-horizontal) the initial article was about _making it work_, this one is about _making it efficient_, and end on some considerations to _make c4 ambient_ within a business.
+In a second part, I will expose some considerations to use C4 at scale and expose the importance of a governance, whatever it is (sic).
+
+Therefore, this article is about an evolution from _making it efficient_ toward _make c4 ambient_.
 
 ![](/assets/images/evolution.png)
 

@@ -273,3 +273,4 @@ Seeking efficiency in a diagramin model, extracting best practices can leverage 
 Dealing with diagram as code also offers new perspectives that goes beyond the visual representation. We've evoked the notion of coherence between the architecture and the code of an asset.
 Some people colleagues told me that they were experimenting cost optimization by analysing the interaction of the various services thanks to the global C1/C2 view of their assets.
 
+**edit** you can comment this article on [linkedin](https://www.linkedin.com/posts/olivierwulveryck_make-it-work-make-it-deliver-make-it-efficient-activity-7051791572090118144-8JLZ?utm_source=share&utm_medium=member_desktop) if you want.

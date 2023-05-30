@@ -28,7 +28,39 @@ In this article, I explain:
 
 ## Introduction
 
+I use ChatGPT on a daily basis as an assistant, not as a dictionary or an encyclopedia. 
+I seek solutions to problems and am aware that I will find them myself. 
+The role of ChatGPT is to assist me and help the solutions emerge from my mind. 
+I ask questions, and with its knowledge, it shapes the way I think to converge towards the solutions.
+
+For most strategic problems, I use the tools and techniques from Wardley Mapping, including:
+
+- The value chain (with user needs on top and a few other doctrine principles)
+- The evolution theory
+- The climatic patterns
+
+Building a map has value, and the challenge of positioning the various components on the map itself brings a lot of value.
+
+While ChatGPT is not aware of the spatial representation, it can provide rationales about the placement. 
+However, as a human, a visual representation is very helpful.
+
+Therefore, as a geek, I started thinking about a plugin that would enable ChatGPT to draw a map.
+
+In a previous article, I introduced wardleyToGo, an SDK for building Wardley Maps using Go code. 
+As a ChatGPT subscriber, I can write a plugin for GPT-4.
+
+This article is a journey that explains how I built a plugin to draw my maps, how it works, what I discovered, and more.
+
+You may want to read this article if:
+
+- You are a curious Wardley Mapper.
+- You are a ChatGPT user and want to be aware of the upcoming possibilities.
+- You are a Go developer and want to be familiar with the plumbing required to create a plugin for ChatGPT."
+
 ## How a plugin works
+
+
+
 
 ### Golang plumbing
 

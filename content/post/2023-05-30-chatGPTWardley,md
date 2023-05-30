@@ -215,6 +215,17 @@ As usual, the configuration is handled through environment variables.
 It allows to set the listening port and address. 
 I also implemented the tunneling with `ngrok-go` which gives me the opportunity to test the plugin on a remote host.
 
+_Side note: The [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)_:
+I created a very simple "middleware" to handle CORS preflight requests:
+
+Beside the allowed origins `https://chat.openai.com` and `http://serveraddress:port`, those headers are required:
+
+```go
+w.Header().Set("Access-Control-Allow-Origin", origin)
+w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, openai-conversation-id, openai-ephemeral-user-id, openai-*, sentry-trace, baggage")
+```
+
 ## Designing the API
 
 

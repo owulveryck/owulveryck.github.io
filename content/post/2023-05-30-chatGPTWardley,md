@@ -19,3 +19,10 @@ contentCopyright: false
 reward: false
 mathjax: false
 ---
+
+In this article, I explain:
+- how to create a ChatGPT plugin with Go
+- how to validate the configuration with [CUE](cuelang.org)
+- how to create a basic API usable with ChatGPT
+- how to display SVG images within chatGPT (more a do and don't)
+

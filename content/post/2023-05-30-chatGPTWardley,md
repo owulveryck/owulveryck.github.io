@@ -59,12 +59,68 @@ You may want to read this article if:
 
 ## How a plugin works
 
+The development of plugins for ChatGPT is documented [here](https://platform.openai.com/docs/plugins/introduction)
+In a glimpse, a plugin is a REST API that is called by ChatGPT.
 
+To turn an API into a plugin, you must provide two files:
 
+- a [plugin manifest](https://platform.openai.com/docs/plugins/getting-started/plugin-manifest) file served at `/.well-known/ai-plugin.json`
+- the openAPI spec served through a path specified in the `ai-plugin.json` file.
+
+The format of the manifest is important because, besides the serialization in JSON, the format is constrained.
+For example, the field `name_for_model` must not have any space and should be limited to 50 character max.	
+
+![](/assets/gpt/gpt.png)
 
 ### Golang plumbing
 
+In this section, I describe the plumbing I used in the Go file to create the plugin. This section is unrelated to the main feature and can
+probably be used for any golang plugin.
+_Disclaimer_ you may be familiar with the concepts of web handlers and how Go works to benefit from this section.
+
+I am in the _make it work_  phase; therefore all the code lives in the `main` package of a file.
+To be able to tweak the code easily, I created two seperate handlers:
+
+- one for the plumbing (to serve the manifest, the spec, the root and the logo)
+- one for the API itself
+
+The plumbing is managed through the `ChatGPTPlumbing` structure that implements the [`http/handler`](https://pkg.go.dev/net/http#Handler)
+This structure will read and generate the content of the manifest and the openapi upon creation and cache it internally.
+
+
+```go
+type ChatGPTPlumbing struct {
+	aiPlugin        *AIPlugin
+	aiPluginPayload []byte
+	openAPIFile     string
+	openAPIContent  []byte
+}
+
+// ChatGPTPlumbing implements the http/handler interface 
+func (chatgptplumbing *ChatGPTPlumbing) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/.well-known/ai-plugin.json", func(w http.ResponseWriter, _ *http.Request) { // ...
+	mux.HandleFunc("/openapi.yaml", func(w http.ResponseWriter, _ *http.Request) { // ...
+	mux.HandleFunc("/logo.png", func(w http.ResponseWriter, _ *http.Request) { // ...
+	mux.ServeHTTP(w, r)
+}
+```
+
+The plumbing is created inside the `main` function and registered to handle the requests located at `/`
+
+```go
+plumbing, _ := NewChatGPTPlumbing(aiPlugin)
+mux := http.NewServeMux()
+mux.Handle("/", plumbing)
+```
+
+The manifest and the openAPI are read (and validated) on the creation of the plugin and cached in the structure.
+
 #### Create and validate the `aiplugin.json`
+
+As I explained before, the aiplugin.json is heavily constrained.
+
+
 
 #### Create and serve the OpenAPI
 

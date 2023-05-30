@@ -26,3 +26,31 @@ In this article, I explain:
 - how to create a basic API usable with ChatGPT
 - how to display SVG images within chatGPT (more a do and don't)
 
+## Introduction
+
+## How a plugin works
+
+### Golang plumbing
+
+#### Create and validate the `aiplugin.json`
+
+#### Create and serve the OpenAPI
+
+- **The easy way**
+
+- **The Geeky way**
+
+#### Network plumbing
+- serving from localhost
+- tunneling with ngrok 
+
+## Designing the API
+
+### Creating a basic endpoint to display evolution axis
+
+### Testing the plugin
+
+### Displaying the SVG, tips and tricks
+
+
+## Conclusion

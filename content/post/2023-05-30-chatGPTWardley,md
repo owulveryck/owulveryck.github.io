@@ -118,8 +118,79 @@ The manifest and the openAPI are read (and validated) on the creation of the plu
 
 #### Create and validate the `aiplugin.json`
 
-As I explained before, the aiplugin.json is heavily constrained.
+The manifest needs to be instanciated at runtime to set the correct listening port and address.
+I created a Golang structure to handle the content and used the `json` package to serialize it.
 
+On top of that, as I explained before, the aiplugin.json is heavily constrained. 
+As I am in the _make it work_ phase, I will change the content very often for testing purpose.
+
+The best thing for me is to validate the plugin constraints each time I start the plugin. 
+
+To achieve this, I am relying on the CUE language.
+
+I created a very simple constraint file, that I combine with a configuration file at startup to generate the content of the API:
+
+- constraints.cue
+```CUE
+Host: string | *"AUTO"
+
+#AIPlugin: {
+	// SchemaVersion Manifest schema version - required - v1
+	schema_version: string & "v1"
+
+	// NameForHuman Human-readable name, such as the full company name. 20 character max. - required
+	name_for_human: string & =~"^.{1,20}$"
+
+	// NameForModel Name the model will use to target the plugin (no spaces allowed, only letters and numbers). 50 character max. - required
+	name_for_model: string & =~"^[a-zA-Z0-9]{1,50}$"
+
+	// DescriptionForHuman Human-readable description of the plugin. 100 character max.
+	description_for_human: string & =~"^.{1,100}$"
+
+	// DescriptionForModel Description better tailored to the model, such as token context length considerations or keyword usage for improved plugin prompting. 8,000 character max. - required
+	description_for_model: string & =~"^.{20,1000}$"
+	auth:                  #Auth
+	api:                   #API
+	logo_url:              string | *"\(Host)/logo.png"
+	contact_email:         string & =~"^.*@.*$"
+	legal_info_url:        string | *"\(Host)/legal"
+}
+
+#Auth: {
+	type: string | *"none"
+}
+
+#API: {
+	type:                  string | *"openapi"
+	url:                   string | *"\(Host)/openapi.yaml"
+	is_user_authenticated: bool | *false
+}
+```
+- configuration.cue
+```cue
+configuration: #AIPlugin & {
+	name_for_human:        "Wardley To Go"
+	name_for_model:        "WardleyToGo"
+	description_for_human: "This plugin draw Wardley Maps"
+	description_for_model: "This plugin draw Wardley Maps"
+	contact_email:         "me@address.com"
+}
+```
+
+The `Host` is completed at runtime, and everything is combined to generate the go structure that is then serialized:
+
+```go
+host := `Host: "` + address + `"`
+constraints, err := ioutil.ReadFile("constraints.cue")
+configuration, err := ioutil.ReadFile("wellknown.cue")
+content := append(constraints, configuration...)
+content = append([]byte(host+"\n"), content...)
+ctx := cuecontext.New()
+v := ctx.CompileBytes(content)
+v = v.Lookup("configuration")
+var aiplugin AIPlugin
+err = v.Decode(&aiplugin)
+```
 
 
 #### Create and serve the OpenAPI

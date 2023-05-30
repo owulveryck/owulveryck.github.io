@@ -192,18 +192,31 @@ var aiplugin AIPlugin
 err = v.Decode(&aiplugin)
 ```
 
-
 #### Create and serve the OpenAPI
 
-- **The easy way**
+The OpenAPI needs to be tweaked as well to set the corresponding description and servers.
+
+- **OpenAPI.yaml: The easy way**
+The first attempt to build a versatile openai.yaml file was to create a golang template and parse it at runtime.
+The problem is that seting some templates into YAML leads to the YAML nightmare...
+So I used a more fun and geeky way.
 
 - **The Geeky way**
+I am now generating the openapi.json with CUE as well.
+This provides two benefits: 
+- I do not have to write the spec in OpenAPI format
+- I can validate the payload sent by ChatGPT.
 
-#### Network plumbing
-- serving from localhost
-- tunneling with ngrok 
+The code needs some more tests, but will eventually land into the repository.
+
+#### Network plumbing and configuration
+
+As usual, the configuration is handled through environment variables.
+It allows to set the listening port and address. 
+I also implemented the tunneling with `ngrok-go` which gives me the opportunity to test the plugin on a remote host.
 
 ## Designing the API
+
 
 ### Creating a basic endpoint to display evolution axis
 

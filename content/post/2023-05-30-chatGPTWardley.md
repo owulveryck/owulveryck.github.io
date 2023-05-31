@@ -1,3 +1,4 @@
+---
 title: "ChatGPT, Wardley and Go"
 date: 2023-05-30T21:23:17+02:00
 lastmod: 2023-05-30T21:23:17+02:00

@@ -117,21 +117,18 @@ mux := http.NewServeMux()
 mux.Handle("/", plumbing)
 ```
 
-The manifest and the openAPI are read (and validated) on the creation of the plugin and cached in the structure.
+The manifest and the OpenAPI are read (and validated) upon the creation of the plugin and cached within the structure.
 
 #### Create and validate the `aiplugin.json`
 
-The manifest needs to be instanciated at runtime to set the correct listening port and address.
-I created a Golang structure to handle the content and used the `json` package to serialize it.
+The manifest needs to be instantiated at runtime to set the correct listening port and address. 
+I created a Golang structure to handle the content and used the json package to serialize it.
 
-On top of that, as I explained before, the aiplugin.json is heavily constrained. 
-As I am in the _make it work_ phase, I will change the content very often for testing purpose.
+Additionally, as mentioned earlier, the aiplugin.json has strict constraints. 
+Since I'm currently in the "_make it work_" phase and frequently changing the content for testing purposes, it's best for me to validate the plugin constraints each time I start the plugin.
 
-The best thing for me is to validate the plugin constraints each time I start the plugin. 
-
-To achieve this, I am relying on the CUE language.
-
-I created a very simple constraint file, that I combine with a configuration file at startup to generate the content of the API:
+To achieve this, I rely on the CUE language. 
+I created a simple constraint file that I combine with a configuration file during startup to generate the content of the API.
 
 - constraints.cue
 ```CUE

@@ -228,12 +228,17 @@ w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, ope
 
 ## Designing the API
 
+Now that we have all the plumbing to make a REST API compatible with ChatGPT, let's design the API.
+
+The first simple goal is to be able to display the evolution axis and place let ChatGPT place a component on it.
+
+So we will create an endpoint `/mapEvolution`; It will handle a POST request with a specific payload.
+
 
 ### Creating a basic endpoint to display evolution axis
 
 ### Testing the plugin
 
 ### Displaying the SVG, tips and tricks
-
 
 ## Conclusion

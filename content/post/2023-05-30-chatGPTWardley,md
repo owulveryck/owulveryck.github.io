@@ -74,19 +74,22 @@ For example, the field `name_for_model` must not have any space and should be li
 
 ### Golang plumbing
 
+In this section, I describe the plumbing I used in the Go file to create the plugin. 
+This section is unrelated to the main feature and can probably be used for any Golang plugin.
+
+_Disclaimer_: You may need to be familiar with the concepts of web handlers and how Go works to benefit from this section.
+
+I am currently in the "make it work" phase, so all the code resides in the main package of a file. 
+To make it easier to tweak the code, I created two separate handlers:
+
+- One for the plumbing, which serves the manifest, the spec, the root, and the logo.
+- One for the API itself.
+
+The plumbing is managed through the ChatGPTPlumbing structure, which implements the [`http/handler`](https://pkg.go.dev/net/http#Handler).
+This structure reads and generates the content of the manifest and the OpenAPI upon creation and caches it internally.
+
 In this section, I describe the plumbing I used in the Go file to create the plugin. This section is unrelated to the main feature and can
 probably be used for any golang plugin.
-_Disclaimer_ you may be familiar with the concepts of web handlers and how Go works to benefit from this section.
-
-I am in the _make it work_  phase; therefore all the code lives in the `main` package of a file.
-To be able to tweak the code easily, I created two seperate handlers:
-
-- one for the plumbing (to serve the manifest, the spec, the root and the logo)
-- one for the API itself
-
-The plumbing is managed through the `ChatGPTPlumbing` structure that implements the [`http/handler`](https://pkg.go.dev/net/http#Handler)
-This structure will read and generate the content of the manifest and the openapi upon creation and cache it internally.
-
 
 ```go
 type ChatGPTPlumbing struct {

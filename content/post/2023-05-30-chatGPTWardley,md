@@ -369,3 +369,9 @@ give the result back.
 I am happy that I designed wardleyToGo as an SDK, now, to me, sky is the limit ! 
 
 ![](/assets/gpt/gpt-evolution-result.png)
+
+References:
+
+- the [`wardkeyToGo` SDK](https://github.com/owulveryck/wardleyToGo)
+- the [code of the plugin](https://github.com/owulveryck/wardleyToGo/tree/chatGPTPlugin/examples/chatGPT) so far
+- another article about [wardleyToGo](https://blog.owulveryck.info/2023/03/02/rationale-behind-wardleytogo.html)

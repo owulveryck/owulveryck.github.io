@@ -21,6 +21,7 @@ mathjax: false
 ---
 
 In this article, I explain:
+
 - how to create a ChatGPT plugin with Go
 - how to validate the configuration with [CUE](cuelang.org)
 - how to create a basic API usable with ChatGPT
@@ -28,9 +29,9 @@ In this article, I explain:
 
 ## Introduction
 
-I use ChatGPT on a daily basis as an assistant, not as a dictionary or an encyclopedia. 
-I seek solutions to problems and am aware that I will find them myself. 
-The role of ChatGPT is to assist me and help the solutions emerge from my mind. 
+I use ChatGPT on a daily basis as an assistant, not as a dictionary or an encyclopedia.
+I seek solutions to problems and am aware that I will find them myself.
+The role of ChatGPT is to assist me and help the solutions emerge from my mind.
 I ask questions, and with its knowledge, it shapes the way I think to converge towards the solutions.
 
 For most strategic problems, I use the tools and techniques from Wardley Mapping, including:
@@ -41,12 +42,12 @@ For most strategic problems, I use the tools and techniques from Wardley Mapping
 
 Building a map has value, and the challenge of positioning the various components on the map itself brings a lot of value.
 
-While ChatGPT is not aware of the spatial representation, it can provide rationales about the placement. 
+While ChatGPT is not aware of the spatial representation, it can provide rationales about the placement.
 However, as a human, a visual representation is very helpful.
 
 Therefore, as a geek, I started thinking about a plugin that would enable ChatGPT to draw a map.
 
-In a previous article, I introduced wardleyToGo, an SDK for building Wardley Maps using Go code. 
+In a previous article, I introduced wardleyToGo, an SDK for building Wardley Maps using Go code.
 As a ChatGPT subscriber, I can write a plugin for GPT-4.
 
 This article is a journey that explains how I built a plugin to draw my maps, how it works, what I discovered, and more.
@@ -68,18 +69,18 @@ To turn an API into a plugin, you must provide two files:
 - the openAPI spec served through a path specified in the `ai-plugin.json` file.
 
 The format of the manifest is important because, besides the serialization in JSON, the format is constrained.
-For example, the field `name_for_model` must not have any space and should be limited to 50 character max.	
+For example, the field `name_for_model` must not have any space and should be limited to 50 character max. 
 
 ![](/assets/gpt/gpt.png)
 
 ### Golang plumbing
 
-In this section, I describe the plumbing I used in the Go file to create the plugin. 
+In this section, I describe the plumbing I used in the Go file to create the plugin.
 This section is unrelated to the main feature and can probably be used for any Golang plugin.
 
 _Disclaimer_: You may need to be familiar with the concepts of web handlers and how Go works to benefit from this section.
 
-I am currently in the "make it work" phase, so all the code resides in the main package of a file. 
+I am currently in the "make it work" phase, so all the code resides in the main package of a file.
 To make it easier to tweak the code, I created two separate handlers:
 
 - One for the plumbing, which serves the manifest, the spec, the root, and the logo.
@@ -93,19 +94,19 @@ probably be used for any golang plugin.
 
 ```go
 type ChatGPTPlumbing struct {
-	aiPlugin        *AIPlugin
-	aiPluginPayload []byte
-	openAPIFile     string
-	openAPIContent  []byte
+ aiPlugin        *AIPlugin
+ aiPluginPayload []byte
+ openAPIFile     string
+ openAPIContent  []byte
 }
 
 // ChatGPTPlumbing implements the http/handler interface 
 func (chatgptplumbing *ChatGPTPlumbing) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/.well-known/ai-plugin.json", func(w http.ResponseWriter, _ *http.Request) { // ...
-	mux.HandleFunc("/openapi.yaml", func(w http.ResponseWriter, _ *http.Request) { // ...
-	mux.HandleFunc("/logo.png", func(w http.ResponseWriter, _ *http.Request) { // ...
-	mux.ServeHTTP(w, r)
+ mux := http.NewServeMux()
+ mux.HandleFunc("/.well-known/ai-plugin.json", func(w http.ResponseWriter, _ *http.Request) { // ...
+ mux.HandleFunc("/openapi.yaml", func(w http.ResponseWriter, _ *http.Request) { // ...
+ mux.HandleFunc("/logo.png", func(w http.ResponseWriter, _ *http.Request) { // ...
+ mux.ServeHTTP(w, r)
 }
 ```
 
@@ -121,59 +122,62 @@ The manifest and the OpenAPI are read (and validated) upon the creation of the p
 
 #### Create and validate the `aiplugin.json`
 
-The manifest needs to be instantiated at runtime to set the correct listening port and address. 
+The manifest needs to be instantiated at runtime to set the correct listening port and address.
 I created a Golang structure to handle the content and used the json package to serialize it.
 
-Additionally, as mentioned earlier, the aiplugin.json has strict constraints. 
+Additionally, as mentioned earlier, the aiplugin.json has strict constraints.
 Since I'm currently in the "_make it work_" phase and frequently changing the content for testing purposes, it's best for me to validate the plugin constraints each time I start the plugin.
 
-To achieve this, I rely on the CUE language. 
+To achieve this, I rely on the CUE language.
 I created a simple constraint file that I combine with a configuration file during startup to generate the content of the API.
 
 - constraints.cue
+
 ```CUE
 Host: string | *"AUTO"
 
 #AIPlugin: {
-	// SchemaVersion Manifest schema version - required - v1
-	schema_version: string & "v1"
+ // SchemaVersion Manifest schema version - required - v1
+ schema_version: string & "v1"
 
-	// NameForHuman Human-readable name, such as the full company name. 20 character max. - required
-	name_for_human: string & =~"^.{1,20}$"
+ // NameForHuman Human-readable name, such as the full company name. 20 character max. - required
+ name_for_human: string & =~"^.{1,20}$"
 
-	// NameForModel Name the model will use to target the plugin (no spaces allowed, only letters and numbers). 50 character max. - required
-	name_for_model: string & =~"^[a-zA-Z0-9]{1,50}$"
+ // NameForModel Name the model will use to target the plugin (no spaces allowed, only letters and numbers). 50 character max. - required
+ name_for_model: string & =~"^[a-zA-Z0-9]{1,50}$"
 
-	// DescriptionForHuman Human-readable description of the plugin. 100 character max.
-	description_for_human: string & =~"^.{1,100}$"
+ // DescriptionForHuman Human-readable description of the plugin. 100 character max.
+ description_for_human: string & =~"^.{1,100}$"
 
-	// DescriptionForModel Description better tailored to the model, such as token context length considerations or keyword usage for improved plugin prompting. 8,000 character max. - required
-	description_for_model: string & =~"^.{20,1000}$"
-	auth:                  #Auth
-	api:                   #API
-	logo_url:              string | *"\(Host)/logo.png"
-	contact_email:         string & =~"^.*@.*$"
-	legal_info_url:        string | *"\(Host)/legal"
+ // DescriptionForModel Description better tailored to the model, such as token context length considerations or keyword usage for improved plugin prompting. 8,000 character max. - required
+ description_for_model: string & =~"^.{20,1000}$"
+ auth:                  #Auth
+ api:                   #API
+ logo_url:              string | *"\(Host)/logo.png"
+ contact_email:         string & =~"^.*@.*$"
+ legal_info_url:        string | *"\(Host)/legal"
 }
 
 #Auth: {
-	type: string | *"none"
+ type: string | *"none"
 }
 
 #API: {
-	type:                  string | *"openapi"
-	url:                   string | *"\(Host)/openapi.yaml"
-	is_user_authenticated: bool | *false
+ type:                  string | *"openapi"
+ url:                   string | *"\(Host)/openapi.yaml"
+ is_user_authenticated: bool | *false
 }
 ```
+
 - configuration.cue
+
 ```cue
 configuration: #AIPlugin & {
-	name_for_human:        "Wardley To Go"
-	name_for_model:        "WardleyToGo"
-	description_for_human: "This plugin draw Wardley Maps"
-	description_for_model: "This plugin draw Wardley Maps"
-	contact_email:         "me@address.com"
+ name_for_human:        "Wardley To Go"
+ name_for_model:        "WardleyToGo"
+ description_for_human: "This plugin draw Wardley Maps"
+ description_for_model: "This plugin draw Wardley Maps"
+ contact_email:         "me@address.com"
 }
 ```
 
@@ -203,7 +207,7 @@ So I used a more fun and geeky way.
 
 - **The Geeky way**
 I am now generating the openapi.json with CUE as well.
-This provides two benefits: 
+This provides two benefits:
   - I do not have to write the spec in OpenAPI format
   - I can validate the payload sent by ChatGPT.
 
@@ -212,7 +216,7 @@ The code needs some more tests, but will eventually land in the repository.
 #### Network plumbing and configuration
 
 As usual, the configuration is handled through environment variables.
-It allows to set the listening port and address. 
+It allows to set the listening port and address.
 I also implemented the tunneling with `ngrok-go` which gives me the opportunity to test the plugin on a remote host.
 
 _Side note: The [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)_:
@@ -234,7 +238,6 @@ The first simple goal is to be able to display the evolution axis and place let 
 
 So we will create an endpoint `/mapEvolution`; It will handle a POST request with a specific payload.
 
-
 ### Creating a basic endpoint to display evolution axis
 
 ### Testing the plugin
@@ -242,3 +245,5 @@ So we will create an endpoint `/mapEvolution`; It will handle a POST request wit
 ### Displaying the SVG, tips and tricks
 
 ## Conclusion
+
+![](/assets/gpt/gpt-evolution-result.png)

@@ -69,7 +69,7 @@ To turn an API into a plugin, you must provide two files:
 - the openAPI spec served through a path specified in the `ai-plugin.json` file.
 
 The format of the manifest is important because, besides the serialization in JSON, the format is constrained.
-For example, the field `name_for_model` must not have any space and should be limited to 50 character max. 
+For example, the field `name_for_model` must not have any space and should be limited to 50 character max.
 
 ![](/assets/gpt/gpt.png)
 
@@ -208,7 +208,7 @@ So I used a more fun and geeky way.
 - **The Geeky way**
 I am now generating the openapi.json with CUE as well.
 This provides two benefits:
-  - I do not have to write the spec in OpenAPI format
+  - I do not have to write the spec in OpenAPI format (meaning I don't need to fight with yaml or JSON)
   - I can validate the payload sent by ChatGPT.
 
 The code needs some more tests, but will eventually land in the repository.

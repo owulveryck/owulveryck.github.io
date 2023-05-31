@@ -197,17 +197,17 @@ err = v.Decode(&aiplugin)
 The OpenAPI needs to be tweaked as well to set the corresponding description and servers.
 
 - **OpenAPI.yaml: The easy way**
-The first attempt to build a versatile openai.yaml file was to create a golang template and parse it at runtime.
+The first attempt to build a versatile `openai.yaml` file was to create a golang template and parse it at runtime.
 The problem is that seting some templates into YAML leads to the YAML nightmare...
 So I used a more fun and geeky way.
 
 - **The Geeky way**
 I am now generating the openapi.json with CUE as well.
 This provides two benefits: 
-- I do not have to write the spec in OpenAPI format
-- I can validate the payload sent by ChatGPT.
+  - I do not have to write the spec in OpenAPI format
+  - I can validate the payload sent by ChatGPT.
 
-The code needs some more tests, but will eventually land into the repository.
+The code needs some more tests, but will eventually land in the repository.
 
 #### Network plumbing and configuration
 

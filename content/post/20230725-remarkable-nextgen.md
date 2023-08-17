@@ -29,8 +29,8 @@ mathjax: false
 ---
 
 In 2021, I developed a tool to stream the content of my reMarkable. 
-For those interested in the inner workings of this tool, there's a [blog post](https://blog.owulveryck.info/2021/03/30/streaming-the-remarkable-2.html) dedicated to it. 
-Given that I was predominantly working from home, this tool proved invaluable, allowing me to sketch elements during conference calls.
+(and I also blogged about it [here](https://blog.owulveryck.info/2021/03/30/streaming-the-remarkable-2.html)).
+Given that I was predominantly working from home, this tool was very useful, allowing me to sketch elements during conference calls.
 
 One of the primary benefits of this tool was its ability to stream content directly into a web browser tab. 
 This feature was particularly useful because it meant I could exclusively share this tab during video calls, ensuring focus on the content I intended to present.
@@ -47,11 +47,41 @@ Recognizing this pain point, my goal became clear: eliminate the need for the lo
 This article delves into the revamped implementation of the streaming tool, which now boasts a more user-friendly design and improved performances.
 
 ## The Evolution from Old to New
-  * Outline the previous version and its dependence on the client part
-  * Discuss the vision for a more versatile tool capable of streaming content to any device
-  * Highlight the removal of the need for any installation on the client side
+
+The code running on the device must have a low footprint. 
+One way to ensure it remains lightweight is by eliminating any heavy computation on the device. 
+The sole function of the code running on the server is to grab the raw picture from the memory and expose it over the network. 
+This led to a three-tier design: server/client/renderer.
+
+_Ubiquitous language:_
+
+In this article:
+
+- **The server** refers to the code running on the reMarkable (the device). Its main purpose is to expose the raw image of the current display on the reMarkable.
+- **The client** is responsible for fetching the raw image from the server and performing additional processes to convert it into a usable format.
+- **The renderer** accepts the output from the client and displays it on a PC screen.
+
+To minimize CPU usage, the server extracts the picture only when the client is connected.
+This functionality was achieved through gRPC communication.
+
+The server can thus operate as a daemon on the reMarkable, awaiting an RPC call from the client.
+To initiate streaming, I simply needed to activate the client.
+The client retrieves the image in a loop, and each image is encoded in JPEG before being added to an MJPEG stream.
+This stream is then made available as an HTTP service by the client.
+
+The renderer is any software capable of reading the MJPEG stream via HTTP, such as VLC or a web browser.
+
+One challenge with this setup is that it necessitates a specific network topology and configuration.
+The client must not only be aware of the reMarkable's address but also possess the necessary privileges to establish a server.
+Additionally, the renderer must be familiar with the client's IP address.
+
+While this wasn't an issue in my personal setup, complications arose post-pandemic when I returned to in-person presentations.
+I realized the need for a more straightforward solution.
+My ultimate aim became the ability to simply input the reMarkable's address into any browser and instantly access the stream.
 
 ## New Architecture
+
+
   * Detail the new structure, with the focus on rendering images directly in the browser
   * Explain the use of native instructions for writing into a canvas and rotating the image
   * Discuss the initial use of websockets for validating the proof of concept

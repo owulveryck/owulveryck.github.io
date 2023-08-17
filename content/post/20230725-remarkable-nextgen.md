@@ -4,13 +4,14 @@ date: 2023-07-25T15:55:21+02:00
 lastmod: 2023-07-25T15:55:21+02:00
 draft: false
 keywords: []
-summary: In this article, I expose the journey of developing a streaming tool for my reMarkable tablet. 
+summary: In this article, I expose the new version of the streaming tool for my reMarkable tablet. 
 
   
   Originally crafted in 2021, this tool allowed me to stream sketches during video calls. 
 
 
-  Aiming for more user-friendliness, I revamped the design to a clientless implementation. This articles describes the implementation with some code illustrations in Javascript and Go on how to
+  Aiming for more user-friendliness, I revamped the design to a clientless implementation.
+  This articles describes the implementation with some code illustrations in Javascript and Go on how to
 
   * get the picture and to display it in a canvas
 

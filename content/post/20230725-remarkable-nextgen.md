@@ -2,10 +2,20 @@
 title: "Evolving the Game: A clientless streaming tool for reMarkable 2"
 date: 2023-07-25T15:55:21+02:00
 lastmod: 2023-07-25T15:55:21+02:00
-draft: true
+draft: false
 keywords: []
-description: ""
-tags: []
+summary: In this article, I expose the journey of developing a streaming tool for my reMarkable tablet. 
+
+  
+  Originally crafted in 2021, this tool allowed me to stream sketches during video calls. 
+
+
+  Aiming for more user-friendliness, I revamped the design to a clientless implementation. This articles describes the implementation with some code illustrations in Javascript and Go on how to
+
+  * get the picture and to display it in a canvas
+
+  * optimize the flow by playing with `uint4` and `RLE`
+tags: ["golang", "reMarkable", "JS", "Optimization", "RLE", "ChatGPT", "hack", "WebSocket"]
 categories: []
 author: ""
 
@@ -60,6 +70,24 @@ In this article:
 - **The server** refers to the code running on the reMarkable (the device). Its main purpose is to expose the raw image of the current display on the reMarkable.
 - **The client** is responsible for fetching the raw image from the server and performing additional processes to convert it into a usable format.
 - **The renderer** accepts the output from the client and displays it on a PC screen.
+
+```plain
++---------------------------+        +-----------------------------------+
+|          reMarkable       |        |               Laptop              |
+|                           |        |                                   |
+|       +-------+           |  gRPC  |       +-------+                   |
+|       |Server |<--------- |<------>|------>|Client |                   |
+|       +-------+           | Fetch  |       +-------+                   |
+|                           | Stream |           |                       | 
+|                           |        |     HTTP MJPEG stream             |
+|                           |        |           |                       |
+|                           |        |           v                       |
+|                           |        |       +--------+                  |
+|                           |        |       |Renderer|                  |
+|                           |        |       +--------+                  |
+|                           |        |      (Browser/VLC)                |
++---------------------------+        +-----------------------------------+
+```
 
 To minimize CPU usage, the server extracts the picture only when the client is connected.
 This functionality was achieved through gRPC communication.

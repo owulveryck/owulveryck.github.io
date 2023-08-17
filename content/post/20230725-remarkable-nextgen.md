@@ -218,19 +218,22 @@ One notable advantage of this approach is the enhanced control over server-side 
 Extracting the raw image demands both memory and CPU resources on the device.
 By regulating the message emission frequency, I can efficiently manage device load.
 
-## Make it right: Changing the streaming architecture:
+## Make it Right: Changing the Streaming Architecture
 
-The implementation with Websockets was working, but I faced some issues on iOS.
-On top of that, the Websocket implementation on the server side induce an overhead and I do not have the control of this overhead.
-Therefore, I decided to find another solution to get rid of the websockets.
+The Websockets-based solution was operational, but it introduced challenges, particularly on iOS.
+Furthermore, the Websocket implementation server-side introduced a certain overhead, which I lacked control over.
+As a result, I pursued a different strategy to eliminate the use of websockets.
 
-> By the way: why do I need a method of encapsulation in first place? Why can't I just send the stream of data over the wire?
+> One might wonder: Why even need an encapsulation method? Can't I just directly send the data stream?
 
-Yes, _simple is complex_, and I started a raw implementation by sending the raw pictures on the wire, without any other encapsulation.
+Indeed, _simplicity is complex_.
 
-It is possible because I know the size of the picture, and the size is constant (it is the resolution of the reMarkable).
 
-So I implemented an endpoint in Go that was writing continuously all the images into the wire (into the `http.ResponseWriter`) by calling a simple `Write` method.
+Raising this question of simplicity made me switch to a bare-bones approach: transmitting raw images over the network without any additional encapsulation.
+
+This was feasible because I was privy to the image size, which remains constant due to the resolution of the reMarkable.
+
+I crafted a Go endpoint that continuously wrote images to the wire (specifically to the `http.ResponseWriter`), using a basic `Write` method.
 
 ```go 
 func (h *StreamHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -252,14 +255,14 @@ func (h *StreamHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
             if err != nil {
                 log.Fatal(err)
             }
-            // write the image
+            // Write the image
             w.Write(imageData)
         }
     }
 }
 ```
 
-On the client side, a `fetch` method would grab the data and feed the backbone of the `canvas`.
+From the client's perspective, a `fetch` method captures the data and feed the backbone of the canvas.
 
 ```js 
 // Create a new ReadableStream instance from a fetch request
@@ -271,17 +274,15 @@ const reader = stream.getReader();
 // Create an ImageData object with the byte array length
 var imageData = fixedContext.createImageData(fixedCanvas.width, fixedCanvas.height);
 
-var offset = 0;
-
 // Define a function to process the chunks of data as they arrive
 const processData = async ({ done, value }) => {
         // Process the received data chunk
         // Assuming each pixel is represented by 4 bytes (RGBA)
         var uint8Array = new Uint8Array(value);
         for (let i = 0; i < uint8Array.length; i++) {
-                // process data to feed the backbone of the canvas
+                // process data to feed the backbone of the canvas (imageData)
                 // ...
-                copyCanvasContent();
+                copyCanvasContent(); // copy the hidden canvas to the responsive one
             }
         }
 

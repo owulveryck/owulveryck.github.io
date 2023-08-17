@@ -132,13 +132,49 @@ I achieved this by accessing the backbone of the canvas that represents the pixe
     }
 ```
 
+There's also a requirement to adjust the image for responsiveness according to the browser's size, as well as for image rotation and potential colorization.
 
+To achieve this, I maintain the `fixedCanvas` in a hidden state and transfer its contents to another canvas using the `drawImage` method.
+The dimensions of the destination canvas (its width and height) undergo adjustments if a resize event is detected within the browser window.
 
-  * Detail the new structure, with the focus on rendering images directly in the browser
-  * Explain the use of native instructions for writing into a canvas and rotating the image
-  * Discuss the initial use of websockets for validating the proof of concept
+{{< highlight js "hl_lines=4 32" >}}
+var resizableCanvas = document.getElementById("canvas");
+var resizableContext = resizableCanvas.getContext("2d");
+function copyCanvasContent() {
+    resizableContext.drawImage(fixedCanvas, 0, 0, resizableCanvas.width, resizableCanvas.height);
+}
+
+// JavaScript code for working with the canvas element
+function resizeCanvas() {
+    var canvas = document.getElementById("canvas");
+    var container = document.getElementById("container");
+
+    var aspectRatio = 1872 / 1404;
+
+    var containerWidth = container.offsetWidth;
+    var containerHeight = container.offsetHeight;
+
+    var containerAspectRatio = containerWidth / containerHeight;
+
+    if (containerAspectRatio > aspectRatio) {
+        canvas.style.width = containerHeight * aspectRatio + "px";
+        canvas.style.height = containerHeight + "px";
+    } else {
+        canvas.style.width = containerWidth + "px";
+        canvas.style.height = containerWidth / aspectRatio + "px";
+    }
+
+    // Use the canvas context to draw on the canvas
+    copyCanvasContent();
+}
+
+// Resize the canvas whenever the window is resized
+window.addEventListener("resize", resizeCanvas);
+{{< / highlight >}}
 
 ### Basic drop-in replacement
+
+  * Discuss the initial use of websockets for validating the proof of concept
 
 ## Moving Away from Websockets
   * Explain the challenges with the websocket approach, including device compatibility and message overhead

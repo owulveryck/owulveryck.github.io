@@ -217,6 +217,8 @@ Extracting the raw image demands both memory and CPU resources on the device.
 By regulating the message emission frequency, I can efficiently manage device load.
 
 ## Moving Away from Websockets
+
+The implementation with Websockets was working 
   * Explain the challenges with the websocket approach, including device compatibility and message overhead
   * Describe the transition to a stream of raw data to address these issues
 

@@ -14,8 +14,8 @@ author: ""
 # You can also close(false) or open(true) something for this content.
 # P.S. comment can only be closed
 comment: false
-toc: false
-autoCollapseToc: false
+toc: true
+autoCollapseToc: true
 # You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
 contentCopyright: false
 reward: false
@@ -81,6 +81,56 @@ My ultimate aim became the ability to simply input the reMarkable's address into
 
 ## New Architecture
 
+To achieve the objective, the solution involves eliminating the client and instead establishing an HTTP server within the server component.
+The client should be implemented in a format that's interpretable by a browser, such as Javascript or WASM.
+
+My initial approach was to compile the client into WASM.
+This seemed promising as it would let me leverage my expertise in Go development.
+However, I encountered several limitations that would have necessitated substantial modifications.
+
+Consequently, I opted to develop a second version of the tool, with the client written in Javascript.
+
+_Side note:_ At this juncture, I confronted another challenge.
+While I possess a broad understanding of Javascript's functionality and browser rendering processes (what we might term "architectural skills"), 
+I felt less confident in my hands-on JS development abilities.
+I turned to my digital assistant, ChatGPT, for guidance.
+With my direction on the desired solution, it provided the necessary code fragments and explanations to bring my vision to life.
+I was the developer, he was the coder.
+
+### The Renderer
+
+Initially, it was imperative to move away from the MJPEG stream, especially since my operations were now closely aligned with the renderer, 
+and Javascript possesses the required primitives for image manipulation.
+
+In the browser, the conventional method for handling images is via the `canvas` element.
+My preliminary task was to validate that I could retrieve a raw image from the server and showcase it within a `canvas`.
+
+I achieved this by accessing the array that represents the pixel map data in RGBA format and adjusting the pixels based on their values in the raw image from the reMarkable:
+
+```Javascript
+<canvas id="fixedCanvas" width="1872" height="1404" class="hidden"></canvas>
+<script>
+    // Use the fixed-size canvas context to draw on the canvas
+    var fixedCanvas = document.getElementById("fixedCanvas");
+    var fixedContext = fixedCanvas.getContext("2d");
+    function processBinaryData(data) {
+
+        // Assuming each pixel is represented by 4 bytes (RGBA)
+        var pixels = new Uint8Array(data);
+        // Create an ImageData object with the byte array length
+        var imageData = fixedContext.createImageData(fixedCanvas.width, fixedCanvas.height);
+        // Assign the byte array values to the ImageData data property
+        for (var i = 0; i < pixels.length; i++) {
+            imageData.data[i*4] = pixels[i];
+            imageData.data[i*4+1] = pixels[i];
+            imageData.data[i*4+2] = pixels[i];
+            imageData.data[i*4+3] = 255;
+        }
+
+        // Display the ImageData on the canvas
+        fixedContext.putImageData(imageData, 0, 0);
+    }
+```
 
   * Detail the new structure, with the focus on rendering images directly in the browser
   * Explain the use of native instructions for writing into a canvas and rotating the image

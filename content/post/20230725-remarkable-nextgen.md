@@ -19,8 +19,8 @@ summary: In this article, I expose the new version of the streaming tool for my 
 
   * optimize the flow by playing with `uint4` and `RLE`
 tags: ["golang", "reMarkable", "JS", "Optimization", "RLE", "ChatGPT", "hack", "WebSocket"]
-categories: []
-author: ""
+categories: ["dev"]
+author: "Olivier Wulveryck"
 
 # Uncomment to pin article to front page
 # weight: 1
@@ -59,7 +59,7 @@ The challenge arose from the necessity of a local service. During video calls, t
 Recognizing this pain point, my goal became clear: eliminate the need for the local service. 
 This article delves into the revamped implementation of the streaming tool, which now boasts a more user-friendly design and improved performances.
 
-## The Evolution from Old to New
+## Make it work: The Evolution from Old to New
 
 The code running on the device must have a low footprint. 
 One way to ensure it remains lightweight is by eliminating any heavy computation on the device. 
@@ -218,24 +218,25 @@ One notable advantage of this approach is the enhanced control over server-side 
 Extracting the raw image demands both memory and CPU resources on the device.
 By regulating the message emission frequency, I can efficiently manage device load.
 
-## Moving Away from Websockets
+## Make it right: Changing the streaming architecture:
 
-The implementation with Websockets was working 
-  * Explain the challenges with the websocket approach, including device compatibility and message overhead
-  * Describe the transition to a stream of raw data to address these issues
+The implementation with Websockets was working, but I faced some issues on iOS.
+On top of that, the Websocket implementation on the server side induce an overhead and I do not have the control of this overhead.
+Therefore, I decided to find another solution.
 
-## Network Consumption Optimizations
+The easiest
+
+## Make it fast: Network Consumption Optimizations
   * Discuss the challenge of high network consumption even after moving to raw data
   * Detail the first optimization step: encoding the picture in uint4 to store 2 pixels into one byte
   * Describe the implementation of a simple compression algorithm, its trade-offs (memory/cpu), and how you managed it
   * Discuss the implementation of Run-Length Encoding (RLE) and its storage efficiency
   * Explain how storing each pixel in a count of 15 allowed for compact byte count and value storage
 
-## Final Touches
+## Conclusion
+
   * Detail the move to event-driven streaming, triggered only after something was written
   * Discuss any additional features or enhancements made in the final stages
-
-## Conclusion
   * Recap the evolution of the tool and the improvements made
   * Discuss the positive impact this will have on user experience
   * Briefly look to the future: what might be next for this tool, or similar tools in development.

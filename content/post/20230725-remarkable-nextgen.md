@@ -222,9 +222,78 @@ By regulating the message emission frequency, I can efficiently manage device lo
 
 The implementation with Websockets was working, but I faced some issues on iOS.
 On top of that, the Websocket implementation on the server side induce an overhead and I do not have the control of this overhead.
-Therefore, I decided to find another solution.
+Therefore, I decided to find another solution to get rid of the websockets.
 
-The easiest
+> By the way: why do I need a method of encapsulation in first place? Why can't I just send the stream of data over the wire?
+
+Yes, _simple is complex_, and I started a raw implementation by sending the raw pictures on the wire, without any other encapsulation.
+
+It is possible because I know the size of the picture, and the size is constant (it is the resolution of the reMarkable).
+
+So I implemented an endpoint in Go that was writing continuously all the images into the wire (into the `http.ResponseWriter`) by calling a simple `Write` method.
+
+```go 
+func (h *StreamHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    //ctx, cancel := context.WithTimeout(r.Context(), 1*time.Hour)
+    ctx, cancel := context.WithTimeout(r.Context(), 1*time.Hour)
+    defer cancel()
+    tick := time.NewTicker(rate * time.Millisecond),
+    defer tick.Stop()
+
+    imageData := imagePool.Get().([]uint8)
+    defer imagePool.Put(imageData) // Return the slice to the pool when done
+    for {
+        select {
+        case <-ctx.Done():
+            return
+        case <-tick.C:
+            // Read the content of the image
+            _, err := file.ReadAt(imageData, h.pointerAddr)
+            if err != nil {
+                log.Fatal(err)
+            }
+            // write the image
+            w.Write(imageData)
+        }
+    }
+}
+```
+
+On the client side, a `fetch` method would grab the data and feed the backbone of the `canvas`.
+
+```js 
+// Create a new ReadableStream instance from a fetch request
+const response = await fetch('/stream');
+const stream = response.body;
+
+// Create a reader for the ReadableStream
+const reader = stream.getReader();
+// Create an ImageData object with the byte array length
+var imageData = fixedContext.createImageData(fixedCanvas.width, fixedCanvas.height);
+
+var offset = 0;
+
+// Define a function to process the chunks of data as they arrive
+const processData = async ({ done, value }) => {
+        // Process the received data chunk
+        // Assuming each pixel is represented by 4 bytes (RGBA)
+        var uint8Array = new Uint8Array(value);
+        for (let i = 0; i < uint8Array.length; i++) {
+                // process data to feed the backbone of the canvas
+                // ...
+                copyCanvasContent();
+            }
+        }
+
+        // Read the next chunk
+        const nextChunk = await reader.read();
+        processData(nextChunk);
+};
+
+// Start reading the initial chunk of data
+const initialChunk = await reader.read();
+processData(initialChunk);
+```
 
 ## Make it fast: Network Consumption Optimizations
   * Discuss the challenge of high network consumption even after moving to raw data

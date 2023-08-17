@@ -168,7 +168,7 @@ There's also a requirement to adjust the image for responsiveness according to t
 To achieve this, I maintain the `fixedCanvas` in a hidden state and transfer its contents to another canvas using the `drawImage` method.
 The dimensions of the destination canvas (its width and height) undergo adjustments if a resize event is detected within the browser window.
 
-{{< highlight js "hl_lines=4 32" >}}
+{{< highlight js >}}
 var resizableCanvas = document.getElementById("canvas");
 var resizableContext = resizableCanvas.getContext("2d");
 function copyCanvasContent() {

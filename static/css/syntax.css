@@ -1,36 +1,4 @@
-body {
-        font-family: 'Roboto';
-        /*font-size: 0.95em;*/
-        line-height: 1.4;
-}
-p {
-        font-size: 0.95em;
-}
-.post {
-        margin: 0 0.5em 0.5em;
-}
-figure {
-        width: 75%;
-}
-.highlight {
-        font-family: 'Roboto';
-        /*font-size: 0.95em;*/
-        font-size: 0.95em;
-        line-height: 1;
-}
-
-img {
-        display: block;
-        margin: 0 auto;
-}
-figure {
-        display: block;
-        margin: 0 auto;
-}
-
-.post .post-content code, .post .post-content pre {
-        font-size: .8em;
-}/* Background */ .chroma { color: #f8f8f2; background-color: #272822 }
+/* Background */ .chroma { color: #f8f8f2; background-color: #272822 }
 /* Other */ .chroma .x {  }
 /* Error */ .chroma .err { color: #960050; background-color: #1e0010 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }

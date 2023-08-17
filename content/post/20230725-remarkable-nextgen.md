@@ -3,6 +3,8 @@ title: "Evolving the Game: A clientless streaming tool for reMarkable 2"
 date: 2023-07-25T15:55:21+02:00
 lastmod: 2023-07-25T15:55:21+02:00
 draft: false
+videos: [/assets/goMarkableStream2.webp]
+images: [/assets/goMarkableStream2.png]
 keywords: []
 summary: In this article, I expose the new version of the streaming tool for my reMarkable tablet. 
 
@@ -238,3 +240,4 @@ The implementation with Websockets was working
   * Discuss the positive impact this will have on user experience
   * Briefly look to the future: what might be next for this tool, or similar tools in development.
 
+![video](/assets/goMarkableStream2.webp)

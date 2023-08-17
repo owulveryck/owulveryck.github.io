@@ -172,9 +172,20 @@ function resizeCanvas() {
 window.addEventListener("resize", resizeCanvas);
 {{< / highlight >}}
 
-### Basic drop-in replacement
+### Basic Drop-In Replacement
 
-  * Discuss the initial use of websockets for validating the proof of concept
+With the renderer in place, my next step was to implement a lightweight JS client as a substitute.
+While gRPC offers robust functionality, it's not typically considered the gold standard in web development.
+
+Thus, for communication and encapsulation, I gravitated towards the WebSocket protocol.
+It was straightforward enough to be incorporated server-side, serving as a seamless drop-in replacement for the RPC server.
+
+Messages delivered via this protocol carry the raw image.
+The client remains on standby for these messages, and with each incoming message, the canvas content is updated, effectively emulating a streaming process.
+
+One notable advantage of this approach is the enhanced control over server-side load.
+Extracting the raw image demands both memory and CPU resources on the device.
+By regulating the message emission frequency, I can efficiently manage device load.
 
 ## Moving Away from Websockets
   * Explain the challenges with the websocket approach, including device compatibility and message overhead

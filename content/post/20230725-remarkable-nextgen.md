@@ -334,10 +334,38 @@ function unpackValues(packedValue) {
 }
 ```
 
-### Basic compression
+### RLE Compression for Enhanced Efficiency
 
-This first hack allowd me to spare 1.2Mb per frame, but it still a lot of data to transfer.
-As I said before, I don't want to overload the CPU of the reMarkable, so 
+Having achieved a reduction of 1.2Mb per frame through our packing technique, the next step is to further minimize data transfer.
+To accomplish this, we can turn to more sophisticated compression algorithms without straining the reMarkable's CPU or complicating our implementation.
+
+Upon consulting with peers, the [Run Length Encoding (RLE)](https://en.wikipedia.org/wiki/Run-length_encoding) algorithm emerged as a recommended option due to its simplicity and effectiveness.
+Without delving into a detailed explanation, the principle behind RLE is relatively straightforward: it involves tallying the consecutive occurrences of the same pixel value and subsequently transmitting this count alongside the pixel value itself.
+
+For instance, let's consider a sample sequence:
+
+```text
+0 0 0 0 0 0 1 1 1 0 0 0 0
+```
+
+Using RLE, this sequence transforms to:
+
+```text
+6 0 3 1 4 0
+```
+
+Implementing RLE is quite direct.
+However, a challenge arises when considering the potential count values, which can soar up to 1872*1404.
+Representing such large numbers would necessitate a datatype like uint64.
+This poses a risk: in certain scenarios, the "compressed" sequence could end up surpassing the uncompressed picture in size.
+
+To avert this, I opted to cap the count length at 15.
+This choice paves the way to represent both the count and the pixel value within a single byte, striking a balance between simplicity and efficiency.
+
+An added advantage of our RLE implementation in Go, which mimics an `io.Writer`, is its reusability.
+If a situation calls for it, I can apply the RLE compression twice, though current circumstances haven't demanded such a measure.
+
+### Sending only pictures uppon modification
 
 ## End Notes
 

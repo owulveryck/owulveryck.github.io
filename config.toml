@@ -20,7 +20,8 @@ defaultContentLanguage = "en"           # Default language to use
 uglyURLs=true
 pygmentsUseClasses =true
 pygmentsCodeFences=true
-pygmentsOptions = "linenos=table"
+pygmentsOptions = "linenos=inline"
+
 
 [languages.en]
   languageCode = "en"

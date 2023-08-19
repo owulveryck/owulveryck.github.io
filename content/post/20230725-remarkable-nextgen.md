@@ -296,19 +296,66 @@ const initialChunk = await reader.read();
 processData(initialChunk);
 ```
 
-## Make it fast: Network Consumption Optimizations
-  * Discuss the challenge of high network consumption even after moving to raw data
-  * Detail the first optimization step: encoding the picture in uint4 to store 2 pixels into one byte
-  * Describe the implementation of a simple compression algorithm, its trade-offs (memory/cpu), and how you managed it
-  * Discuss the implementation of Run-Length Encoding (RLE) and its storage efficiency
-  * Explain how storing each pixel in a count of 15 allowed for compact byte count and value storage
 
-## Conclusion
+## Make it Fast: Network Consumption Optimizations
 
-  * Detail the move to event-driven streaming, triggered only after something was written
-  * Discuss any additional features or enhancements made in the final stages
-  * Recap the evolution of the tool and the improvements made
-  * Discuss the positive impact this will have on user experience
-  * Briefly look to the future: what might be next for this tool, or similar tools in development.
+With a robust architecture in place, it's time to fine-tune the tool's efficiency. One significant challenge arises from the size of the raw picture—approximately 2.5Mb (with a resolution of 1872x1404 for the reMarkable 2). This volume of data needs to be transferred with each frame.
+
+### Packing the Values
+
+The reMarkable showcases "16" distinct colors. Since the release of FW 3.3, this color palette can be represented as an array of uint4 instead of uint8, as discussed in [issue 36](https://github.com/owulveryck/goMarkableStream/issues/36). Adopting this representation can yield a 50% reduction in data volume.
+
+However, both Go and JavaScript lack native support for the uint4 type.
+
+A viable workaround involves storing data for two pixels within a single byte (uint8). This approach necessitates the creation of two dedicated functions—one for packing in Go and another for unpacking in JavaScript.
+
+**Go Packing Function:**
+```go 
+// Packing algorithm to encode two uint4 values into a single uint8 
+// Assumes arguments as uint4 and omits verification for efficiency
+func pack(value1, value2 uint8) uint8 {
+        // Shift the first value by 4 bits and combine it with the second using a bitwise OR
+        encodedValue := (value1 << 4) | value2;
+        return encodedValue;
+}
+```
+
+**JavaScript Unpacking Function:**
+```js
+// Unpack the uint4 values
+function unpackValues(packedValue) {
+        // Extract the upper 4 bits to obtain the first value
+        const value1 = (packedValue >> 4) & 0x0F;
+
+        // Isolate the lower 4 bits to get the second value
+        const value2 = packedValue & 0x0F;
+
+        return [value1, value2];
+}
+```
+
+### Basic compression
+
+This first hack allowd me to spare 1.2Mb per frame, but it still a lot of data to transfer.
+As I said before, I don't want to overload the CPU of the reMarkable, so 
+
+## End Notes
+
+This application is based on a hack.
+The core challenge is about effectively decoupling the interface, which fetches the image, from the client/renderer.
+
+In the prior implementation, there was a complete decoupling facilitated by the protobuf definition between the client and the server.
+Historically, when reMarkable introduced its 3.3 firmware, it disrupted the tool, as highlighted by [issue 36](https://github.com/owulveryck/goMarkableStream/issues/36) on GitHub.
+However, the necessary adjustments fixing this issue impacted only the client component.
+
+It seems firmware version 3.6 might also usher in a breaking change, as indicated by [issue 58](https://github.com/owulveryck/goMarkableStream/issues/58).
+I anticipate that addressing this will entail broader modifications.
+On the bright side, the self-contained nature of the application (with the client integrated into the server) should streamline updates on the device.
+
+The realm of IT is riddled with trade-offs; there's no universal solution.
+This dynamism and adaptability are what infuse excitement into the domain.
+
+The application and its source code are accessible on [github.com/owulveryck/goMarkableStream](https://github.com/owulveryck/goMarkableStream).
 
 ![video](/assets/goMarkableStream2.webp)
+

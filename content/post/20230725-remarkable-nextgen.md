@@ -365,7 +365,19 @@ This choice paves the way to represent both the count and the pixel value within
 An added advantage of our RLE implementation in Go, which mimics an `io.Writer`, is its reusability.
 If a situation calls for it, I can apply the RLE compression twice, though current circumstances haven't demanded such a measure.
 
-### Sending only pictures uppon modification
+So far, the transfer is about 200Kb in average.
+
+### Sending Pictures Only Upon Modification
+
+The final optimization is to transmit new frames solely when there's a change.
+Determining whether a picture has been altered would typically require computing a checksum, which can be CPU-intensive.
+
+However, the reMarkable device operates on a Linux system.
+Thus, any screen interaction, whether by pen or touch, gets routed through `/dev/input/event*`.
+I've introduced a goroutine that monitors these events and dispatches the pictures as necessary.
+
+As a result, in the absence of any events, the CPU usage drops to zero, even if a client remains connected.
+During writing operations, the CPU usage hovers around 10% — a level I consider efficient.
 
 ## End Notes
 

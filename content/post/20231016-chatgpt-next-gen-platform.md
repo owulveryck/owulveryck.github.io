@@ -2,15 +2,27 @@
 title: "The Dawn of LLM-Powered personal assistants: pioneering a new platform economy"
 date: 2023-10-16T10:11:52+02:00
 lastmod: 2023-10-16T10:11:52+02:00
-draft: true
+draft: false
 keywords: []
 description: ""
 tags: []
 categories: []
 author: "Olivier Wulveryck	"
 images: [/assets/chatgpt-platform-me.png]
-summary: In the digital age, traditional PowerPoint presentations often fail to engage audiences due to their static nature. 
+summary: The article delves into the evolving **platform economy** where digital platforms, such as **ChatGPT** powered by Large Language Models (LLMs), serve as intermediaries connecting stakeholders.
+  These platforms, unlike traditional **pipelines**, leverage digital technology to create value through mass personalized interactions.
+  
 
+  Using a hypothetical use-case, the article demonstrates how ChatGPT can be an intuitive personal assistant, bridging users with various service providers.
+  
+
+  However, with the rise of such platforms, challenges akin to SEO in search engines are anticipated.
+  
+
+  Approaches like **Prompt Engineering and Automatic Choice Optimization** will become pivotal.
+
+  
+  Lastly, a critical challenge for providers is to be chosen by AI systems in a landscape dominated by a few digital giants.
 comment: false
 toc: true
 autoCollapseToc: false
@@ -37,8 +49,10 @@ A platform where **digital storefronts**, **service providers**, and **users** *
 In this article, I will explain how the _plugin_ mechanism of ChatGPT is a keystone in the construction of the platform.
 
 In the first part, I will explain a fictional use case from the point of view of the buyer.
-In the second part, I will expose how a supplier can use the plugin mechanism to meet the platform requirements.
+In the second part, after a recap of the notion of pipeline and platform, I will expose how a supplier can use the plugin mechanism to meet the platform requirements.
 I will insist on the communication and standardization part, discussing intermediate representation and human language.
+
+_Note_ my experience is mainly focused on ChatGPT, therefore I may use ChatGPT instead of LLMs.
 
 ## Example use case
 
@@ -53,7 +67,7 @@ The assistant, leveraging a network of digital platforms, can help identify clot
 ![](/assets/chatgpt-platform-illustration_small.png)
 
 ### Rationale
-With my colleague [Nicolas](https://www.linkedin.com/in/nicolasgutierrez/), we conducted the exercise to create a top (Wardley) map for this need.
+With my colleague [Nicolas](https://www.linkedin.com/in/nicolasgutierrez/), we conducted the exercise to create a (Wardley) map for this need.
 The fundamental requirement is about finding a good.
 Given Nicolas's background in knowledge graphs and semantic search, we initially explored how these elements could address the use-case.
 Subsequently, we considered the potential role of personal assistants in this context.
@@ -75,14 +89,18 @@ Let's assess the current technical landscape and how it might evolve in the futu
 
 ## Platform? 
 
+Let's review the fundamental principles of platforms, before going further.
+
 ### Platform Economy: From Pipelines to Platforms
 
 A **platform** efficiently connects **producers** and **consumers**, allowing them to generate value through their large-scale interactions.
-While this might seem like a familiar concept, **Sangeet Paul Choudary** introduces an additional perspective: the notion of a **pipeline**.
+While this might seem like a familiar concept, **[Sangeet Paul Choudary](https://en.wikipedia.org/wiki/Sangeet_Paul_Choudary)** introduces an additional perspective: the notion of a **pipeline**.
 
-In business, a pipeline represents a linear and unidirectional transformation that enables a producer to create value and deliver it to the consumer.
+Its model is presented in the HBR paper: [Pipelines, Platforms, and the New Rules of Strategy](https://hbr.org/2016/04/pipelines-platforms-and-the-new-rules-of-strategy),
+
+In a glimpse, in the business context a pipeline represents a linear and unidirectional transformation that enables a producer to create value and deliver it to the consumer.
 Essentially, it's the **traditional system** of goods or service providers.
-For instance, **Apple** provides value by creating products and selling them to consumers, transitioning from a set of components to a finished product through a series of pipelines.
+For instance, as described in the HBR document, **Apple** provides value by creating products and selling them to consumers, transitioning from a set of components to a finished product through a series of pipelines.
 These pipelines have been revolutionized by technology, impacting three main pillars:
 
 1. **Facilitating mass production**.
@@ -95,52 +113,48 @@ However, the advent of the **Internet** and **digital technology** has further e
 - **Digitalization** has brought about personalized usage patterns, offering consumers tailored products.
 - The Internet has influenced **mass consumption** by affecting prices, as seen with giants like **Amazon** and **Alibaba**.
 
-Speaking of the market, one model employed in this market economy is based on **Porter's Five Forces**, which assesses:
-
-1. **The threat of new entrants**.
-2. **Supplier bargaining power**.
-3. **Customer bargaining power**.
-4. **The threat of substitute products or services**.
-5. **Competitive rivalry**.
-
-This model evaluates the forces that might influence a company's profitability and formulates strategies accordingly.
-However, with the Internet, these forces act differently, requiring traditional "pipeline" companies to adapt.
-
-The **platform's main idea** is to transform value creation.
+The **platform's main idea** is to transform **value creation**.
 Its value lies in effectively linking producers and consumers.
 Taking Apple's example from the HBR paper, the **App Store platform** facilitates mass app production for a large consumer base.
 It shifts from mass production linked to mass consumption to distributed production connected to personalized consumption.
 The platform provides an interface easing the onboarding of new producers while also ensuring **governance** by implementing rules for both producers and consumers, ensuring, for example, that App Store applications are safe for users.
 
-
-Considering our previous use-case, many suppliers are involved in the fulfillment of the users need. How to interconnect the suppliers with the buyers ?
-
-The supplier needs to provide its service offer to the buyer, therefore acting as a **content provider**. 
-the **Content Providers:** Stores and brands act as content providers.
-They supply information regarding their products, including pricing, availability, and location.
-
 ![](/assets/platform_pipeline.png)
-  
 
+### The platform for LLM? 
 
-- **Content Production:** Plugins serve as content producers for the platform, bridging the gap between users and content providers.
+Given the previous definitions, the notion of _pipeline_ in the context of LLM may refer to the value creation that arises from the transformation of data into a finished product, such as a conversational agent.
 
-- **Plugins:** These are interfaces to the platform.
-They facilitate structured interactions between the platform and external systems through APIs, alongside human-readable descriptions.
-By doing so, they ensure the assistant understands the user's needs and the context surrounding them.
+However, the concept of _plugin_ is somewhat disruptive, reminiscent of what the _App Store_ offers.
+Plugins serve as interfaces to the product, streamlining structured interactions between users and suppliers through the agent.
+This evolution towards mass content production positions ChatGPT as a platform.
 
-  - **Intermediate Representation:** Plugins work by crafting an intermediate representation encompassing structured API interactions and human-centric descriptions.
-This blend ensures a seamless flow of data, making it understandable both by the platform and the end-users.
+In the use-case discussed earlier, numerous suppliers play a part in satisfying the user's needs.
+Stores and brands function as **content providers**.
+They offer data about their merchandise, detailing price, availability, and locale.
 
+To convey the necessity of a dual-implementation based on a type of **Intermediate Representation**, plugins operate by generating an intermediate representation that captures both structured API engagements and user-friendly explanations.
+This combination guarantees a continuous data flow, making it intelligible for both the platform and its users.
 
+As a conclusion:
+
+Plugins enable **mass (content) production**, which when combined with the **mass consumption** of individuals relying on a personal assistant, gives rise to a new **platform**.
 
 ## New Challenges:
-As this ecosystem grows, new challenges akin to the SEO challenges faced by search engines will emerge.
-The concept of **Prompt Engineering and Automatic Choice Optimization** will become crucial.
-This entails optimizing how requests are processed and responded to by the LLM-powered assistants, ensuring accuracy, relevance, and efficiency in meeting the users' needs.
+As this ecosystem expands, new challenges akin to the SEO challenges encountered by search engines will arise.
+The concept of **Prompt Engineering and Automatic Choice Optimization** will become pivotal.
+This involves refining how inquiries are handled and answered by the LLM-powered assistants, guaranteeing precision, pertinence, and efficacy in addressing users' demands.
+
+The upcoming challenge for content providers will be to be selected by the artificial intelligence to resolve the issues presented by the client.
+This might necessitate a thorough comprehension of the platform's foundational workings.
 
 ## Conclusion:
 
 ![](/assets/chatgpt-platform_small.webp)
+
 The advent of LLM-powered personal assistants like ChatGPT heralds a new era in the platform economy, merging the digital and physical realms in a user-centric ecosystem.
+
 By integrating digital storefronts, service providers, and users, a new level of value creation and exchange is realized, redefining how we interact with the digital world around us.
+
+Why relying on a platform and not becoming a platform is a new challenge for providers? The problem is that, today, only the digital giants possess the resources to run these models at scale.
+

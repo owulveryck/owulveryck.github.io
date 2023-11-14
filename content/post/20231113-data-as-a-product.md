@@ -29,6 +29,8 @@ mathjax: false
 
 ---
 
+_Note:_ this is a translation of the article I published last year in French on the [Blog OCTO "_Data-as-a-product: pierre angulaire du Data-Mesh_"](https://blog.octo.com/data-as-a-product-pierre-angulaire-du-data-mesh)
+
 ## Exploiting Data on a Large Scale: A Strategic Issue?
 
 In his book [**Empowered**](https://www.svpg.com), [**Marty Cagan**](https://www.linkedin.com) cites four essential elements of a product-oriented approach:

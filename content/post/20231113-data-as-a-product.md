@@ -163,9 +163,7 @@ For digital products aiding in decision-making (analytical and/or machine learni
 4. Data (data-as-a-product) that meets the needs of data-products (making available the data that enables generating, identifying, and exploiting information to propel the tools).
 5. A platform as the foundation for the development and execution of these data-as-a-products (having the technological elements to materialize and exploit these solutions).
 
-<figure>
-  <img src="/assets/data-as-a-product/image2.png">
-</figure>
+{{< figure src="/assets/data-as-a-product/image2.png" link="/assets/data-as-a-product/image2.png" title="Global picture of data organization">}}
 
 _Note: The ecosystem layer of data-as-a-product that shows the mesh is beyond the scope of this article, which focuses on the practical implementation of one of the elements and not on the global implementation of data-mesh._
 
@@ -193,9 +191,7 @@ The assets are then placed on a **horizontal axis** that represents the **stages
 
 For illustration, a workshop based on [Simon Wardley's maps](https://en.wikipedia.org/wiki/Wardley_map) could yield the following result (this is a fictitious example):
 
-<figure>
-  <img src="/assets/data-as-a-product/image3.png">
-</figure>
+{{< figure src="/assets/data-as-a-product/image3.png" link="/assets/data-as-a-product/image3.png" title="Sample Wardley Map">}}
 
 While a Wardley map allows situating a company in its market, here we zoom in to represent an activity in the context of the company.
 Thus, on the map shown here, a need for data-as-a-product emerges, exposing the tracking of stock status.
@@ -304,10 +300,7 @@ If the business value of the data-as-a-product is immediately realized through t
 - in the reduced time to implement new use cases (with the possibility to test machine learning-based solutions more easily, for example)
 - in better organization of knowledge at the enterprise level
 
-<figure>
-  <img src="/assets/data-as-a-product/image4.png">
-  <figcaption>(c) Travis Hoffman, 2021 - https://www.linkedin.com/in/travishoffman/</figcaption>
-</figure>
+{{< figure src="/assets/data-as-a-product/image4.png" link="/assets/data-as-a-product/image4.png" title="(c) Travis Hoffman, 2021 - https://www.linkedin.com/in/travishoffman/" >}}
 
 For example, the above illustration shows the growing value contribution at the enterprise level as iterations are made on a data-as-a-product.
 Finally, regarding the platform, it can be built in parallel by laying the first bricks that will allow data exchange between products.

@@ -135,7 +135,7 @@ func readEvent(inputDevice *os.File) (InputEvent, error) {
     return ev, nil
 }
 ```
-A more efficient approach could involve using an unsafe pointer to directly populate the structure, thereby bypassing Go's safety mechanisms:
+A more efficient approach could involve using an unsafe pointer to directly populate the structure, thereby bypassing Go's safety mechanisms by using the `unsafe` package:
 
 ```go
 func readEvent(inputDevice *os.File) (events.InputEvent, error) {
@@ -152,7 +152,31 @@ func readEvent(inputDevice *os.File) (events.InputEvent, error) {
 ```
 
 ## The Problem Statement
-- Challenge described: Transferring information from server to a browser-based client in JavaScript.
+
+Now that I have read the events, I need to send to the client for further processing.
+The current architecture is based on an HTTP server in Go and a web client in JS. Therefore, I need to find a HTTP-ish way to transfer the events.
+
+It is beyond the scope of this article to delve into the specifics of how I publish events within the Go server.
+However, for a basic understanding necessary for the rest of the article, here's a brief overview.
+
+### Serving Structure in the Go Server
+Fundamentally, I have implemented a basic [pubsub](https://github.com/owulveryck/goMarkableStream/blob/main/internal/pubsub/pubsub.go) mechanism to channel the flow of events.
+
+The next step is to make these events accessible to the client.
+This will be managed by a `http.Handler`. Below is the framework for this handler:
+
+```go
+type GestureHandler struct {
+    inputEventBus *pubsub.PubSub
+}
+
+// ServeHTTP implements http.Handler
+func (h *GestureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    // eventC is a channel that receives all the InputEvents
+    eventC := h.inputEventBus.Subscribe("eventListener")
+    // ....
+}
+```
 
 ## The Default Choice: WebSockets
 - Rationale behind initially choosing WebSockets.

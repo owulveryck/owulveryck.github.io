@@ -5,7 +5,7 @@ lastmod: 2023-12-02T08:26:41+01:00
 draft: false
 images: [/assets/crowdasleep_small.png]
 videos: [/assets/present.webm]
-keywords: []
+eywords: []
 summary: This article explores the transition from a WebSocket-based implementation to a simpler, more direct stream over HTTP in the context of capturing touch screen inputs on Linux. 
   
   
@@ -46,7 +46,7 @@ mathjax: false
 
 ## Introduction
 
-For my tool, goMarkableStream, my objective was to capture gesture positions from the tablet's screen and relay them to the browser to trigger local actions.
+To add a new functionality to my tool, [goMarkableStream](https://github.com/owulveryck/goMarkableStream), I needed to capture gesture positions from the tablet's screen and relay them to the browser to trigger local actions.
 For example, a swipe left could activate a specific function in the browser.
 
 My approach involved capturing gestures from the device and then communicating them to the browser with a message stating: "this gesture has been made."
@@ -58,23 +58,96 @@ Navigating through this journey, I realized the importance of extensive testing 
 The WebSocket protocol, in contrast to HTTP, introduces distinct challenges, especially in debugging and testing, due to its more complex nature.
 
 Acknowledging that gestures are essentially a stream of bytes (I will explain this), I will write about:
-- My process of evaluating the trade-off between the added complexity of WebSockets and the functionalities they offer.
-- How I streamlined the development by devising my own messaging system over HTTP.
-
-> "Everything is a file" is an idea that Unix, and its derivatives, handle input/output to and from resources such as documents, hard-drives, modems, keyboards, printers 
-  and even some inter-process and network communications as simple streams of bytes exposed through the filesystem name space
-
-
-- Introducing the main theme: "Simple is complex."
-- Key statement: "Everything ~~is a file~~ is a stream of byte."
-
-> "Everything is a file" is an idea that Unix, and its derivatives, handle input/output to and from resources such as documents, hard-drives, modems, keyboards, printers 
-  and even some inter-process and network communications as simple streams of bytes exposed through the filesystem name space
-[Wikipedia](https://en.wikipedia.org/wiki/Everything_is_a_file)
+- the process of evaluating the trade-off between the added complexity of WebSockets and the functionalities they offer.
+- how I streamlined the development by designing my own messaging system over HTTP.
 
 ## Background
-- Explaining the need: capturing finger positions on a touchscreen by reading `/dev/input/events` in Linux.
-- Technical methodology for achieving this.
+
+I've previously discussed using my tablet for various live presentations.
+Through iterative testing, I developed a hybrid solution that combines elements of a whiteboard with static slides.
+This solution features the screen's drawing as an overlay on existing slides.
+The challenge now lies in switching slides directly from the tablet to streamline the presentation and minimize interactions with the laptop displaying the slides.
+
+The slides are displayed within an iFrame on the client side of my tool.
+Consequently, I needed a method to send commands to the iFrame to control slide transitions.
+The [reveal.js presentation framework](https://revealjs.com/) supports native embedding and allows slide control from the top frame via an API that uses [postMessages](https://revealjs.com/postmessage/).
+
+To transmit slide control commands from the tablet to the client, I considered various methods.
+The optimal solution I identified was to utilize touch gestures on the screen of the reMarkable tablet.
+By swiping on the tablet, I could send events to the client, which would then respond accordingly to switch the slides.
+
+### Capturing the touch events on reMarkable/linux
+
+I've previously discussed using my tablet for various live presentations. Through iterative testing, I developed a hybrid solution that merges the functionalities of a whiteboard with static slides. This solution overlays the screen's drawing onto existing slides. The current challenge involves switching slides directly from the tablet, which would streamline the presentation and reduce dependency on the laptop used for displaying the slides.
+
+The slides within my tool are displayed in an iFrame on the client side. Consequently, I needed a method to send commands to the iFrame to manage slide transitions. The [reveal.js presentation framework](https://revealjs.com/) offers native embedding and facilitates slide control from the top frame through an API that employs [postMessages](https://revealjs.com/postmessage/).
+
+To relay slide control commands from the tablet to the client, I explored various approaches. I found the most effective solution to be using touch gestures on the reMarkable tablet's screen. Swiping on the tablet allows me to transmit events to the client, which then appropriately responds to change the slides.
+
+### Capturing the touch events on reMarkable/Linux
+
+The reMarkable operates on a Linux-based system.
+Input events (both pen and touch) are managed through [Event Devices (evdev)](https://en.wikipedia.org/wiki/Evdev).
+The event exposure is as follows:
+- `/dev/input/event1` captures the pen events.
+- `/dev/input/event2` captures touch events.
+
+In Unix, the philosophy that "_everything is a file_" applies.
+This means I can easily access these events by opening and reading the file contents in Go.
+I chose Go for the server-side language due to its self-sufficient packaging, cross-compilation capabilities, and the enjoyment I derive from using it.
+
+> "Everything is a file" is a principle in Unix and its derivatives, where input/output interactions with resources such as documents, hard-drives, modems, keyboards, printers, and some inter-process and network communications are treated as simple byte streams accessible through the filesystem namespace - [source Wikipedia](https://en.wikipedia.org/wiki/Everything_is_a_file).
+
+### Reding the events in Go
+
+The "file" event is a character device, offering a binary representation of an event.
+In Go, an event's set of bytes could be structured like this:
+
+```go
+type InputEvent struct {
+	Time syscall.Timeval `json:"-"`
+	Type uint16
+	Code  uint16
+	Value int32
+}
+```
+
+The principle of "_everything is a file_" enables the use of basic operations from the `os` package to open the character device as an `*os.File` and `Read` the binary representation of the event.
+We create an `ev` object of the `InputEvent` type to receive the information read.
+
+The file functions as an `io.Reader`, and its content is typically loaded into a byte array.
+
+```go 
+func readEvent(inputDevice *os.File) (InputEvent, error) {
+    // Size calculation: Timeval consists of two int64 (16 bytes), followed by uint16, uint16, and int32 (2+2+4 bytes)
+    const size = 16 + 2 + 2 + 4
+    eventBinary := make([]byte, size)
+
+    _, err := inputDevice.Read(eventBinary)
+    if err != nil {
+        return InputEvent{}, err
+    }
+
+    var ev InputEvent
+    // Assuming the binary data is in little-endian format; adjust if necessary
+    ev.Time.Sec = int64(binary.LittleEndian.Uint64(eventBinary[0:8]))
+    ev.Time.Usec = int64(binary.LittleEndian.Uint64(eventBinary[8:16]))
+    ev.Type = binary.LittleEndian.Uint16(eventBinary[16:18])
+    ev.Code = binary.LittleEndian.Uint16(eventBinary[18:20])
+    ev.Value = int32(binary.LittleEndian.Uint32(eventBinary[20:24]))
+
+    return ev, nil
+}
+```
+A more efficient approach could involve using an unsafe pointer to directly populate the structure, thereby bypassing Go's safety mechanisms:
+
+```go
+func readEvent(inputDevice *os.File) (events.InputEvent, error) {
+	var ev InputEvent
+	_, err := inputDevice.Read((*(*[unsafe.Sizeof(ev)]byte)(unsafe.Pointer(&ev)))[:])
+	return ev, err
+}
+```
 
 ## The Problem Statement
 - Challenge described: Transferring information from server to a browser-based client in JavaScript.

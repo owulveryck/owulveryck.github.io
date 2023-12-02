@@ -119,7 +119,10 @@ The file functions as an `io.Reader`, and its content is typically loaded into a
 
 ```go 
 func readEvent(inputDevice *os.File) (InputEvent, error) {
-    // Size calculation: Timeval consists of two int64 (16 bytes), followed by uint16, uint16, and int32 (2+2+4 bytes)
+    // Size calculation: 
+    // Timeval consists of two int64 (16 bytes), 
+    // followed by uint16, uint16, and int32
+    // (2+2+4 bytes)
     const size = 16 + 2 + 2 + 4
     eventBinary := make([]byte, size)
 
@@ -129,7 +132,7 @@ func readEvent(inputDevice *os.File) (InputEvent, error) {
     }
 
     var ev InputEvent
-    // Assuming the binary data is in little-endian format; adjust if necessary
+    // Assuming the binary data is in little-endian format
     ev.Time.Sec = int64(binary.LittleEndian.Uint64(eventBinary[0:8]))
     ev.Time.Usec = int64(binary.LittleEndian.Uint64(eventBinary[8:16]))
     ev.Type = binary.LittleEndian.Uint16(eventBinary[16:18])

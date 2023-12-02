@@ -180,16 +180,18 @@ func (h *GestureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 ## The Default Choice: WebSockets
 
-Now that I am within the http handler, I need to find a way to transfer the data "over the wire". The over the wire is represented here by two stream of bytes:
-- the `io.Reader` encapsulated in the request's body
-- the `io.Writer` implemented through the ResponseWriter
+Now that I am within the HTTP handler, I need to devise a method to transfer data "over the wire".
+In this context, "over the wire" refers to two streams of bytes:
+- the `io.Reader` encapsulated in the request's body.
+- the `io.Writer` implemented through the ResponseWriter.
 
-The most obvious ay I know to exchange messages between a server and a client is via websocket. It is a layer 7 protocol that allows bi-directional steams of messages.
-The implementation is relatively straightforward and the client side in JS have all the primitives to interact with message flows.
+The most familiar method I know for exchanging messages between a server and a client is via WebSocket.
+WebSocket is a Layer 7 protocol that facilitates bi-directional streams of messages.
+Its implementation is relatively straightforward, and the client-side in JavaScript offers all the necessary primitives for interacting with message flows.
 
-In the server, the logic is a bit different because the standard library of Go provides an outdated implementation of the websockets; therefore I need to rely on third party libraries.
-It is not a problem _per se_, but I like to avoid the usage of third party libraries for various reasons from the idea of blackbox to the problem of dependency management.
-
+On the server side, the approach is slightly different as the standard library of Go does not provide any implementation of WebSockets.
+Consequently, I need to rely on third-party libraries.
+While this is not a problem _per se_, I generally prefer to avoid using third-party libraries for reasons ranging from concerns about blackbox elements to the challenges of dependency management.
 
 - Rationale behind initially choosing WebSockets.
 - Influence of frameworks on technology decision-making.

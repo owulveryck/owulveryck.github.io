@@ -76,14 +76,6 @@ To transmit slide control commands from the tablet to the client, I considered v
 The optimal solution I identified was to utilize touch gestures on the screen of the reMarkable tablet.
 By swiping on the tablet, I could send events to the client, which would then respond accordingly to switch the slides.
 
-### Capturing the touch events on reMarkable/linux
-
-I've previously discussed using my tablet for various live presentations. Through iterative testing, I developed a hybrid solution that merges the functionalities of a whiteboard with static slides. This solution overlays the screen's drawing onto existing slides. The current challenge involves switching slides directly from the tablet, which would streamline the presentation and reduce dependency on the laptop used for displaying the slides.
-
-The slides within my tool are displayed in an iFrame on the client side. Consequently, I needed a method to send commands to the iFrame to manage slide transitions. The [reveal.js presentation framework](https://revealjs.com/) offers native embedding and facilitates slide control from the top frame through an API that employs [postMessages](https://revealjs.com/postmessage/).
-
-To relay slide control commands from the tablet to the client, I explored various approaches. I found the most effective solution to be using touch gestures on the reMarkable tablet's screen. Swiping on the tablet allows me to transmit events to the client, which then appropriately responds to change the slides.
-
 ### Capturing the touch events on reMarkable/Linux
 
 The reMarkable operates on a Linux-based system.
@@ -132,7 +124,8 @@ func readEvent(inputDevice *os.File) (InputEvent, error) {
     }
 
     var ev InputEvent
-    // Assuming the binary data is in little-endian format
+    // Assuming the binary data is in little-endian format 
+    // which is the most common on Intel and ARM
     ev.Time.Sec = int64(binary.LittleEndian.Uint64(eventBinary[0:8]))
     ev.Time.Usec = int64(binary.LittleEndian.Uint64(eventBinary[8:16]))
     ev.Type = binary.LittleEndian.Uint16(eventBinary[16:18])
@@ -147,7 +140,13 @@ A more efficient approach could involve using an unsafe pointer to directly popu
 ```go
 func readEvent(inputDevice *os.File) (events.InputEvent, error) {
 	var ev InputEvent
-	_, err := inputDevice.Read((*(*[unsafe.Sizeof(ev)]byte)(unsafe.Pointer(&ev)))[:])
+    // by using (*[24]byte), we are explicitly stating that 
+    // we want to treat the memory location of ev as a byte array of length 24
+    // We could have used the less readable form:
+    // (*(*[unsafe.Sizeof(ev)]byte)(unsafe.Pointer(&ev)))[:]
+    // 
+    //  Note: the trailing [:] is mandatory to convert the array to a slice
+    _, err := inputDevice.Read((*[24]byte)(unsafe.Pointer(&ev))[:])
 	return ev, err
 }
 ```

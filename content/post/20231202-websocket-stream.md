@@ -179,6 +179,18 @@ func (h *GestureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 ```
 
 ## The Default Choice: WebSockets
+
+Now that I am within the http handler, I need to find a way to transfer the data "over the wire". The over the wire is represented here by two stream of bytes:
+- the `io.Reader` encapsulated in the request's body
+- the `io.Writer` implemented through the ResponseWriter
+
+The most obvious ay I know to exchange messages between a server and a client is via websocket. It is a layer 7 protocol that allows bi-directional steams of messages.
+The implementation is relatively straightforward and the client side in JS have all the primitives to interact with message flows.
+
+In the server, the logic is a bit different because the standard library of Go provides an outdated implementation of the websockets; therefore I need to rely on third party libraries.
+It is not a problem _per se_, but I like to avoid the usage of third party libraries for various reasons from the idea of blackbox to the problem of dependency management.
+
+
 - Rationale behind initially choosing WebSockets.
 - Influence of frameworks on technology decision-making.
 - Challenges and difficulties encountered with WebSocket debugging.

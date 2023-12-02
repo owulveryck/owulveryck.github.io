@@ -45,8 +45,32 @@ mathjax: false
 ---
 
 ## Introduction
+
+For my tool, goMarkableStream, my objective was to capture gesture positions from the tablet's screen and relay them to the browser to trigger local actions.
+For example, a swipe left could activate a specific function in the browser.
+
+My approach involved capturing gestures from the device and then communicating them to the browser with a message stating: "this gesture has been made."
+
+In the realm of message exchange between a server and a client in a browser, WebSockets naturally come to mind.
+WebSockets are inherently designed to support streams of messages on top of TCP, unlike HTTP, which primarily handles streams of bytes without a built-in concept of a message.
+
+Navigating through this journey, I realized the importance of extensive testing and learning to craft an effective solution.
+The WebSocket protocol, in contrast to HTTP, introduces distinct challenges, especially in debugging and testing, due to its more complex nature.
+
+Acknowledging that gestures are essentially a stream of bytes (I will explain this), I will write about:
+- My process of evaluating the trade-off between the added complexity of WebSockets and the functionalities they offer.
+- How I streamlined the development by devising my own messaging system over HTTP.
+
+> "Everything is a file" is an idea that Unix, and its derivatives, handle input/output to and from resources such as documents, hard-drives, modems, keyboards, printers 
+  and even some inter-process and network communications as simple streams of bytes exposed through the filesystem name space
+
+
 - Introducing the main theme: "Simple is complex."
 - Key statement: "Everything ~~is a file~~ is a stream of byte."
+
+> "Everything is a file" is an idea that Unix, and its derivatives, handle input/output to and from resources such as documents, hard-drives, modems, keyboards, printers 
+  and even some inter-process and network communications as simple streams of bytes exposed through the filesystem name space
+[Wikipedia](https://en.wikipedia.org/wiki/Everything_is_a_file)
 
 ## Background
 - Explaining the need: capturing finger positions on a touchscreen by reading `/dev/input/events` in Linux.

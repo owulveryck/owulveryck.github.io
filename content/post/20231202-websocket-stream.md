@@ -46,7 +46,8 @@ mathjax: false
 
 ## Introduction
 
-To add a new functionality to my tool, [goMarkableStream](https://github.com/owulveryck/goMarkableStream), I needed to capture gesture positions from the tablet's screen and relay them to the browser to trigger local actions.
+To add a new functionality to my tool, [goMarkableStream](https://github.com/owulveryck/goMarkableStream), 
+I needed to capture gesture positions from the tablet's screen and relay them to the browser to trigger local actions.
 For example, a swipe left could activate a specific function in the browser.
 
 My approach involved capturing gestures from the device and then communicating them to the browser with a message stating: "this gesture has been made."
@@ -215,26 +216,34 @@ I realized that learning the intricacies of WebSocket tooling might not be the m
 
 ## An Alternative Approach: HTTP Streams
 
-Sticking to a pure HTTP exchange would be a better option.
-Let's take a step back to analyze the journey so far:
+Sticking to a pure HTTP exchange might be a more suitable option. Let's take a step back to analyze the journey so far:
 
-- We have touch events that are serialized by the Linux Kernel and exposed as a stream of byte via a file `/dev/input/event`
-- We slice the stream into a set of discrete events that we feed to a channel
-- Those events are analysed to detect a "gesture" (a set of events belonging to the same "touch")
-- The aggregate and sanitized events are sent to the client via WebSocket
+- Touch events are serialized by the Linux Kernel and exposed as a stream of bytes via a file `/dev/input/event`.
+- This stream is dissected into a series of discrete events, which are then fed into a channel.
+- These events are analyzed to detect a "gesture" – a sequence of events corresponding to the same "touch".
+- The aggregated and sanitized events are then transmitted to the client using WebSocket.
 
+Considering that the initial events are presented as a byte stream, and seeing the effectiveness of having the client read and segment these events, aligns well with the Unix philosophy.
 
+Therefore, I decided to explore a low-level stream implementation for communication between the client and the server.
 
-- Presenting HTTP streams as an alternative.
-- Advantages of simplicity and directness in this approach.
+Internet and ChatGPT gave it a name: [Server Sent Events](https://en.wikipedia.org/wiki/Server-sent_events)
 
-### The Concept of Serialization
-- Discussion on the necessity and methods of encoding messages.
-- Exploration of different serialization techniques.
+From the server's perspective, the process involves continuously streaming bytes into the communication channel.
+These bytes are formatted specifically to announce events.
+A special MIME type (`text/event-stream`) is used to signal to the client that the server will be sending such a stream of bytes, and the client is expected to handle it accordingly.
+
+Initially, I considered implementing Server-Sent Events (SSE), but then I realized I could first explore a simpler approach.
+This involves streaming bytes without fully adopting the complete logic of SSE, especially since I am managing both the client and server implementations.
+This approach allows for a more streamlined and controlled development process.
 
 ### Implementing HTTP Stream in Go
 - Showcasing the GoLang code for streaming.
 - Emphasis on the use of native language capabilities.
+
+### The Concept of Serialization
+- Discussion on the necessity and methods of encoding messages.
+- Exploration of different serialization techniques.
 
 ### Receiving and Decoding the Stream in JavaScript
 - Process of stream reception in JavaScript via a worker thread.

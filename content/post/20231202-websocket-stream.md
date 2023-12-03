@@ -229,6 +229,8 @@ Therefore, I decided to explore a low-level stream implementation for communicat
 
 Internet and ChatGPT gave it a name: [Server Sent Events](https://en.wikipedia.org/wiki/Server-sent_events)
 
+{{< figure src="/assets/websockets-sequence.png" link="/assets/websockets-sequence.png" title="Sequence Diagram" >}}
+
 From the server's perspective, the process involves continuously streaming bytes into the communication channel.
 These bytes are formatted specifically to announce events.
 A special MIME type (`text/event-stream`) is used to signal to the client that the server will be sending such a stream of bytes, and the client is expected to handle it accordingly.
@@ -267,6 +269,9 @@ func (g *gesture) MarshalJSON() ([]byte, error) {
         return []byte(fmt.Sprintf(`{ "left": %v, "right": %v, "up": %v, "down": %v}`+"\n", g.leftDistance, g.rightDistance, g.upDistance, g.downDistance)), nil
 }
 ```
+
+What we have now is a set of events that are aggregated into a gesture struct, and serialized in binary so they can be transmitted to the client.
+We expose a `/gestures` endpoint and serves the flow of gestures in a continuous way.
 
 ### Receiving and Decoding the Stream in JavaScript
 - Process of stream reception in JavaScript via a worker thread.

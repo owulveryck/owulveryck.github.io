@@ -186,16 +186,30 @@ In this context, "over the wire" refers to two streams of bytes:
 - the `io.Writer` implemented through the ResponseWriter.
 
 The most familiar method I know for exchanging messages between a server and a client is via WebSocket.
-WebSocket is a Layer 7 protocol that facilitates bi-directional streams of messages.
-Its implementation is relatively straightforward, and the client-side in JavaScript offers all the necessary primitives for interacting with message flows.
+WebSocket is a Layer 7 protocol that enables bi-directional streams of messages.
+Its implementation is relatively straightforward, and the client-side in JavaScript provides all necessary primitives for interacting with message flows.
 
-On the server side, the approach is slightly different as the standard library of Go does not provide any implementation of WebSockets.
-Consequently, I need to rely on third-party libraries.
-While this is not a problem _per se_, I generally prefer to avoid using third-party libraries for reasons ranging from concerns about blackbox elements to the challenges of dependency management.
+On the server side, the situation differs, as Go's standard library does not include an implementation of WebSockets.
+This necessitates reliance on third-party libraries.
+While not inherently problematic, I generally prefer to avoid third-party libraries due to concerns about blackbox elements and dependency management complexities.
 
-- Rationale behind initially choosing WebSockets.
-- Influence of frameworks on technology decision-making.
-- Challenges and difficulties encountered with WebSocket debugging.
+Nonetheless, I implemented a basic WebSocket-based message exchange to send events from the server to the client.
+
+Having established the ability to listen to events and serve them over WebSockets, the next step was to accurately detect a gesture before sending the event.
+I incorporated basic business logic within my handler, using a timer to identify continuous movements.
+This allowed me to transmit motion in terms of distance moved by the finger, such as 100 pixels left, 130 pixels right, 245 pixels up, and 234 pixels down.
+While this is a simplistic implementation that does not differentiate between a square and a circle, it suffices for my needs.
+
+However, testing this implementation presented a challenge.
+As I was in the exploratory phase of the product's genesis, the most effective approach was to test and learn, rather than setting up a comprehensive test suite.
+This would change in a more mature phase of product development, as outlined in Simon Wardley's theory of evolution.
+For further details on this theory, please consider consulting relevant literature or contact me for a discussion.
+
+Here lies a limitation of WebSockets: they are distinct from the HTTP protocol, meaning tools like cURL or netcat cannot be used to connect to the endpoint and monitor messages.
+While there are tools available for this purpose, they often lack certain features, such as trust for a self-signed certificate.
+
+I spent considerable time trying to figure out how to stream messages to the screen while moving my finger on the tablet.
+I realized that learning the intricacies of WebSocket tooling might not be the most efficient use of my energy, especially when seeking quick results for the gesture functionality.
 
 ## An Alternative Approach: HTTP Streams
 - Presenting HTTP streams as an alternative.

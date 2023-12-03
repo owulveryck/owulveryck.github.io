@@ -238,12 +238,35 @@ This involves streaming bytes without fully adopting the complete logic of SSE, 
 This approach allows for a more streamlined and controlled development process.
 
 ### Implementing HTTP Stream in Go
-- Showcasing the GoLang code for streaming.
-- Emphasis on the use of native language capabilities.
 
-### The Concept of Serialization
-- Discussion on the necessity and methods of encoding messages.
-- Exploration of different serialization techniques.
+Implementing a stream of bytes in an endpoint is fairly straightforward in Go.
+The handler is provided with a `ResponseWriter`, which is an [`io.Writer`](https://pkg.go.dev/io#Writer).
+This means that simply invoking the `Write` method in an endless loop will suffice for the task at hand.
+
+The crucial aspect is to ensure that the stream is fed with the correct payload, namely the appropriate slice of bytes.
+
+### Serialization of the message
+
+The concept of [serialization](https://en.wikipedia.org/wiki/Serialization) is:
+
+> the process of translating a data structure or object state into a format that can be stored (e.g.
+files in secondary storage devices, data buffers in primary storage devices) or transmitted (e.g.
+data streams over computer networks) and reconstructed later / source Wikipedia
+
+So there is a need to "serialize" the gesture messages into an array of byte in a way that it can be deserialized in the client.
+As the client is a Javascript based program, I will use JSON.
+
+So the gesture is implemented as a structure that implenents the JSON Marshaler interface.
+
+```go
+type gesture struct {
+        leftDistance, rightDistance, upDistance, downDistance int
+}
+
+func (g *gesture) MarshalJSON() ([]byte, error) {
+        return []byte(fmt.Sprintf(`{ "left": %v, "right": %v, "up": %v, "down": %v}`+"\n", g.leftDistance, g.rightDistance, g.upDistance, g.downDistance)), nil
+}
+```
 
 ### Receiving and Decoding the Stream in JavaScript
 - Process of stream reception in JavaScript via a worker thread.

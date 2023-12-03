@@ -270,15 +270,76 @@ func (g *gesture) MarshalJSON() ([]byte, error) {
 }
 ```
 
-What we have now is a set of events that are aggregated into a gesture struct, and serialized in binary so they can be transmitted to the client.
-We expose a `/gestures` endpoint and serves the flow of gestures in a continuous way.
+What we have now is a collection of events that are aggregated into a `gesture` struct and serialized into binary format for transmission to the client.
+We have set up a `/gestures` endpoint to continuously serve this flow of gesture data.
 
 ### Receiving and Decoding the Stream in JavaScript
-- Process of stream reception in JavaScript via a worker thread.
-- Details on decoding and message transfer to the main thread through post requests.
+
+On the client side, we fetch the data in JavaScript, using a worker thread to retrieve and analyze the gestures.
+
+The worker receives a set of movements (a serialized `gesture` struct) and interprets them into higher-level commands, such as a "swipe left" action.
+
+```js
+const gestureWorker = new Worker('worker_gesture_processing.js');
+
+gestureWorker.onmessage = (event) => {
+    const data = event.data;
+    switch (data.type) {
+        case 'gesture':
+            switch (data.value) {
+                case 'left':
+                    // Send the order to switch slide to the iFrame
+                    document.getElementById('content').contentWindow.postMessage(JSON.stringify({ method: 'left' }), '*');
+                    break;
+                // ...
+```
+
+Within the worker thread, we use the `fetch` method to obtain the data from the `/gestures` endpoint. 
+We then create a `reader` and continuously loop to read the incoming data.
+
+```js
+const response = await fetch('/gestures');
+
+const reader = response.body.getReader();
+const decoder = new TextDecoder('utf-8');
+let buffer = '';
+
+while (true) {
+    const { value, done } = await reader.read();
+    //...
+    buffer += decoder.decode(value, { stream: true });
+
+    while (buffer.includes('\n')) {
+        const index = buffer.indexOf('\n');
+        const jsonStr = buffer.slice(0, index);
+        buffer = buffer.slice(index + 1);
+
+        try {
+            const json = JSON.parse(jsonStr);
+            let swipe = checkSwipeDirection(json);
+            //...
+        }
+//...
+```
+
+The `checkSwipeDirection` function analyzes the JSON data, identifying swiping gestures and transmitting them as appropriate actions.
+
+With this setup, we now have a complete mechanism in place to capture events, detect swipe gestures, and initiate corresponding actions.
+
+That's all, folks!
 
 ## Conclusion
-- Reflecting on the journey and learnings.
-- Reinforcing the core message: simpler solutions for complex problems.
-- Encouraging exploration beyond default choices.
+
+In conclusion, the development journey of enhancing my tool, goMarkableStream, has been a vivid testament to the adage "simple is complex," underscoring the inherent value in embracing simplicity.
+While the allure of frameworks and sophisticated protocols is undeniable, this project illustrates that they aren't always the optimal choice for straightforward tasks.
+By sticking to the basic principles of Unix philosophy, where every interaction is treated as a stream of bytes, I was able to devise a solution that was both effective and elegant in its simplicity.
+
+In this journey I also presented my decision to read and process events directly using out-of-the-box Go tools, without using third-party libraries.
+In line with Rob Pike's wisdom that "_a little copying is better than a little dependency_", 
+this method not only ensured a more streamlined development process but also granted me a deeper understanding and control over the functionality I was building.
+
+Ultimately, this experience has been a celebration of mastering bytes and the joys of hands-on software craftsmanship.
+It serves as a reminder that sometimes, the best solutions arise not from the complexity and sophistication of the tools we use, 
+but from our ability to strip a problem down to its bare essentials and tackle it head-on.
+The old Unix philosophy, often overlooked, still holds a treasure trove of wisdom for modern developers, advocating for simplicity, clarity, and the fun inherent in direct byte manipulation.
 

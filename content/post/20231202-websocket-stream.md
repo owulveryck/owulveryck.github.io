@@ -91,7 +91,7 @@ I chose Go for the server-side language due to its self-sufficient packaging, cr
 
 > "Everything is a file" is a principle in Unix and its derivatives, where input/output interactions with resources such as documents, hard-drives, modems, keyboards, printers, and some inter-process and network communications are treated as simple byte streams accessible through the filesystem namespace - [source Wikipedia](https://en.wikipedia.org/wiki/Everything_is_a_file).
 
-### Reding the events in Go
+### Reading the events in Go
 
 The "file" event is a character device, offering a binary representation of an event.
 In Go, an event's set of bytes could be structured like this:

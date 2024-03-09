@@ -4,9 +4,9 @@ date: 2024-03-09T12:15:33+01:00
 lastmod: 2024-03-09T12:15:33+01:00
 draft: true
 keywords: []
-description: "Discover how I transformed my reMarkable tablet into a portable whiteboard 📒✨, accessible from anywhere via a secure WireGuard VPN (tailscale) and cloud-based reverse proxy setup.
-From the comforts of WFH to the dynamic world of mobility, learn the tech behind my solution.
-"
+summary: Discover how I transformed my reMarkable tablet into a portable whiteboard 📒✨, accessible from anywhere via a secure WireGuard VPN (tailscale) and cloud-based reverse proxy setup.
+  
+  From the comforts of WFH to the dynamic world of mobility, learn the tech behind the solution.
 tags: []
 categories: []
 author: ""
@@ -15,13 +15,10 @@ author: ""
 # weight: 1
 # You can also close(false) or open(true) something for this content.
 # P.S.
-comment can only be closed
 comment: false
 toc: true
 autoCollapseToc: false
 # You can also define another contentCopyright.
-e.g.
-contentCopyright: "This is another copyright."
 contentCopyright: false
 reward: false
 mathjax: false

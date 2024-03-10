@@ -30,7 +30,6 @@ mathjax: false
 #     weight: 1
 ---
 
-<!--more-->
 In the height of the work-from-home era, I developed goMarkableStream, a tool designed to seamlessly stream content from my reMarkable tablet during video calls.
 The tool moved from a proof of concept to become a part of my daily toolbox. The idea behind the tool is:
 
@@ -60,8 +59,63 @@ This part will give hints about the wireguard mechanism, and expose the basic el
 Before the pandemic, we used VPNs to connect to the office from home... Now, I've switched the paradigm to connect to home from the office.
 I guess that this is the follow-up of the bring your own device (BYOD) evolution.
 
-## First solution: NGrok
+## First problem and first solution: NGrok
 
+As [I blogged a couple of months ago](https://blog.owulveryck.info/2023/10/10/rethinking-presentations-beyond-static-slides.html), I am using my tablet as support for presentations.
+This is working smoothly on my own network, but I was facing problems when I moved to a site with limitations.
+I thought that I could always bring my own laptop with me, but that is not always the case. So, I needed a way to expose the streaming service to the Internet and give the address to the people in charge of presenting the content.
+
+The first and easy step I found as a solution was to embed the NGrok service in my tool.
+Actually, NGrok's promise is:
+
+> Connect to external networks in a consistent, secure, and repeatable manner without requiring any changes to network configurations.
+- Bring Your Own Cloud (BYOC) Connectivity
+- IoT Connectivity
+
+The implementation was fairly easy to be embedded in the tool. 
+Actually, as there is a Go SDK for NGrok and my tool is written in Go, I simply needed to set up a custom listener to my service and the framework did the rest.
+
+Basically, NGrok creates a custom `Listener`, and all I need to do is to switch the basic listener of the HTTP service to use this listener instead.
+
+Here is a helper function to initialize the listener based on a configuration structure:
+```go 
+func setupListener(ctx context.Context, c *configuration) (net.Listener, error) {
+        switch c.BindAddr {
+        case "ngrok":
+                l, err := ngrok.Listen(ctx,
+                        config.HTTPEndpoint(),
+                        ngrok.WithAuthtokenFromEnv(),
+                )
+                c.BindAddr = l.Addr().String()
+                c.TLS = false
+                return l, err
+        default:
+                return net.Listen("tcp", c.BindAddr)
+        }
+}
+```
+
+And here is its usage in the main loop (`handler` had been configured before):
+
+```go 
+l, err := setupListener(context.Background(), &c)
+// ...
+log.Fatal(http.Serve(l, handler))
+```
+
+When I launch the tool, with the correct environment variables, it connects to the NGrok service and displays the external URL to connect to.
+And voilà: it works!
+
+However, there are constraints and limitations:
+
+- First of all, with the free version of NGrok, the network is limited. I will not be able to use my tool the entire month, but I could live with it.
+- The second problem is that I cannot configure the DNS of the endpoint on the free version. And every time it restarts, the URL of the endpoint changes. This is annoying.
+
+All of these problems would have been fixed by paying for the NGrok service, but it is far too expensive for my needs and indeed, would not have solved the last problem:
+
+The solution does not handle roaming (changing networks) and long pauses (when the tablet is sleeping for a long time) well. That made the solution unreliable.
+
+So I looked for another solution.
 
 ### Solution: setup a VPN
 
@@ -138,6 +192,7 @@ When combined with other features of Tailscale, this lets you create new and int
 
 - **Recap:** Summarize the key points discussed in the article and the benefits of your setup.
 - **Encouragement:** Encourage readers to explore the possibilities of VPNs and secure networking for their own projects.
+
 
 
 

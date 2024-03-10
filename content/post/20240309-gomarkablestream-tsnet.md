@@ -1,5 +1,5 @@
 ---
-title: "Seamless Streaming with goMarkableStream: A Journey from Home to the World"
+title: "After the BYOD, BYON (briging your own network): a journey from Home to the World"
 date: 2024-03-09T12:15:33+01:00
 lastmod: 2024-03-09T12:15:33+01:00
 draft: true
@@ -31,12 +31,37 @@ mathjax: false
 ---
 
 <!--more-->
-In the height of the work-from-home era, I developed goMarkableStream, a tool designed to seamlessly stream content from my reMarkable tablet during video calls—a solution 
-that proved invaluable for remote collaboration and sharing ideas in real time.
+In the height of the work-from-home era, I developed goMarkableStream, a tool designed to seamlessly stream content from my reMarkable tablet during video calls.
+The tool moved from a proof of concept to become a part of my daily toolbox. The idea behind the tool is:
 
-I've shared the details of this creation on this blog, highlighting how it bridged the gap between digital and handwritten content in virtual meetings.
+A service is running on the reMarkable device and captures the image. 
+It exposes a service that serves the image over HTTP(s) with a custom implementation. 
+Then, a renderer is encoded in the browser in WebGL/JS to display the content of the screen. 
+During a video call, I can share a browser tab and therefore share what I am writing with the audience.
 
-However, as the full-time remote work phase has waned and we've transitioned back to a more mobile lifestyle, my needs have evolved.
+Indeed, the solution brought value for remote collaboration and sharing ideas in real-time.
+
+I've shared the details of this journey, highlighting how little by little, it bridged the gap between physical and virtual meetings.
+
+However, as the full-time remote work phase has declined and we've transitioned back to a more mobile lifestyle, the solution that exposes a service on a local network reaches its limits.
+
+In a hybrid scenario, I don't know what network topology I will encounter and their limitations.
+Therefore, I faced situations where I tethered my mobile connection to my tablet and was simply unable to stream the content due to limitations.
+
+With hybrid work, and even with a work-from-anywhere situation (home, office, client sites), I need to change the paradigm and to be able to stream over the Internet.
+As I cannot simply expose the streaming service hosted on my tablet to the Internet, I need to set up an infrastructure that will secure and route the traffic from the internet to the streaming service.
+
+This article describes the journey to achieve this, from a simple reverse proxy via NGrok to a VPN solution based on WireGuard.
+
+I will first expose the solution based on a reverse proxy powered by NGrok.
+The I will explain the limitations that lead me to the solution of accessing the service through a VPN powered by Tailscale.
+This part will give hints about the wireguard mechanism, and expose the basic elements of the infrastructure in place to expose the streaming service.
+
+Before the pandemic, we used VPNs to connect to the office from home... Now, I've switched the paradigm to connect to home from the office.
+I guess that this is the follow-up of the bring your own device (BYOD) evolution.
+
+## First solution: NGrok
+
 
 ### Solution: setup a VPN
 

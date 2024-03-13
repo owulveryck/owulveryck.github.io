@@ -117,7 +117,21 @@ The solution does not handle roaming (changing networks) and long pauses (when t
 
 So I looked for another solution.
 
-### Solution: setup a VPN
+### Solution: a VPN ?
+
+A solution would be to expose the service over the internet through a fixed name. However, there are challenges:
+
+- There is no easy way to expose a private service hosted on a device to the internet (specially over mobile tethering or unknown network).
+- It is risky to expose the service directly to the internet.
+
+To address this, I would need to access the service through a gateway (similar to the principle of NGrok), but the gateway should be "intelligent" enough to handle network changes.
+The traffic betwween the gateway and the device should go through the Internet and ve encaspulated in a way that the gateway knows how to access the device securely whatever its location is.
+
+These constraints are related to the hosting infrastructure and are not relevant for implementation within the tool itself.
+
+This is where a VPN enters the scene as a potential solution:
+
+If I could create a VPN that manages the reverse proxy and the tablet, I could seamlessly expose the service over the internet through the gateway while independently handling the way the device connects to the VPN.
 
 ### Why WireGuard and Tailscale?
 

@@ -80,6 +80,7 @@ Actually, as there is a Go SDK for NGrok and my tool is written in Go, I simply 
 Basically, NGrok creates a custom `Listener`, and all I need to do is to switch the basic listener of the HTTP service to use this listener instead.
 
 Here is a helper function to initialize the listener based on a configuration structure:
+
 ```go 
 func setupListener(ctx context.Context, c *configuration) (net.Listener, error) {
         switch c.BindAddr {
@@ -203,7 +204,7 @@ When combined with other features of Tailscale, this lets you create new and int
 - **Recap:** Summarize the key points discussed in the article and the benefits of your setup.
 - **Encouragement:** Encourage readers to explore the possibilities of VPNs and secure networking for their own projects.
 
-
+![Admin panel of tailscale with a list of machine connected, and an highlight on the gomarkablestream service](/assets/tsnet-gomarkablestream.png)
 
 Testing internally:
 

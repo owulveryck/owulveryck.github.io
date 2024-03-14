@@ -30,7 +30,9 @@ mathjax: false
 #     weight: 1
 ---
 
-In the height of the work-from-home era, I developed goMarkableStream, a tool designed to seamlessly stream content from my reMarkable tablet during video calls.
+In the era of work-from-home, I developed goMarkableStream, a tool designed to seamlessly stream content from my reMarkable tablet during video calls.
+The goal was to replace the physical whiteboard doodling when doing remote meetings.
+
 The tool moved from a proof of concept to become a part of my daily toolbox. The idea behind the tool is:
 
 A service is running on the reMarkable device and captures the image. 

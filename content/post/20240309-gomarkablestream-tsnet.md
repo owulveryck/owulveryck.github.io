@@ -119,7 +119,7 @@ The solution does not handle roaming (changing networks) and long pauses (when t
 
 So I looked for another solution.
 
-## Solution: a VPN ?
+## a VPN ?
 
 A potential solution involves making the service accessible over the internet using a consistent name. However, several challenges arise:
 

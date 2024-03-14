@@ -117,31 +117,33 @@ The solution does not handle roaming (changing networks) and long pauses (when t
 
 So I looked for another solution.
 
-### Solution: a VPN ?
+## Solution: a VPN ?
 
-A solution would be to expose the service over the internet through a fixed name. However, there are challenges:
+A potential solution involves making the service accessible over the internet using a consistent name. However, several challenges arise:
 
-- There is no easy way to expose a private service hosted on a device to the internet (specially over mobile tethering or unknown network).
-- It is risky to expose the service directly to the internet.
+- Devices often connect to a private network and access the internet via a gateway.
+- Directly exposing the service to the internet poses security risks.
 
-To address this, I would need to access the service through a gateway (similar to the principle of NGrok), but the gateway should be "intelligent" enough to handle network changes.
-The traffic betwween the gateway and the device should go through the Internet and ve encaspulated in a way that the gateway knows how to access the device securely whatever its location is.
+A solution to my problem involves a gateway that directs external traffic to the specified service on my device within the private network.
+But,tTo accommodate roaming, the gateway must either:
 
-These constraints are related to the hosting infrastructure and are not relevant for implementation within the tool itself.
+- Be "intelligent" and track the device's address, or
+- Ensure the device's address within the network remains static.
 
-This is where a VPN enters the scene as a potential solution:
+An intelligent gateway creates a strong dependency on the service and requires a persistence layer to monitor the device's location, an approach I prefer to avoid.
 
-If I could create a VPN that manages the reverse proxy and the tablet, I could seamlessly expose the service over the internet through the gateway while independently handling the way the device connects to the VPN.
+Alternatively, leveraging the infrastructure to assign a static address to the device is easily achievable by establishing a VPN.
+This VPN will extend the private network over the internet, keeping the device's IP address constant, regardless of the connection topology.
 
-### Why WireGuard and Tailscale?
+In conventional VPN protocols like IPsec or OpenVPN, the VPN's connection typically depends on the connecting device's IP address.
+If the device's IP address change (e.g., when switching between networks), a typical VPN connection would drop, necessitating the re-establishment of the connection under the new IP address. 
+This procedure can cause delays and disruptions in connectivity.
 
-In traditional VPN protocols, such as IPsec or OpenVPN, the VPN connection is typically tied to the IP address of the connecting device.
-If the device's IP address changes (for example, when moving from one network to another), the VPN connection would usually drop, requiring a re-establishment of the connection under the new IP address.
-This process can introduce delays and interruptions in connectivity.
+Fortunately, a modern alternative to traditional VPNs exists: Wireguard!
 
 #### WireGuard's Approach
 
-WireGuard, on the other hand, takes a different approach that inherently supports seamless roaming:
+WireGuard, takes a different approach than traditional VPN that inherently supports seamless roaming:
 
 - **Connection Identification:** WireGuard identifies connections not by the source or destination IP addresses but through the cryptographic identity of the peers (i.e., their public keys).
 This means that as long as the cryptographic identity remains the same, WireGuard does not care if the actual IP address of a device changes.
@@ -151,15 +153,7 @@ The server then automatically updates its internal routing table with the client
 - **Rapid Response:** This mechanism allows for almost instantaneous switching between networks.
 Users typically do not notice any disruption in their VPN connection as they move across different networks, making WireGuard particularly suited for mobile devices that frequently change network environments.
 
-#### Benefits of Roaming
 
-The roaming feature offers several practical benefits:
-
-- **Uninterrupted Connectivity:** Users experience seamless transitions between networks without losing VPN protection or experiencing drops in their connections.
-- **Improved User Experience:** The seamless nature of roaming with WireGuard enhances the overall user experience, as there are no manual reconnections or VPN downtime during network changes.
-- **Efficiency for Mobile Devices:** For devices that switch networks often, WireGuard's efficient handling of IP changes ensures minimal battery consumption and resource usage compared to protocols that require re-establishing connections.
-
-In summary, WireGuard's roaming capability is a significant advancement in VPN technology, providing users with stable, continuous connectivity across different networks and enhancing the usability of VPNs on mobile devices and in dynamic network environments."
 
 ### Challenges and Solutions in Integration
 
@@ -209,5 +203,19 @@ When combined with other features of Tailscale, this lets you create new and int
 
 
 
+Testing internally:
 
+```hcl
+{
+        admin off
+        auto_https disable_redirects
+}
+192.168.88.100:2001 {
+        reverse_proxy gomarkablestream:2001
 
+        # Basic authentication
+        basicauth /* {
+                user $#ENCRYPTEDPASSWORD
+        }
+}
+```

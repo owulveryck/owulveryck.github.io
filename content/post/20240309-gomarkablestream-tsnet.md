@@ -269,3 +269,16 @@ The service accommodates roaming; thus, wherever I am, I can connect my tablet t
 
 ### Conclusion
 
+This solution is functional but can be enhanced in multiple dimensions.
+
+Firstly, operating a machine continuously in the cloud is neither cost-effective nor environmentally friendly. A more efficient alternative would be to adopt a serverless approach, encapsulating the gateway within a Docker container that is launched "on demand".
+
+Regarding security, the current approach involves trusting devices within the tailnet. A preferable strategy would involve transitioning to a [zero trust architecture](https://cyber.gouv.fr/publications/le-modele-zero-trust), which does not inherently trust any entity inside or outside the network.
+
+I plan to consult my colleague [François](https://www.linkedin.com/in/%F0%9F%90%B3-fran%C3%A7ois-hamy-00433411a/) for assistance in moving towards this direction.
+
+Feature-wise, there's an interest in upgrading the gateway's "basic auth" to a more robust mechanism and introducing the capability to generate temporary access. This would allow granting permission to third parties to temporarily view the stream.
+
+#### Final word
+
+As always, I find joy in confronting the new constraints presented by our evolving world. These challenges not only pose issues but also compel me to embrace my role as an engineer: to identify and execute solutions. This process represents the pinnacle of learning.

@@ -84,9 +84,9 @@ The implementation was fairly easy to be embedded in the tool.
 
 _Note:_ I am embedding this in the tool because I want the application to be self sufficient, be less intrusive in the native system of the tablet, and therefore easy to install and run.
 
-Actually, as there is a [Go SDK for NGrok](https://ngrok.com/docs/using-ngrok-with/go/) and my tool is written in Go, I simply needed to set up a custom listener to my service and the framework did the rest.
+Actually, as there is a [Go SDK for NGrok](https://ngrok.com/docs/using-ngrok-with/go/) and my tool is written in Go, I simply to import and initiate the service.
 
-Basically, NGrok creates a custom `Listener`, and all I need to do is to switch the basic listener of the HTTP service to use this listener instead. The magic happens under the hood (connexion to the NGrok service and so on.).
+Basically, NGrok implements a [`Listener`](https://pkg.go.dev/net#Listener), and all I need to do is to switch the basic listener of the HTTP service to use this listener instead. The magic happens under the hood (connexion to the NGrok service and so on.).
 
 Here is a helper function to initialize the listener based on a configuration structure:
 
@@ -142,12 +142,12 @@ But,tTo accommodate roaming, the gateway must either:
 - Be "intelligent" and track the device's address, or
 - Ensure the device's address within the network remains static.
 
-An intelligent gateway creates a strong dependency on the service and requires a persistence layer to monitor the device's location, an approach I prefer to avoid.
+An **intelligent gateway** creates a **strong dependency** on the service and **requires a persistence layer** to monitor the device's location, an approach I prefer to avoid.
 
 Alternatively, leveraging the infrastructure to assign a static address to the device is easily achievable by establishing a VPN.
 This VPN will extend the private network over the internet, keeping the device's IP address constant, regardless of the connection topology.
 
-In conventional VPN protocols like IPsec or OpenVPN, the VPN's connection typically depends on the connecting device's IP address.
+**In conventional VPN protocols** like IPsec or OpenVPN, the VPN's **connection** typically **depends on the connecting device's IP address**.
 If the device's IP address change (e.g., when switching between networks), a typical VPN connection would drop, necessitating the re-establishment of the connection under the new IP address. 
 This procedure can cause delays and disruptions in connectivity.
 
@@ -165,59 +165,83 @@ The server then automatically updates its internal routing table with the client
 - **Rapid Response:** This mechanism allows for almost instantaneous switching between networks.
 Users typically do not notice any disruption in their VPN connection as they move across different networks, making WireGuard particularly suited for mobile devices that frequently change network environments.
 
+WireGuard is fully implemented in [Tailscale](https://tailscale.com/). 
+
+Tailscale implements a _software-defined network (SDN)_. 
+At its core, it establishes a virtual network device at the operating system's kernel level, thereby providing a network service accessible to all applications.
 
 ### Challenges and Solutions in Integration
 
-TODO: explain how I tried to implement tailscalem but the kernel of the remarkable does not support tunneling, therefore I must choose a solution that works in userspace.
+Tailscale is developed in Go, taking advantage of the language's support for self-contained applications.
+This approach means that a single binary can encompass all of Tailscale's functionalities.
+The Turing completeness of Go facilitates the ease of cross-compilation and porting the code across different architectures.
 
-### Introduction to the tsnet Library
+You simply run `./tailscale` and handles the process and create or join an IP network called "_tailnet_"
+
+Consequently, there is a version of Tailscale compatible with the reMarkable device, which is a Linux-based system operating on an ARM v7 processor.
+
+Sadly, the reMarkable linux kernel does not support the [tun/tap](https://docs.kernel.org/networking/tuntap.html) device driver, and so it is impossible to run tailscale out-of-the-box.
+
+_Note_: it was pointed out on Reddit that running Tailscale on the reMarkable is actually possible, as explained [here](https://remarkable.guide/tech/tailscale.html).
+
+However, as Tailscale operates as an SDN, there is an alternative method to connect to the service without depending on kernel support, purely in userspace: [_tsnet_](https://tailscale.com/kb/1244/tsnet).
+
+## Introduction to the tsnet Library
 
 > tsnet is a library that lets you embed Tailscale inside of a Go program.
 This uses a userspace TCP/IP networking stack and makes direct connections to your nodes over your tailnet just like any other machine on your tailnet would.
 When combined with other features of Tailscale, this lets you create new and interesting ways to use computers that you would have never thought about before.
 
-## Implementation of the solution
+### Implementation of the solution
 
-### Security Considerations
+Like NGrok, tsnet implements a listener, enabling us to modify the function we've previously defined to accommodate the "tailscale" scenario.
 
-- **VPN Security:** Outline the security measures inherent in using WireGuard and Tailscale, such as end-to-end encryption.
-- **Additional Security Measures:** Describe any extra steps taken to ensure data privacy and protection, like network segmentation or access controls.
+There's a neat trick involved. 
+During the first connection, to register the service on the tailnet, the framework displays a URL for authentication via Single Sign-On (SSO). 
+If we turn off the logging, this crucial information no longer appears. 
+While there are several ways to manage this situation, the simplest solution is to initiate the service in "development mode" for the first use (by enabling a specific flag), 
+and then suppress the logging when this flag is deactivated (for instance, when starting as a service).
 
-### Configuration and Setup
+Here is the proposed implementation:
 
-- **Setting Up Tailscale and WireGuard:** Provide a step-by-step guide on configuring Tailscale on the reMarkable and setting up WireGuard VPN.
-- **Cloud Machine as Gateway:** Explain how you configured the cloud machine to act as a gateway and the role of the reverse proxy in this setup.
+```go
+func setupListener(ctx context.Context, c *configuration) (net.Listener, error) {
+        switch c.BindAddr {
+        case "tailscale":
+                srv := new(tsnet.Server)
+                srv.Hostname = "gomarkablestream"
+                // Disable logs when not in devmode
+                if !c.DevMode {
+                        srv.Logf = func(string, ...any) {}
+                }
+                return srv.Listen("tcp", ":2001")
+        case "ngrok":
+                l, err := ngrok.Listen(ctx,
+                        config.HTTPEndpoint(),
+                        ngrok.WithAuthtokenFromEnv(),
+                )
+                c.BindAddr = l.Addr().String()
+                c.TLS = false
+                return l, err
+        default:
+                return net.Listen("tcp", s.BindAddr)
+        }
+}
+```
 
-### Reverse Proxy and TLS Management
-
-- **Role of the Reverse Proxy:** Detail how the reverse proxy manages traffic and facilitates secure access to your network.
-- **Automating TLS with Let's Encrypt:** Describe the process of obtaining and renewing TLS certificates automatically to keep connections secure.
-
-### Practical Benefits and Use Cases
-
-- **Enhanced Accessibility:** Share how accessing the reMarkable's streaming service remotely has improved your workflow or use cases.
-- **Examples of Benefits:** Provide specific examples or scenarios where this setup has been particularly beneficial.
-
-### Performance and Reliability
-
-- **Impact on Device Performance:** Discuss any observed effects on the reMarkable's performance or battery life.
-- **Reliability of the Setup:** Share insights on the setup's reliability, including any downtime or connectivity issues experienced.
-
-### Future Improvements and Expansions
-
-- **Planned Enhancements:** Talk about potential future improvements or expansions, such as adding more devices to the VPN network.
-- **Security Enhancements:** Consider future security measures that could further protect your setup.
-
-### Conclusion
-
-- **Recap:** Summarize the key points discussed in the article and the benefits of your setup.
-- **Encouragement:** Encourage readers to explore the possibilities of VPNs and secure networking for their own projects.
+When the service starts, it exposes the service, and appears on the tailscale console:
 
 ![Admin panel of tailscale with a list of machine connected, and an highlight on the gomarkablestream service](/assets/tsnet-gomarkablestream.png)
 
+The service is then accessible through an http call to `100.81.233.46` (in the example).
+
+## The rest of the infrastructure
+
+### Caddy as a reverse proxy
+
 Testing internally:
 
-```hcl
+```Caddyfile
 {
         admin off
         auto_https disable_redirects
@@ -231,3 +255,9 @@ Testing internally:
         }
 }
 ```
+### Conclusion
+
+- **Recap:** Summarize the key points discussed in the article and the benefits of your setup.
+- **Encouragement:** Encourage readers to explore the possibilities of VPNs and secure networking for their own projects.
+
+

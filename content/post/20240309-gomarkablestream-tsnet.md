@@ -1,5 +1,5 @@
 ---
-title: "After the BYOD, BYOC (briging your own cloud): a journey from Home to the World"
+title: "After the BYOD, BYOC (bringing your own cloud): a journey from Home to the World"
 date: 2024-03-09T12:15:33+01:00
 lastmod: 2024-03-09T12:15:33+01:00
 draft: false

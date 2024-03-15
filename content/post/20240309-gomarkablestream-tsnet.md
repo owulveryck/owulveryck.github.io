@@ -2,7 +2,7 @@
 title: "After the BYOD, BYOC (briging your own cloud): a journey from Home to the World"
 date: 2024-03-09T12:15:33+01:00
 lastmod: 2024-03-09T12:15:33+01:00
-draft: true
+draft: false
 keywords: []
 summary: Discover how I transformed my reMarkable tablet into a portable whiteboard 📒✨, accessible from anywhere via a secure WireGuard VPN (tailscale) and cloud-based reverse proxy setup.
   

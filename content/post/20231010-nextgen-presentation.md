@@ -121,7 +121,7 @@ Nevertheless, whenever possible, I adhere to a wired connection to my laptop and
 
 ### Framing the presentation in a PDF
 
-To blend the traditional with the new, I employ a script that converts a collection of images into a PDF.
+To meld the traditional with the new, I employ a script that converts a collection of images into a PDF.
 
 This simulates the familiar slide structure but with a twist – these "slides" can be written on, ensuring that while there's a base for the presentation, the real-time interaction remains intact.
 

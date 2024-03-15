@@ -1,5 +1,5 @@
 ---
-title: "After the BYOD, BYON (briging your own network): a journey from Home to the World"
+title: "After the BYOD, BYOC (briging your own cloud): a journey from Home to the World"
 date: 2024-03-09T12:15:33+01:00
 lastmod: 2024-03-09T12:15:33+01:00
 draft: true
@@ -237,16 +237,24 @@ The service is then accessible through an http call to `100.81.233.46` (in the e
 
 ## The rest of the infrastructure
 
+Now the service is exposed in the VPN, I need to setup a gateway to access it from another network and eventually from the Internet.
+
+I will use [`Caddy`](https://caddyserver.com/) as a reverse proxy on a node of my tailnet. This node will have both a connection the tailnet and a connection to the target network (the one where I need to get the stream).
+
 ### Caddy as a reverse proxy
 
-Testing internally:
+The Caddy service will run on an EC2 instance on the internet, with Tailscale installed to ensure the machine joins my tailnet.
+I will then assign a DNS name to the EC2 instance (for this example, let's use myremarkable.chezmoi.com).
+
+This example Caddy configuration (Caddyfile) will start the service, automatically obtain a certificate from Let's Encrypt, and set up basic authentication.
+Once authenticated, it will route the traffic to the remarkable device.
 
 ```Caddyfile
 {
         admin off
-        auto_https disable_redirects
 }
-192.168.88.100:2001 {
+// This is the external name of the node
+myremarkable.chezmoi.com {
         reverse_proxy gomarkablestream:2001
 
         # Basic authentication
@@ -255,9 +263,9 @@ Testing internally:
         }
 }
 ```
+This configuration ensures that accessing https://myremarkable.chezmoi.com from anywhere on the internet will securely display the content from my tablet, 
+provided the tablet is connected to the internet. 
+The service accommodates roaming; thus, wherever I am, I can connect my tablet to the internet (e.g., via my phone) and simply access the URL to seamlessly connect.
+
 ### Conclusion
-
-- **Recap:** Summarize the key points discussed in the article and the benefits of your setup.
-- **Encouragement:** Encourage readers to explore the possibilities of VPNs and secure networking for their own projects.
-
 

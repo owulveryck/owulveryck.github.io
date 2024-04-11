@@ -64,8 +64,24 @@ In this article, I attempt to apply a well-recognized model of evolutionary prog
 **The objective** is to aid in **visualizing data maturity** and assist companies in **identifying** their **tipping point**, 
 i.e., when they will start seeing **significant benefits** from **implementing data contracts** and **treating data as a product**.
 
-## About the evolution
+## Modeling the evolution
 
+I will first explain the model I will use. 
+This model is known as the evolution model by Simon Wardley and is successfully implemented in Wardley Maps. 
+My goal here is not to describe a specific company's landscape, so I won't need a full map. 
+Instead, I will use the evolution model and try to apply its general purpose function to the data.
 
+**Disclaimer: Regarding the model:**
+The theory of evolution is well-suited for application in a competitive environment where everything evolves based on supply and demand. I am considering businesses that are subject to those constraints of competition and, consequently, their data will also follow those rules. Therefore, the model will apply.
+
+### TL;DR: what is this model
+
+Simon Warldey needed a way to represent the evolution of the components on his map.
+He could not rely on a basic timescale because it would prevent him from comparing heterogeneous elements and would break the consistency of movement.
+For example, on a time scale, the distance between the genesis and the maturity of a car (around 100 years) would have been much greater than the distance between the same points for a smartphone (around 10 years).
+
+The evolution was function of its ubiquity and its certainty.
+In a market economy, the ubiquity is lead by _demand_. More demand induces more presence. It is a declinaison of the theory of the diffusion of innovation.
+The certainty comes from the Stacey model. 
 
 ![A S curve representing the evolution of the data, the X is the certainty and Y is the ubiquity. There is a division: the botton of the S is raw data, the middle is curated and the top is authoritative. The inflexion point is indicated as data-contract](/assets/data_certitude.svg)

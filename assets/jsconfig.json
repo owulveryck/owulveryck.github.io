@@ -3,7 +3,7 @@
   "baseUrl": ".",
   "paths": {
    "*": [
-    "../../../../.cache/hugo_cache/modules/filecache/modules/pkg/mod/github.com/xianmin/hugo-theme-jane@v0.0.0-20230213123453-1a145d884a8d/assets/*"
+    "../../../../../../var/folders/rm/r_026vn15_qbhd_rr7sqxrbc0000gn/T/hugo_cache/modules/filecache/modules/pkg/mod/github.com/xianmin/hugo-theme-jane@v0.0.0-20230213123453-1a145d884a8d/assets/*"
    ]
   }
  }

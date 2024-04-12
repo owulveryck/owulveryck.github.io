@@ -1,13 +1,11 @@
 ---
-title: "Data Evolution"
+title: "Data-as-a-Product and Data-Contract: An evolutionary approach to data maturity"
 date: 2024-04-09T12:15:33+01:00
 lastmod: 2024-04-09T12:15:33+01:00
 images: [/assets/data_certitude.png]
 draft: false
 keywords: []
-summary: The evolution applied to the data
-  
-  How I changed the data-mesh approach
+summary: Using Simon Wardley's evolution model, I propose a framework for visualizing the maturity of data within a business context, emphasizing the importance of treating data as a product and implementing data contracts to facilitate integration and ensure trust. Ultimately, I suggest that starting with a focus on data-as-a-product is crucial for organizations embarking on their data mesh journey, paving the way for a comprehensive and agile transformation.
 tags: []
 categories: []
 author: ""
@@ -130,10 +128,35 @@ Regarding the notion of certainty and ubiquity, let's categorize the 4 stages of
 
 Here is the representation of those elements on a diagram:
 
+### The representation
+
 ![An S curve representing the evolution of the data, the X is the certainty and Y is the ubiquity. There is a division: the bottom of the S is raw data, the middle is curated, and the top is authoritative. The inflection point is indicated as data-contract.](/assets/data_certitude.svg)
 
-## Data-as-a-product and data-contract
+## Using the diagram: Data-as-a-product and data-contract
+Now, let's use the diagram.
 
+The data will likely follow the evolution S curve. What is interesting is that the evolution of the properties of the data.
+Turning raw data into curated data is mastered. There are major design processes that are helpful in such a transition.
 
+Turning the curated data into authoritative data implies that the data is accessible and usable, maintained, accurate, but the switch is mainly that the data is **endorsed by trusted parties**. 
+At the scale of the business, it means that the domain is responsible and accountable for its data as the domain is, by default, a trusted party in the organization regarding a specific business area.
+
+The transition is not so sharp when the data leave its prison: when it is exposed to the domain.
+
+This is the point where the product thinking applied to the data brings value. And this is the point where a data-contract is helpful to:
+- Facilitate the integration in other use cases of the domain
+- Bring trust in the data
+
+Therefore, thinking of data as a product, like any other product, is something that is required in the exploration stage (it can even be seen as over-engineering), but the model illustrates how it is important to treat the data as a product to serve a general purpose for the business.
 
 ## Conclusion
+
+In recapping, I have always grappled with one question: _where does one begin when seeking to implement the data mesh paradigm?_ 
+Through the journey of exploring this concept, my most recent and profound insight is: the most strategic starting point lies with the data product.
+
+The presented model emphasizes the pivotal role of the data product. It is projected as an effective solution to an imperative issue: its significant importance becomes evident as data migrates from a single application sphere into the broader domain. 
+Beyond this, it becomes absolutely critical when the data is expected to deliver tangible value that surpasses its original, defined domain.
+
+The next phase of our journey in understanding the data mesh paradigm involves formalizing a method to assess data maturity accurately. 
+By examining each piece of data, contract by contract, and domain by domain, we move closer to building a comprehensive and effective mesh. 
+Throughout this process, remembering to consider data as a product is crucial. Doing so will reap rewards for an organization as it evolves and matures in its data management strategies.

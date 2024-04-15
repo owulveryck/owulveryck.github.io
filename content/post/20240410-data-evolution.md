@@ -101,7 +101,7 @@ The analysis of the model allowed for formalizing four steps of evolution labele
 ![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMFN3o1ujMDfd4y78hHCRFmPSTf9BP5C_Ej1jtEyZrmNC21aBw-18gAbVk88nKHdVa3gd_-D3z3pKKfO4Wa6XsIa1BuTkeiazqGLdu8vlUPsSaXeDgbkbvrMy3CSHlUiqk5ol1ig/s1600/Screen+Shot+2014-01-09+at+13.26.48.png)
 (source [Simon Wardley's blog.garvediance.org](https://blog.gardeviance.org/2014/03/on-mapping-and-evolution-axis.html))
 
-Those are just common labels for a form of capital. For the data, according to Wardley's theory, the labels of the four stages are: **_Unmodeled, divervent, convergent and modeled_**:
+Those are just common labels for a form of capital. For the data, according to Wardley's theory, the labels of the four stages are: **_Unmodeled, divergent, convergent and modeled_**:
 ![](https://i0.wp.com/learnwardleymapping.com/wp-content/uploads/2020/01/20200122_124314.jpg?resize=1080%2C466&ssl=1)
 (source: [learnwardleymapping.com](https://learnwardleymapping.com/2020/01/22/visualizing-the-interaction-of-evolution-and-data-measurement/))
 

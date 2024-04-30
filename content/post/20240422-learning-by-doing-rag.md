@@ -148,9 +148,21 @@ In this scenario, there is no vector base, and the search process is straightfor
 - We then select the best result, which is the one that is most pertinent to the question.
 - Finally, we send this result to the LLM engine via API in prompt mode, along with the original question.
 
-If the input dataset increase in size (for instance, if I utilize the same database for multiple books), a more efficient method for computing similarity will be necessary. This is where the strength of a vector database comes into play.
+### Similarity computation: identifying the relevant segment
 
-**Fourth lesson**: don't over-engineer or over-complicate your stack.
+If the input dataset expands in size (for instance, if I use the same database for multiple books), a more efficient approach for computing similarity will become necessary.
+This is where the power of a vector database shines.
+
+Currently, the similarity calculation is manually executed in a large loop using a basic similarity calculation algorithm.
+However, if the volume of data becomes too large (for example, if I aim to index an entire library), this method will prove inefficient.
+At this point, we will transition to a vector-based approach.
+
+This vector-based system will identify the most suitable "neighbor".
+It remains to be seen which algorithms they employ. Do all vector bases yield the same result? This is a fascinating aspect that I believe warrants further exploration in my role as a consultant.
+
+**Fourth lesson**: don't over-engineer or over-complicate your stack, focus on your problem and use the expertise of specialists
+
+### Let's prompt
 
 ```text
 Use the below information to answer the subsequent question.
@@ -166,12 +178,12 @@ Question: %v
 Use the below information to answer the subsequent question and add the origin.
 Origin: 
 
-chapter v
+chapter %v
 
 Information:
-v
+%v
 
-Question: v
+Question: %v
 ```
 
 To do this, I then have to complete my initial database by adding for each piece, its source. This requires a little thought about its use case upstream. In the exploratory space in POC mode, it's not a problem, but when we want to "productize" the application, it will be annoying to change the
@@ -199,7 +211,7 @@ By compiling the program, I can query my knowledge base:
 10. Failure to adapt to predictable disruptions, such as the shift from products to utility services, leading to companies' downfall.
 ```
 
-As the engine is the GPT-x language, I can even ask it in French, it will manage:
+As the engine is the GPT-x language, I can even ask it in french, it will manage:
 
 ```text
 ❯ ./rag -db=../../data/db/wardley.db -answer "donne moi tous les exemples d'inertie" 2>/dev/null
@@ -234,6 +246,7 @@ I will continue to play with this. I think I will add a small template engine fo
 Indeed, for the base, it requires clarification:
 
 I have three "assets":
+
 - the database that contains the information I want to give to my engine in the context of an exchange I will have (question or chat)
 - the prompt template: the structure of what I will send to my LLM engine by completing with the question and the information from the database
 - the "Go" engine which will, depending on the question, find the information to generate the prompt and send it to the LLM engine.
@@ -258,5 +271,6 @@ The DB contains two tables:
 ## chunks
 
 This table currently has 4 columns:
+
 - `id`
 - `path` - the path of the source file (in my case `

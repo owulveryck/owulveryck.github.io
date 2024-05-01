@@ -31,24 +31,24 @@ mathjax: false
 
 ## Context
 
-In this article, I will delve into the concept of RAG, but not from the usual explanation.
-My goal is more or less to write a RAG nearly _from scratch_ to see it as a pure engineering problem.
+In this article, I will explore the concept of RAG, but not in the typical way. My aim is to essentially create a RAG from the beginning to view it as a purely engineering problem.
 
-Learning by doing _from scratch_ will allow me to:
+Starting from scratch will enable me to:
 
-- eventually discover a kind of [exaptation](https://en.wikipedia.org/wiki/Exaptation) that will, hopefully, guide my decisions as an engineer to seek in a certain direction.
-- to clarify the points of confusion I may have in understanding the system.
+- potentially uncover a form of exaptation that can inform my decisions as an engineer and guide me in a specific direction.
+- clarify any points of confusion I may have in comprehending the system.
 
 **Note:** The _from scratch_ approach is difficult because the generation of the embedding is linked to the model and tokenization, but let's consider it as _from scratch_ for the Engineering part, which will be sufficient for me.
 
-As a bootstrap, I used the information from [this article](https://eli.thegreenplace.net/2023/retrieval-augmented-generation-in-go/) because it's clear and written in Go, and I am fluent in that language.
-No worries, this isn't an article about Go. I have no additional insights to offer beyond the original article, which is already quite lucid.
+As a bootstrap, I used the information from [this article](https://eli.thegreenplace.net/2023/retrieval-augmented-generation-in-go/) because it's clear and written in Go, and I am fluent in that language. I have no additional insights to offer beyond the original article on the technical part (the author made a great job).
+
+Therefore, this isn't an article about Go, but really an article about IT engineering.
 
 In this article, I will write the step by step method I used to write a simple (and non-efficient nor effective) RAG, but I will also note the **discoveries** that may be useful for my work as a consultant and engineer.
 
 ## The use case
 
-In the introductory section, I outlined the anticipated **outcome** I am aiming for. This result revolves around discovering the partial answers to the question: "**What is the engineering role in the setup of a application powered by AI**".
+In the introductory section, I outlined the anticipated **outcome** I am aiming for. This result revolves around discovering the partial answers to the question: "**What is the engineering role in the setup of an application powered by AI**".
 To effectively steer my actions towards this goal, I require a use-case. This use-case should have a clearly defined **output** that signifies the conclusion of this experiment.
 
 Below is the detailed description of the use-case:
@@ -230,8 +230,8 @@ Fifth learning: it is observed here that the results are less complete. It is a 
 
 The fun thing is that I end up with two self-contained assets:
 
-- the binary which is in Go, and therefore does not require installation. It is capable of querying any knowledge base in the format it was designed with
-- the knowledge base `wardley.db`
+- The binary which is in Go, and therefore does not require installation. It is capable of querying any knowledge base in the format it was designed with
+- The knowledge base `wardley.db`
 
 Tomorrow, I can work on another book, generate the embedding, and share it. The better I divide it into pieces, the more useful the base will be... regardless of the inference engine.
 
@@ -247,9 +247,9 @@ Indeed, for the base, it requires clarification:
 
 I have three "assets":
 
-- the database that contains the information I want to give to my engine in the context of an exchange I will have (question or chat)
-- the prompt template: the structure of what I will send to my LLM engine by completing with the question and the information from the database
-- the "Go" engine which will, depending on the question, find the information to generate the prompt and send it to the LLM engine.
+- The database that contains the information I want to give to my engine in the context of an exchange I will have (question or chat)
+- The prompt template: the structure of what I will send to my LLM engine by completing with the question and the information from the database
+- The "Go" engine which will, depending on the question, find the information to generate the prompt and send it to the LLM engine.
 
 There is a strong coupling between the three assets today: the prompt is hardcoded and the SQL queries as well.
 

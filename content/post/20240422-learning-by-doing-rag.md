@@ -42,6 +42,10 @@ In this article, I will write the step by step method I used to write a simple (
 - The final section pertains to the application itself: it will interpret a question, identify the relevant data segment in the database, and query the LLM.
 - The document concludes with a summary and suggestions on how to convert this Proof of Concept (POC) into a custom-made solution.
 
+The sequence of the program is roughly this:
+
+![The image shows a diagram explaining the workflow of a retrieval system using OpenAI API services. A stick figure labeled "User" initiates the process which involves chunking documents, storing vectors in a database, and querying. The steps include the user starting the chunking process, the system reading and segmenting a source document into chunks, converting those chunks into vectors, and storing them in a database. The user then poses a query that the system converts into a vector, retrieves relevant chunk vectors, and constructs a prompt to send to the OpenAI GPT API. The final step is returning the generated response from the API to the user. Components like "OpenAI Embedding API," "Book," "OpenAI GPT API," and "DB" (database) are represented as elements in the flow.](/assets/rag/sequence.svg)
+
 ## The use case
 
 In the introductory section, I outlined the anticipated **outcome** I am aiming for. This result revolves around discovering the partial answers to the question: "**What is the engineering role in the setup of an application powered by AI**".

@@ -140,7 +140,10 @@ I execute the _code_ exactly as outlined in the original blog post. This process
 
 ## Last step: inference
 
+
 Inference forms the core of my application. The process begins when I enter a question. The application then scours my database to find the piece that aligns with the context of the question. This information is then forwarded to OpenAI, which generates a response.
+
+![The image shows a diagram explaining the workflow of a retrieval system using OpenAI API services. A stick figure labeled "User" initiates the process which involves chunking documents, storing vectors in a database, and querying. The steps include the user starting the chunking process, the system reading and segmenting a source document into chunks, converting those chunks into vectors, and storing them in a database. The user then poses a query that the system converts into a vector, retrieves relevant chunk vectors, and constructs a prompt to send to the OpenAI GPT API. The final step is returning the generated response from the API to the user. Components like "OpenAI Embedding API," "Book," "OpenAI GPT API," and "DB" (database) are represented as elements in the flow.](/assets/rag/sequence_inference.svg)
 
 In this scenario, there is no vector base, and the search process is straightforward:
 

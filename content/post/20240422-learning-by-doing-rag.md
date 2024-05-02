@@ -8,12 +8,7 @@ keywords: []
 summary: In this article, I delve into the concept of RAG, aiming to write a RAG nearly from scratch to view it as a pure engineering problem. Learning by doing from scratch will help me eventually discover a kind of exaptation that can guide my decisions as an engineer and clarify any points of confusion I have in understanding the system. I used information from an article in Go because I am fluent in that language. I will write a step-by-step method to create a simple (though not efficient or effective) RAG, noting discoveries that may be useful for my work as a consultant and engineer.
 tags: []
 categories: []
-author: ""
-
-# Uncomment to pin article to front page
-# weight: 1
-# You can also close(false) or open(true) something for this content.
-# P.S.
+author: "Olivier Wulveryck"
 comment: false
 toc: true
 autoCollapseToc: false
@@ -21,12 +16,6 @@ autoCollapseToc: false
 contentCopyright: false
 reward: false
 mathjax: false
-
-# Uncomment to add to the homepage's dropdown menu; weight = order of article
-# menu:
-#   main:
-#     parent: "docs"
-#     weight: 1
 ---
 
 ## Context
@@ -45,6 +34,13 @@ As a bootstrap, I used the information from [this article](https://eli.thegreenp
 Therefore, this isn't an article about Go, but really an article about IT engineering.
 
 In this article, I will write the step by step method I used to write a simple (and non-efficient nor effective) RAG, but I will also note the **discoveries** that may be useful for my work as a consultant and engineer.
+
+### Organisation of the article and of the code
+
+- The initial section discusses data acquisition, emphasizing the significance of preparing the data to be readily utilized by a Language Model (LLM).
+- The subsequent section involves transforming the data into a mathematical representation that facilitates easy searching. The outcomes are stored in a database that will be utilized by the application.
+- The final section pertains to the application itself: it will interpret a question, identify the relevant data segment in the database, and query the LLM.
+- The document concludes with a summary and suggestions on how to convert this Proof of Concept (POC) into a custom-made solution.
 
 ## The use case
 
@@ -106,7 +102,8 @@ This is a part that also falls under **engineering**.
 This part will aim to convert pieces of text into numerical representation (an array of numbers, a _vector_).
 This process is called _embedding (or [word embedding](https://en.wikipedia.org/wiki/Word_embedding))._
 
-An algorithm is used for converting a set of token (roughly pieces of words) into vectors. As seen before, this algorithm is linked to the model that we will use.
+An algorithm is used for converting a set of token (roughly pieces of words) into vectors.
+As seen before, this algorithm is linked to the model that we will use.
 Simply put, the program will call an OpenAI API for each piece that will return the corresponding vector. This vector is then stored in the database.
 
 But how to slice the text ? Shall we slice it into fixed size parts? Shall we slice it by chapters? Paragraphs?
@@ -139,7 +136,7 @@ I execute the _code_ exactly as outlined in the original blog post. This process
 
 ## Last step: inference
 
-Inference forms the core of my application. The process begins when I pose a question. The application then scours my database to find the piece that aligns with the context of the question. This information is then forwarded to OpenAI, which generates a response.
+Inference forms the core of my application. The process begins when I enter a question. The application then scours my database to find the piece that aligns with the context of the question. This information is then forwarded to OpenAI, which generates a response.
 
 In this scenario, there is no vector base, and the search process is straightforward:
 
@@ -160,9 +157,15 @@ At this point, we will transition to a vector-based approach.
 This vector-based system will identify the most suitable "neighbor".
 It remains to be seen which algorithms they employ. Do all vector bases yield the same result? This is a fascinating aspect that I believe warrants further exploration in my role as a consultant.
 
-**Fourth lesson**: don't over-engineer or over-complicate your stack, focus on your problem and use the expertise of specialists
+**Lesson Four**: Avoid over-engineering or complicating your tech stack, specially in the genesis/POC phase. Instead, concentrate on addressing your specific problem. Seek the expertise of specialists when necessary for scaling (when entering [stage II](https://learnwardleymapping.com/landscape/) of evolution: crafting).
 
 ### Let's prompt
+
+The final step involves constructing a prompt using the extracted information, which will then be sent to the LLM.
+In my specific scenario, this involves making a call to the OpenAI API.
+
+Below is the basic structure of the prompt that is hard-coded into the program.
+The `%v` placeholder will be substituted with the appropriate segment of text and the corresponding question:
 
 ```text
 Use the below information to answer the subsequent question.
@@ -186,14 +189,31 @@ Information:
 Question: %v
 ```
 
-To do this, I then have to complete my initial database by adding for each piece, its source. This requires a little thought about its use case upstream. In the exploratory space in POC mode, it's not a problem, but when we want to "productize" the application, it will be annoying to change the
+To do this, I then have to complete my initial database by adding for each piece, its source (chapter).
+This requires a little thought about its use case upstream.
+#### Database and Prompt Coupling
 
-### Side note about the vector base
+In reality, the database comprises two tables:
 
-The similarity calculation is performed manually in a large loop using a simple similarity calculation algorithm. If the number of pieces becomes too large (for example, if I want to index an entire library), this method will become inefficient. We will then switch to a vector base.
-It is this vector base that will find the best "neighbor". It remains to see which algorithms they use. Do all vector bases return the same result? This is an interesting point on which I think I should form an opinion as a consultant.
+- `chunks`
+- `embeddings`
 
-Results, findings, and fun part
+The chunks table currently has 4 columns:
+
+- `id`
+- `path` - the path of the source file (in my case `chapter[1-9].md`)
+- `nchunk` - the chunk number in the segmentation (mostly for debugging)
+- `content` - the content of the chunk
+
+The embedding table contains:
+
+- `id`
+- `embedding` in "blob" format
+
+The information of the prompt needs to be coherent with the information of the database (specially in the "chunks" table).
+In the exploratory space in POC mode, it's not a problem, but entering the phase II will require a bit of _product thinking_ and _conception_ ahead of the code.
+
+## Results, findings, and fun part
 
 By compiling the program, I can query my knowledge base:
 
@@ -226,51 +246,22 @@ Les exemples d'inertie mentionnés dans le texte sont :
 
 Fifth learning: it is observed here that the results are less complete. It is a help, but not a search engine. Idempotence stops at the moment of retrieving information from the embedding base. Then it's YOLO :D
 
-## Conclusion and opening
+## Conclusion and opening about coupling and software architecture
 
-The fun thing is that I end up with two self-contained assets:
+I have successfully created two independent assets:
 
-- The binary which is in Go, and therefore does not require installation. It is capable of querying any knowledge base in the format it was designed with
-- The knowledge base `wardley.db`
+- A Go-based binary that doesn't require installation. It's designed to query any knowledge base in its specific format.
+- The knowledge base itself: `wardley.db`
 
-Tomorrow, I can work on another book, generate the embedding, and share it. The better I divide it into pieces, the more useful the base will be... regardless of the inference engine.
+In the future, I can work on a different book, generate an embedding, and share it. The more I break it down into parts, the more valuable the base will become, regardless of the inference engine used.
 
-**Final learning**: The versioning of the program is ultimately loosely coupled with my data. I can now clean and feed data independently of IT engineering... I should even be able to automate it through a pipeline.
+**Key takeaway**: The versioning of the program is only loosely tied to my data. This allows me to clean and feed data independently of IT engineering. I might even be able to automate this process through a pipeline.
 
-So, if I send you the binary and the db file, you can query the knowledge base like me.
+However, there's a risk to consider: altering the database could potentially break the SQL queries, and the same applies if I change the prompt.
 
-I will continue to play with this. I think I will add a small template engine for the question. The "chat" part will remain (for now it's just one question), but with OpenAI's APIs (or others), it's trivial.
+To mitigate this, I have two options:
 
-----
+- I could version my database concurrently with the code. This means that version 1 of the code would only be compatible with version 1 of the database.
+- Alternatively, I could extract the template to create an abstraction. This would result in a strong coupling between the template and the database, but a weaker coupling between the code and the database. (And of course, if I change the database, I'll have another issue to deal with, but we can manage that with adapters).
 
-Indeed, for the base, it requires clarification:
-
-I have three "assets":
-
-- The database that contains the information I want to give to my engine in the context of an exchange I will have (question or chat)
-- The prompt template: the structure of what I will send to my LLM engine by completing with the question and the information from the database
-- The "Go" engine which will, depending on the question, find the information to generate the prompt and send it to the LLM engine.
-
-There is a strong coupling between the three assets today: the prompt is hardcoded and the SQL queries as well.
-
-If tomorrow I change the database, I risk breaking the SQL queries... same if I change the prompt.
-
-To address this, I have two possibilities:
-
-- either I version my DB at the same time as the code: so v1 of the code can only read v1 of the db.
-- I abstract by extracting the template. So the coupling will be strong between template and DB, but weaker between code and DB
-(and of course, if I change the database, I have another concern, but we can manage that with adapters)
-
-Finally, my prompt template would be in a way an adapter but in "natural language" mode. Is that it?
-
-The DB contains two tables:
-
-- chunks
-- embeddings
-
-## chunks
-
-This table currently has 4 columns:
-
-- `id`
-- `path` - the path of the source file (in my case `
+A clever approach to managing this coupling is to treat the prompt as a separate asset. This would create a sort of port-and-adapters architecture where communication is conducted by natural language. Fun!

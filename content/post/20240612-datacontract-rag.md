@@ -264,7 +264,7 @@ dataset: [{
 		businessName: "Part of the book"
 		logicalType:  "string"
 		physicalType: "BYTE_ARRAY"
-		description:  "A chunk of the book in markdown"
+		description:  "A chunk of the book in markdown, 500 tokens with the cl100k_base token scheme"
 	}]
 }]
 ```
@@ -310,3 +310,13 @@ dataset:
         description: A chunk of the book in markdown
 ```
 
+
+```text
+❯ duckdb -s "SELECT AVG(LENGTH(content)) FROM 'chunks.parquet';"
+┌────────────────────────┐
+│ avg(length("content")) │
+│         double         │
+├────────────────────────┤
+│      4812.744318181818 │
+└────────────────────────┘
+```

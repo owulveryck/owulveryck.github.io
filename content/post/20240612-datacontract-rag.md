@@ -1,7 +1,7 @@
 ---
-title: "Implementing data contract: trivial example of usage with a RAG"
-date: 2024-06-29T12:15:33+01:00
-lastmod: 2024-06-29T12:15:33+01:00
+title: "The Future of Data Management: an enabler to AI devlopment? A basic illustration with RAG, Open Standards and Data Contracts"
+date: 2024-06-12T12:15:33+01:00
+lastmod: 2024-06-12T12:15:33+01:00
 # images: [/assets/rag/illustration.png]
 draft: false
 keywords: []
@@ -209,3 +209,62 @@ By creating consumers of these data contracts, we can enhance the quality and re
 ---
 
 Feel free to expand on each section with more details or examples as needed. Let me know if you need any adjustments or additional content!
+
+
+
+
+```cue
+// What's this data contract about?
+datasetDomain:       "knowledge"     // Domain
+quantumName:         "Wardley Book" // Data product name
+userConsumptionMode: "operational"
+version:             "1.0.0" // Version (follows semantic versioning)
+status:              "test"
+uuid:                "53581432-6c55-4ba2-a65f-72344a91553a"
+
+// Lots of information
+description: {
+  purpose:     "Views built on top of the seller tables."
+  limitations: "Data based on seller perspective, no buyer information"
+  usage:       "Predict sales over time"
+}
+
+// Getting support
+productDl:           "wardley-map@myorg.com"
+
+sourcePlatform: "owulveryck's blog"
+project: "Sample Data Contract and Rag"          
+datasetName:    "wardley_book" 
+kind:           "DataContract"
+apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previously known as templateVersion)
+type:           "objects"
+
+// Physical access
+driver:           "httpfs:parquet"
+driverVersion:    "1.0.0"
+database:         "https://blog.owulveryck.info/assets/sampledata" // Bucket name
+
+// Dataset, schema and quality
+dataset: [{
+  table:          "wardleybook.parquet" // the object name
+  description:    "The book from simon wardley, chunked"
+  authoritativeDefinitions: [{ // NEW in v2.2.0, inspired by the column-level authoritative links
+    url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
+    type: "explanation"
+  }]
+  dataGranularity: "Chunking manually to 1000 characters"
+  columns: [{
+    column:                    "chunk_id"
+    isPrimaryKey:              true // NEW in v2.1.0, Optional, default value is false, indicates whether the column is primary key in the table.
+    logicalType:               "int"
+    physicalType:              "int"
+    isNullable:                false
+  }, {
+    column:                    "content"
+    businessName:              "Part of the book"
+    logicalType:               "string"
+    description:               "A chunk of the book in markdown"
+  }]
+}]
+```
+

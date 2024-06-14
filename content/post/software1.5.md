@@ -6,7 +6,6 @@ title = "Parsing mathematical equation to generate computation graphs - First st
 date = 2017-12-18T16:47:27+01:00
 author = "Olivier Wulveryck"
 katex = true
-markup = "mmark"
 +++
 
 In a previous article, I described an implementation of an RNN from scratch in go.

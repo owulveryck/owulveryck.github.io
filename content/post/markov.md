@@ -28,7 +28,6 @@ katex: true
 
 # Use Mmark
 # See https://gohugo.io/content-management/formats/#mmark
-markup: mmark
 
 ---
 

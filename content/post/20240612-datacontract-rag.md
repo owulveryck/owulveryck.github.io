@@ -19,6 +19,237 @@ mathjax: false
 ---
 
 ## Context
+In a recent meetup I organized in my hometown of Lille, I had the pleasure of hosting Jean-Georges Perrin, who provided a comprehensive introduction to data contracts. As a geek, I felt compelled to test this concept to fully grasp its practical implications.
+
+The goal of this article is to demonstrate how data contracts can be applied to and add value within a small ecosystem facing cross-domain challenges.
+
+To illustrate, I will use my personal experience in the fields I work in, which can be categorized into two separate domains:
+- Strategy
+- Engineering
+
+The use case can be summarized as: how establishing a data contract around the content of a book can serve as a catalyst for an AI product in a different domain.
+
+Throughout this article, I will provide concrete examples and technological solutions that you, as a reader, can test and implement. 
+The structure of this article is divided into three parts. The first part covers definitions and the tools that will be used throughout the article. The remaining parts each represent a distinct domain:
+
+- The first part is a _source-aligned domain_: a book club that generates data according to its specific needs.
+- The second part is a _consumer-aligned domain_: a GenAI lab that consumes this data and provides a semantic representation suitable for use by a data product.
+
+While this overview is intriguing (otherwise, I guess you wouldn't be reading this message because you would have already closed the page), I understand that it might seem unclear. Let's dive in and see if we can clarify it with an example!
+## Definitions and tooling
+
+### Introduction to Data Contracts
+
+In the world of data management, a **data contract** is a formal representation of a data ins a standard, machine-readable format.
+It allows both humans and computers to understand the capabilities of a dataset without accessing its structure, documentation, or through its database inspection.
+
+Key Features of a data-contract:
+
+- Standardization: It provides a standardized way to describe the structure of the data-set.
+- Machine-readable Documentation: Tools can use the data-contract definition to generate interactive data-documentation documentation, client SDKs in various programming languages, or queries from compatibles database tools.
+- Provides Self-Documentation: The contract itself serves as a source of truth for its capabilities, which can enhance developer experience by providing integrated and always up-to-date documentation.
+
+Data contracts serve as a safeguard, ensuring that data meets specific criteria before being consumed, thereby increasing the reliability and trustworthiness of data-driven processes.
+
+### Open Standards and Introduction to Bitol
+
+Open standards are crucial for the interoperability and scalability of heterogeneous systems. They ensure that data can be seamlessly shared and utilized across different platforms and organizations.
+
+In the data ecosystem, [Bitol](https://bitol.io/) offers a framework for creating and maintaining data contracts. I will be using their schema version 2.2.2, which is the latest version at the time of writing. 
+The standard [proposes a schema](https://github.com/bitol-io/open-data-contract-standard/blob/main/schema/odcs-json-schema-v2.2.2.json) (expressed in `JSONSchema`), and the contract can be written in `YAML`.
+
+Many folks believe that both formats are suitable for humans and machines. I don't. Therefore, I will use a _tool-in-the-middle_ to write and validate the contracts I will work with: [CUE](https://cuelang.org).## My tooling for playing
+
+#### Validating Data Contracts with CUE (Cuelang)
+
+**CUE** (Configuration, Unification, and Execution) is a language designed for defining, generating, and validating data. It excels in creating data contracts because it can enforce schema and validation rules effectively. By using CUE, you can specify data contracts clearly and concisely, and ensure compliance with these contracts automatically.
+
+CUE integrates seamlessly with `YAML` and `JSONSchema`, making its usage straightforward and transparent.
+
+The first step is to import the schema of the contract and translate it in CUE:
+
+```shell
+❯ curl -O -s https://raw.githubusercontent.com/bitol-io/open-data-contract-standard/main/schema/odcs-json-schema-v2.2.2.json
+❯ cue import odcs-json-schema-v2.2.2.json
+```
+
+This generates a file `odcs-json-schema-v2.2.2.cue` that looks like this:
+
+```cue
+// Open Data Contract Standard (OCDS)
+//
+// An open data contract specification to establish agreement
+// between data producers and consumers.
+@jsonschema(schema="https://json-schema.org/draft/2019-09/schema")
+
+// Current version of the data contract.
+version: string
+
+// The kind of file this is. Valid value is `DataContract`.
+kind: "DataContract" | *"DataContract"
+
+// Version of the standard used to build data contract. Default
+// value is v2.2.2.
+apiVersion?: =~"^v[0-9]+\\.[0-9]+\\.[0-9]+" | *"v2.2.2"
+...
+```
+
+I can then simply validate a file. Let's validate the example in the Bitol repository:
+
+```shell
+❯ curl -O -s https://raw.githubusercontent.com/bitol-io/open-data-contract-standard/main/docs/examples/all/full-example.yaml
+❯ cue vet full-example.yaml odcs-json-schema-v2.2.2.cue && echo ok || echo ko
+ok
+```
+
+To validate that it works, let's remove a mandatory field (datasetName) from the example:
+
+```shell
+❯ grep -v datasetName full-example.yaml > incomplete-example.yaml
+❯ cue vet incomplete-example.yaml odcs-json-schema-v2.2.2.cue
+datasetName: incomplete value string:
+    ./odcs-json-schema-v2.2.2.cue:113:14
+```
+
+Let's move into the proper use-case.
+
+## First part: the source aligned data domain
+
+```cue
+// What's this data contract about?
+datasetDomain:       "knowledge"    // Domain
+quantumName:         "Wardley Book" // Data product name
+userConsumptionMode: "operational"
+version:             "1.0.0" // Version (follows semantic versioning)
+status:              "test"
+uuid:                "53581432-6c55-4ba2-a65f-72344a91553a"
+
+// Lots of information
+description: {
+  purpose:     "Views built on top of the seller tables."
+  limitations: "Data based on seller perspective, no buyer information"
+  usage:       "Predict sales over time"
+}
+
+// Getting support
+productDl: "wardley-map@myorg.com"
+
+sourcePlatform: "owulveryck's blog"
+project:        "The ultimate strategy book club"
+datasetName:    "wardley_book"
+kind:           "DataContract"
+apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previously known as templateVersion)
+type:           "objects"
+
+// Physical access
+driver:        "httpfs:parquet"
+driverVersion: "1.0.0"
+database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
+
+// Dataset, schema and quality
+dataset: [{
+  table:       "wardleybook.parquet" // the object name
+  description: "The book from simon wardley, chunked byt sections"
+  authoritativeDefinitions: [{
+    url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
+    type: "explanation"
+  }]
+  dataGranularity: "Chunking according to sections"
+  columns: [{
+    column:       "chapter_number"
+    logicalType:  "int"
+    physicalType: "INT32"
+  }, {
+    column:       "section_number"
+    logicalType:  "int"
+    physicalType: "INT32"
+    isNullable:   false
+  }, {
+    column:       "chapter_title"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+  }, {
+    column:       "section_title"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+  }, {
+    column:       "content"
+    businessName: "The content of the section"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+    description:  "The content of the section in Markdown"
+  }]
+}]
+```
+
+We can validate the contract with ` cue vet wardleyBook.cue ~/open-data-contract-standard/schema/odcs-json-schema-v2.2.2.cue` and convert it to yaml with 
+
+```yaml
+datasetDomain: knowledge
+quantumName: Wardley Book
+userConsumptionMode: operational
+version: 1.0.0
+status: test
+uuid: 53581432-6c55-4ba2-a65f-72344a91553a
+description:
+  purpose: Views built on top of the seller tables.
+  limitations: Data based on seller perspective, no buyer information
+  usage: Predict sales over time
+productDl: wardley-map@myorg.com
+sourcePlatform: owulveryck's blog
+project: The ultimate strategy book club
+datasetName: wardley_book
+kind: DataContract
+apiVersion: v2.2.2
+type: objects
+driver: httpfs:parquet
+driverVersion: 1.0.0
+database: https://blog.owulveryck.info/assets/sampledata
+dataset:
+  - table: wardleybook.parquet
+    description: The book from simon wardley, chunked byt sections
+    authoritativeDefinitions:
+      - url: https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html
+        type: explanation
+    dataGranularity: Chunking according to sections
+    columns:
+      - column: chapter_number
+        logicalType: int
+        physicalType: INT32
+      - column: section_number
+        logicalType: int
+        physicalType: INT32
+        isNullable: false
+      - column: chapter_title
+        logicalType: string
+        physicalType: BYTE_ARRAY
+      - column: section_title
+        logicalType: string
+        physicalType: BYTE_ARRAY
+      - column: content
+        businessName: The content of the section
+        logicalType: string
+        physicalType: BYTE_ARRAY
+        description: The content of the section in Markdown
+```
+
+```
+
+```
+
+```text
+D SELECT section_title,content FROM 'book.parquet' WHERE chapter_number=1 AND section_number=1;
+┌───────────────┬────────────────────────────────────────────────────────────────────────────────────────────┐
+│ section_title │                                          content                                           │
+│     blob      │                                            blob                                            │
+├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Serendipity   │ By chance, I had picked up a copy of the \x22Art of War\x22 by Sun Tzu. Truth\x0Abe told…  │
+└───────────────┴────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+
+## Second part: the consumer aligned data domain
+
 
 In my upcoming article, I want to cover the following elements:
 
@@ -112,40 +343,6 @@ Great, let's break this down step-by-step to ensure we cover all the points you 
 
 ---
 
-### Introduction to Data Contracts
-
-In the world of data management, a **data contract** is a formal agreement between data producers and data consumers that specifies the structure, quality, and business rules of the data being exchanged. Data contracts serve as a safeguard, ensuring that data meets specific criteria before being consumed, thereby increasing the reliability and trustworthiness of data-driven processes.
-
-### The Importance of Open Standards and Introduction to Bitol
-
-Open standards play a crucial role in the interoperability and scalability of data systems. They ensure that data can be seamlessly shared and utilized across different platforms and organizations. One such open standard is **Bitol**, which provides a framework for creating and maintaining data contracts. By adopting Bitol, organizations can establish clear, consistent, and enforceable data contracts that facilitate better data governance and quality assurance.
-
-### Validating Data Contracts with CUE (Cuelang)
-
-**CUE** (Configuration, Unification, and Execution) is a language for defining, generating, and validating data. It is particularly well-suited for data contracts due to its ability to enforce schema and validation rules. Using CUE, data contracts can be specified in a clear and concise manner, and compliance with these contracts can be automatically verified.
-
-```cue
-# Example CUE schema for a data contract
-dataContract: {
-    chunks: [...#Chunk]
-    embeddings: [...#Embedding]
-}
-
-#Chunk: {
-    id: string
-    content: string
-    domain: "knowledge"
-}
-
-#Embedding: {
-    id: string
-    version: string
-    algorithm: string
-    chunkId: string
-    domain: "insights"
-}
-```
-
 ### Concrete Example: Applying Data Contracts to Book Data
 
 #### Overview of the Use Case: Querying Book Data
@@ -224,16 +421,16 @@ uuid:                "53581432-6c55-4ba2-a65f-72344a91553a"
 
 // Lots of information
 description: {
-	purpose:     "Views built on top of the seller tables."
-	limitations: "Data based on seller perspective, no buyer information"
-	usage:       "Predict sales over time"
+  purpose:     "Views built on top of the seller tables."
+  limitations: "Data based on seller perspective, no buyer information"
+  usage:       "Predict sales over time"
 }
 
 // Getting support
 productDl: "wardley-map@myorg.com"
 
 sourcePlatform: "owulveryck's blog"
-project:        "Sample Data Contract and Rag"
+project:        "The ultimate strategy book club"
 datasetName:    "wardley_book"
 kind:           "DataContract"
 apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previously known as templateVersion)
@@ -246,77 +443,50 @@ database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
 
 // Dataset, schema and quality
 dataset: [{
-	table:       "wardleybook.parquet" // the object name
-	description: "The book from simon wardley, chunked"
-	authoritativeDefinitions: [{
-		url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
-		type: "explanation"
-	}]
-	dataGranularity: "Chunking manually according to paragraphs"
-	columns: [{
-		column:       "chunk_id"
-		isPrimaryKey: true // NEW in v2.1.0, Optional, default value is false, indicates whether the column is primary key in the table.
-		logicalType:  "int"
-		physicalType: "INT32"
-		isNullable:   false
-	}, {
-		column:       "content"
-		businessName: "Part of the book"
-		logicalType:  "string"
-		physicalType: "BYTE_ARRAY"
-		description:  "A chunk of the book in markdown, 500 tokens with the cl100k_base token scheme"
-	}]
+  table:       "wardleybook.parquet" // the object name
+  description: "The book from simon wardley, chunked byt sections"
+  authoritativeDefinitions: [{
+    url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
+    type: "explanation"
+  }]
+  dataGranularity: "Chunking according to sections"
+  columns: [{
+    column:       "chapter_number"
+    logicalType:  "int"
+    physicalType: "INT32"
+  }, {
+    column:       "section_number"
+    logicalType:  "int"
+    physicalType: "INT32"
+    isNullable:   false
+  }, {
+    column:       "chapter_title"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+  }, {
+    column:       "section_title"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+  }, {
+    column:       "content"
+    businessName: "The content of the section"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+    description:  "The content of the section in Markdown"
+  }]
 }]
-```
-
-```yaml
-datasetDomain: knowledge
-quantumName: Wardley Book
-userConsumptionMode: operational
-version: 1.0.0
-status: test
-uuid: 53581432-6c55-4ba2-a65f-72344a91553a
-description:
-  purpose: Views built on top of the seller tables.
-  limitations: Data based on seller perspective, no buyer information
-  usage: Predict sales over time
-productDl: wardley-map@myorg.com
-sourcePlatform: owulveryck's blog
-project: Sample Data Contract and Rag
-datasetName: wardley_book
-kind: DataContract
-apiVersion: v2.2.2
-type: objects
-driver: httpfs:parquet
-driverVersion: 1.0.0
-database: https://blog.owulveryck.info/assets/sampledata
-dataset:
-  - table: wardleybook.parquet
-    description: The book from simon wardley, chunked
-    authoritativeDefinitions:
-      - url: https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html
-        type: explanation
-    dataGranularity: Chunking manually according to paragraphs
-    columns:
-      - column: chunk_id
-        isPrimaryKey: true
-        logicalType: int
-        physicalType: INT32
-        isNullable: false
-      - column: content
-        businessName: Part of the book
-        logicalType: string
-        physicalType: BYTE_ARRAY
-        description: A chunk of the book in markdown
 ```
 
 
 ```text
-❯ duckdb -s "SELECT AVG(LENGTH(content)) FROM 'chunks.parquet';"
-┌────────────────────────┐
-│ avg(length("content")) │
-│         double         │
-├────────────────────────┤
-│      4812.744318181818 │
-└────────────────────────┘
+D SELECT section_title,content FROM 'book.parquet' WHERE chapter_number=1 AND section_number=1;
+┌───────────────┬────────────────────────────────────────────────────────────────────────────────────────────┐
+│ section_title │                                          content                                           │
+│     blob      │                                            blob                                            │
+├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Serendipity   │ By chance, I had picked up a copy of the \x22Art of War\x22 by Sun Tzu. Truth\x0Abe told…  │
+└───────────────┴────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+
+https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-jpeg2parquet-go

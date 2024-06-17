@@ -1,4 +1,4 @@
-// What's this data contract about?
+			// What's this data contract about?
 datasetDomain:       "knowledge"    // Domain
 quantumName:         "Wardley Book" // Data product name
 userConsumptionMode: "operational"
@@ -17,7 +17,7 @@ description: {
 productDl: "wardley-map@myorg.com"
 
 sourcePlatform: "owulveryck's blog"
-project:        "Sample Data Contract and Rag"
+project:        "The ultimate strategy book club"
 datasetName:    "wardley_book"
 kind:           "DataContract"
 apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previously known as templateVersion)
@@ -31,23 +31,34 @@ database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
 // Dataset, schema and quality
 dataset: [{
 	table:       "wardleybook.parquet" // the object name
-	description: "The book from simon wardley, chunked"
+	description: "The book from simon wardley, chunked byt sections"
 	authoritativeDefinitions: [{
 		url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
 		type: "explanation"
 	}]
-	dataGranularity: "Chunking manually according to paragraphs"
+	dataGranularity: "Chunking according to sections"
 	columns: [{
-		column:       "chunk_id"
-		isPrimaryKey: true // NEW in v2.1.0, Optional, default value is false, indicates whether the column is primary key in the table.
+		column:       "chapter_number"
+		logicalType:  "int"
+		physicalType: "INT32"
+	}, {
+		column:       "section_number"
 		logicalType:  "int"
 		physicalType: "INT32"
 		isNullable:   false
 	}, {
-		column:       "content"
-		businessName: "Part of the book"
+		column:       "chapter_title"
 		logicalType:  "string"
 		physicalType: "BYTE_ARRAY"
-		description:  "A chunk of the book in markdown"
+	}, {
+		column:       "section_title"
+		logicalType:  "string"
+		physicalType: "BYTE_ARRAY"
+	}, {
+		column:       "content"
+		businessName: "The content of the section"
+		logicalType:  "string"
+		physicalType: "BYTE_ARRAY"
+		description:  "The content of the section in Markdown"
 	}]
 }]

@@ -441,11 +441,13 @@ All of this is based on the idea that every domain will publish a data contract 
 
 ### Enforcment or enablement: the role of the governance
 
+We've seen that the data-contract is a strong facilitator to support data-based use-casesSure, here's the enhanced version of the text:
 
-### Draconian constaints ?
+But how can we ensure that all data is exposed as a product with its corresponding contracts?
+
+#### Draconian constaints ?
 
 I made a [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7205948788555849730/) entitled **What would the Jeff Bezos API Mandate look like if applied to data?**
-
 
 Here is a copy of the post:
 
@@ -471,6 +473,19 @@ Here is a copy of the post:
 >  
 > By implementing these constraints, organizations can foster a more efficient and competitive data marketplace, where high-quality data is accessible and valuable to all stakeholders. This approach not only promotes data transparency and usability but also drives innovation and improvement in data services.
 >  
+The idea behind this is to impose strict constraints to ensure that all data is accessible via data contracts. This approach has proven effective for APIs in the digital world, but it is a radical solution that may not be suitable in all contexts. 
 
+Feel free to check the comments on the LinkedIn post to form your own opinion.
 
-### Computational Governance as an enabler
+#### Computational Governance as an enabler
+We've discussed this tiny data-mesh a bit, but we've barely touched on governance. 
+
+If we replace _data governance_ with _data enablement_, we can envision its role as facilitating the setup of data exchange.
+
+The data-mesh introduces the concept of _computational governance_. In our context, governance rules could mandate the exposure of a data contract. However, in the spirit of computation, governance could also provide tools to automatically generate and maintain these data contracts. At the beginning of the article, we mentioned that data contracts should be manageable by both humans and machines.
+
+Providing tools to automate the generation of data contracts would incentivize data producers, as it would offer a unified view of their data, shared both within and outside the domain.
+
+Thus, governance would truly become an enabler.
+
+Thank you for reading up to this point. I would be more than happy to continue the discussion, so please do not hesitate to reach out on social networks like LinkedIn, HackerNews, or Bluesky (but not on X anymore).).

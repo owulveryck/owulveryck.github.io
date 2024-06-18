@@ -2,8 +2,8 @@
 title: "The Future of Data Management: an enabler to AI devlopment? A basic illustration with RAG, Open Standards and Data Contracts"
 date: 2024-06-12T12:15:33+01:00
 lastmod: 2024-06-12T12:15:33+01:00
-# images: [/assets/rag/illustration.png]
-draft: true
+images: [/assets/data-contract/domains.png]
+draft: false
 keywords: []
 summary: 
 tags: []
@@ -38,6 +38,8 @@ The structure of this article is divided into three parts. The first part covers
 - The second part is a _consumer-aligned domain_: a GenAI lab that consumes this data and provides a semantic representation suitable for use by a data product.
 
 While this overview is intriguing (otherwise, I guess you wouldn't be reading this message because you would have already closed the page), I understand that it might seem unclear. Let's dive in and see if we can clarify it with an example!
+
+**Disclaimer**: This article is a bit lengthy and could probably have been divided into two or three separate articles. Additionally, it contains code excerpts. Feel free to skip any sections as needed.
 
 ## Definitions and tooling
 
@@ -163,9 +165,8 @@ uuid:                "53581432-6c55-4ba2-a65f-72344a91553a"
 
 // Lots of information
 description: {
-  purpose:     "Views built on top of the seller tables."
-  limitations: "Data based on seller perspective, no buyer information"
-  usage:       "Predict sales over time"
+  purpose:     "Provide chunks of the book of Simon Wardley"
+  limitations: "Those chunks have references of the images which are not embedded with this dataset"
 }
 
 // Getting support
@@ -185,8 +186,8 @@ database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
 
 // Dataset, schema and quality
 dataset: [{
-  table:       "wardleybook.parquet" // the object name
-  description: "The book from simon wardley, chunked byt sections"
+  table:       "wardleyBook.parquet" // the object name
+  description: "The book from simon wardley, chunked by sections"
   authoritativeDefinitions: [{
     url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
     type: "explanation"
@@ -238,9 +239,8 @@ version: 1.0.0
 status: test
 uuid: 53581432-6c55-4ba2-a65f-72344a91553a
 description:
-  purpose: Views built on top of the seller tables.
-  limitations: Data based on seller perspective, no buyer information
-  usage: Predict sales over time
+  purpose: Provide chunks of the book of Simon Wardley
+  limitations: Those chunks have references of the images which are not embedded with this dataset
 productDl: wardley-map@myorg.com
 sourcePlatform: owulveryck's blog
 project: The ultimate strategy book club
@@ -252,8 +252,8 @@ driver: httpfs:parquet
 driverVersion: 1.0.0
 database: https://blog.owulveryck.info/assets/sampledata
 dataset:
-  - table: wardleybook.parquet
-    description: The book from simon wardley, chunked byt sections
+  - table: wardleyBook.parquet
+    description: The book from simon wardley, chunked by sections
     authoritativeDefinitions:
       - url: https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html
         type: explanation
@@ -282,31 +282,172 @@ dataset:
 
 ### Using the contract
 
-```text
-D SELECT section_title,content FROM 'book.parquet' WHERE chapter_number=1 AND section_number=1;
-┌───────────────┬────────────────────────────────────────────────────────────────────────────────────────────┐
-│ section_title │                                          content                                           │
-│     blob      │                                            blob                                            │
-├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Serendipity   │ By chance, I had picked up a copy of the \x22Art of War\x22 by Sun Tzu. Truth\x0Abe told…  │
-└───────────────┴────────────────────────────────────────────────────────────────────────────────────────────┘
+Let's see if the definition of the contract is sufficient to properly access the data.
+
+- I know that the driver is `httpfs:parquet`
+- I have the database address: `https://blog.owulveryck.info/assets/sampledata`
+- I have the "table name" (my parquet file): `wardleyBook.parquet`
+
+I can now try to access the data with `duckDB` for example (which can read parquet files and access httpfs storage):
+
+```shell
+> duckdb
+v0.9.2 3c695d7ba9
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+D INSTALL httpfs;
+D LOAD httpfs;
+D SELECT * FROM "https://blog.owulveryck.info/assets/sampledata/wardley_book/wardleyBook.parquet" LIMIT 2;
+┌────────────────┬────────────────┬───────────────┬──────────────────────┬─────────────────────────────────────────────────────────────────────────────┐
+│ chapter_number │ section_number │ chapter_title │    section_title     │                                   content                                   │
+│     int32      │     int32      │     blob      │         blob         │                                    blob                                     │
+├────────────────┼────────────────┼───────────────┼──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤
+│              1 │              1 │ On being lost │ Serendipity          │ By chance, I had picked up a copy of the \x22Art of War\x22 by Sun Tzu. T…  │
+│              1 │              2 │ On being lost │ The importance of …  │ It was about this time that I read the story of Ball\x27s Bluff. It is no…  │
+└────────────────┴────────────────┴───────────────┴──────────────────────┴─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-
+It is beyond the scope of this article to write a script to extract the content and turn it into an html file, but you get the drill.
 
 ## Second part: the consumer aligned data domain
 
+Now, let's leave the knowledge domain to enter the GenAI domain.
+
 ### The use case: RAG-Time
 
+In this section, we'll dive into the "GenAI" domain, where the focus is on creating a Retrieval-Augmented Generation (RAG) tool that allows us to query a book effectively.
+As mentioned in my previous article[^1], a RAG tool leverages both retrieval mechanisms and generative AI to provide contextual and accurate answers from a given textual source.
+
+[^1]: [Exploring exaptations in engineering practices within a RAG-Based application](https://blog.owulveryck.info/2024/04/29/exploring-exaptations-in-engineering-practices-within-a-rag-based-application.html)
+
+### Creating a Semantic Representation
+
+To build this RAG tool, we need to create a semantic representation of the book.
+This involves computing embeddings for each section of the book.
+These embeddings are numerical representations that capture the semantic meaning of the text, enabling efficient search and retrieval in response to queries.
+
+We will use the data-product exposed from the "knowledge" domain, which contains the book's data in a structured format.
+Our aim is to create a new data-product with three columns: an ID, the content in markdown format, and the corresponding embedding.
+
+### Data Contract for Embeddings
+
+It's crucial to note that the computation of embeddings is algorithm-dependent.
+Therefore, our data contract should specify the algorithm used for generating these embeddings.
+This ensures that different algorithms can be accommodated, and multiple data products can be provided as per the embedding algorithms used.
+
+Here is the data contract:
+
+```cue
+// What's this data contract about?
+datasetDomain:       "GenAI"    // Domain
+quantumName:         "Wardley Book" // Data product name
+userConsumptionMode: "operational"
+version:             "1.0.0" // Version (follows semantic versioning)
+status:              "test"
+uuid:                "63581432-6c55-4ba2-a65f-72344a91553b"
+
+// Lots of information
+description: {
+  purpose:     "Views built on top of the seller tables."
+  limitations: "Data based on seller perspective, no buyer information"
+  usage:       "Predict sales over time"
+}
+
+// Getting support
+productDl: "genai@myorg.com"
+
+sourcePlatform: "owulveryck's blog"
+project:        "Engineering in the ear of GenAI"
+datasetName:    "wardley_book"
+kind:           "DataContract"
+apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previously known as templateVersion)
+type:           "objects"
+
+// Physical access
+driver:        "httpfs:zip"
+driverVersion: "1.0.0"
+database:      "https://blog.owulveryck.info/assets/sampledata/chroma.zip" 
+
+// Dataset, schema and quality
+dataset: [{
+  table:       "wardley_content_embeddings" // the collection
+  description: "The book from simon wardley, chunked by sections with a semantic representation computed with mxbai-embed-large"
+  authoritativeDefinitions: [{
+    url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
+    type: "explanation"
+  },{
+    url: "https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py"
+    type: "code"
+  }]
+  dataGranularity: "Each embedding is computing according to sections or the original dataset at https://blog.owulveryck.info/assets/sampledata/wardleyBook.cue"
+  columns: [{
+    column:       "id"
+    logicalType:  "string"
+    physicalType: "string"
+  },{
+    column:       "embeddings"
+    businessName: "The embedding value"
+    logicalType:  "string"
+    physicalType: "string"
+    description:  "The embedding computed with mxbai-embed-large"
+  },{
+    column:       "documents"
+    businessName: "The value of the document"
+    logicalType:  "string"
+    physicalType: "string"
+    description:  "The embedding computed with mxbai-embed-large"
+  }]
+}]
+```
+
+As documented in the data-contractm you can find the code used to generate the chromadb [here](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py).
+
 ### Play along with the data
+Assuming you have an instance of Ollama installed locally, you can now experiment with a RAG (Retrieval-Augmented Generation). I created a small [Python script](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-query-py) that queries Ollama by asking:
 
+> what are the sources of inertia?
 
-## Opening: Enforcment or enablement
+And here is the answer:
 
-### Draconian constaints ?
+```shell
+> python query2.py
+According to the text, the sources of inertia mentioned are:
+
+1. **Loss aversion bias**: The value of losing an object exceeds the value of acquiring it, often leading to a reluctance to change or abandon an existing asset.
+2. **Disposition bias**: A desire not to lose value, which can lead to resisting selling assets that have declined in value, hoping they will recover.
+3. **Instrumentation bias**: A reliance on known tools or approaches to the exclusion of other methods, making it difficult to consider alternative solutions.
+
+These biases and tendencies contribute to inertia by:
+
+* Fostering a fear of loss or change
+* Encouraging the preservation of existing assets or investments
+* Limiting consideration of alternative approaches or solutions
+
+By recognizing these sources of inertia, individuals can better understand why they may be resistant to change and make more informed decisions about their actions.
+```
+
+And all of this can be done without investigating in the structure of any of the documents thanks to the data-contracts.
+
+## Toward datamesh
+
+Here is a doodle of what we've built:
+![a diagram with a domain representing the knowledge domain with a data-product in it. The data product is the association of the book.parquet and the data-contract. It is hosted on a platform supported by an infrastructure layer](/assets/data-contract/domains.png)
+We've described data-as-a-product, and we have more than one use case utilizing these products. The platform serves as an enabler of the solution.
+
+It appears that the premises of a data mesh are being established (at the company scale, we could create more and more interconnected links).
+
+All of this is based on the idea that every domain will publish a data contract for their data. Let's conclude this article by exploring a few considerations on how to facilitate the implementation of the data contract.
+
+### Enforcment or enablement: the role of the governance
+
+We've seen that the data-contract is a strong facilitator to support data-based use-casesSure, here's the enhanced version of the text:
+
+But how can we ensure that all data is exposed as a product with its corresponding contracts?
+
+#### Draconian constaints ?
 
 I made a [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7205948788555849730/) entitled **What would the Jeff Bezos API Mandate look like if applied to data?**
-
 
 Here is a copy of the post:
 
@@ -332,10 +473,19 @@ Here is a copy of the post:
 >  
 > By implementing these constraints, organizations can foster a more efficient and competitive data marketplace, where high-quality data is accessible and valuable to all stakeholders. This approach not only promotes data transparency and usability but also drives innovation and improvement in data services.
 >  
+The idea behind this is to impose strict constraints to ensure that all data is accessible via data contracts. This approach has proven effective for APIs in the digital world, but it is a radical solution that may not be suitable in all contexts. 
 
+Feel free to check the comments on the LinkedIn post to form your own opinion.
 
-### Computational Governance as an enabler
+#### Computational Governance as an enabler
+We've discussed this tiny data-mesh a bit, but we've barely touched on governance. 
 
-## Conclusion
+If we replace _data governance_ with _data enablement_, we can envision its role as facilitating the setup of data exchange.
 
-We have data-as-a-product, we have a domain slicing, a computational governance... I guess that this is a tiny data-mesh.
+The data-mesh introduces the concept of _computational governance_. In our context, governance rules could mandate the exposure of a data contract. However, in the spirit of computation, governance could also provide tools to automatically generate and maintain these data contracts. At the beginning of the article, we mentioned that data contracts should be manageable by both humans and machines.
+
+Providing tools to automate the generation of data contracts would incentivize data producers, as it would offer a unified view of their data, shared both within and outside the domain.
+
+Thus, governance would truly become an enabler.
+
+Thank you for reading up to this point. I would be more than happy to continue the discussion, so please do not hesitate to reach out on social networks like LinkedIn, HackerNews, or Bluesky (but not on X anymore).).

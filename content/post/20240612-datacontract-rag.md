@@ -2,8 +2,8 @@
 title: "The Future of Data Management: an enabler to AI devlopment? A basic illustration with RAG, Open Standards and Data Contracts"
 date: 2024-06-12T12:15:33+01:00
 lastmod: 2024-06-12T12:15:33+01:00
-# images: [/assets/rag/illustration.png]
-draft: true
+images: [/assets/data-contract/domains.png]
+draft: false
 keywords: []
 summary: 
 tags: []

@@ -368,37 +368,87 @@ apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previ
 type:           "objects"
 
 // Physical access
-driver:        "httpfs:sqlite"
+driver:        "httpfs:zip"
 driverVersion: "1.0.0"
-database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
+database:      "https://blog.owulveryck.info/assets/sampledata/chroma.zip" // Bucket name
 
 // Dataset, schema and quality
 dataset: [{
-  table:       "wardleybook.sqlite" // the object name
-  description: "The book from simon wardley, chunked by sections"
+  table:       "wardley_content_embeddings" // the collection
+  description: "The book from simon wardley, chunked by sections with a semantic representation computed with mxbai-embed-large"
   authoritativeDefinitions: [{
     url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
     type: "explanation"
   }]
-  dataGranularity: "Chunking according to sections"
+  dataGranularity: "Each embedding is computing according to sections or the original dataset at https://blog.owulveryck.info/assets/sampledata/wardleyBook.cue"
   columns: [{
-    column:       "embedding"
+    column:       "id"
     logicalType:  "string"
-    physicalType: "BYTE_ARRAY"
-    description:  "The computation of the embedding comuted with the text-embedding-3-large"
-  }]
-    column:       "content"
-    businessName: "The content of the section"
+    physicalType: "string"
+  },{
+    column:       "embeddings"
+    businessName: "The embedding value"
     logicalType:  "string"
-    physicalType: "BYTE_ARRAY"
-    description:  "The content of the section in Markdown"
+    physicalType: "string"
+    description:  "The embedding computed with mxbai-enbed-large"
+  },{
+    column:       "documents"
+    businessName: "The value of the document"
+    logicalType:  "string"
+    physicalType: "string"
+    description:  "The embedding computed with mxbai-enbed-large"
   }]
 }]
 ```
 
+```python
+import pandas as pd
+import ollama
+import chromadb
+
+from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
+
+# Load Parquet File
+url = "https://blog.owulveryck.info/assets/sampledata/wardley_book/wardleyBook.parquet"
+df = pd.read_parquet(url)
+
+# Ensure all content is decoded into strings
+def decode_content(content):
+    if isinstance(content, bytes):
+        return content.decode('utf-8')
+    return content
+
+# Apply decode to each row in the 'content' column
+df['content'] = df['content'].apply(decode_content)
+
+documents = df['content'].tolist()  # Adjust 'content' if the actual column name differs
+
+client = chromadb.PersistentClient(
+    path="db.chroma",
+    settings=Settings(),
+    tenant=DEFAULT_TENANT,
+    database=DEFAULT_DATABASE,
+)
+
+collection = client.create_collection(name="wardley_content_embeddings")
+
+# Store each document in a vector embedding database
+for i, d in enumerate(documents):
+    response = ollama.embeddings(model="mxbai-embed-large", prompt=d)
+    embedding = response["embedding"]
+    collection.add(
+        ids=[str(i)],
+        embeddings=[embedding],
+        documents=[d]
+    )
+
+print("Embeddings stored successfully in ChromaDB.")
+```
+
 ### Play along with the data
 
-TODO
+Assuming that you have an instance of ollama installed locally, you can now play with a rag:
+
 
 ## Toward datamesh
 

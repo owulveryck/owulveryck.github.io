@@ -39,6 +39,8 @@ The structure of this article is divided into three parts. The first part covers
 
 While this overview is intriguing (otherwise, I guess you wouldn't be reading this message because you would have already closed the page), I understand that it might seem unclear. Let's dive in and see if we can clarify it with an example!
 
+**Disclaimer**: This article is a bit lengthy and could probably have been divided into two or three separate articles. Additionally, it contains code excerpts. Feel free to skip any sections as needed.
+
 ## Definitions and tooling
 
 ### Introduction to Data Contracts
@@ -163,9 +165,8 @@ uuid:                "53581432-6c55-4ba2-a65f-72344a91553a"
 
 // Lots of information
 description: {
-  purpose:     "Views built on top of the seller tables."
-  limitations: "Data based on seller perspective, no buyer information"
-  usage:       "Predict sales over time"
+  purpose:     "Provide chunks of the book of Simon Wardley"
+  limitations: "Those chunks have references of the images which are not embedded with this dataset"
 }
 
 // Getting support
@@ -186,7 +187,7 @@ database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
 // Dataset, schema and quality
 dataset: [{
   table:       "wardleyBook.parquet" // the object name
-  description: "The book from simon wardley, chunked byt sections"
+  description: "The book from simon wardley, chunked by sections"
   authoritativeDefinitions: [{
     url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
     type: "explanation"
@@ -238,9 +239,8 @@ version: 1.0.0
 status: test
 uuid: 53581432-6c55-4ba2-a65f-72344a91553a
 description:
-  purpose: Views built on top of the seller tables.
-  limitations: Data based on seller perspective, no buyer information
-  usage: Predict sales over time
+  purpose: Provide chunks of the book of Simon Wardley
+  limitations: Those chunks have references of the images which are not embedded with this dataset
 productDl: wardley-map@myorg.com
 sourcePlatform: owulveryck's blog
 project: The ultimate strategy book club
@@ -253,7 +253,7 @@ driverVersion: 1.0.0
 database: https://blog.owulveryck.info/assets/sampledata
 dataset:
   - table: wardleyBook.parquet
-    description: The book from simon wardley, chunked byt sections
+    description: The book from simon wardley, chunked by sections
     authoritativeDefinitions:
       - url: https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html
         type: explanation
@@ -335,15 +335,83 @@ The rest of the code will remain consistent with the first part of this article.
 
 ### Data Contract for Embeddings
 
-It's crucial to note that the computation of embeddings is algorithm-dependent. 
-Therefore, our data contract should specify the algorithm used for generating these embeddings. 
+It's crucial to note that the computation of embeddings is algorithm-dependent.
+Therefore, our data contract should specify the algorithm used for generating these embeddings.
 This ensures that different algorithms can be accommodated, and multiple data products can be provided as per the embedding algorithms used.
 
+Here is the data contract:
+
+```cue
+// What's this data contract about?
+datasetDomain:       "GenAI"    // Domain
+quantumName:         "Wardley Book" // Data product name
+userConsumptionMode: "operational"
+version:             "1.0.0" // Version (follows semantic versioning)
+status:              "test"
+uuid:                "63581432-6c55-4ba2-a65f-72344a91553b"
+
+// Lots of information
+description: {
+  purpose:     "Views built on top of the seller tables."
+  limitations: "Data based on seller perspective, no buyer information"
+  usage:       "Predict sales over time"
+}
+
+// Getting support
+productDl: "genai@myorg.com"
+
+sourcePlatform: "owulveryck's blog"
+project:        "Engineering in the ear of GenAI"
+datasetName:    "wardley_book"
+kind:           "DataContract"
+apiVersion:     "v2.2.2" // Standard version (follows semantic versioning, previously known as templateVersion)
+type:           "objects"
+
+// Physical access
+driver:        "httpfs:sqlite"
+driverVersion: "1.0.0"
+database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
+
+// Dataset, schema and quality
+dataset: [{
+  table:       "wardleybook.sqlite" // the object name
+  description: "The book from simon wardley, chunked by sections"
+  authoritativeDefinitions: [{
+    url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
+    type: "explanation"
+  }]
+  dataGranularity: "Chunking according to sections"
+  columns: [{
+    column:       "embedding"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+    description:  "The computation of the embedding comuted with the text-embedding-3-large"
+  }]
+    column:       "content"
+    businessName: "The content of the section"
+    logicalType:  "string"
+    physicalType: "BYTE_ARRAY"
+    description:  "The content of the section in Markdown"
+  }]
+}]
+```
 
 ### Play along with the data
 
+TODO
 
-## Opening: Enforcment or enablement
+## Toward datamesh
+
+Here is a doodle of what we've built:
+![a diagram with a domain representing the knowledge domain with a data-product in it. The data product is the association of the book.parquet and the data-contract. It is hosted on a platform supported by an infrastructure layer](/assets/data-contract/domains.png)
+We've described data-as-a-product, and we have more than one use case utilizing these products. The platform serves as an enabler of the solution.
+
+It appears that the premises of a data mesh are being established (at the company scale, we could create more and more interconnected links).
+
+All of this is based on the idea that every domain will publish a data contract for their data. Let's conclude this article by exploring a few considerations on how to facilitate the implementation of the data contract.
+
+### Enforcment or enablement: the role of the governance
+
 
 ### Draconian constaints ?
 
@@ -377,7 +445,3 @@ Here is a copy of the post:
 
 
 ### Computational Governance as an enabler
-
-## Conclusion
-
-We have data-as-a-product, we have a domain slicing, a computational governance... I guess that this is a tiny data-mesh.

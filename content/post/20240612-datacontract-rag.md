@@ -185,7 +185,7 @@ database:      "https://blog.owulveryck.info/assets/sampledata" // Bucket name
 
 // Dataset, schema and quality
 dataset: [{
-  table:       "wardleybook.parquet" // the object name
+  table:       "wardleyBook.parquet" // the object name
   description: "The book from simon wardley, chunked byt sections"
   authoritativeDefinitions: [{
     url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
@@ -252,7 +252,7 @@ driver: httpfs:parquet
 driverVersion: 1.0.0
 database: https://blog.owulveryck.info/assets/sampledata
 dataset:
-  - table: wardleybook.parquet
+  - table: wardleyBook.parquet
     description: The book from simon wardley, chunked byt sections
     authoritativeDefinitions:
       - url: https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html
@@ -282,21 +282,63 @@ dataset:
 
 ### Using the contract
 
-```text
-D SELECT section_title,content FROM 'book.parquet' WHERE chapter_number=1 AND section_number=1;
-┌───────────────┬────────────────────────────────────────────────────────────────────────────────────────────┐
-│ section_title │                                          content                                           │
-│     blob      │                                            blob                                            │
-├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Serendipity   │ By chance, I had picked up a copy of the \x22Art of War\x22 by Sun Tzu. Truth\x0Abe told…  │
-└───────────────┴────────────────────────────────────────────────────────────────────────────────────────────┘
+Let's see if the definition of the contract is sufficient to properly access the data.
+
+- I know that the driver is `httpfs:parquet`
+- I have the database address: `https://blog.owulveryck.info/assets/sampledata`
+- I have the "table name" (my parquet file): `wardleyBook.parquet`
+
+I can now try to access the data with `duckDB` for example (which can read parquet files and access httpfs storage):
+
+```shell
+> duckdb
+v0.9.2 3c695d7ba9
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+D INSTALL httpfs;
+D LOAD httpfs;
+D SELECT * FROM "https://blog.owulveryck.info/assets/sampledata/wardley_book/wardleyBook.parquet" LIMIT 2;
+┌────────────────┬────────────────┬───────────────┬──────────────────────┬─────────────────────────────────────────────────────────────────────────────┐
+│ chapter_number │ section_number │ chapter_title │    section_title     │                                   content                                   │
+│     int32      │     int32      │     blob      │         blob         │                                    blob                                     │
+├────────────────┼────────────────┼───────────────┼──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤
+│              1 │              1 │ On being lost │ Serendipity          │ By chance, I had picked up a copy of the \x22Art of War\x22 by Sun Tzu. T…  │
+│              1 │              2 │ On being lost │ The importance of …  │ It was about this time that I read the story of Ball\x27s Bluff. It is no…  │
+└────────────────┴────────────────┴───────────────┴──────────────────────┴─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-
+It is beyond the scope of this article to write a script to extract the content and turn it into an html file, but you get the drill.
 
 ## Second part: the consumer aligned data domain
 
+Now, let's leave the knowledge domain to enter the GenAI domain.
+
 ### The use case: RAG-Time
+
+In this section, we'll dive into the "GenAI" domain, where the focus is on creating a Retrieval-Augmented Generation (RAG) tool that allows us to query a book effectively.
+As mentioned in my previous article[^1], a RAG tool leverages both retrieval mechanisms and generative AI to provide contextual and accurate answers from a given textual source.
+
+[^1]: [Exploring exaptations in engineering practices within a RAG-Based application](https://blog.owulveryck.info/2024/04/29/exploring-exaptations-in-engineering-practices-within-a-rag-based-application.html)
+
+### Creating a Semantic Representation
+
+To build this RAG tool, we need to create a semantic representation of the book.
+This involves computing embeddings for each section of the book.
+These embeddings are numerical representations that capture the semantic meaning of the text, enabling efficient search and retrieval in response to queries.
+
+We will use the data-product exposed from the "knowledge" domain, which contains the book's data in a structured format.
+Our aim is to create a new data-product with three columns: an ID, the content in markdown format, and the corresponding embedding.
+
+While a proper implementation would ideally utilize a VectorDatabase to store these embeddings, for the simplicity of this blog, we will store the data in an SQLite database.
+The rest of the code will remain consistent with the first part of this article.
+
+### Data Contract for Embeddings
+
+It's crucial to note that the computation of embeddings is algorithm-dependent. 
+Therefore, our data contract should specify the algorithm used for generating these embeddings. 
+This ensures that different algorithms can be accommodated, and multiple data products can be provided as per the embedding algorithms used.
+
 
 ### Play along with the data
 

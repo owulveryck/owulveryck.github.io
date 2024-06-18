@@ -330,9 +330,6 @@ These embeddings are numerical representations that capture the semantic meaning
 We will use the data-product exposed from the "knowledge" domain, which contains the book's data in a structured format.
 Our aim is to create a new data-product with three columns: an ID, the content in markdown format, and the corresponding embedding.
 
-While a proper implementation would ideally utilize a VectorDatabase to store these embeddings, for the simplicity of this blog, we will store the data in an SQLite database.
-The rest of the code will remain consistent with the first part of this article.
-
 ### Data Contract for Embeddings
 
 It's crucial to note that the computation of embeddings is algorithm-dependent.
@@ -370,7 +367,7 @@ type:           "objects"
 // Physical access
 driver:        "httpfs:zip"
 driverVersion: "1.0.0"
-database:      "https://blog.owulveryck.info/assets/sampledata/chroma.zip" // Bucket name
+database:      "https://blog.owulveryck.info/assets/sampledata/chroma.zip" 
 
 // Dataset, schema and quality
 dataset: [{
@@ -379,6 +376,9 @@ dataset: [{
   authoritativeDefinitions: [{
     url:  "https://blog.owulveryck.info/2024/06/12/the-future-of-data-management-an-enabler-to-ai-devlopment-a-basic-illustration-with-rag-open-standards-and-data-contracts.html"
     type: "explanation"
+  },{
+    url: "https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py"
+    type: "code"
   }]
   dataGranularity: "Each embedding is computing according to sections or the original dataset at https://blog.owulveryck.info/assets/sampledata/wardleyBook.cue"
   columns: [{
@@ -390,65 +390,44 @@ dataset: [{
     businessName: "The embedding value"
     logicalType:  "string"
     physicalType: "string"
-    description:  "The embedding computed with mxbai-enbed-large"
+    description:  "The embedding computed with mxbai-embed-large"
   },{
     column:       "documents"
     businessName: "The value of the document"
     logicalType:  "string"
     physicalType: "string"
-    description:  "The embedding computed with mxbai-enbed-large"
+    description:  "The embedding computed with mxbai-embed-large"
   }]
 }]
 ```
 
-```python
-import pandas as pd
-import ollama
-import chromadb
-
-from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
-
-# Load Parquet File
-url = "https://blog.owulveryck.info/assets/sampledata/wardley_book/wardleyBook.parquet"
-df = pd.read_parquet(url)
-
-# Ensure all content is decoded into strings
-def decode_content(content):
-    if isinstance(content, bytes):
-        return content.decode('utf-8')
-    return content
-
-# Apply decode to each row in the 'content' column
-df['content'] = df['content'].apply(decode_content)
-
-documents = df['content'].tolist()  # Adjust 'content' if the actual column name differs
-
-client = chromadb.PersistentClient(
-    path="db.chroma",
-    settings=Settings(),
-    tenant=DEFAULT_TENANT,
-    database=DEFAULT_DATABASE,
-)
-
-collection = client.create_collection(name="wardley_content_embeddings")
-
-# Store each document in a vector embedding database
-for i, d in enumerate(documents):
-    response = ollama.embeddings(model="mxbai-embed-large", prompt=d)
-    embedding = response["embedding"]
-    collection.add(
-        ids=[str(i)],
-        embeddings=[embedding],
-        documents=[d]
-    )
-
-print("Embeddings stored successfully in ChromaDB.")
-```
+As documented in the data-contractm you can find the code used to generate the chromadb [here](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py).
 
 ### Play along with the data
+Assuming you have an instance of Ollama installed locally, you can now experiment with a RAG (Retrieval-Augmented Generation). I created a small [Python script](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-query-py) that queries Ollama by asking:
 
-Assuming that you have an instance of ollama installed locally, you can now play with a rag:
+> what are the sources of inertia?
 
+And here is the answer:
+
+```shell
+> python query2.py
+According to the text, the sources of inertia mentioned are:
+
+1. **Loss aversion bias**: The value of losing an object exceeds the value of acquiring it, often leading to a reluctance to change or abandon an existing asset.
+2. **Disposition bias**: A desire not to lose value, which can lead to resisting selling assets that have declined in value, hoping they will recover.
+3. **Instrumentation bias**: A reliance on known tools or approaches to the exclusion of other methods, making it difficult to consider alternative solutions.
+
+These biases and tendencies contribute to inertia by:
+
+* Fostering a fear of loss or change
+* Encouraging the preservation of existing assets or investments
+* Limiting consideration of alternative approaches or solutions
+
+By recognizing these sources of inertia, individuals can better understand why they may be resistant to change and make more informed decisions about their actions.
+```
+
+And all of this can be done without investigating in the structure of any of the documents thanks to the data-contracts.
 
 ## Toward datamesh
 

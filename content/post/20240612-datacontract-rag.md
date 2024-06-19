@@ -490,4 +490,12 @@ Providing tools to automate the generation of data contracts would incentivize d
 
 Thus, governance would truly become an enabler.
 
-Thank you for reading up to this point. I would be more than happy to continue the discussion, so please do not hesitate to reach out on social networks like LinkedIn, HackerNews, or Bluesky (but not on X anymore).).
+## Conclusion
+
+Throughout this article, we have explored the basic usage of a data contract. However, several aspects were not covered, such as sections on the Service Level Agreement (SLA) and other important details.
+
+Additionally, we did not address data security, which should be managed by governance rules and enforced through the capabilities of a platform.
+
+So, how do you start? Consider implementing a data contract on data that is valuable to both your domain and others. Next, assess the requirements for security and hosting, and begin outlining potential governance rules.
+
+Thank you for reading up to this point ;)

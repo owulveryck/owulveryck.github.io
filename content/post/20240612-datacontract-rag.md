@@ -1,5 +1,5 @@
 ---
-title: "The Future of Data Management: an enabler to AI devlopment? A basic illustration with RAG, Open Standards and Data Contracts"
+title: "The Future of Data Management: An Enabler of AI Development? A Basic Illustration with RAG, Open Standards, and Data Contracts"
 date: 2024-06-12T12:15:33+01:00
 lastmod: 2024-06-12T12:15:33+01:00
 images: [/assets/data-contract/domains.png]
@@ -48,10 +48,10 @@ While this overview is intriguing (otherwise, I guess you wouldn't be reading th
 In the world of data management, a **data contract** is a formal representation of a data ins a standard, machine-readable format.
 It allows both humans and computers to understand the capabilities of a dataset without accessing its structure, documentation, or through its database inspection.
 
-Key Features of a data-contract:
+Key Features of a data contract:
 
 - Standardization: It provides a standardized way to describe the structure of the data-set.
-- Machine-readable Documentation: Tools can use the data-contract definition to generate interactive data-documentation documentation, client SDKs in various programming languages, or queries from compatibles database tools.
+- Machine-readable Documentation: Tools can use the data contract definition to generate interactive data-documentation documentation, client SDKs in various programming languages, or queries from compatibles database tools.
 - Provides Self-Documentation: The contract itself serves as a source of truth for its capabilities, which can enhance developer experience by providing integrated and always up-to-date documentation.
 
 Data contracts serve as a safeguard, ensuring that data meets specific criteria before being consumed, thereby increasing the reliability and trustworthiness of data-driven processes.
@@ -63,7 +63,9 @@ Open standards are crucial for the interoperability and scalability of heterogen
 In the data ecosystem, [Bitol](https://bitol.io/) offers a framework for creating and maintaining data contracts. I will be using their schema version 2.2.2, which is the latest version at the time of writing.
 The standard [proposes a schema](https://github.com/bitol-io/open-data-contract-standard/blob/main/schema/odcs-json-schema-v2.2.2.json) (expressed in `JSONSchema`), and the contract can be written in `YAML`.
 
-Many folks believe that both formats are suitable for humans and machines. I don't. Therefore, I will use a _tool-in-the-middle_ to write and validate the contracts I will work with: [CUE](https://cuelang.org).## My tooling for playing
+Many folks believe that both formats are suitable for humans and machines. I don't. Therefore, I will use a _tool-in-the-middle_ to write and validate the contracts I will work with: [CUE](https://cuelang.org).
+
+## My tooling for playing
 
 #### Validating Data Contracts with CUE (Cuelang)
 
@@ -137,18 +139,18 @@ We will then store the data in a parquet file on an HTTP server.
 
 **Note:** In a corporate scenario, you would likely consider implementing a platform for data storage. This platform would offer advanced search and extraction capabilities to cater to the needs of various stakeholders.
 
-I am using a parquet file to emulate a proper database. I guess that we could use a raw object storage, but, by now, the data-contract specication imposes a table based dataset.
+I am using a parquet file to emulate a proper database. I guess that we could use a raw object storage, but, by now, the data contract specication imposes a table based dataset.
 
 #### Side note about the #Dataset definition in bitol
 
-_Not everything fits neatly into rows and columns_, but today, the data-contract standard relies heavily on tables and columns for its descriptions.
+_Not everything fits neatly into rows and columns_, but today, the data contract standard relies heavily on tables and columns for its descriptions.
 This is one of the reasons why I chose to encapsulate the data in a Parquet file for this exercise. It can likely evolve later to handle object storage directly.
 
 In the meantime, in large businesses, this may not be an issue, as a platform can easily provide the capability to expose any data through a table abstraction.
 
 
 Here is a representation of what we are building:
-![a diagram with a domain representing the knowledge domain with a data-product in it. The data product is the association of the book.parquet and the data-contract. It is hosted on a platform supported by an infrastructure layer](/assets/data-contract/domain-knowledge.png)
+![a diagram with a domain representing the knowledge domain with a data-product in it. The data product is the association of the book.parquet and the data contract. It is hosted on a platform supported by an infrastructure layer](/assets/data-contract/domain-knowledge.png)
 
 ### Implementing the contract
 
@@ -401,7 +403,7 @@ dataset: [{
 }]
 ```
 
-As documented in the data-contractm you can find the code used to generate the chromadb [here](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py).
+As documented in the data-contract you can find the code used to generate the chromadb [here](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py).
 
 ### Play along with the data
 Assuming you have an instance of Ollama installed locally, you can now experiment with a RAG (Retrieval-Augmented Generation). I created a small [Python script](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-query-py) that queries Ollama by asking:
@@ -427,12 +429,12 @@ These biases and tendencies contribute to inertia by:
 By recognizing these sources of inertia, individuals can better understand why they may be resistant to change and make more informed decisions about their actions.
 ```
 
-And all of this can be done without investigating in the structure of any of the documents thanks to the data-contracts.
+And all of this can be done without investigating in the structure of any of the documents thanks to the data contracts.
 
 ## Toward datamesh
 
 Here is a doodle of what we've built:
-![a diagram with a domain representing the knowledge domain with a data-product in it. The data product is the association of the book.parquet and the data-contract. It is hosted on a platform supported by an infrastructure layer](/assets/data-contract/domains.png)
+![a diagram with a domain representing the knowledge domain with a data-product in it. The data product is the association of the book.parquet and the data contract. It is hosted on a platform supported by an infrastructure layer](/assets/data-contract/domains.png)
 We've described data-as-a-product, and we have more than one use case utilizing these products. The platform serves as an enabler of the solution.
 
 It appears that the premises of a data mesh are being established (at the company scale, we could create more and more interconnected links).
@@ -441,7 +443,7 @@ All of this is based on the idea that every domain will publish a data contract 
 
 ### Enforcment or enablement: the role of the governance
 
-We've seen that the data-contract is a strong facilitator to support data-based use-casesSure, here's the enhanced version of the text:
+We've seen that the data contract is a strong facilitator to support data-based use-casesSure, here's the enhanced version of the text:
 
 But how can we ensure that all data is exposed as a product with its corresponding contracts?
 
@@ -465,7 +467,7 @@ Here is a copy of the post:
 > 2. Teams must exchange data with each other according to these contracts.
 > 3. There will be no other form of data exchange allowed: no direct reads of another team’s data store, no shared-memory model, no specific ETL, ELT whatsoever. The only exchange allowed is via the desscription of the contract over the data platform.
 > 4. It doesn’t matter what technology they use. Object Storage, Time series, Relational, custom protocols — doesn’t matter.
-> 5. All data-contracts, without exception, must be designed from the ground up to be externalizable. That is to say, the team must plan and design to be able to expose the data to consumers in the outside world. No exceptions.
+> 5. All data contracts, without exception, must be designed from the ground up to be externalizable. That is to say, the team must plan and design to be able to expose the data to consumers in the outside world. No exceptions.
 > 6. Anyone who doesn’t do this will be fired.
 > 7. Thank you; have a nice day!
 >  

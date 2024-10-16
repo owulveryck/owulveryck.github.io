@@ -86,84 +86,73 @@ I see a lot of data models and organization that sometimes lack the clarity of p
 I will use the model from the book I mentioned earlier, "_The Value Flywheel Effect_," which is a third iteration of the model (following Amazon and the original idea from [Jim Collins](https://www.jimcollins.com/concepts/the-flywheel.html)).
 This model is well-documented in the book, and I strongly recommend that you read it.
 
----
-
-### Data-Mesh and the Role of a Central Team
-
-One modern approach to handling **data silos** is the **data-mesh**. In this paradigm, **teams take ownership of data products** within their domain, handling their data end-to-end. Instead of the central data team acting as gatekeepers, every business unit becomes responsible for the **data products** they create and manage. However, there’s a challenge: **cross-domain data** that serves the entire organization.
-
-Some organizations initially manage this issue by continuing to handle **certain data products centrally**. This central data team is responsible for:
-
-- Supporting **cross-domain data products**.
-- Offering **technical infrastructure** at scale.
-- Ensuring the availability of data across the organization.
-
-This brings us to the core problem I’m trying to address: **How can the central data team, or the “data factory,” provide consistent value to different domains and activate the value flywheel across the entire organization?**
-
-To solve this, I rely on the model described in the book _"The Value Flywheel Effect"_, which serves as a guiding framework to **transition from a traditional data factory to a federated management model**, unlocking value step by step.
-
----
+![The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long term value. The wheel connect the four phases and the phase IV to phase I](/value-flywheel/the-value-flywheel-effect.webp)
+Illustration of the Value Flywheel Effect (Adapted from the model by David Anderson)
 
 ### The Value Flywheel Effect: Four Phases for Transition
 
-The **Value Flywheel Effect** occurs in four key phases, each of which represents a strategic milestone in spinning the value creation flywheel. I’ll explain each phase, outlining the **key tenets**, the **people in charge**, their **objectives**, and how to **activate the value flywheel** at each stage.
+The **Value Flywheel Effect** occurs in four key phases, each of which represents a strategic milestone in spinning the value creation flywheel.
+I’ll explain each phase, outlining the **key tenets**, the **people in charge**, their **objectives**, and how to **activate the value flywheel** at each stage.
 
----
+#### Phase 1
 
-#### 1. Clarity of Purpose
+Clarity of Purpose
 
-The first phase is about establishing **Clarity of Purpose**. To create business value from data, the people working in the **data factory** need to understand the purpose of their work and how it supports broader company objectives.
+The first phase is about establishing **Clarity of Purpose**.
+To create business value from data, the people working in the **data factory** need to understand the purpose of their work and how it supports broader company objectives.
 
 - **Key Tenets**: Alignment on **business goals**, connecting data initiatives directly to business outcomes.
 - **People in Charge**: Leadership, Executive Sponsors, and Domain Experts.
 - **Goal**: Ensure that both data and business teams are working towards the same strategic goals, thus preventing misalignment in expectations or priorities.
 
-At this stage, the central data factory needs to focus on aligning its capabilities with **business priorities**. This clarity will guide the roles and direction for the team moving forward and ensures that data outputs lead to insights that can create real value.
+At this stage, the central data factory needs to focus on aligning its capabilities with **business priorities**.
+This clarity will guide the roles and direction for the team moving forward and ensures that data outputs lead to insights that can create real value.
 
----
+#### Phase 2
 
-#### 2. Challenge and Landscape
+Challenge and Landscape
 
-Next comes **Challenge and Landscape**, which focuses on identifying **key obstacles** and understanding the **current technological and business landscape**. This phase might reveal that certain systems and processes need to be updated to meet modern data demands or may indicate **gaps in domain-level data ownership**.
+Next comes **Challenge and Landscape**, which focuses on identifying **key obstacles** and understanding the **current technological and business landscape**.
+This phase might reveal that certain systems and processes need to be updated to meet modern data demands or may indicate **gaps in domain-level data ownership**.
 
 - **Key Tenets**: Awareness of technological **debt**, bottlenecks, and organizational inefficiencies.
-- **People in Charge**: Technology Leads, Data Engineers, and Product Owners.
+- **People in Charge**: Engineering: Technology Leads, Data Engineers, ...
 - **Goal**: Examine the current infrastructure, tools, and systems in place and identify what challenges exist that may hinder the spinning of the flywheel.
 
-During this phase, it's crucial for the **data factory team** to get an accurate picture of **which challenges**—be it technical, cultural, or operational—are preventing them from scaling or accelerating their value generation. By mapping these obstacles, I help guide my clients towards addressing the most pressing issues while also identifying new opportunities.
+During this phase, it's crucial for the **data factory team** to get an accurate picture of **which challenges**—be it technical, cultural, or operational—are preventing them from scaling or accelerating their value generation.
+By mapping these obstacles, I help guide my clients towards addressing the most pressing issues while also identifying new opportunities.
 
----
+#### Phase 3
 
-#### 3. Next Best Action
+Next Best Action
 
-Once the landscape is clear, the focus moves to identifying the **Next Best Action**—what small, **incremental** improvements can be made that will begin turning the flywheel? At this stage, it’s about **empowering teams to take ownership** and starting to decentralize responsibility without overwhelming them.
+Once the landscape is clear, the focus moves to identifying the **Next Best Action**:
+what small, **incremental** improvements can be made that will begin turning the flywheel? At this stage, it’s about **empowering teams to take ownership** and starting to decentralize responsibility without overwhelming them.
 
 - **Key Tenets**: **Iterative progress, agile development**, unlocking quick wins, and decentralizing responsibilities.
 - **People in Charge**: Domain Leaders, Product Teams, and Data Engineers.
 - **Goal**: Focus on the **minimum viable actions** necessary to eliminate the identified pain points, and **prioritize pragmatic solutions** that bring value without over-complication.
 
-Here, the **data factory** plays a pivotal role—it provides the foundational capabilities needed for domains to take charge of their **own data products**. Small, actionable steps, like improving data accessibility or providing scalable infrastructure, can catalyze bigger leaps.
+Here, the **data factory** plays a pivotal role—it provides the foundational capabilities needed for domains to take charge of their **own data products**.
+Small, actionable steps, like improving data accessibility or providing scalable infrastructure, can catalyze bigger leaps.
 
----
+#### 4
 
-#### 4. Long-Term Value
+Long-Term Value
 
-Finally, the last phase revolves around establishing **Long-Term Value**. This is where the flywheel effect becomes self-sustaining, where each domain confidently handles its own data products, and the **data factory** transitions to more of a **supportive, enabling role**.
+Finally, the last phase revolves around establishing **Long-Term Value**.
+This is where the flywheel effect becomes self-sustaining, where each domain confidently handles its own data products, and the **data factory** transitions to more of a **supportive, enabling role**.
 
 - **Key Tenets**: A federated model where all teams are contributing to **shared goals** and creating sustainable value.
 - **People in Charge**: Chief Data Officers (CDOs), Domain-Specific Data Teams, Architects.
 - **Goal**: Architect the system to work at **scale**, ensuring consistency, governance, and long-lasting value for the entire company.
 
-At this stage, the **central data factory** should have evolved into more of a **platform provider**, focusing on empowering the individual domains while ensuring that the infrastructure is reliable, scalable, and repeatable. By driving toward a **data-mesh**, this phase enables the system to generate value continuously, accelerating innovation for the business.
-
----
+At this stage, the **central data factory** should have evolved into more of a **platform provider**, focusing on empowering the individual domains while ensuring that the infrastructure is reliable, scalable, and repeatable.
+By driving toward a **data-mesh**, this phase enables the system to generate value continuously, accelerating innovation for the business.
 
 ### Conclusion: Activating the Flywheel
 
-The **value flywheel** is activated phase by phase, and the central **data factory** plays a major role throughout the journey towards a federated data management system, ensuring **cross-domain consistency** and delivering scalable solutions. By following this structured approach, the data landscape becomes a coherent framework where each part of the organization—not just the central data team—can contribute to the company’s **long-term success**.
+The **value flywheel** is activated phase by phase, and the central **data factory** plays a major role throughout the journey towards a federated data management system, ensuring **cross-domain consistency** and delivering scalable solutions.
+By following this structured approach, the data landscape becomes a coherent framework where each part of the organization—not just the central data team—can contribute to the company’s **long-term success**.
 
 The shift toward a **data-mesh** architecture ensures that all domains can spin the flywheel on their own, transforming data into actionable insights and kickstarting a virtuous cycle of value, innovation, and acceleration.
-
----
-
-This restructured approach follows your plan and emphasizes the **central role** of the data factory in moving towards a **distributed data model**, ultimately spinning the flywheel to unlock **persistent business value**.

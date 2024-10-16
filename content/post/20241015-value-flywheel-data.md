@@ -22,9 +22,39 @@ In today's hyper-competitive world, businesses no longer rely solely on gut deci
 However, data alone isn't the answer; it's the enabler to create a momentum on a **business & technology flywheel**:
 a model where data drives decisions, decisions drive actions, and those actions drive value, propelling the business forward in a self-reinforcing cycle.
 
-I a [previous post](https://blog.owulveryck.info/2024/04/09/data-as-a-product-and-data-contract-an-evolutionary-approach-to-data-maturity.html), I used a model to explain how data could cross the borders of applications and domains to bring increasing value at the organizational level.
+In a [previous post](https://blog.owulveryck.info/2024/04/09/data-as-a-product-and-data-contract-an-evolutionary-approach-to-data-maturity.html), I used a model to explain how data could cross the borders of applications and domains to bring increasing value at the organizational level.
 
 In this post, I am attempting to adapt this cycle and determine what is required to activate a value flywheel effect from a joint technological and business perspective.
+
+### The problem
+
+As a **technological consultant** specializing in **data management**, I help organizations unlock **business value** through the effective use of data.
+My focus is on the **analytics world**, where data possesses a **temporal dimension** and is used to derive actionable **insights** that drive better business decisions.
+
+However, a key challenge for most companies lies in ensuring that these insights are properly **aligned with the business definitions** and goals.
+Without this alignment, the insights—no matter how accurate or comprehensive—can lose their relevance and ultimately fail to deliver the intended value.
+
+In many large organizations, data is often **managed in silos**, creating an artificial separation between **data teams** and **business teams**.
+This disconnect makes it difficult to align data insights with actual business needs and hampers effective collaboration across departments.
+Even when teams manage to gather the right data, the **lack of alignment** across the organization can result in **misinterpretation or underutilization** of that data.
+
+One solution that some organizations have embraced is a **4-in-the-box (4ITB)** model, initially [pioneered by Walmart](http://thomasmisner.com/download/Thomas-Misner_Product-Ways-Of-Working-Presentation.pdf).
+The 4ITB model brings together **cross-functional teams** involving stakeholders like Product Managers, Engineers, Data Experts, Business Representatives, and eventually others (N-ITB) to collaboratively solve business challenges.
+It aims to establish both **horizontal alignment** (across departments) and **vertical alignment** (with leadership's vision) for every project.
+
+In this model, **data** is treated as a critical part of the problem-solving process and "included in the box" alongside the other key functions.
+While this improves collaborative efficiency, it also introduces new challenges as data becomes more integrated into everyday operations.
+Specifically, even when data is brought into the 4ITB model, maintaining **alignment across domains** and dealing with **cross-domain data** (i.e., data that impacts multiple parts of the organization) remains a significant hurdle.
+Successfully overcoming this requires a more coordinated approach to data management—one that can handle domain-specific needs while enabling **cross-organization value generation**.
+
+To overcome these challenges of misalignment and cross-domain data handling, many organizations still find value in maintaining a central data team.
+This team plays a pivotal role by supporting the holistic needs of the entire organization, especially when dealing with data at scale and ensuring it's available, compliant, and useful across all departments.
+
+This central data team, often dubbed the data factory, is responsible for standardizing data processes, ensuring consistent access to analytics, and delivering technical capabilities that empower each domain to leverage data more effectively.
+By operating as both a central service and an enabler, the data factory helps bridge the gap between business needs and technical expertise.
+Think of it as the core infrastructure that powers the end-to-end data lifecycle—from collection and curation to storage, governance, and exposure for insights.
+
+The data factory is, therefore, in chager of fighting the inertia of the system and triggering a value flywheel effect.
 
 ### **What is the Value Flywheel Effect?**
 
@@ -50,78 +80,90 @@ The flywheel model describes a **self-reinforcing system** of momentum, growing 
 Instead of relying on giant, one-time shifts or changes, the flywheel works by multiplying the effects of **small, consistent improvements**.
 Once it's moving, it's hard to stop.
 
-#### **How Does This Relate to Data and Technology?**
+My goal is to use this model to see how it fits in the data landscape.
+I see a lot of data models and organization that sometimes lack the clarity of purpose or the long term value.
 
-Now, let’s translate this idea into the usage of **technology, data, and insights** within a business environment.
-
-In a data-driven organization, **data usage operates within a broader flywheel of technology infrastructure**, decision-making, and business operations.
-The value flywheel consists of **four key components** that interact:
-
-1. **Data & Technology Infrastructure** – The foundation of data collection, storage, processing, and automation.
-   This is your company's raw resource.
-2. **Insights & Analytics** – Data isn’t useful on its own.
-   It must be refined, curated, and interpreted to generate insights that drive decision-making.
-3. **Business Decisions** – These insights fuel strategic business decisions in real-time, allowing for **adaptive actions** and creating value by solving customer problems, optimizing operations, or identifying market opportunities.
-4. **Customer and Business Impact** – Better decisions lead to more effective products and services, happier customers, and more efficient business processes.
-   This results in **improved outcomes** and financial gain for the organization.
-
-These four components interact in a continuous loop:
-
-- Better **data and technology** infrastructure provides higher-quality insights,
-- Which in turn enables smarter **business decisions**,
-- Which drive more effective **actions** and improved outcomes,
-- Which then contributes back to the **technology investment** and data ecosystem, allowing you to collect more useful data and drive even better business decisions.
-
-As each cycle turns, the flywheel **builds momentum**, and small inputs lead to accelerating value.
-The more you use technology and data to drive decisions, the easier it becomes to generate future insights, make smarter decisions, and create compounding growth for the business.
-
-### **The Role of Data in Building Momentum**
-
-Data is the **fuel** for this flywheel.
-Imagine it as the **input** component, feeding valuable insights into the decision-making process.
-However, the real power comes not just through acquiring more data, but in how you use and operationalize the data.
-
-This is where momentum comes in:
-
-- **Data Collection and Processing**: The better your data infrastructure—the more aligned it is with your business needs—the easier it is to produce reliable insights.
-- **Insights as Accelerators**: **Data-driven insights** enable leaders to make informed decisions that impact products, services, and customer experience.
-- **Impact on Business**: These decisions don’t just sit in isolation; they lead to **actions** that improve the business—whether reducing costs, improving customer satisfaction, or opening new revenue streams.
-- **Feedback Loop**: The more efficient your flywheel becomes, the more **momentum** it gains, continuing to churn out better decisions, more insights, and a greater competitive edge.
-
-#### **The First Spin is Always the Hardest**
-
-Getting started with the value flywheel can be difficult, especially when you don’t know how to **operationalize the data** or how to align technology with business outcomes.
-But the important thing is to make the **first spin**—to gather data, begin generating insights or metrics, and take action, even if those actions are small or experimental.
-
-Like any flywheel, the more it spins, the easier it becomes to maintain the momentum, and the more value you derive from each cycle.
-
-### **Kickstarting Your Own Technology Flywheel with Data**
-
-So how do you start? The central thesis of this presentation is simple: To **kickstart your value flywheel**, **data** must be treated as a **strategic enabler** within your organization.
-This requires you to invest in proper technology infrastructure, build **data-as-a-product** capabilities, and leverage insights to power decision-making.
-
-Over the next few slides, we will cover how you can:
-
-1. Use **data-as-a-product thinking** to break out of silos and ensure data usage serves broader business decisions.
-2. Implement **data contracts** to standardize and govern data interactions between different business units.
-3. Build momentum in your flywheel by generating initial, small **wins** that eventually compound into greater insights and business value.
-4. Leverage data to improve **customer experience, operational efficiency, and long-term growth**.
-
-Once all of these components interact, you’ll witness the power of how data fits into the larger **technology-business flywheel** and propels your organization toward lasting, sustained success.
+I will use the model from the book I mentioned earlier, "_The Value Flywheel Effect_," which is a third iteration of the model (following Amazon and the original idea from [Jim Collins](https://www.jimcollins.com/concepts/the-flywheel.html)).
+This model is well-documented in the book, and I strongly recommend that you read it.
 
 ---
 
-### **Transition to the Next Section:**
+### Data-Mesh and the Role of a Central Team
 
-Now, let's dive into **how to start using data as a product**.
-This will serve as the critical first step toward spinning your flywheel and unlocking value for your business.
+One modern approach to handling **data silos** is the **data-mesh**. In this paradigm, **teams take ownership of data products** within their domain, handling their data end-to-end. Instead of the central data team acting as gatekeepers, every business unit becomes responsible for the **data products** they create and manage. However, there’s a challenge: **cross-domain data** that serves the entire organization.
+
+Some organizations initially manage this issue by continuing to handle **certain data products centrally**. This central data team is responsible for:
+
+- Supporting **cross-domain data products**.
+- Offering **technical infrastructure** at scale.
+- Ensuring the availability of data across the organization.
+
+This brings us to the core problem I’m trying to address: **How can the central data team, or the “data factory,” provide consistent value to different domains and activate the value flywheel across the entire organization?**
+
+To solve this, I rely on the model described in the book _"The Value Flywheel Effect"_, which serves as a guiding framework to **transition from a traditional data factory to a federated management model**, unlocking value step by step.
 
 ---
 
-### Final Thoughts
+### The Value Flywheel Effect: Four Phases for Transition
 
-In this version, I’ve framed **data** as a **critical component** of the technology flywheel that propels **business outcomes**.
-I’ve avoided making data the sole focus but instead emphasized its role as an **input** that feeds into the entire flywheel system, impacting decisions and eventually driving compounding value through a self-reinforcing feedback loop.
+The **Value Flywheel Effect** occurs in four key phases, each of which represents a strategic milestone in spinning the value creation flywheel. I’ll explain each phase, outlining the **key tenets**, the **people in charge**, their **objectives**, and how to **activate the value flywheel** at each stage.
 
-This approach aligns with the idea that data is part of a broader system of technology, insights, and business actions, with business **momentum** building as processes become more efficient over time.
-You can use this structure in the presentation to explain how various parts of an organization need to work in tandem for the flywheel to generate long-term value.
+---
+
+#### 1. Clarity of Purpose
+
+The first phase is about establishing **Clarity of Purpose**. To create business value from data, the people working in the **data factory** need to understand the purpose of their work and how it supports broader company objectives.
+
+- **Key Tenets**: Alignment on **business goals**, connecting data initiatives directly to business outcomes.
+- **People in Charge**: Leadership, Executive Sponsors, and Domain Experts.
+- **Goal**: Ensure that both data and business teams are working towards the same strategic goals, thus preventing misalignment in expectations or priorities.
+
+At this stage, the central data factory needs to focus on aligning its capabilities with **business priorities**. This clarity will guide the roles and direction for the team moving forward and ensures that data outputs lead to insights that can create real value.
+
+---
+
+#### 2. Challenge and Landscape
+
+Next comes **Challenge and Landscape**, which focuses on identifying **key obstacles** and understanding the **current technological and business landscape**. This phase might reveal that certain systems and processes need to be updated to meet modern data demands or may indicate **gaps in domain-level data ownership**.
+
+- **Key Tenets**: Awareness of technological **debt**, bottlenecks, and organizational inefficiencies.
+- **People in Charge**: Technology Leads, Data Engineers, and Product Owners.
+- **Goal**: Examine the current infrastructure, tools, and systems in place and identify what challenges exist that may hinder the spinning of the flywheel.
+
+During this phase, it's crucial for the **data factory team** to get an accurate picture of **which challenges**—be it technical, cultural, or operational—are preventing them from scaling or accelerating their value generation. By mapping these obstacles, I help guide my clients towards addressing the most pressing issues while also identifying new opportunities.
+
+---
+
+#### 3. Next Best Action
+
+Once the landscape is clear, the focus moves to identifying the **Next Best Action**—what small, **incremental** improvements can be made that will begin turning the flywheel? At this stage, it’s about **empowering teams to take ownership** and starting to decentralize responsibility without overwhelming them.
+
+- **Key Tenets**: **Iterative progress, agile development**, unlocking quick wins, and decentralizing responsibilities.
+- **People in Charge**: Domain Leaders, Product Teams, and Data Engineers.
+- **Goal**: Focus on the **minimum viable actions** necessary to eliminate the identified pain points, and **prioritize pragmatic solutions** that bring value without over-complication.
+
+Here, the **data factory** plays a pivotal role—it provides the foundational capabilities needed for domains to take charge of their **own data products**. Small, actionable steps, like improving data accessibility or providing scalable infrastructure, can catalyze bigger leaps.
+
+---
+
+#### 4. Long-Term Value
+
+Finally, the last phase revolves around establishing **Long-Term Value**. This is where the flywheel effect becomes self-sustaining, where each domain confidently handles its own data products, and the **data factory** transitions to more of a **supportive, enabling role**.
+
+- **Key Tenets**: A federated model where all teams are contributing to **shared goals** and creating sustainable value.
+- **People in Charge**: Chief Data Officers (CDOs), Domain-Specific Data Teams, Architects.
+- **Goal**: Architect the system to work at **scale**, ensuring consistency, governance, and long-lasting value for the entire company.
+
+At this stage, the **central data factory** should have evolved into more of a **platform provider**, focusing on empowering the individual domains while ensuring that the infrastructure is reliable, scalable, and repeatable. By driving toward a **data-mesh**, this phase enables the system to generate value continuously, accelerating innovation for the business.
+
+---
+
+### Conclusion: Activating the Flywheel
+
+The **value flywheel** is activated phase by phase, and the central **data factory** plays a major role throughout the journey towards a federated data management system, ensuring **cross-domain consistency** and delivering scalable solutions. By following this structured approach, the data landscape becomes a coherent framework where each part of the organization—not just the central data team—can contribute to the company’s **long-term success**.
+
+The shift toward a **data-mesh** architecture ensures that all domains can spin the flywheel on their own, transforming data into actionable insights and kickstarting a virtuous cycle of value, innovation, and acceleration.
+
+---
+
+This restructured approach follows your plan and emphasizes the **central role** of the data factory in moving towards a **distributed data model**, ultimately spinning the flywheel to unlock **persistent business value**.

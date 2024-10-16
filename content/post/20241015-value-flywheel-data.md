@@ -2,7 +2,7 @@
 title: "How to Activate the Value Flywheel Effect with Your Data"
 date: 2024-10-25T12:15:33+01:00
 lastmod: 2024-10-25T12:15:33+01:00
-images: [/assets/data-contract/domains.png]
+images: [/assets/value-flywheel/the-value-flywheel-effect.webp]
 draft: false
 keywords: []
 summary:
@@ -19,7 +19,7 @@ mathjax: false
 ---
 
 In today's hyper-competitive world, businesses no longer rely solely on gut decisions or intuition; they depend on **data-driven insights** to stay agile and make fast, smart decisions.
-However, data alone isn't the answer; it's the enabler to create a momentum on a **business & technology flywheel**:
+However, data alone isn't the answer; it's the enabler to create momentum on a **business & technology flywheel**:
 a model where data drives decisions, decisions drive actions, and those actions drive value, propelling the business forward in a self-reinforcing cycle.
 
 In a [previous post](https://blog.owulveryck.info/2024/04/09/data-as-a-product-and-data-contract-an-evolutionary-approach-to-data-maturity.html), I used a model to explain how data could cross the borders of applications and domains to bring increasing value at the organizational level.
@@ -39,7 +39,7 @@ This disconnect makes it difficult to align data insights with actual business n
 Even when teams manage to gather the right data, the **lack of alignment** across the organization can result in **misinterpretation or underutilization** of that data.
 
 One solution that some organizations have embraced is a **4-in-the-box (4ITB)** model, initially [pioneered by Walmart](http://thomasmisner.com/download/Thomas-Misner_Product-Ways-Of-Working-Presentation.pdf).
-The 4ITB model brings together **cross-functional teams** involving stakeholders like Product Managers, Engineers, Data Experts, Business Representatives, and eventually others (N-ITB) to collaboratively solve business challenges.
+The 4ITB model brings together **cross-functional teams** involving stakeholders like Product Managers, Engineers, Data Experts, Business Representatives, and potentially others (N-ITB) to collaboratively solve business challenges.
 It aims to establish both **horizontal alignment** (across departments) and **vertical alignment** (with leadership's vision) for every project.
 
 In this model, **data** is treated as a critical part of the problem-solving process and "included in the box" alongside the other key functions.
@@ -58,9 +58,9 @@ The data factory is, therefore, in chager of fighting the inertia of the system 
 
 ### **What is the Value Flywheel Effect?**
 
-I have met the concept of the value fywheel in the book [The Value Flywheel Effect](https://itrevolution.com/product/the-value-flywheel-effect/) by David Anderson, with Mark McCann and Michael O’Reilly.
+I have met the concept of the value flywheel in the book [The Value Flywheel Effect](https://itrevolution.com/product/the-value-flywheel-effect/) by David Anderson, with Mark McCann and Michael O’Reilly.
 
-I love the introduction with the idea of momentum and I will simply copy here the very begining of the book that you can find on the [website of IT Revolution](https://itrevolution.com/articles/what-is-the-value-flywheel/) for free:
+I love the introduction with the idea of momentum and I will simply copy here the very beginning of the book that you can find on the [website of IT Revolution](https://itrevolution.com/articles/what-is-the-value-flywheel/) for free:
 
 > Momentum is a strange thing.
 > It’s difficult to imagine what it will feel like and takes a great deal of effort to achieve.
@@ -81,12 +81,12 @@ Instead of relying on giant, one-time shifts or changes, the flywheel works by m
 Once it's moving, it's hard to stop.
 
 My goal is to use this model to see how it fits in the data landscape.
-I see a lot of data models and organization that sometimes lack the clarity of purpose or the long term value.
+I see a lot of data models and organizations that sometimes lack clarity of purpose or the long term value.
 
 I will use the model from the book I mentioned earlier, "_The Value Flywheel Effect_," which is a third iteration of the model (following Amazon and the original idea from [Jim Collins](https://www.jimcollins.com/concepts/the-flywheel.html)).
 This model is well-documented in the book, and I strongly recommend that you read it.
 
-![The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long term value. The wheel connect the four phases and the phase IV to phase I](/value-flywheel/the-value-flywheel-effect.webp)
+![The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long term value. The wheel connect the four phases and the phase IV to phase I](/assets/value-flywheel/the-value-flywheel-effect.webp)
 Illustration of the Value Flywheel Effect (Adapted from the model by David Anderson)
 
 ### The Value Flywheel Effect: Four Phases for Transition
@@ -113,11 +113,11 @@ This clarity will guide the roles and direction for the team moving forward and 
 Challenge and Landscape
 
 Next comes **Challenge and Landscape**, which focuses on identifying **key obstacles** and understanding the **current technological and business landscape**.
-This phase might reveal that certain systems and processes need to be updated to meet modern data demands or may indicate **gaps in domain-level data ownership**.
+This phase might reveal that certain systems and processes need to be updated to meet modern data demands or **gaps in domain-level data ownership**.
 
 - **Key Tenets**: Awareness of technological **debt**, bottlenecks, and organizational inefficiencies.
 - **People in Charge**: Engineering: Technology Leads, Data Engineers, ...
-- **Goal**: Examine the current infrastructure, tools, and systems in place and identify what challenges exist that may hinder the spinning of the flywheel.
+- **Goal**: Examine the current infrastructure, tools, and systems in place and identify what challenges exist that may slow downs the spinning of the flywheel.
 
 During this phase, it's crucial for the **data factory team** to get an accurate picture of **which challenges**—be it technical, cultural, or operational—are preventing them from scaling or accelerating their value generation.
 By mapping these obstacles, I help guide my clients towards addressing the most pressing issues while also identifying new opportunities.
@@ -144,7 +144,7 @@ Finally, the last phase revolves around establishing **Long-Term Value**.
 This is where the flywheel effect becomes self-sustaining, where each domain confidently handles its own data products, and the **data factory** transitions to more of a **supportive, enabling role**.
 
 - **Key Tenets**: A federated model where all teams are contributing to **shared goals** and creating sustainable value.
-- **People in Charge**: Chief Data Officers (CDOs), Domain-Specific Data Teams, Architects.
+- **People in Charge**: Chief Data Officers (CDOs), Domain-specific Data Teams, Architects.
 - **Goal**: Architect the system to work at **scale**, ensuring consistency, governance, and long-lasting value for the entire company.
 
 At this stage, the **central data factory** should have evolved into more of a **platform provider**, focusing on empowering the individual domains while ensuring that the infrastructure is reliable, scalable, and repeatable.

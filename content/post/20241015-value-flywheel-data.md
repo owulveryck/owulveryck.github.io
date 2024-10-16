@@ -1,7 +1,7 @@
 ---
 title: "How to Activate the Value Flywheel Effect with Your Data"
-date: 2024-10-25T12:15:33+01:00
-lastmod: 2024-10-25T12:15:33+01:00
+date: 2024-10-15T12:15:33+01:00
+lastmod: 2024-10-15T12:15:33+01:00
 images: [/assets/value-flywheel/the-value-flywheel-effect.webp]
 draft: false
 keywords: []
@@ -94,9 +94,7 @@ Illustration of the Value Flywheel Effect (Adapted from the model by David Ander
 The **Value Flywheel Effect** occurs in four key phases, each of which represents a strategic milestone in spinning the value creation flywheel.
 I’ll explain each phase, outlining the **key tenets**, the **people in charge**, their **objectives**, and how to **activate the value flywheel** at each stage.
 
-#### Phase 1
-
-Clarity of Purpose
+#### Phase 1 - Clarity of Purpose
 
 The first phase is about establishing **Clarity of Purpose**.
 To create business value from data, the people working in the **data factory** need to understand the purpose of their work and how it supports broader company objectives.
@@ -108,9 +106,11 @@ To create business value from data, the people working in the **data factory** n
 At this stage, the central data factory needs to focus on aligning its capabilities with **business priorities**.
 This clarity will guide the roles and direction for the team moving forward and ensures that data outputs lead to insights that can create real value.
 
-#### Phase 2
+The author of the original book proposes to define a data-informed North Star in this phase, and set what differentiator on the market we are seeking with the current data platform.
 
-Challenge and Landscape
+TODO: complete with the WHY and the difference with the why of simon sinek // Reference the linkedin post
+
+#### Phase 2 - Challenge and Landscape
 
 Next comes **Challenge and Landscape**, which focuses on identifying **key obstacles** and understanding the **current technological and business landscape**.
 This phase might reveal that certain systems and processes need to be updated to meet modern data demands or **gaps in domain-level data ownership**.
@@ -122,9 +122,7 @@ This phase might reveal that certain systems and processes need to be updated to
 During this phase, it's crucial for the **data factory team** to get an accurate picture of **which challenges**—be it technical, cultural, or operational—are preventing them from scaling or accelerating their value generation.
 By mapping these obstacles, I help guide my clients towards addressing the most pressing issues while also identifying new opportunities.
 
-#### Phase 3
-
-Next Best Action
+#### Phase 3 - Next Best Action
 
 Once the landscape is clear, the focus moves to identifying the **Next Best Action**:
 what small, **incremental** improvements can be made that will begin turning the flywheel? At this stage, it’s about **empowering teams to take ownership** and starting to decentralize responsibility without overwhelming them.
@@ -136,9 +134,7 @@ what small, **incremental** improvements can be made that will begin turning the
 Here, the **data factory** plays a pivotal role—it provides the foundational capabilities needed for domains to take charge of their **own data products**.
 Small, actionable steps, like improving data accessibility or providing scalable infrastructure, can catalyze bigger leaps.
 
-#### 4
-
-Long-Term Value
+#### Phase 4 - Long-Term Value
 
 Finally, the last phase revolves around establishing **Long-Term Value**.
 This is where the flywheel effect becomes self-sustaining, where each domain confidently handles its own data products, and the **data factory** transitions to more of a **supportive, enabling role**.

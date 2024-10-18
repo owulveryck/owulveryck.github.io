@@ -86,8 +86,13 @@ I see a lot of data models and organizations that sometimes lack clarity of purp
 I will use the model from the book I mentioned earlier, "_The Value Flywheel Effect_," which is a third iteration of the model (following Amazon and the original idea from [Jim Collins](https://www.jimcollins.com/concepts/the-flywheel.html)).
 This model is well-documented in the book, and I strongly recommend that you read it.
 
+In the illustration below, I represent this virtuous cyle.
+Each of the 4 steps feeds the next one, and **little by little**, **iteration by iteration** we fight the inertia (which is purely agile), to gain momentum.
+
 ![The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long term value. The wheel connect the four phases and the phase IV to phase I](/assets/value-flywheel/the-value-flywheel-effect.webp)
 Illustration of the Value Flywheel Effect (Adapted from the model by David Anderson)
+
+#### The Key tenets and the personas
 
 ![Twelve key tenets](https://itrevolution.com/wp-content/uploads/2022/10/Screen-Shot-2022-08-03-at-3.06.48-PM-1024x819.png.webp)
 [source: 12 Key Tenets of the Value Flywheel Effect - David Anderson ,Michael O’Reilly ,Mark McCann - ITRevolution](https://itrevolution.com/articles/12-key-tenets-of-the-value-flywheel-effect/)

@@ -2,7 +2,7 @@
 title: "How to Activate the Value Flywheel Effect with Your Data"
 date: 2024-10-15T12:15:33+01:00
 lastmod: 2024-10-15T12:15:33+01:00
-images: [/assets/value-flywheel/the-value-flywheel-effect.webp]
+images: [/assets/value-flywheel/value-flywheel-data.webp]
 draft: false
 keywords: []
 summary:
@@ -91,7 +91,9 @@ Illustration of the Value Flywheel Effect (Adapted from the model by David Ander
 
 ### The value flywheel of data, an enabler for the business flywheel
 
-![](/assets/value-flywheel/value-flywheel-data.webp)
+![An S curve representing the evolution of the data, the X is the certainty and Y is the ubiquity. There is a division: the bottom of the S is raw data, the middle is curated, and the top is authoritative. The inflection point is indicated as data-contract.](/assets/data_certitude.svg)
+
+![a value flywheel described as "data"](/assets/value-flywheel/value-flywheel-data.webp)
 
 ### The Value Flywheel Effect: Four Phases for Transition
 

@@ -89,6 +89,10 @@ This model is well-documented in the book, and I strongly recommend that you rea
 ![The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long term value. The wheel connect the four phases and the phase IV to phase I](/assets/value-flywheel/the-value-flywheel-effect.webp)
 Illustration of the Value Flywheel Effect (Adapted from the model by David Anderson)
 
+### The value flywheel of data, an enabler for the business flywheel
+
+![](/assets/value-flywheel/value-flywheel-data.webp)
+
 ### The Value Flywheel Effect: Four Phases for Transition
 
 The **Value Flywheel Effect** occurs in four key phases, each of which represents a strategic milestone in spinning the value creation flywheel.

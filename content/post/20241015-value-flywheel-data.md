@@ -94,17 +94,13 @@ To successfully apply the **Value Flywheel Effect** within a data ecosystem, com
 
 At its core, the data factory is responsible for the **end-to-end data lifecycle**: from **data collection** and **curation** to **storage**, **governance**, and **exposure** for insights. It acts as a bridge between domains, enabling the seamless transfer of data from isolated business problem spaces to broader technological and strategic applications across the organization.
 
-However, for the data factory to be effective, the **data team** must play a pivotal role within each domain.
-There are several options of interactions possible depending on governance of the organization.
+However, for the data factory to be effective, the **data team** must play a pivotal role within each domain. Depending on the governance of the organization, there are various data management models that can be adopted—**centralized**, **distributed**, **federated**, or **data mesh**. While these models differ in how they manage and organize data across the company, one constant remains: there is always a **central data management team** responsible for ensuring data consistency, governance, and alignment with broader business objectives.
 
-One solution that some organizations have embraced is a **4-in-the-box (4ITB)** model, initially [pioneered by Walmart](http://thomasmisner.com/download/Thomas-Misner_Product-Ways-Of-Working-Presentation.pdf).
-The 4ITB model brings together **cross-functional teams** involving stakeholders like Product Managers, Engineers, Data Experts, Business Representatives, and potentially others (N-ITB) to collaboratively solve business challenges.
-It aims to establish both **horizontal alignment** (across departments) and **vertical alignment** (with leadership's vision) for every project.
+Regardless of the model in use, this central team has crucial responsibilities. They serve as the guardians of the **data ecosystem**, providing the infrastructure, policies, and processes necessary for seamless data flow and collaboration. 
 
+With the **Value Flywheel Effect**, we can uncover the **common tenets** that guide the central data management team, allowing it to effectively drive momentum and accelerate value creation throughout the organization.
 
-In this context, the data team not only serves the domain’s immediate needs but also acts as a **catalyst** for driving **broader technological innovation**. Their role is to transform data from a **domain-specific enabler** into a **strategic asset** that fuels the larger flywheel of business and technological value.
-
-Now, let’s look at how we can apply the **four phases of the value flywheel** to this data-driven approach.
+Now, let’s explore how the **four phases of the value flywheel** can be applied to (potentially) any aspiring data-driven company.
 
 #### Phase 1 - Clarity of Purpose
 

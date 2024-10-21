@@ -42,7 +42,8 @@ To address this, companies need to focus on creating a **system** that fosters c
 
 Imagine a **flywheel** as the **driven wheel** of the system—this represents the combined **technological and business value**. **Data** serves as the **belt**, facilitating the transfer of knowledge, context, and value across the organization. The key, however, is identifying the **driver wheel**: a smaller flywheel that focuses specifically on **data maturity**, accelerating business outcomes.
 
-![A wheel belt pulley system: a value flywheel described as "data" is the driver, a joint business and technology flywheel is driven by a belt that feed the driver with business initiatives. The driven flywheel is fed with data-as-a-product](/assets/value-flywheel/value-flywheel-data.webp)
+{{< figure src="/assets/value-flywheel/value-flywheel-data.webp" alt="A wheel belt pulley system: a value flywheel described as data is the driver, a joint business and technology flywheel is driven by a belt that feeds the driver with business initiatives. The driven flywheel is fed with data-as-a-product" >}}
+
 Let's see now how companies can define and build this **data-centric driver wheel** in four steps, which will act as the engine powering the broader value flywheel of the organization.
 
 ### **The Value Flywheel Effect as a model**
@@ -102,61 +103,54 @@ With the **Value Flywheel Effect**, we can uncover the **common tenets** that gu
 
 Now, let’s explore how the **four phases of the value flywheel** can be applied to (potentially) any aspiring data-driven company.
 
-#### Phase 1 - Clarity of Purpose
+For clarity and coherence, I will adhere to the structure of the original flywheel effect, describing each phase in terms of its key tenets, the people responsible, and the major goal.
 
-The first phase is about establishing **Clarity of Purpose**.
-To create business value from data, the people working in the **data factory** need to understand the purpose of their work and how it supports broader company objectives.
+### Phase 1 - Clarity of Purpose
 
-- **Key Tenets**: Alignment on **business goals**, connecting data initiatives directly to business outcomes.
-- **People in Charge**: Leadership, Executive Sponsors, and Domain Experts.
-- **Goal**: Ensure that both data and business teams are working towards the same strategic goals, thus preventing misalignment in expectations or priorities.
+The first phase is led by the **Chief Data Officer (CDO)**, whose key responsibility is to sit at the executive level and define what it means for the company to be **data-driven**. This phase is about creating a **North Star metric** that encapsulates the company's vision of being data-driven, particularly from a technological standpoint. The CDO collaborates with other executives to understand how data can support the company’s strategic objectives, ensuring that every initiative aligns with the broader business goals.
 
-At this stage, the central data factory needs to focus on aligning its capabilities with **business priorities**.
-This clarity will guide the roles and direction for the team moving forward and ensures that data outputs lead to insights that can create real value.
+- **Key Tenets**: Alignment on **business goals**, establishing a **data-driven North Star** that clearly defines what it means for the company to leverage data as a competitive advantage and answer the question: _what does it mean for us to be data-driven?_.
+- **People in Charge**: Chief Data Officer (CDO), Leadership, Domain Experts.
+- **Goal**: Create alignment between data and business teams, ensuring that data initiatives support strategic goals and prevent misalignment between expectations and outcomes.
 
-The author of the original book proposes to define a data-informed North Star in this phase, and set what differentiator on the market we are seeking with the current data platform.
+This clarity of purpose sets the foundation for all further activities in the data ecosystem, ensuring that the efforts of the **data factory** are always focused on delivering business value.
 
-TODO: complete with the WHY and the difference with the why of simon sinek // Reference the linkedin post
+### Phase 2 - Challenge and Landscape
 
-#### Phase 2 - Challenge and Landscape
+Once the **purpose** is clear, the next phase is an **engineering-led** evaluation of the **technical landscape**. Here, the **engineering team** must assess the current systems and infrastructure to ensure they can meet the needs of a data-driven organization. This includes understanding the company’s technical capabilities such as the use of **data lakes**, **data exchange architectures**, and whether the company relies on an **event-driven architecture**. The team must identify what can be built in-house to support the data strategy set in Phase 1 and what components are better off sourced as **commodities**.
 
-Next comes **Challenge and Landscape**, which focuses on identifying **key obstacles** and understanding the **current technological and business landscape**.
-This phase might reveal that certain systems and processes need to be updated to meet modern data demands or **gaps in domain-level data ownership**.
+- **Key Tenets**: Assessment of technological **debt**, bottlenecks, data infrastructure, and the company’s ability to store, govern, and share data across domains.
+- **People in Charge**: Technology Leads, Data Engineers, Architects.
+- **Goal**: Understand what gaps exist in the current tech stack, ensure the right foundations are in place (e.g., event-driven architecture, data lakes), and decide on in-house development vs. commodity services.
 
-- **Key Tenets**: Awareness of technological **debt**, bottlenecks, and organizational inefficiencies.
-- **People in Charge**: Engineering: Technology Leads, Data Engineers, ...
-- **Goal**: Examine the current infrastructure, tools, and systems in place and identify what challenges exist that may slow downs the spinning of the flywheel.
+The **data factory** in this phase needs to build the foundational capabilities required for long-term success, whether it's scaling the existing tech stack or addressing technical deficiencies.
 
-During this phase, it's crucial for the **data factory team** to get an accurate picture of **which challenges**—be it technical, cultural, or operational—are preventing them from scaling or accelerating their value generation.
-By mapping these obstacles, I help guide my clients towards addressing the most pressing issues while also identifying new opportunities.
+### Phase 3 - Next Best Action
 
-#### Phase 3 - Next Best Action
+The third phase is led by **product teams** who must now focus on **quick wins** that can demonstrate immediate business value empowered by data. The goal here is to identify the **data products** or **data insights** that can **catalyze business initiatives** in the short term. These wins should be closely aligned with business objectives, such as improving sales forecasting to give a competitive edge in logistics or developing data-driven insights to support key strategic initiatives.
 
-Once the landscape is clear, the focus moves to identifying the **Next Best Action**:
-what small, **incremental** improvements can be made that will begin turning the flywheel? At this stage, it’s about **empowering teams to take ownership** and starting to decentralize responsibility without overwhelming them.
+- **Key Tenets**: **Iterative progress**, focus on delivering **quick wins**, decentralized responsibility.
+- **People in Charge**: Product Managers, Domain Leaders, Data Engineers.
+- **Goal**: Develop and deploy data products that deliver **immediate business value**, focusing on initiatives that support short-term business goals while building momentum for long-term success.
 
-- **Key Tenets**: **Iterative progress, agile development**, unlocking quick wins, and decentralizing responsibilities.
-- **People in Charge**: Domain Leaders, Product Teams, and Data Engineers.
-- **Goal**: Focus on the **minimum viable actions** necessary to eliminate the identified pain points, and **prioritize pragmatic solutions** that bring value without over-complication.
+Here, the **data factory** must provide scalable, agile support to empower domain teams to develop their own data products. The emphasis is on taking incremental steps to unlock value, ensuring that data products are aligned with business initiatives.
 
-Here, the **data factory** plays a pivotal role—it provides the foundational capabilities needed for domains to take charge of their **own data products**.
-Small, actionable steps, like improving data accessibility or providing scalable infrastructure, can catalyze bigger leaps.
+### Phase 4 - Long-Term Value
 
-#### Phase 4 - Long-Term Value
+The final phase focuses on securing **long-term value**, led by the **CTO**. At this stage, the goal is to ensure that the data systems and processes in place can support the ongoing evolution of the business. The CTO works closely with the **CDO** and the board to ensure that the **data factory** continues to develop as a key enabler of future data products and innovations. The focus is on scalability, governance, and sustaining the competitive advantage gained from being a data-driven company.
 
-Finally, the last phase revolves around establishing **Long-Term Value**.
-This is where the flywheel effect becomes self-sustaining, where each domain confidently handles its own data products, and the **data factory** transitions to more of a **supportive, enabling role**.
+- **Key Tenets**: Scalability, governance, and creating a **sustainable data ecosystem**.
+- **People in Charge**: Chief Technology Officer (CTO), Data Architects, Domain Data Teams.
+- **Goal**: Architect a system that ensures **long-term value** by empowering teams to innovate continuously and making the data factory a **platform provider** for future data-driven business needs.
 
-- **Key Tenets**: A federated model where all teams are contributing to **shared goals** and creating sustainable value.
-- **People in Charge**: Chief Data Officers (CDOs), Domain-specific Data Teams, Architects.
-- **Goal**: Architect the system to work at **scale**, ensuring consistency, governance, and long-lasting value for the entire company.
-
-At this stage, the **central data factory** should have evolved into more of a **platform provider**, focusing on empowering the individual domains while ensuring that the infrastructure is reliable, scalable, and repeatable.
-By driving toward a **data-mesh**, this phase enables the system to generate value continuously, accelerating innovation for the business.
+In this phase, the data factory transitions to a more **supportive role**, enabling continuous innovation while ensuring the infrastructure is robust, scalable, and adaptable. This phase also feeds insights back to the **CDO** and executive team, ensuring that the data strategy remains a competitive differentiator.
 
 ### Conclusion: Activating the Flywheel
 
-The **value flywheel** is activated phase by phase, and the central **data factory** plays a major role throughout the journey towards a federated data management system, ensuring **cross-domain consistency** and delivering scalable solutions.
-By following this structured approach, the data landscape becomes a coherent framework where each part of the organization—not just the central data team—can contribute to the company’s **long-term success**.
+Let's take a step back to review this mechanism:
 
-The shift toward a **data-mesh** architecture ensures that all domains can spin the flywheel on their own, transforming data into actionable insights and kickstarting a virtuous cycle of value, innovation, and acceleration.
+{{< figure src="/assets/value-flywheel/value-flywheel-data.webp" alt="A wheel belt pulley system: a value flywheel described as data is the driver, a joint business and technology flywheel is driven by a belt that feeds the driver with business initiatives. The driven flywheel is fed with data-as-a-product" >}}
+
+The **value flywheel** is activated phase by phase, with the central **data factory** playing a crucial role throughout the journey toward a federated data management system. This ensures **cross-domain consistency** and the delivery of scalable solutions. By following this structured approach, the data landscape transforms into a coherent framework where every part of the organization—not just the central data team—contributes to the company’s **long-term success**.
+
+This model provides a useful blueprint for explaining the potential of a data system within an organization. However, the implementation of each step lies beyond the scope of this article. There are numerous tools available—such as the North Star Framework and Wardley Mapping — that can support the application of this structure at each stage.

@@ -24,39 +24,30 @@ a model where data drives decisions, decisions drive actions, and those actions 
 
 In a [previous post](https://blog.owulveryck.info/2024/04/09/data-as-a-product-and-data-contract-an-evolutionary-approach-to-data-maturity.html), I used a model to explain how data could cross the borders of applications and domains to bring increasing value at the organizational level.
 
-In this post, I am attempting to adapt this cycle and determine what is required to activate a value flywheel effect from a joint technological and business perspective.
+Here is a synthesis of the development of the post: the X-Axis is about the increase of certainty of the decision correlated to its supply, and the Y-Axis the diffusion of the data correlated to its demand.
 
-### The problem
+![An S curve representing the evolution of the data, the X is the certainty and Y is the ubiquity. There is a division: the bottom of the S is raw data, the middle is curated, and the top is authoritative. The inflection point is indicated as data-contract.](/assets/data_certitude.svg)
 
-As a **technological consultant** specializing in **data management**, I help organizations unlock **business value** through the effective use of data.
-My focus is on the **analytics world**, where data possesses a **temporal dimension** and is used to derive actionable **insights** that drive better business decisions.
+In this post, I am using YAML (_Yet Another ModeL_ - sic) to determine how a data culture, technology and organisation can activate a value flywheel effect from a joint technological and business perspective.
 
-However, a key challenge for most companies lies in ensuring that these insights are properly **aligned with the business definitions** and goals.
-Without this alignment, the insights—no matter how accurate or comprehensive—can lose their relevance and ultimately fail to deliver the intended value.
+By the end, you’ll gain actionable insights on analyzing and effectively implementing these principles within your own organization.
 
-In many large organizations, data is often **managed in silos**, creating an artificial separation between **data teams** and **business teams**.
-This disconnect makes it difficult to align data insights with actual business needs and hampers effective collaboration across departments.
-Even when teams manage to gather the right data, the **lack of alignment** across the organization can result in **misinterpretation or underutilization** of that data.
+### Description of the Problem
 
-One solution that some organizations have embraced is a **4-in-the-box (4ITB)** model, initially [pioneered by Walmart](http://thomasmisner.com/download/Thomas-Misner_Product-Ways-Of-Working-Presentation.pdf).
-The 4ITB model brings together **cross-functional teams** involving stakeholders like Product Managers, Engineers, Data Experts, Business Representatives, and potentially others (N-ITB) to collaboratively solve business challenges.
-It aims to establish both **horizontal alignment** (across departments) and **vertical alignment** (with leadership's vision) for every project.
+In the world of **analytics**, data holds immense potential to drive **business value** by generating actionable insights. Yet, it often remains constrained as merely an **enabler of solutions** within a specific **business domain** (the problem space). Because data is typically treated as a tool to address isolated business challenges, it rarely crosses the boundaries of its domain. This limits its ability to contribute to broader **technological solutions** or drive value across the entire organization.
 
-In this model, **data** is treated as a critical part of the problem-solving process and "included in the box" alongside the other key functions.
-While this improves collaborative efficiency, it also introduces new challenges as data becomes more integrated into everyday operations.
-Specifically, even when data is brought into the 4ITB model, maintaining **alignment across domains** and dealing with **cross-domain data** (i.e., data that impacts multiple parts of the organization) remains a significant hurdle.
-Successfully overcoming this requires a more coordinated approach to data management—one that can handle domain-specific needs while enabling **cross-organization value generation**.
+This misalignment often stems from **organizational silos**. Even worse, Data and business teams frequently operate in isolation, leading to disjointed efforts where insights, no matter how robust, are either misunderstood or underutilized.
 
-To overcome these challenges of misalignment and cross-domain data handling, many organizations still find value in maintaining a central data team.
-This team plays a pivotal role by supporting the holistic needs of the entire organization, especially when dealing with data at scale and ensuring it's available, compliant, and useful across all departments.
+To address this, companies need to focus on creating a **system** that fosters collaboration between these teams. This is where the analogy of a **wheel belt pulley system** becomes relevant. Just as a pulley system transforms motion and power, an aligned approach to data transforms raw information into business value.
 
-This central data team, often dubbed the data factory, is responsible for standardizing data processes, ensuring consistent access to analytics, and delivering technical capabilities that empower each domain to leverage data more effectively.
-By operating as both a central service and an enabler, the data factory helps bridge the gap between business needs and technical expertise.
-Think of it as the core infrastructure that powers the end-to-end data lifecycle—from collection and curation to storage, governance, and exposure for insights.
+Imagine a **flywheel** as the **driven wheel** of the system—this represents the combined **technological and business value**. **Data** serves as the **belt**, facilitating the transfer of knowledge, context, and value across the organization. The key, however, is identifying the **driver wheel**: a smaller flywheel that focuses specifically on **data maturity**, accelerating business outcomes.
 
-The data factory is, therefore, in chager of fighting the inertia of the system and triggering a value flywheel effect.
+![A wheel belt pulley system: a value flywheel described as "data" is the driver, a joint business and technology flywheel is driven by a belt that feed the driver with business initiatives. The driven flywheel is fed with data-as-a-product](/assets/value-flywheel/value-flywheel-data.webp)
+Let's see now how companies can define and build this **data-centric driver wheel** in four steps, which will act as the engine powering the broader value flywheel of the organization.
 
-### **What is the Value Flywheel Effect?**
+### **The Value Flywheel Effect as a model**
+
+#### The original concept
 
 I have met the concept of the value flywheel in the book [The Value Flywheel Effect](https://itrevolution.com/product/the-value-flywheel-effect/) by David Anderson, with Mark McCann and Michael O’Reilly.
 
@@ -80,33 +71,40 @@ The flywheel model describes a **self-reinforcing system** of momentum, growing 
 Instead of relying on giant, one-time shifts or changes, the flywheel works by multiplying the effects of **small, consistent improvements**.
 Once it's moving, it's hard to stop.
 
-My goal is to use this model to see how it fits in the data landscape.
-I see a lot of data models and organizations that sometimes lack clarity of purpose or the long term value.
-
-I will use the model from the book I mentioned earlier, "_The Value Flywheel Effect_," which is a third iteration of the model (following Amazon and the original idea from [Jim Collins](https://www.jimcollins.com/concepts/the-flywheel.html)).
-This model is well-documented in the book, and I strongly recommend that you read it.
-
-In the illustration below, I represent this virtuous cyle.
-Each of the 4 steps feeds the next one, and **little by little**, **iteration by iteration** we fight the inertia (which is purely agile), to gain momentum.
-
-![The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long term value. The wheel connect the four phases and the phase IV to phase I](/assets/value-flywheel/the-value-flywheel-effect.webp)
-Illustration of the Value Flywheel Effect (Adapted from the model by David Anderson)
-
 #### The Key tenets and the personas
 
-![Twelve key tenets](https://itrevolution.com/wp-content/uploads/2022/10/Screen-Shot-2022-08-03-at-3.06.48-PM-1024x819.png.webp)
-[source: 12 Key Tenets of the Value Flywheel Effect - David Anderson ,Michael O’Reilly ,Mark McCann - ITRevolution](https://itrevolution.com/articles/12-key-tenets-of-the-value-flywheel-effect/)
+I will refer to the model from the book *The Value Flywheel Effect*, which is the third iteration of this concept (following Amazon’s adaptation and the original idea by [Jim Collins](https://www.jimcollins.com/concepts/the-flywheel.html)). This model is thoroughly explained in the book, and I highly recommend reading it. In summary, the value flywheel is broken down into four steps:
 
-### The value flywheel of data, an enabler for the business flywheel
+**Clarity of Purpose** → **Challenge and Landscape** → **Next Best Actions** → **Long-Term Value**
 
-![An S curve representing the evolution of the data, the X is the certainty and Y is the ubiquity. There is a division: the bottom of the S is raw data, the middle is curated, and the top is authoritative. The inflection point is indicated as data-contract.](/assets/data_certitude.svg)
+Each of the four steps drives the next one. **Step by step**, **iteration by iteration**, we overcome inertia (in a truly agile way) and build momentum.
 
-![a value flywheel described as "data"](/assets/value-flywheel/value-flywheel-data.webp)
+{{< figure src="/assets/value-flywheel/the-value-flywheel-effect.webp" alt="The value flywheel in four phases: I clarity of purpose, II challenge and landscape, III next best action, IV long-term value. The wheel connects the four phases and loops from phase IV back to phase I." title="Illustration of the Value Flywheel Effect (Adapted from the model by David Anderson)" >}}
 
-### The Value Flywheel Effect: Four Phases for Transition
+To summarize, here are the key tenets and personas of the Value Flywheel Effect:
 
-The **Value Flywheel Effect** occurs in four key phases, each of which represents a strategic milestone in spinning the value creation flywheel.
-I’ll explain each phase, outlining the **key tenets**, the **people in charge**, their **objectives**, and how to **activate the value flywheel** at each stage.
+{{< figure src="https://itrevolution.com/wp-content/uploads/2022/10/Screen-Shot-2022-08-03-at-3.06.48-PM-1024x819.png.webp)" title="12 Key Tenets of the Value Flywheel Effect - David Anderson, Michael O’Reilly, Mark McCann - (c) ITRevolution" >}}
+[Source](https://itrevolution.com/articles/12-key-tenets-of-the-value-flywheel-effect/)
+
+Now let's see if we could adapt those key tenets to the data driver wheel. The first element is to consider the existing approach in place in the organization (Adapt > Adopt)
+
+### The Data Value Flywheel: Organizing the Data Ecosystem
+
+To successfully apply the **Value Flywheel Effect** within a data ecosystem, companies need a structured approach to managing data across the organization. This is usually implemented thourgh the concept of the **data factory**. A data factory functions as the central engine that powers data-driven decision-making, ensuring that data flows freely between business and technical teams, transforming it into actionable insights.
+
+At its core, the data factory is responsible for the **end-to-end data lifecycle**: from **data collection** and **curation** to **storage**, **governance**, and **exposure** for insights. It acts as a bridge between domains, enabling the seamless transfer of data from isolated business problem spaces to broader technological and strategic applications across the organization.
+
+However, for the data factory to be effective, the **data team** must play a pivotal role within each domain.
+There are several options of interactions possible depending on governance of the organization.
+
+One solution that some organizations have embraced is a **4-in-the-box (4ITB)** model, initially [pioneered by Walmart](http://thomasmisner.com/download/Thomas-Misner_Product-Ways-Of-Working-Presentation.pdf).
+The 4ITB model brings together **cross-functional teams** involving stakeholders like Product Managers, Engineers, Data Experts, Business Representatives, and potentially others (N-ITB) to collaboratively solve business challenges.
+It aims to establish both **horizontal alignment** (across departments) and **vertical alignment** (with leadership's vision) for every project.
+
+
+In this context, the data team not only serves the domain’s immediate needs but also acts as a **catalyst** for driving **broader technological innovation**. Their role is to transform data from a **domain-specific enabler** into a **strategic asset** that fuels the larger flywheel of business and technological value.
+
+Now, let’s look at how we can apply the **four phases of the value flywheel** to this data-driven approach.
 
 #### Phase 1 - Clarity of Purpose
 

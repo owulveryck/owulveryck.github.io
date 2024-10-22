@@ -8,7 +8,7 @@ enableRobotsTXT = true
 enableEmoji = true
 
 hasCJKLanguage = false     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
-paginate = 3              # Number of articles displayed on the homepage  # 首页每页显示的文章数
+paginate = 7              # Number of articles displayed on the homepage  # 首页每页显示的文章数
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 # googleAnalytics = "UA-69673850-1"
 disqusShortname = "owulveryck"
@@ -18,9 +18,9 @@ copyright = "Olivier Wulveryck"            # default: author.name ↓        # �
 defaultContentLanguage = "en"           # Default language to use
 
 uglyURLs=true
-pygmentsUseClasses =true
-pygmentsCodeFences=true
-pygmentsOptions = "linenos=inline"
+#pygmentsUseClasses =true
+#pygmentsCodeFences=true
+#pygmentsOptions = "linenos=inline"
 
 
 [languages.en]
@@ -43,21 +43,25 @@ pygmentsOptions = "linenos=inline"
   weight = 10
   identifier = "home"
   url = "/"
-[[menu.main]]
-  name = "Archives"
-  weight = 20
-  identifier = "archives"
-  url = "/post/"
-[[menu.main]]
-  name = "Tags"
-  weight = 30
-  identifier = "tags"
-  url = "/tags/"
-[[menu.main]]
-  name = "Categories"
-  weight = 40
-  identifier = "categories"
-  url = "/categories/"
+
+# Highlight options. See https://gohugo.io/content-management/syntax-highlighting/
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    anchorLineNos = true
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    noHl = false
+    style = 'friendly'
+    tabWidth = 4
 
 [params]
   since = "2015"            # Site creation time          # 站点建立时间
@@ -66,7 +70,7 @@ pygmentsOptions = "linenos=inline"
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
   logoTitle = "owulveryck's blog"        # default: the title value    # 默认值: 上面设置的title值
-  keywords = ["Go","Dev", "IT"]
+  keywords = ["Go","Dev", "IT", "Data", "AI"]
   description = "Olivier Wulveryck's (tech) blog"
 
   # The date format to use; for a list of valid formats, see https://gohugo.io/functions/format/
@@ -75,12 +79,12 @@ pygmentsOptions = "linenos=inline"
   # 一些全局开关，你也可以在每一篇内容的 front matter 中针对单篇内容关闭或开启某些功能，在 archetypes/default.md 查看更多信息。
   # Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.
   toc = true                                                                            # 是否开启目录
-  photoswipe = true         # see https://github.com/dimsemenov/PhotoSwipe            # 是否启用PhotoSwipe（图片可点击）
+  photoswipe = false         # see https://github.com/dimsemenov/PhotoSwipe            # 是否启用PhotoSwipe（图片可点击）
   contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  customCSS = ['custom.css']            # if ['custom.css'], load '/static/css/custom.css' file
+  customCSS = []            # if ['custom.css'], load '/static/css/custom.css' file
   customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
   [params.author]
   name = "Olivier Wulveryck"
@@ -88,7 +92,7 @@ pygmentsOptions = "linenos=inline"
   [params.social]                                         # 社交链接
     #a-email = "mailto:olivierwulver.yck@gmail.com"
     # b-stack-overflow = "http://localhost:1313"
-    c-twitter = "https://twitter.com/owulveryck"
+# c-twitter = "https://twitter.com/owulveryck"
     #d-facebook = "http://localhost:1313"
     e-linkedin = "https://www.linkedin.com/in/olivierwulveryck/"
     #f-google = "http://localhost:1313"
@@ -112,3 +116,7 @@ pygmentsOptions = "linenos=inline"
     path = "github.com/xianmin/hugo-theme-jane" 
   [[module.imports]]
     path = "github.com/hugomods/icons"
+  [[module.imports]]
+    path = "github.com/hugomods/icons/vendors/mdi"
+  [[module.imports]]
+    path = "github.com/hugomods/icons/vendors/lucide"

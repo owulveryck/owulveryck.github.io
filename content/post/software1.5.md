@@ -244,10 +244,6 @@ The parser was more difficult to write because of the mathematical [operator pre
 
 After a bunch of documentation about LALR parser, I have decided to call an old friend: _yacc_
 
-<center>
-{{< tweet 941817771863584768 >}}
-</center>
-
 In the world of go, there is [goyacc](https://godoc.org/golang.org/x/tools/cmd/goyacc) whose syntax is compatible with yacc, but which generates parsers written in go.
 I have found a perfect example of a calculator [here](https://github.com/golang/tools/tree/master/cmd/goyacc/testdata/expr)
 

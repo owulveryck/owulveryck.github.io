@@ -8,7 +8,7 @@ enableRobotsTXT = true
 enableEmoji = true
 
 hasCJKLanguage = false     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
-paginate = 3              # Number of articles displayed on the homepage  # 首页每页显示的文章数
+paginate = 7              # Number of articles displayed on the homepage  # 首页每页显示的文章数
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 # googleAnalytics = "UA-69673850-1"
 disqusShortname = "owulveryck"
@@ -18,9 +18,9 @@ copyright = "Olivier Wulveryck"            # default: author.name ↓        # �
 defaultContentLanguage = "en"           # Default language to use
 
 uglyURLs=true
-pygmentsUseClasses =true
-pygmentsCodeFences=true
-pygmentsOptions = "linenos=inline"
+#pygmentsUseClasses =true
+#pygmentsCodeFences=true
+#pygmentsOptions = "linenos=inline"
 
 
 [languages.en]
@@ -43,21 +43,6 @@ pygmentsOptions = "linenos=inline"
   weight = 10
   identifier = "home"
   url = "/"
-[[menu.main]]
-  name = "Archives"
-  weight = 20
-  identifier = "archives"
-  url = "/post/"
-[[menu.main]]
-  name = "Tags"
-  weight = 30
-  identifier = "tags"
-  url = "/tags/"
-[[menu.main]]
-  name = "Categories"
-  weight = 40
-  identifier = "categories"
-  url = "/categories/"
 
 # Highlight options. See https://gohugo.io/content-management/syntax-highlighting/
 [markup]
@@ -71,7 +56,7 @@ pygmentsOptions = "linenos=inline"
     hl_inline = false
     lineAnchors = ''
     lineNoStart = 1
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = true
     noClasses = true
     noHl = false
@@ -107,7 +92,7 @@ pygmentsOptions = "linenos=inline"
   [params.social]                                         # 社交链接
     #a-email = "mailto:olivierwulver.yck@gmail.com"
     # b-stack-overflow = "http://localhost:1313"
-    c-twitter = "https://twitter.com/owulveryck"
+# c-twitter = "https://twitter.com/owulveryck"
     #d-facebook = "http://localhost:1313"
     e-linkedin = "https://www.linkedin.com/in/olivierwulveryck/"
     #f-google = "http://localhost:1313"

@@ -3,7 +3,7 @@ title: "MCP Part II - Implementation: Custom Host with VertexAI and Gemini"
 date: 2025-01-27T12:15:33+01:00
 lastmod: 2025-01-27T12:15:33+01:00
 images: []
-draft: false
+draft: true
 keywords: []
 summary:
 tags: []

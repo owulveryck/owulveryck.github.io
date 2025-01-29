@@ -292,7 +292,7 @@ As explained before, the model only deals with text. Therefore, the description 
 On top of that, it is important to note that the result of the function is also injected into the context.
 The fun part is that I can easily display the history and all the exchanges between the user and the model. It teaches me a lot about the mechanisms of those chatbots.
 
-The strange part when you come to engineering is the lack of idempotence. You can ask twice the same question and get different answers. As Luc De Brabandere 
+The strange part about engineering is the lack of idempotence. You can ask the same question twice and get different answers. As Luc De Brabandere wrote, we are now back to the statistical era: it works x% of the time, and we find that good enough.
 
 This proof of concept represents the technological foundation of my POC with the Model Context Protocol.
 Now it is fairly easy to add new functions. It is a matter of fulfilling the `callable` interface.

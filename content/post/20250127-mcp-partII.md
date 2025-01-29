@@ -284,11 +284,19 @@ type ChatSession struct {
 
 Now, I can register all the `callable`s as `Tools` to the `GenerativeModel` (by calling the `GetGenaiTool()` method), and within a chat session, I can detect whether the function's name is part of the inventory, call the `Run()` method, and send the reply back. 
 
-## Conclusion
+## Final Note About the function call and Conclusion
 
-This proof of concept represents the foundation of my POC with the Model Context Protocol.
+It is interesting to note that the model decides by itself whether it needs to call the function.
+As explained before, the model only deals with text. Therefore, the description of the function and its parameters are key. It is really about convincing the model that this function is useful in its reasoning.
+
+On top of that, it is important to note that the result of the function is also injected into the context.
+The fun part is that I can easily display the history and all the exchanges between the user and the model. It teaches me a lot about the mechanisms of those chatbots.
+
+This proof of concept represents the technological foundation of my POC with the Model Context Protocol.
 Now it is fairly easy to add new functions. It is a matter of fulfilling the `callable` interface.
 Please note that this implementation is partial because a `Tool` can expose several functions, which is not possible with my current implementation.
 
 In the next and final part of this series, I will create an MCP client implementing the `callable` interface and a sample MCP server.
 This server will register its capabilities automatically.
+
+Therefore, providing tools to my chatbot will become easy.

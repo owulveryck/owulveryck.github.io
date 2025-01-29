@@ -36,7 +36,7 @@ I have also decided to use Go as a programming language because:
 
 ## Overall architecture
 
-I will implement a basic chat engine. I will not implement a frontend because very good open-source frontends already exist. I have chosen to use [Big-AGI](https://big-agi.com/). Since I do not want to use what is already existing, my chat system will be compatible with [OpenAI's v1 API](https://platform.openai.com/docs/api-reference/introduction). It appears this is a common standard in the AI world. Therefore, I will be able to easily connect my host with Big-AGI.
+I will implement a basic chat engine. I will not implement a frontend because very good open-source frontends already exist. I have chosen to use [Big-AGI](https://big-agi.com/). Since I want to use what is already existing, my chat system will be compatible with [OpenAI's v1 API](https://platform.openai.com/docs/api-reference/introduction). It appears this is a common standard in the AI world. Therefore, I will be able to easily connect my host with Big-AGI.
 
 I have chosen to implement the `/v1/chat/completions` endpoint in a streaming manner. This will provide the best user experience when chatting and will replicate what we are used to in ChatGPT or Claude.
 
@@ -292,6 +292,8 @@ As explained before, the model only deals with text. Therefore, the description 
 On top of that, it is important to note that the result of the function is also injected into the context.
 The fun part is that I can easily display the history and all the exchanges between the user and the model. It teaches me a lot about the mechanisms of those chatbots.
 
+The strange part when you come to engineering is the lack of idempotence. You can ask twice the same question and get different answers. As Luc De Brabandere 
+
 This proof of concept represents the technological foundation of my POC with the Model Context Protocol.
 Now it is fairly easy to add new functions. It is a matter of fulfilling the `callable` interface.
 Please note that this implementation is partial because a `Tool` can expose several functions, which is not possible with my current implementation.
@@ -300,3 +302,5 @@ In the next and final part of this series, I will create an MCP client implement
 This server will register its capabilities automatically.
 
 Therefore, providing tools to my chatbot will become easy.
+
+If you want to try this server, the code is on [my GitHub](https://github.com/owulveryck/gomcptest/tree/main/host/openaiserver)

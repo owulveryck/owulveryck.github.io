@@ -91,7 +91,7 @@ My goal is to be able to use a chatbot to do something like this:
 
 ## The tool
 
-The tool we are developing is straightforward: a wrapper around duckdb exposing a single `query`` function.
+The tool we are developing is straightforward: a wrapper around duckdb exposing a single `query` function.
 I won't go into details about the implementation, but basically it is just an exec around `duckdb`. I chose not to use an embedded library to keep things simple.
 
 ```go

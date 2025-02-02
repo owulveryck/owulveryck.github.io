@@ -22,9 +22,15 @@ uglyURLs=true
 #pygmentsCodeFences=true
 #pygmentsOptions = "linenos=inline"
 
-
+[languages]
 [languages.en]
+  languageName = "English"
   languageCode = "en"
+  weight = 1
+[languages.fr]
+  languageName = "Francais"
+  languageCode = "fr"
+  weight = 2
 
 [permalinks]
     #post = "/:year/:month/:day/:slug/index.html"

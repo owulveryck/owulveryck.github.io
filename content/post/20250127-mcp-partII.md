@@ -304,3 +304,5 @@ This server will register its capabilities automatically.
 Therefore, providing tools to my chatbot will become easy.
 
 If you want to try this server, the code is on [my GitHub](https://github.com/owulveryck/gomcptest/tree/main/host/openaiserver)
+
+- [Part III: "Part III will focus on building a custom MCP server for a cybersecurity use case. We'll explore the technical details of setting up the server, exposing resources, and implementing the communication protocol."](/2025/01/27/mcp-part-iii-application-custom-server-for-a-specific-use-case.html)

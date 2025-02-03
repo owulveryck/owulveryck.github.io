@@ -22,7 +22,7 @@ Voici la traduction en français :
 
 ---
 
-Dans la [première partie](/2025/01/27/mcp-part-i-core-concepts-past-present-and-future-of-agentic-systems.html) de cette série, j'ai exploré certains concepts et convictions concernant l'agentivité dans l'IA et le potentiel des outils pour améliorer les agents.
+Dans la [première partie](/fr/2025/01/27/mcp-partie-i-concepts-fondamentaux-passé-présent-et-futur-des-systèmes-agents.html) de cette série, j'ai exploré certains concepts et convictions concernant l'agentivité dans l'IA et le potentiel des outils pour améliorer les agents.
 
 Les derniers mots portaient sur l’_hôte_ (l'application) exécutant des assistants alimentés par des LLM (_Claude_, _ChatGPT_, ...). Ces applications représenteront le véritable champ de bataille. Les entreprises qui obtiendront un monopole sur les systèmes d'assistants gouverneront le business numérique de demain.
 

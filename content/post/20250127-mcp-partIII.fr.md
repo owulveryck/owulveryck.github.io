@@ -223,4 +223,3 @@ Avec ces dernières remarques, je peux affirmer que j’ai atteint mon objectif 
 
 Si vous souhaitez essayer ce serveur, le code est disponible sur [mon GitHub](https://github.com/owulveryck/gomcptest).
 
-- [Partie III : "La Partie III se concentrera sur la construction d'un serveur MCP personnalisé pour un cas d'utilisation en cybersécurité. Nous explorerons les détails techniques de la configuration du serveur, l'exposition des ressources et l'implémentation du protocole de communication."](/fr/2025/01/27/mcp-partie-iii-application-serveur-personnalisé-pour-un-cas-dusage-spécifique.html)

@@ -1,0 +1,633 @@
+<svg width="100%" height="100%" viewBox="0 0 3600 2455" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+    <defs>
+        <linearGradient id="wardleyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgb(236,237,243)"></stop>
+            <stop offset="30%" stop-color="rgb(255,255,255)"></stop>
+            <stop offset="70%" stop-color="rgb(255,255,255)"></stop>
+            <stop offset="100%" stop-color="rgb(236,237,243)"></stop>
+        </linearGradient>
+        <marker id="arrow" refX="15" refY="0" markerWidth="12" markerHeight="12" viewBox="0 -5 10 10">
+            <path d="M0,-5L10,0L0,5" fill="rgb(255,0,0)"></path>
+        </marker>
+        <marker id="graphArrow" refX="9" refY="0" markerWidth="12" markerHeight="12" viewBox="0 -5 10 10">
+            <path d="M0,-5L10,0L0,5" fill="rgb(0,0,0)"></path>
+        </marker>
+    </defs>
+    <rect x="81" y="136" width="2838" height="2142" style="fill:url(#wardleyGradient)"></rect>
+    <g transform=" translate(81,2278) rotate(270)">
+        <line x1="0" y1="0" x2="2142" y2="0" stroke-width="1" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="709" x2="2142" y2="709" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="1419" x2="2142" y2="1419" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="2128" x2="2142" y2="2128" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+            <tspan x="5" dy="-10">Invisible</tspan>
+        </text>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+            <tspan x="2137" dy="-10">Visible</tspan>
+        </text>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+            <tspan x="1071" dy="-10">Value Chain</tspan>
+        </text>
+    </g>
+    <line x1="81" y1="2278" x2="2919" y2="2278" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+        <tspan x="88" dy="151">Uncharted</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="end">
+        <tspan x="2914" dy="151">Industrialised</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
+        <tspan x="81" dy="2298">I</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="790" dy="2298">II</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="1500" dy="2298">III</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="2209" dy="2298">IV</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+        <tspan x="2919" dy="2298">Evolution</tspan>
+    </text>
+    <rect x="2939" y="136" width="651" height="2269" fill="rgb(250,250,252)" fill-opacity="1.0" stroke="rgb(200,200,210)" stroke-opacity="1.0" stroke-width="1" ry="6" rx="6"></rect>
+    <g transform=" translate(3264,165)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="middle">
+            <tspan x="0" dy="6">Legend</tspan>
+        </text>
+    </g>
+    <line x1="2949" y1="173" x2="3580" y2="173" stroke-width="1" stroke="rgb(200,200,210)" stroke-opacity="1.0"></line>
+    <g transform=" translate(2954,209)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Components</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="233" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(2974,231)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Component</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="257" r="8" fill="rgb(196,196,196)" fill-opacity="1.0" stroke="rgb(196,196,196)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <circle cx="2954" cy="257" r="4" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(2974,255)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Build</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="281" r="8" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(170,165,169)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <circle cx="2954" cy="281" r="4" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(2974,279)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Buy</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="305" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(2974,303)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Evolved</tspan>
+        </text>
+    </g>
+    <g transform=" translate(2954,329)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Edges</tspan>
+        </text>
+    </g>
+    <line x1="2944" y1="353" x2="2964" y2="353" stroke-width="1" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+    <g transform=" translate(2974,351)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Dependency</tspan>
+        </text>
+    </g>
+    <line x1="2944" y1="377" x2="2964" y2="377" stroke-width="1" stroke-dasharray="3 3" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+    <g transform=" translate(2974,375)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Evolution</tspan>
+        </text>
+    </g>
+    <g transform=" translate(2954,401)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Groups</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="425" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(2974,423)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Consultant</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="449" r="7" fill="rgb(39,174,96)" fill-opacity="0.2" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(2974,447)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Equipe communication</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="473" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(2974,471)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">agentigslide</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="497" r="7" fill="rgb(149,165,166)" fill-opacity="0.2" stroke="rgb(149,165,166)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(2974,495)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Infrastructure</tspan>
+        </text>
+    </g>
+    <g transform=" translate(2954,521)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Signals</tspan>
+        </text>
+    </g>
+    <path d="M 2947,538 q 4,-7 8,0 q 4,7 8,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(2974,543)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Co-evolution</tspan>
+        </text>
+    </g>
+    <path d="M 2947,569 l 7,-7 l -7,-7 M 2955,569 l 7,-7 l -7,-7" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(2974,567)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Accelerating</tspan>
+        </text>
+    </g>
+    <path d="M 2947,586 l 11,8 l -5,0 M 2947,586 l 11,8 l 0,-5" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(2974,591)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Commoditization</tspan>
+        </text>
+    </g>
+    <path d="M 2947,610 l 11,0 l -4,-4 M 2947,610 l 11,0 l -4,4 M 2943,606 h 5 M 2943,614 h 4" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1.5"></path>
+    <g transform=" translate(2974,615)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Red Queen</tspan>
+        </text>
+    </g>
+    <g transform=" translate(2954,641)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Gameplays</tspan>
+        </text>
+    </g>
+    <rect x="2946" y="660" width="16" height="10" fill="rgb(155,89,182)" fill-opacity="1.0" stroke="rgb(155,89,182)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+    <g transform=" translate(2974,663)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Gameplay</tspan>
+        </text>
+    </g>
+    <g transform=" translate(2954,689)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Other</tspan>
+        </text>
+    </g>
+    <circle cx="2954" cy="713" r="6" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(2974,711)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Annotation</tspan>
+        </text>
+    </g>
+    <style><![CDATA[
+.evolutionEdge {
+	stroke-dasharray: 7;
+	stroke-dashoffset: 7;
+	animation: dash 3s linear forwards infinite;
+}
+
+
+.visibility0 {
+	opacity: 0.8;
+}
+
+
+
+.invisibility0 {
+	opacity: NaN;
+}
+
+
+@keyframes dash {
+	from {
+		stroke-dashoffset: 100;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+.componentText {
+  background: transparent;
+  color: #fff;
+  resize: none;
+  border: 0 none;
+  width: 100%;
+  font-size: 0.8em;
+  outline: none;
+  height: 100%;
+  position: absolute;
+}
+
+]]></style>
+    <script id="SVGScript">var g = new Map();
+var allLinks = new Array(); 
+
+allLinks.push('edge_0_2','edge_0_4','edge_0_5','edge_0_7','edge_1_2','edge_2_3','edge_3_4','edge_3_6','edge_3_7','edge_4_5','edge_5_9','edge_6_8','edge_6_9','edge_8_19','edge_9_10','edge_9_11','edge_9_15','edge_9_16','edge_9_17','edge_11_8','edge_11_12','edge_12_13','edge_12_17','edge_12_19','edge_17_18',);
+
+g.set('element_0',Array('edge_0_2','edge_2_3','edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7','edge_0_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_0_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_0_7',));
+g.set('element_1',Array('edge_1_2','edge_2_3','edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7',));
+g.set('element_11',Array('edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19',));
+g.set('element_12',Array('edge_12_13','edge_12_17','edge_17_18','edge_12_19',));
+g.set('element_17',Array('edge_17_18',));
+g.set('element_2',Array('edge_2_3','edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7',));
+g.set('element_3',Array('edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7',));
+g.set('element_4',Array('edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
+g.set('element_5',Array('edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
+g.set('element_6',Array('edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
+g.set('element_8',Array('edge_8_19',));
+g.set('element_9',Array('edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
+
+const max = 9
+function toggleLink(clicked_id)
+{
+	if (g.has(clicked_id)) {
+		g.get(clicked_id).forEach(element => {
+			var style = document.getElementById(element).style.display;
+			if(style === "none")
+				document.getElementById(element).style.display = "block";
+			else
+				document.getElementById(element).style.display = "none";
+
+		});
+	}
+}
+function toggleLinks() {
+	allLinks.forEach(element => {
+		var style = document.getElementById(element).style.display;
+		if(style === "none") {
+			document.getElementById(element).style.display = "block";
+		} else {
+			document.getElementById(element).style.display = "none";
+		}
+	});
+}
+
+var allVisibilities = new Map();
+var allInVisibilities = new Map();
+function setVisibility() {
+	
+	allVisibilities.set('invisibility0',document.querySelectorAll('.visibility0'))
+	allInVisibilities.set('visibility0',document.querySelectorAll('.invisibility0'))
+}
+
+var visible = true
+
+function toggleVisibility() {
+	components = allVisibilities
+	if (visible) {
+		components = allInVisibilities
+		visible = false
+	} else {
+		visible = true
+	}
+	components.forEach(function(value, key) {
+		if (value.length === 0) {
+			setVisibility();
+		}
+		value.forEach(element => {
+			element.classList.toggle(key)	
+		});
+	})
+}
+
+
+setVisibility();
+</script>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="16px" text-anchor="middle">
+        <tspan x="1500" dy="121">Paysage agentigslide</tspan>
+    </text>
+    <g id="layer_0">
+        <g id="edge_0_2" class="visibility0">
+            <line x1="1131" y1="200" x2="421" y2="435" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_0_4" class="visibility0">
+            <path d="M 1131,200 Q 1012,515 932,842" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_0_5" class="visibility0">
+            <path d="M 1131,200 Q 1151,649 1131,1099" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_0_7" class="visibility0">
+            <path d="M 1131,200 Q 1007,550 847,885" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_1_2" class="visibility0">
+            <line x1="1840" y1="200" x2="421" y2="435" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_2_3" class="visibility0">
+            <line x1="421" y1="435" x2="989" y2="650" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_3_4" class="visibility0">
+            <path d="M 989,650 Q 941,740 932,842" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_3_6" class="visibility0">
+            <line x1="989" y1="650" x2="1216" y2="949" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_3_7" class="visibility0">
+            <path d="M 989,650 Q 935,777 847,885" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_4_5" class="visibility0">
+            <line x1="932" y1="842" x2="1131" y2="1099" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_5_9" class="visibility0">
+            <path d="M 1131,1099 Q 839,1198 563,1335" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_6_8" class="visibility0">
+            <line x1="1216" y1="949" x2="1131" y2="1849" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_6_9" class="visibility0">
+            <path d="M 1216,949 Q 899,1159 563,1335" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_8_19" class="visibility0">
+            <line x1="1131" y1="1849" x2="2067" y2="1999" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_9_10" class="visibility0">
+            <line x1="563" y1="1335" x2="989" y2="1335" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_9_11" class="visibility0">
+            <line x1="563" y1="1335" x2="932" y2="1613" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_9_15" class="visibility0">
+            <path d="M 563,1335 Q 1383,1461 2209,1549" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_9_16" class="visibility0">
+            <path d="M 563,1335 Q 1388,1400 2209,1506" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_9_17" class="visibility0">
+            <line x1="563" y1="1335" x2="1641" y2="2042" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_11_8" class="visibility0">
+            <line x1="932" y1="1613" x2="1131" y2="1849" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_11_12" class="visibility0">
+            <line x1="932" y1="1613" x2="648" y2="1785" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_12_13" class="visibility0">
+            <line x1="648" y1="1785" x2="932" y2="1785" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_12_17" class="visibility0">
+            <line x1="648" y1="1785" x2="1641" y2="2042" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_12_19" class="visibility0">
+            <line x1="648" y1="1785" x2="2067" y2="1999" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_17_18" class="visibility0">
+            <line x1="1641" y1="2042" x2="1982" y2="2042" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="element_0" onclick="toggleLink(this.id)">
+            <g transform=" translate(1131,200)">
+                <circle cx="0" cy="-10" r="5" fill="rgb(51,51,51)" fill-opacity="1.0" stroke="rgb(51,51,51)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -8,-4 C -8,6 8,6 8,-4 Z" fill="rgb(51,51,51)"></path>
+                <text font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
+                    <tspan x="25" dy="6">Consultant</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="element_1" onclick="toggleLink(this.id)">
+            <g transform=" translate(1840,200)">
+                <circle cx="0" cy="-10" r="5" fill="rgb(51,51,51)" fill-opacity="1.0" stroke="rgb(51,51,51)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -8,-4 C -8,6 8,6 8,-4 Z" fill="rgb(51,51,51)"></path>
+                <text font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
+                    <tspan x="25" dy="6">Client</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+    <g id="layer_1">
+        <g id="element_20" onclick="toggleLink(this.id)">
+            <path d="M 801.4,874.4 L 807.3,860.3 Q 811.6,849.6 854.2,779.1 L 911.0,685.1 Q 953.6,614.6 964.3,610.3 L 978.4,604.4 Q 989.0,600.0 999.6,604.4 L 1013.7,610.3 Q 1024.4,614.6 1028.7,625.3 L 1034.6,639.4 Q 1039.0,650.0 1081.6,784.7 L 1138.4,964.3 Q 1181.0,1099.0 1176.6,1109.6 L 1170.7,1123.7 Q 1166.4,1134.4 1155.7,1138.7 L 1141.6,1144.6 Q 1131.0,1149.0 1120.4,1144.6 L 1106.3,1138.7 Q 1095.6,1134.4 1010.4,1070.2 L 896.8,984.6 Q 811.6,920.4 807.3,909.7 L 801.4,895.6 Q 797.0,885.0 801.4,874.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 801.4,874.4 L 807.3,860.3 Q 811.6,849.6 854.2,779.1 L 911.0,685.1 Q 953.6,614.6 964.3,610.3 L 978.4,604.4 Q 989.0,600.0 999.6,604.4 L 1013.7,610.3 Q 1024.4,614.6 1028.7,625.3 L 1034.6,639.4 Q 1039.0,650.0 1081.6,784.7 L 1138.4,964.3 Q 1181.0,1099.0 1176.6,1109.6 L 1170.7,1123.7 Q 1166.4,1134.4 1155.7,1138.7 L 1141.6,1144.6 Q 1131.0,1149.0 1120.4,1144.6 L 1106.3,1138.7 Q 1095.6,1134.4 1010.4,1070.2 L 896.8,984.6 Q 811.6,920.4 807.3,909.7 L 801.4,895.6 Q 797.0,885.0 801.4,874.4 Z" fill="none" stroke-width="2" stroke="rgb(52,152,219)" stroke-opacity="0.6" stroke-dasharray="8,4"></path>
+        </g>
+        <g id="element_21" onclick="toggleLink(this.id)">
+            <path d="M 1085.4,1838.4 L 1091.3,1824.3 Q 1095.6,1813.6 1106.3,1809.3 L 1120.4,1803.4 Q 1131.0,1799.0 1411.8,1844.0 L 1786.2,1904.0 Q 2067.0,1949.0 2077.6,1953.4 L 2091.7,1959.3 Q 2102.4,1963.6 2106.7,1974.3 L 2112.6,1988.4 Q 2117.0,1999.0 2112.6,2009.6 L 2106.7,2023.7 Q 2102.4,2034.4 2091.7,2038.7 L 2077.6,2044.6 Q 2067.0,2049.0 1786.2,2004.0 L 1411.8,1944.0 Q 1131.0,1899.0 1120.4,1894.6 L 1106.3,1888.7 Q 1095.6,1884.4 1091.3,1873.7 L 1085.4,1859.6 Q 1081.0,1849.0 1085.4,1838.4 Z" fill="rgb(39,174,96)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 1085.4,1838.4 L 1091.3,1824.3 Q 1095.6,1813.6 1106.3,1809.3 L 1120.4,1803.4 Q 1131.0,1799.0 1411.8,1844.0 L 1786.2,1904.0 Q 2067.0,1949.0 2077.6,1953.4 L 2091.7,1959.3 Q 2102.4,1963.6 2106.7,1974.3 L 2112.6,1988.4 Q 2117.0,1999.0 2112.6,2009.6 L 2106.7,2023.7 Q 2102.4,2034.4 2091.7,2038.7 L 2077.6,2044.6 Q 2067.0,2049.0 1786.2,2004.0 L 1411.8,1944.0 Q 1131.0,1899.0 1120.4,1894.6 L 1106.3,1888.7 Q 1095.6,1884.4 1091.3,1873.7 L 1085.4,1859.6 Q 1081.0,1849.0 1085.4,1838.4 Z" fill="none" stroke-width="2" stroke="rgb(39,174,96)" stroke-opacity="0.6"></path>
+        </g>
+        <g id="element_22" onclick="toggleLink(this.id)">
+            <path d="M 517.4,1324.4 L 523.3,1310.3 Q 527.6,1299.6 538.3,1295.3 L 552.4,1289.4 Q 563.0,1285.0 573.6,1289.4 L 587.7,1295.3 Q 598.4,1299.6 709.1,1383.0 L 856.7,1494.2 Q 967.4,1577.6 971.7,1588.3 L 977.6,1602.4 Q 982.0,1613.0 977.6,1623.6 L 971.7,1637.7 Q 967.4,1648.4 882.2,1700.0 L 768.6,1768.8 Q 683.4,1820.4 672.7,1824.7 L 658.6,1830.6 Q 648.0,1835.0 637.4,1830.6 L 623.3,1824.7 Q 612.6,1820.4 608.3,1809.7 L 602.4,1795.6 Q 598.0,1785.0 572.5,1650.0 L 538.5,1470.0 Q 513.0,1335.0 517.4,1324.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 517.4,1324.4 L 523.3,1310.3 Q 527.6,1299.6 538.3,1295.3 L 552.4,1289.4 Q 563.0,1285.0 573.6,1289.4 L 587.7,1295.3 Q 598.4,1299.6 709.1,1383.0 L 856.7,1494.2 Q 967.4,1577.6 971.7,1588.3 L 977.6,1602.4 Q 982.0,1613.0 977.6,1623.6 L 971.7,1637.7 Q 967.4,1648.4 882.2,1700.0 L 768.6,1768.8 Q 683.4,1820.4 672.7,1824.7 L 658.6,1830.6 Q 648.0,1835.0 637.4,1830.6 L 623.3,1824.7 Q 612.6,1820.4 608.3,1809.7 L 602.4,1795.6 Q 598.0,1785.0 572.5,1650.0 L 538.5,1470.0 Q 513.0,1335.0 517.4,1324.4 Z" fill="none" stroke-width="2" stroke="rgb(52,152,219)" stroke-opacity="0.6"></path>
+        </g>
+        <g id="element_23" onclick="toggleLink(this.id)">
+            <path d="M 1595.4,2031.4 L 1601.3,2017.3 Q 1605.6,2006.6 1776.0,1845.8 L 2003.2,1631.4 Q 2173.6,1470.6 2184.3,1466.3 L 2198.4,1460.4 Q 2209.0,1456.0 2219.6,1460.4 L 2233.7,1466.3 Q 2244.4,1470.6 2248.7,1481.3 L 2254.6,1495.4 Q 2259.0,1506.0 2259.0,1518.9 L 2259.0,1536.1 Q 2259.0,1549.0 2254.6,1559.6 L 2248.7,1573.7 Q 2244.4,1584.4 2074.0,1732.3 L 1846.8,1929.5 Q 1676.4,2077.4 1665.7,2081.7 L 1651.6,2087.6 Q 1641.0,2092.0 1630.4,2087.6 L 1616.3,2081.7 Q 1605.6,2077.4 1601.3,2066.7 L 1595.4,2052.6 Q 1591.0,2042.0 1595.4,2031.4 Z" fill="rgb(149,165,166)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 1595.4,2031.4 L 1601.3,2017.3 Q 1605.6,2006.6 1776.0,1845.8 L 2003.2,1631.4 Q 2173.6,1470.6 2184.3,1466.3 L 2198.4,1460.4 Q 2209.0,1456.0 2219.6,1460.4 L 2233.7,1466.3 Q 2244.4,1470.6 2248.7,1481.3 L 2254.6,1495.4 Q 2259.0,1506.0 2259.0,1518.9 L 2259.0,1536.1 Q 2259.0,1549.0 2254.6,1559.6 L 2248.7,1573.7 Q 2244.4,1584.4 2074.0,1732.3 L 1846.8,1929.5 Q 1676.4,2077.4 1665.7,2081.7 L 1651.6,2087.6 Q 1641.0,2092.0 1630.4,2087.6 L 1616.3,2081.7 Q 1605.6,2077.4 1601.3,2066.7 L 1595.4,2052.6 Q 1591.0,2042.0 1595.4,2031.4 Z" fill="none" stroke-width="4" stroke="rgb(149,165,166)" stroke-opacity="0.6"></path>
+            <path d="M 1595.4,2031.4 L 1601.3,2017.3 Q 1605.6,2006.6 1776.0,1845.8 L 2003.2,1631.4 Q 2173.6,1470.6 2184.3,1466.3 L 2198.4,1460.4 Q 2209.0,1456.0 2219.6,1460.4 L 2233.7,1466.3 Q 2244.4,1470.6 2248.7,1481.3 L 2254.6,1495.4 Q 2259.0,1506.0 2259.0,1518.9 L 2259.0,1536.1 Q 2259.0,1549.0 2254.6,1559.6 L 2248.7,1573.7 Q 2244.4,1584.4 2074.0,1732.3 L 1846.8,1929.5 Q 1676.4,2077.4 1665.7,2081.7 L 1651.6,2087.6 Q 1641.0,2092.0 1630.4,2087.6 L 1616.3,2081.7 Q 1605.6,2077.4 1601.3,2066.7 L 1595.4,2052.6 Q 1591.0,2042.0 1595.4,2031.4 Z" fill="none" stroke-width="1" stroke="rgb(149,165,166)" stroke-opacity="0.6"></path>
+        </g>
+    </g>
+    <g id="layer_10">
+        <g id="element_2" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(421,435)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Convaincre</tspan>
+                    <tspan x="25" dy="18">le client</tspan>
+                </text>
+                <title>Objectif final</title>
+            </g>
+        </g>
+        <g id="element_3" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(989,650)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Présentation</tspan>
+                    <tspan x="25" dy="18">de conviction</tspan>
+                </text>
+                <title>Singularité du discours</title>
+            </g>
+        </g>
+        <g id="element_4" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(932,842)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Discours</tspan>
+                    <tspan x="25" dy="18">et storytelling</tspan>
+                </text>
+                <title>Produit par le consultant</title>
+            </g>
+        </g>
+        <g id="element_5" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(1131,1099)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6">Brief structuré</tspan>
+                </text>
+                <title>Entrée de l&#39;Outliner</title>
+            </g>
+        </g>
+        <g id="element_6" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(1216,949)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-12" dy="18">Support visuel</tspan>
+                    <tspan x="-12" dy="18">cohérent</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_7" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(847,885)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6">Human-in-the-loop</tspan>
+                </text>
+                <title>Appropriation</title>
+            </g>
+        </g>
+        <g id="element_8" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(1131,1849)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(39,174,96)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Catalogue</tspan>
+                    <tspan x="25" dy="18">de slides</tspan>
+                </text>
+                <title>Capital non copiable</title>
+            </g>
+        </g>
+        <g id="element_9" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(563,1335)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Orchestration</tspan>
+                    <tspan x="25" dy="18">agentique</tspan>
+                </text>
+                <title>Outliner, Selector, Writers, Reviewer</title>
+                <g data-type="signal">
+                    <path d="M 20,-20 q 6,-10 12,0 q 6,10 12,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+                <g data-type="gameplay">
+                    <rect x="-31" y="12" width="62" height="12" fill="rgb(231,76,60)" fill-opacity="1.0" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="8px" text-anchor="middle">
+                        <tspan x="0" dy="22">land-grab</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="element_10" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(989,1335)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_11" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(932,1613)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6">Index sémantique</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_12" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(648,1785)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Analyse vision</tspan>
+                    <tspan x="-25" dy="18">IA</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_13" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(932,1785)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_14" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(1641,2213)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6">Outils génériques</tspan>
+                </text>
+                <title>Gamma, Beautiful.ai, Pitch</title>
+                <g data-type="signal">
+                    <path d="M 20,-20 l 16,0 l -6,-6 M 20,-20 l 16,0 l -6,6 M 14,-26 h 8 M 14,-14 h 6" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="2.5"></path>
+                </g>
+                <g data-type="warning">
+                    <path d="M -40,10 l 10,-20 l 10,20 Z" fill="rgb(230,126,34)"></path>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+                        <tspan x="-30" dy="6">!</tspan>
+                    </text>
+                    <title>⚠ Fenêtre de 12-18 mois</title>
+                </g>
+            </g>
+        </g>
+        <g id="element_15" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(2209,1549)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">API Google</tspan>
+                    <tspan x="-25" dy="18">Slides</tspan>
+                </text>
+                <title></title>
+                <g data-type="signal">
+                    <path d="M 20,-20 l 16,12 l -8,0 M 20,-20 l 16,12 l 0,-8" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_16" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(2209,1506)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">API Google</tspan>
+                    <tspan x="25" dy="18">Drive</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_17" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(1641,2042)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">LLM via Vertex</tspan>
+                    <tspan x="-25" dy="18">AI</tspan>
+                </text>
+                <title></title>
+                <g data-type="signal">
+                    <path d="M 20,-10 l 10,-10 l -10,-10 M 32,-10 l 10,-10 l -10,-10" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_18" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(1982,2042)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_19" onclick="toggleLink(this.id)" class="visibility0">
+            <g transform=" translate(2067,1999)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Google Slides</tspan>
+                    <tspan x="25" dy="18">natif</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+    </g>
+</svg>

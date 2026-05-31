@@ -2,7 +2,7 @@
 title: "L'agentic mesh en pratique : anatomie d'un agent-produit"
 date: 2026-05-31T14:00:00+02:00
 lastmod: 2026-05-31T14:00:00+02:00
-images: [/assets/agenticmesh/architecture-agentique.fr.svg]
+images: [/assets/agentigslide/pipeline-multi-agents.fr.svg]
 draft: true
 keywords: ["agentic mesh", "multi-agent", "Go", "Google Slides", "A2A"]
 summary: "Comment j'ai construit un système multi-agents en Go pour générer des présentations Google Slides à partir de templates préformatés (non pas pour présenter, mais pour convaincre). Retour d'expérience et illustration concrète des principes de l'agentic mesh."
@@ -46,6 +46,8 @@ Dans le vocabulaire de l'agentic mesh, c'est le **pilier 2 : les domaines**. L'a
 Avant de coder quoi que ce soit, j'ai cartographié le paysage avec une **carte Wardley** pour comprendre où se situe la valeur et quelles manœuvres stratégiques sont possibles.
 
 La chaîne de valeur se lit de haut en bas : le **consultant** doit **convaincre un client**. Pour cela il produit un **discours** qu'il externalise dans un **brief structuré** (un fichier markdown). Ce brief alimente l'**orchestration agentique** qui pioche dans le **catalogue de slides préformatés** via un **index sémantique**, pour produire une présentation via les **API Google Slides et Drive**.
+
+![Carte Wardley du paysage agentigslide](/assets/agentigslide/wardley-agentigslide.fr.svg)
 
 ### Ce que la carte révèle
 
@@ -98,6 +100,8 @@ La première décision d'architecture (ADR 001, le 5 mai 2026) a transformé le 
 **Les Writers** génèrent le contenu textuel de chaque slide, en parallèle. Le modèle est sélectionné selon la complexité : **Haiku** pour les slides simples (couverture, intercalaire, ≤ 2 champs), **Sonnet** pour les slides complexes (> 2 champs). L'exécution est en goroutines Go avec un sémaphore configurable.
 
 **Le Reviewer** valide le plan assemblé avant exécution. Il utilise **Opus avec extended thinking** pour une analyse en profondeur. S'il détecte des problèmes (overflow de texte, duplication, template inadéquat), il renvoie un feedback structuré (`ReviewIssue[]`) aux Writers concernés, qui corrigent et resoumettent (maximum 2 itérations pour borner le coût).
+
+![Pipeline multi-agents agentigslide](/assets/agentigslide/pipeline-multi-agents.fr.svg)
 
 C'est le **Temps 2** de l'agentic mesh : *"Chaque sous-agent est spécialisé, utilise le modèle adapté à sa tâche, dispose de ses outils propres et de ses boucles de feedback."*
 

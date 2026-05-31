@@ -49,10 +49,16 @@ uglyURLs=true
   filename = "sitemap.xml"
 
 [[menu.main]]             # config your menu              # 配置目录
-  name = "This is Home"
+  name = "Blog"
   weight = 10
   identifier = "home"
   url = "/"
+
+[[menu.main]]
+  name = "LinkedIn"
+  weight = 100
+  identifier = "linkedin"
+  url = "https://linkedin.com/in/olivierwulveryck"
 
 # Highlight options. See https://gohugo.io/content-management/syntax-highlighting/
 [markup]

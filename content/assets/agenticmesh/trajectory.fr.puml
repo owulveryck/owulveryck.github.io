@@ -1,0 +1,55 @@
+@startuml trajectory
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**TEMPS 1**\nMVP plateforme + POC agent" as t1 #E7E9EE {
+  rectangle "Plateforme\n(lecture/écriture)" as p1
+  hexagon "Agent\nbricolé" as a_t1 #6E7B9A
+  p1 <-- a_t1
+}
+
+rectangle "**TEMPS 2**\nIngénierie agentique" as t2 #B7BDCC {
+  rectangle "Orchestrateur\n(code)" as orch
+  hexagon "Sous-agent A" as sa1 #6E7B9A
+  hexagon "Sous-agent B" as sa2 #6E7B9A
+  hexagon "Sous-agent C" as sa3 #6E7B9A
+  orch --> sa1
+  orch --> sa2
+  orch --> sa3
+}
+
+rectangle "**TEMPS 3**\nMaillage" as t3 #DAF6F9 {
+  rectangle "Domaine A" as da {
+    hexagon "Agent" as ag1 #00D2DD
+  }
+  rectangle "Domaine B" as db {
+    hexagon "Agent" as ag2 #00D2DD
+  }
+  rectangle "Domaine C" as dc {
+    hexagon "Agent" as ag3 #00D2DD
+  }
+  ag1 ..> ag2 : A2A
+  ag2 ..> ag3 : A2A
+}
+
+t1 -right-> t2 : **Tipping point**\nL'agent est invoqué\npar un 2e contexte
+t2 -right-> t3 : **Productisation**\nOwnership domaine\nContrat d'intention
+
+note bottom of t1
+  Valider les hypothèses
+  Système sur étagère OK
+end note
+
+note bottom of t2
+  Passer à l'ingénierie logicielle
+  Parallélisme, validation, observabilité
+end note
+
+note bottom of t3
+  Écosystème d'agents
+  Processus métier transverses
+end note
+
+@enduml

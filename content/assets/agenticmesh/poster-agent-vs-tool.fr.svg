@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 440 168">
+      <!-- Agent column -->
+      <rect x="10" y="5" width="195" height="115" rx="10" fill="#00D2DD" opacity="0.12" stroke="#00D2DD" stroke-width="1.5"/>
+      <polygon points="55,18 72,10 89,18 89,38 72,46 55,38" fill="#00D2DD"/>
+      <text x="72" y="33" text-anchor="middle" fill="#0E2356" font-size="10" font-weight="700">A</text>
+      <text x="100" y="25" fill="#0E2356" font-size="14" font-weight="800">AGENT</text>
+      <text x="100" y="40" fill="#3E4F78" font-size="9">Non-déterministe</text>
+      <text x="25" y="62" fill="#0E2356" font-size="10" font-weight="700">Travaille et décide</text>
+      <text x="25" y="74" fill="#0E2356" font-size="10" font-weight="700">en autonomie</text>
+      <text x="25" y="90" fill="#0E2356" font-size="8.5">sur la base d'une</text>
+      <text x="25" y="101" fill="#0E2356" font-size="8.5" font-weight="600">intention</text>
+      <text x="25" y="115" fill="#3E4F78" font-size="8.5">en fonction d'un <tspan font-weight="600">contexte</tspan></text>
+
+      <!-- Separator -->
+      <line x1="220" y1="15" x2="220" y2="110" stroke="#6E7B9A" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <text x="220" y="133" text-anchor="middle" fill="#6E7B9A" font-size="9" font-weight="600">vs</text>
+
+      <!-- Tool column -->
+      <rect x="235" y="5" width="195" height="115" rx="10" fill="#6E7B9A" opacity="0.12" stroke="#6E7B9A" stroke-width="1.5"/>
+      <rect x="250" y="12" width="30" height="22" rx="3" fill="#6E7B9A"/>
+      <text x="265" y="28" text-anchor="middle" fill="white" font-size="10" font-weight="700">T</text>
+      <text x="290" y="25" fill="#0E2356" font-size="14" font-weight="800">TOOL</text>
+      <text x="290" y="40" fill="#3E4F78" font-size="9">Déterministe</text>
+      <text x="250" y="62" fill="#0E2356" font-size="10" font-weight="700">Utilisation</text>
+      <text x="250" y="74" fill="#0E2356" font-size="10" font-weight="700">programmatique</text>
+      <text x="250" y="92" fill="#3E4F78" font-size="9">API ou MCP</text>
+      <text x="250" y="108" fill="#3E4F78" font-size="8" font-weight="600">Deterministe</text>
+      <text x="250" y="119" fill="#3E4F78" font-size="7.5">même appel = même résultat</text>
+
+      <!-- Bottom phrase -->
+      <text x="220" y="148" text-anchor="middle" fill="#3E4F78" font-size="7.5" font-style="italic">L'outil est deterministe. L'agent ne l'est pas : son résultat est statistique</text>
+      <text x="220" y="158" text-anchor="middle" fill="#3E4F78" font-size="7.5" font-style="italic">et dépend du contexte d'exécution.</text>
+    </svg>

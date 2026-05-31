@@ -1,0 +1,33 @@
+@startuml agent-vs-tool
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+package "OUTIL (Tool)" #E7E9EE {
+  rectangle "API / MCP" as tool #6E7B9A
+  note bottom of tool
+    **Déterministe**
+    Même appel = même résultat
+    Idempotent, testable
+    Exécute, n'interprète pas
+  end note
+}
+
+package "AGENT" #DAF6F9 {
+  hexagon "Agent" as agent #00D2DD
+  note bottom of agent
+    **Non-déterministe**
+    Décide en autonomie
+    Sur la base d'une **intention**
+    En fonction d'un **contexte**
+    Résultat statistique
+  end note
+}
+
+cloud "Contexte\nd'exécution" as ctx
+ctx ..> agent : alimente
+
+agent --> tool : utilise
+
+@enduml

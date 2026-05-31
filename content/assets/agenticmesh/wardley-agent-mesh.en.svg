@@ -1,0 +1,709 @@
+<svg width="100%" height="100%" viewBox="0 0 1920 1100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+    <defs>
+        <linearGradient id="wardleyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgb(236,237,243)"></stop>
+            <stop offset="30%" stop-color="rgb(255,255,255)"></stop>
+            <stop offset="70%" stop-color="rgb(255,255,255)"></stop>
+            <stop offset="100%" stop-color="rgb(236,237,243)"></stop>
+        </linearGradient>
+        <marker id="arrow" refX="15" refY="0" markerWidth="12" markerHeight="12" viewBox="0 -5 10 10">
+            <path d="M0,-5L10,0L0,5" fill="rgb(255,0,0)"></path>
+        </marker>
+        <marker id="graphArrow" refX="9" refY="0" markerWidth="12" markerHeight="12" viewBox="0 -5 10 10">
+            <path d="M0,-5L10,0L0,5" fill="rgb(0,0,0)"></path>
+        </marker>
+    </defs>
+    <rect x="43" y="61" width="1514" height="960" style="fill:url(#wardleyGradient)"></rect>
+    <g transform=" translate(43,1021) rotate(270)">
+        <line x1="0" y1="0" x2="960" y2="0" stroke-width="1" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="378" x2="960" y2="378" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="757" x2="960" y2="757" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="1135" x2="960" y2="1135" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+            <tspan x="5" dy="-10">Invisible</tspan>
+        </text>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+            <tspan x="955" dy="-10">Visible</tspan>
+        </text>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+            <tspan x="480" dy="-10">Value Chain</tspan>
+        </text>
+    </g>
+    <line x1="43" y1="1021" x2="1557" y2="1021" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+        <tspan x="50" dy="76">Uncharted</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="end">
+        <tspan x="1552" dy="76">Industrialised</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
+        <tspan x="43" dy="1041">I</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="421" dy="1041">II</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="800" dy="1041">III</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="1178" dy="1041">IV</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="0.7" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="12px" text-anchor="middle">
+        <tspan x="232" dy="1041">Genesis</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="0.7" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="12px" text-anchor="middle">
+        <tspan x="610" dy="1041">Custom</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="0.7" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="12px" text-anchor="middle">
+        <tspan x="989" dy="1041">Product</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="0.7" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="12px" text-anchor="middle">
+        <tspan x="1367" dy="1041">Commodity</tspan>
+    </text>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+        <tspan x="1557" dy="1041">Evolution</tspan>
+    </text>
+    <rect x="1577" y="61" width="333" height="989" fill="rgb(250,250,252)" fill-opacity="1.0" stroke="rgb(200,200,210)" stroke-opacity="1.0" stroke-width="1" ry="6" rx="6"></rect>
+    <g transform=" translate(1743,90)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="middle">
+            <tspan x="0" dy="6">Legend</tspan>
+        </text>
+    </g>
+    <line x1="1587" y1="98" x2="1900" y2="98" stroke-width="1" stroke="rgb(200,200,210)" stroke-opacity="1.0"></line>
+    <g transform=" translate(1592,134)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Components</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="158" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1612,156)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Component</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="182" r="8" fill="rgb(196,196,196)" fill-opacity="1.0" stroke="rgb(196,196,196)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <circle cx="1592" cy="182" r="4" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1612,180)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Build</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="206" r="8" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(170,165,169)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <circle cx="1592" cy="206" r="4" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1612,204)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Buy</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="230" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1612,228)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Evolved</tspan>
+        </text>
+    </g>
+    <rect x="1582" y="250" width="20" height="8" fill="rgb(255,255,255)" fill-opacity="0.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></rect>
+    <g transform=" translate(1612,252)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Pipeline</tspan>
+        </text>
+    </g>
+    <g transform=" translate(1592,278)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Edges</tspan>
+        </text>
+    </g>
+    <line x1="1582" y1="302" x2="1602" y2="302" stroke-width="1" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+    <g transform=" translate(1612,300)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Dependency</tspan>
+        </text>
+    </g>
+    <line x1="1582" y1="326" x2="1602" y2="326" stroke-width="1" stroke-dasharray="3 3" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+    <g transform=" translate(1612,324)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Evolution</tspan>
+        </text>
+    </g>
+    <rect x="1590" y="344" width="4" height="12" fill="rgb(41,128,185)" fill-opacity="1.0"></rect>
+    <g transform=" translate(1612,348)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Inertia (Tech)</tspan>
+        </text>
+    </g>
+    <rect x="1590" y="368" width="4" height="12" fill="rgb(39,174,96)" fill-opacity="1.0"></rect>
+    <g transform=" translate(1612,372)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Inertia (Financial)</tspan>
+        </text>
+    </g>
+    <g transform=" translate(1592,398)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Groups</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="422" r="7" fill="rgb(93,190,163)" fill-opacity="0.2" stroke="rgb(93,190,163)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1612,420)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Agent team (per domain)</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="446" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1612,444)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Platform team</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="470" r="7" fill="rgb(231,76,60)" fill-opacity="0.2" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1612,468)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Governance cell</tspan>
+        </text>
+    </g>
+    <g transform=" translate(1592,494)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Signals</tspan>
+        </text>
+    </g>
+    <path d="M 1585,511 l 11,8 l -5,0 M 1585,511 l 11,8 l 0,-5" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(1612,516)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Commoditization</tspan>
+        </text>
+    </g>
+    <path d="M 1585,542 l 7,-7 l -7,-7 M 1593,542 l 7,-7 l -7,-7" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(1612,540)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Accelerating</tspan>
+        </text>
+    </g>
+    <path d="M 1585,559 q 4,-7 8,0 q 4,7 8,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(1612,564)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Co-evolution</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="583" r="3" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <path d="M 1592,583 l 7,-4 M 1592,583 l 7,4 M 1592,583 l -7,-4 M 1592,583 l -7,4" fill="none" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1.5"></path>
+    <g transform=" translate(1612,588)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Network effects</tspan>
+        </text>
+    </g>
+    <path d="M 1585,607 l 11,0 l -4,-4 M 1585,607 l 11,0 l -4,4 M 1581,603 h 5 M 1581,611 h 4" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1.5"></path>
+    <g transform=" translate(1612,612)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Red Queen</tspan>
+        </text>
+    </g>
+    <g transform=" translate(1592,638)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Gameplays</tspan>
+        </text>
+    </g>
+    <rect x="1584" y="657" width="16" height="10" fill="rgb(155,89,182)" fill-opacity="1.0" stroke="rgb(155,89,182)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+    <g transform=" translate(1612,660)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Gameplay</tspan>
+        </text>
+    </g>
+    <g transform=" translate(1592,686)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+            <tspan x="0" dy="6">Other</tspan>
+        </text>
+    </g>
+    <circle cx="1592" cy="710" r="6" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1612,708)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+            <tspan x="0" dy="6">Annotation</tspan>
+        </text>
+    </g>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="16px" text-anchor="middle">
+        <tspan x="800" dy="46">Setting up an agentic mesh</tspan>
+    </text>
+    <g id="layer_0">
+        <g id="edge_0_2" class="visibility0">
+            <path d="M 800,89 Q 637,168 497,281" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_1_2" class="visibility0">
+            <path d="M 875,89 Q 695,202 497,281" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_2_3" class="visibility0">
+            <line x1="497" y1="281" x2="300" y2="598" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_3_4" class="visibility0">
+            <path d="M 300,598 Q 451,618 603,598" fill="none" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge"></path>
+        </g>
+        <g id="edge_3_5" class="visibility0">
+            <line x1="300" y1="598" x2="224" y2="848" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_3_10" class="visibility0">
+            <line x1="300" y1="598" x2="148" y2="992" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_3_12" class="visibility0">
+            <path d="M 300,598 Q 454,602 603,646" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_3_14" class="visibility0">
+            <line x1="300" y1="598" x2="345" y2="675" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_5_6" class="visibility0">
+            <line x1="224" y1="848" x2="678" y2="848" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_5_7" class="visibility0">
+            <path d="M 224,848 Q 351,937 497,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_5_10" class="visibility0">
+            <line x1="224" y1="848" x2="148" y2="992" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_5_16" class="visibility0">
+            <path d="M 224,848 Q 384,901 527,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_5_17" class="visibility0">
+            <path d="M 224,848 Q 479,900 724,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_5_23" class="visibility0">
+            <line x1="224" y1="848" x2="981" y2="992" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_7_8" class="visibility0">
+            <path d="M 497,992 Q 739,1012 981,992" fill="none" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge"></path>
+        </g>
+        <g id="edge_7_23" class="visibility0">
+            <path d="M 497,992 Q 739,972 981,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_10_11" class="visibility0">
+            <line x1="148" y1="992" x2="603" y2="992" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_12_13" class="visibility0">
+            <line x1="603" y1="646" x2="981" y2="646" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_14_15" class="visibility0">
+            <line x1="345" y1="675" x2="678" y2="675" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+        </g>
+        <g id="edge_17_18" class="visibility0">
+            <path d="M 724,992 Q 852,972 981,992" fill="none" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge"></path>
+        </g>
+        <g id="edge_17_19" class="visibility0">
+            <path d="M 724,992 Q 799,972 875,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_17_21" class="visibility0">
+            <path d="M 724,992 Q 762,972 800,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_19_20" class="visibility0">
+            <path d="M 875,992 Q 966,1012 1057,992" fill="none" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge"></path>
+        </g>
+        <g id="edge_19_25" class="visibility0">
+            <path d="M 875,992 Q 928,972 981,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_19_26" class="visibility0">
+            <path d="M 875,992 Q 988,972 1102,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_21_22" class="visibility0">
+            <path d="M 800,992 Q 928,972 1057,992" fill="none" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge"></path>
+        </g>
+        <g id="edge_21_26" class="visibility0">
+            <path d="M 800,992 Q 951,972 1102,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_23_24" class="visibility0">
+            <path d="M 981,992 Q 1132,1012 1284,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_25_26" class="visibility0">
+            <path d="M 981,992 Q 1041,972 1102,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="edge_26_24" class="visibility0">
+            <path d="M 1102,992 Q 1193,972 1284,992" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+        </g>
+        <g id="element_0">
+            <g transform=" translate(800,89)">
+                <circle cx="0" cy="-10" r="5" fill="rgb(51,51,51)" fill-opacity="1.0" stroke="rgb(51,51,51)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -8,-4 C -8,6 8,6 8,-4 Z" fill="rgb(51,51,51)"></path>
+                <text font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="end">
+                    <tspan x="-25" dy="6">Business</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="element_1">
+            <g transform=" translate(875,89)">
+                <circle cx="0" cy="-10" r="5" fill="rgb(51,51,51)" fill-opacity="1.0" stroke="rgb(51,51,51)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -8,-4 C -8,6 8,6 8,-4 Z" fill="rgb(51,51,51)"></path>
+                <text font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
+                    <tspan x="25" dy="6">Process Owner</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+    <g id="layer_1">
+        <g id="element_30">
+            <path d="M 102.4,981.4 L 108.3,967.3 Q 112.6,956.6 135.4,913.4 L 165.8,855.8 Q 188.6,812.6 199.3,808.3 L 213.4,802.4 Q 224.0,798.0 234.6,802.4 L 248.7,808.3 Q 259.4,812.6 350.3,855.8 L 471.5,913.4 Q 562.4,956.6 566.7,967.3 L 572.6,981.4 Q 577.0,992.0 572.6,1002.6 L 566.7,1016.7 Q 562.4,1027.4 551.7,1031.7 L 537.6,1037.6 Q 527.0,1042.0 413.3,1042.0 L 261.7,1042.0 Q 148.0,1042.0 137.4,1037.6 L 123.3,1031.7 Q 112.6,1027.4 108.3,1016.7 L 102.4,1002.6 Q 98.0,992.0 102.4,981.4 Z" fill="rgb(93,190,163)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 102.4,981.4 L 108.3,967.3 Q 112.6,956.6 135.4,913.4 L 165.8,855.8 Q 188.6,812.6 199.3,808.3 L 213.4,802.4 Q 224.0,798.0 234.6,802.4 L 248.7,808.3 Q 259.4,812.6 350.3,855.8 L 471.5,913.4 Q 562.4,956.6 566.7,967.3 L 572.6,981.4 Q 577.0,992.0 572.6,1002.6 L 566.7,1016.7 Q 562.4,1027.4 551.7,1031.7 L 537.6,1037.6 Q 527.0,1042.0 413.3,1042.0 L 261.7,1042.0 Q 148.0,1042.0 137.4,1037.6 L 123.3,1031.7 Q 112.6,1027.4 108.3,1016.7 L 102.4,1002.6 Q 98.0,992.0 102.4,981.4 Z" fill="none" stroke-width="2" stroke="rgb(93,190,163)" stroke-opacity="0.6"></path>
+        </g>
+        <g id="element_31">
+            <path d="M 451.4,981.4 L 457.3,967.3 Q 461.6,956.6 472.3,952.3 L 486.4,946.4 Q 497.0,942.0 610.4,942.0 L 761.6,942.0 Q 875.0,942.0 885.6,946.4 L 899.7,952.3 Q 910.4,956.6 914.7,967.3 L 920.6,981.4 Q 925.0,992.0 920.6,1002.6 L 914.7,1016.7 Q 910.4,1027.4 899.7,1031.7 L 885.6,1037.6 Q 875.0,1042.0 761.6,1042.0 L 610.4,1042.0 Q 497.0,1042.0 486.4,1037.6 L 472.3,1031.7 Q 461.6,1027.4 457.3,1016.7 L 451.4,1002.6 Q 447.0,992.0 451.4,981.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 451.4,981.4 L 457.3,967.3 Q 461.6,956.6 472.3,952.3 L 486.4,946.4 Q 497.0,942.0 610.4,942.0 L 761.6,942.0 Q 875.0,942.0 885.6,946.4 L 899.7,952.3 Q 910.4,956.6 914.7,967.3 L 920.6,981.4 Q 925.0,992.0 920.6,1002.6 L 914.7,1016.7 Q 910.4,1027.4 899.7,1031.7 L 885.6,1037.6 Q 875.0,1042.0 761.6,1042.0 L 610.4,1042.0 Q 497.0,1042.0 486.4,1037.6 L 472.3,1031.7 Q 461.6,1027.4 457.3,1016.7 L 451.4,1002.6 Q 447.0,992.0 451.4,981.4 Z" fill="none" stroke-width="4" stroke="rgb(52,152,219)" stroke-opacity="0.6"></path>
+            <path d="M 451.4,981.4 L 457.3,967.3 Q 461.6,956.6 472.3,952.3 L 486.4,946.4 Q 497.0,942.0 610.4,942.0 L 761.6,942.0 Q 875.0,942.0 885.6,946.4 L 899.7,952.3 Q 910.4,956.6 914.7,967.3 L 920.6,981.4 Q 925.0,992.0 920.6,1002.6 L 914.7,1016.7 Q 910.4,1027.4 899.7,1031.7 L 885.6,1037.6 Q 875.0,1042.0 761.6,1042.0 L 610.4,1042.0 Q 497.0,1042.0 486.4,1037.6 L 472.3,1031.7 Q 461.6,1027.4 457.3,1016.7 L 451.4,1002.6 Q 447.0,992.0 451.4,981.4 Z" fill="none" stroke-width="1" stroke="rgb(52,152,219)" stroke-opacity="0.6"></path>
+        </g>
+        <g id="element_32">
+            <path d="M 299.4,664.4 L 305.3,650.3 Q 309.6,639.6 320.3,635.3 L 334.4,629.4 Q 345.0,625.0 422.4,616.3 L 525.6,604.7 Q 603.0,596.0 613.6,600.4 L 627.7,606.3 Q 638.4,610.6 642.7,621.3 L 648.6,635.4 Q 653.0,646.0 648.6,656.6 L 642.7,670.7 Q 638.4,681.4 627.7,685.7 L 613.6,691.6 Q 603.0,696.0 525.6,704.7 L 422.4,716.3 Q 345.0,725.0 334.4,720.6 L 320.3,714.7 Q 309.6,710.4 305.3,699.7 L 299.4,685.6 Q 295.0,675.0 299.4,664.4 Z" fill="rgb(231,76,60)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 299.4,664.4 L 305.3,650.3 Q 309.6,639.6 320.3,635.3 L 334.4,629.4 Q 345.0,625.0 422.4,616.3 L 525.6,604.7 Q 603.0,596.0 613.6,600.4 L 627.7,606.3 Q 638.4,610.6 642.7,621.3 L 648.6,635.4 Q 653.0,646.0 648.6,656.6 L 642.7,670.7 Q 638.4,681.4 627.7,685.7 L 613.6,691.6 Q 603.0,696.0 525.6,704.7 L 422.4,716.3 Q 345.0,725.0 334.4,720.6 L 320.3,714.7 Q 309.6,710.4 305.3,699.7 L 299.4,685.6 Q 295.0,675.0 299.4,664.4 Z" fill="none" stroke-width="2" stroke="rgb(231,76,60)" stroke-opacity="0.6"></path>
+        </g>
+    </g>
+    <g id="layer_10">
+        <g id="element_2" class="visibility0">
+            <g transform=" translate(497,281)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Automated</tspan>
+                    <tspan x="25" dy="18">business</tspan>
+                    <tspan x="25" dy="18">process</tspan>
+                </text>
+                <title>The real value — still largely to be built | Asset: financial</title>
+                <g data-type="signal">
+                    <path d="M 20,-20 l 16,0 l -6,-6 M 20,-20 l 16,0 l -6,6 M 14,-26 h 8 M 14,-14 h 6" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="2.5"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_3" class="visibility0">
+            <g transform=" translate(300,598)">
+                <circle cx="0" cy="0" r="5" fill="rgb(93,190,163)" fill-opacity="1.0" stroke="rgb(93,190,163)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(93,190,163)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6">Agentic Mesh</tspan>
+                </text>
+                <title>Strategic target | Asset: tech</title>
+                <g data-type="signal">
+                    <circle cx="30" cy="-20" r="4" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="2"></circle>
+                    <path d="M 30,-20 l 10,-6 M 30,-20 l 10,6 M 30,-20 l -10,-6 M 30,-20 l -10,6" fill="none" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="2"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_4" class="visibility0">
+            <g transform=" translate(603,598)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_5" class="visibility0">
+            <g transform=" translate(224,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Prototype</tspan>
+                    <tspan x="-25" dy="18">agent</tspan>
+                </text>
+                <title></title>
+            </g>
+            <g transform=" translate(527,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+                    <tspan x="0" dy="30">Application</tspan>
+                    <tspan x="0" dy="30">agent</tspan>
+                </text>
+                <title></title>
+            </g>
+            <g transform=" translate(905,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6">Agent-product</tspan>
+                </text>
+                <title></title>
+            </g>
+            <rect x="224" y="838" width="681" height="20" fill="rgb(255,255,255)" fill-opacity="0.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></rect>
+            <g transform=" translate(224,848)">
+                <rect x="-5" y="-15" width="10" height="10" fill="rgb(93,190,163)" fill-opacity="1.0" stroke="rgb(93,190,163)" stroke-opacity="1.0" stroke-width="3"></rect>
+                <text fill="rgb(93,190,163)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Decision</tspan>
+                    <tspan x="25" dy="18">agent</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="element_6" class="visibility0">
+            <g transform=" translate(678,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_7" class="visibility0">
+            <g transform=" translate(497,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+                    <tspan x="0" dy="30">Agentic engineering</tspan>
+                    <tspan x="0" dy="30">pattern</tspan>
+                </text>
+                <title>Code orchestration, feedback loops, observability | Asset: tech</title>
+                <g data-type="signal">
+                    <path d="M 20,-20 q 6,-10 12,0 q 6,10 12,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_8" class="visibility0">
+            <g transform=" translate(981,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif">
+                    <tspan x="10" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_9" class="visibility0">
+            <g transform=" translate(1057,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(243,156,18)" fill-opacity="1.0" stroke="rgb(243,156,18)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(243,156,18)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="12" dy="-40">Off-the-shelf</tspan>
+                    <tspan x="12" dy="18">agentic system</tspan>
+                </text>
+                <title>The shortcut temptation — natural language directives | Asset: tech</title>
+                <g data-type="signal">
+                    <path d="M 20,-10 l 10,-10 l -10,-10 M 32,-10 l 10,-10 l -10,-10" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+                <g data-type="warning">
+                    <path d="M -40,10 l 10,-20 l 10,20 Z" fill="rgb(230,126,34)"></path>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+                        <tspan x="-30" dy="6">!</tspan>
+                    </text>
+                    <title>⚠ NIH if we build what we can buy — but beware the real complexity of a production agent</title>
+                    <path d="M -68,10 l 10,-20 l 10,20 Z" fill="rgb(230,126,34)"></path>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+                        <tspan x="-58" dy="6">!</tspan>
+                    </text>
+                    <title>⚠ Strong temptation to start directly here — a shortcut that does not hold in production</title>
+                </g>
+            </g>
+        </g>
+        <g id="element_10" class="visibility0">
+            <g transform=" translate(148,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+                    <tspan x="0" dy="-20">Intent manifest</tspan>
+                </text>
+                <title>Asset: tech</title>
+                <g data-type="warning">
+                    <path d="M -40,10 l 10,-20 l 10,20 Z" fill="rgb(230,126,34)"></path>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+                        <tspan x="-30" dy="6">!</tspan>
+                    </text>
+                    <title>⚠ Without a standardized manifest, no mesh is possible</title>
+                </g>
+                <g data-type="gameplay">
+                    <rect x="-31" y="12" width="62" height="12" fill="rgb(231,76,60)" fill-opacity="1.0" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="8px" text-anchor="middle">
+                        <tspan x="0" dy="22">land-grab</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="element_11" class="visibility0">
+            <g transform=" translate(603,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_12" class="visibility0">
+            <g transform=" translate(603,646)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">A2A / MCP</tspan>
+                    <tspan x="-25" dy="18">protocols</tspan>
+                </text>
+                <title>Asset: social</title>
+            </g>
+        </g>
+        <g id="element_13" class="visibility0">
+            <g transform=" translate(981,646)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_14" class="visibility0">
+            <g transform=" translate(345,675)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Automated</tspan>
+                    <tspan x="-25" dy="18">governance</tspan>
+                </text>
+                <title>Asset: social | Cost: Organizational investment</title>
+            </g>
+        </g>
+        <g id="element_15" class="visibility0">
+            <g transform=" translate(678,675)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_16" class="visibility0">
+            <g transform=" translate(527,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6">Domain ownership</tspan>
+                </text>
+                <title>New competency for business teams | Asset: human</title>
+            </g>
+        </g>
+        <g id="element_17" class="visibility0">
+            <g transform=" translate(724,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="12" dy="30">Digital platform</tspan>
+                </text>
+                <title>THE real MVP | Asset: tech | Cost: Structural investment — value independent of agents</title>
+                <g data-type="gameplay">
+                    <rect x="-13" y="12" width="26" height="12" fill="rgb(142,68,173)" fill-opacity="1.0" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="8px" text-anchor="middle">
+                        <tspan x="0" dy="22">ILC</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="element_18" class="visibility0">
+            <g transform=" translate(981,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_19" class="visibility0">
+            <g transform=" translate(875,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+                    <tspan x="0" dy="-20">Read API</tspan>
+                </text>
+                <title>Asset: tech</title>
+            </g>
+        </g>
+        <g id="element_20" class="visibility0">
+            <g transform=" translate(1057,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif">
+                    <tspan x="10" dy="6"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_21" class="visibility0">
+            <g transform=" translate(800,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6">Write API</tspan>
+                </text>
+                <title>Asset: tech</title>
+            </g>
+        </g>
+        <g id="element_22" class="visibility0">
+            <g transform=" translate(1057,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-12" dy="18"></tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_23" class="visibility0">
+            <g transform=" translate(981,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+                    <tspan x="0" dy="-20">LLM</tspan>
+                </text>
+                <title>Cost: Variable cost, declining</title>
+                <g data-type="signal">
+                    <path d="M 20,-20 l 16,12 l -8,0 M 20,-20 l 16,12 l 0,-8" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_24" class="visibility0">
+            <g transform=" translate(1284,992)">
+                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="12" dy="-20">Cloud Infrastructure</tspan>
+                </text>
+                <title></title>
+                <g data-type="signal">
+                    <path d="M 20,-20 l 16,12 l -8,0 M 20,-20 l 16,12 l 0,-8" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="3"></path>
+                </g>
+            </g>
+        </g>
+        <g id="element_25" class="visibility0">
+            <g transform=" translate(981,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="0">Business</tspan>
+                    <tspan x="25" dy="18">data</tspan>
+                </text>
+                <title>Asset: tech</title>
+            </g>
+        </g>
+        <g id="element_26" class="visibility0">
+            <g transform=" translate(1102,992)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="12" dy="30">Existing</tspan>
+                    <tspan x="12" dy="30">IS</tspan>
+                </text>
+                <title>Asset: tech | Cost: 70-80% of IT budget</title>
+                <g data-type="warning">
+                    <path d="M -40,10 l 10,-20 l 10,20 Z" fill="rgb(230,126,34)"></path>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+                        <tspan x="-30" dy="6">!</tspan>
+                    </text>
+                    <title>⚠ Legacy IS = major inertia for exposing read/write</title>
+                </g>
+                <g data-type="gameplay">
+                    <rect x="-43" y="12" width="86" height="12" fill="rgb(22,160,133)" fill-opacity="1.0" stroke="rgb(22,160,133)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="8px" text-anchor="middle">
+                        <tspan x="0" dy="22">strangler-fig</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="element_27" class="visibility0">
+            <g transform=" translate(224,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Prototype</tspan>
+                    <tspan x="-25" dy="18">agent</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_28" class="visibility0">
+            <g transform=" translate(527,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
+                    <tspan x="0" dy="30">Application</tspan>
+                    <tspan x="0" dy="30">agent</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+        <g id="element_29" class="visibility0">
+            <g transform=" translate(905,848)">
+                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6">Agent-product</tspan>
+                </text>
+                <title></title>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,51 @@
+@startuml processus-metier-ha
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+
+left to right direction
+hide empty description
+
+skinparam RoundCorner 14
+skinparam state {
+  FontSize 11
+}
+
+title **PROCESSUS MÉTIER** — traitement d'une commande complexe
+
+state "**H**\nDemande" as h1 #E7E9EE
+state "**A** //Logistics//\nReplanification" as a1 #00D2DD
+state "**H**\nValidation VIP" as h2 #E7E9EE
+state "**A** //Customer Service//\nDossier client" as a2 #00D2DD
+state "**A** //Pricing//\nTarif" as a3 #00D2DD
+state "**H**\nValidation finale" as h3 #E7E9EE
+
+state "**A** //Inventory//" as ctx1 #DAF6F9
+state "**A** //Weather//" as ctx2 #DAF6F9
+state "**A** //CRM//" as ctx3 #DAF6F9
+state "**A** //Capacity//" as ctx4 #DAF6F9
+
+h1 -[#0E2356,thickness=2]-> a1
+a1 -[#0E2356,thickness=2]-> h2
+h2 -[#0E2356,thickness=2]-> a2
+a2 -[#00D2DD,thickness=2]-> a3 : A2A
+a3 -[#0E2356,thickness=2]-> h3
+
+a1 -[#6E7B9A,dashed]-> ctx1
+ctx1 -[#6E7B9A,dashed]-> a1
+
+a1 -[#6E7B9A,dashed]-> ctx2
+ctx2 -[#6E7B9A,dashed]-> a1
+
+a2 -[#6E7B9A,dashed]-> ctx3
+ctx3 -[#6E7B9A,dashed]-> a2
+
+a3 -[#6E7B9A,dashed]-> ctx4
+ctx4 -[#6E7B9A,dashed]-> a3
+
+a1 -[#6E7B9A,dashed]-> ctx4
+
+caption La valeur naît du maillage : les agents échangent du contexte pour enrichir leurs décisions.
+
+@enduml

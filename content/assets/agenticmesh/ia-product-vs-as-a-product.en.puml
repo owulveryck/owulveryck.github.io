@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+package "AI-PRODUCT" #E7E9EE {
+  actor "End\nuser" as user1
+  rectangle "Digital product" as product #B7BDCC {
+    rectangle "UI / UX" as ui
+    rectangle "Business logic" as biz
+    hexagon "AI\n(hidden)" as ia1 #3E4F78
+  }
+  user1 --> ui
+  ui --> biz
+  biz --> ia1
+  note bottom of product
+    AI is an **internal means**
+    The user consumes the product
+  end note
+}
+
+package "AI-AS-A-PRODUCT (Agent)" #DAF6F9 {
+  rectangle "Consumer system\n(human or agent)" as consumer
+  rectangle "UI / Chatbot\n/ API" as iface #B7BDCC
+  hexagon "**Agent**\nExposed decision\ncapability" as agent #00D2DD
+  rectangle "Tools / APIs" as tools
+  consumer --> iface
+  iface --> agent : invokes\n(intention + context)
+  agent --> tools : uses
+  note bottom
+    AI is the **contractual interface**
+    The consumer invokes the capability
+  end note
+}
+
+@enduml

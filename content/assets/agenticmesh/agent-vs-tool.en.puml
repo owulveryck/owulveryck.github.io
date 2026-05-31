@@ -1,0 +1,33 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+package "TOOL" #E7E9EE {
+  rectangle "API / MCP" as tool #6E7B9A
+  note bottom of tool
+    **Deterministic**
+    Same call = same result
+    Idempotent, testable
+    Executes, does not interpret
+  end note
+}
+
+package "AGENT" #DAF6F9 {
+  hexagon "Agent" as agent #00D2DD
+  note bottom of agent
+    **Non-deterministic**
+    Decides autonomously
+    Based on an **intention**
+    Depending on a **context**
+    Statistical result
+  end note
+}
+
+cloud "Execution\ncontext" as ctx
+ctx ..> agent : feeds
+
+agent --> tool : uses
+
+@enduml

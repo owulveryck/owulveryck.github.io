@@ -1,0 +1,55 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**PHASE 1**\nMVP platform + POC agent" as t1 #E7E9EE {
+  rectangle "Platform\n(read/write)" as p1
+  hexagon "Rough\nagent" as a_t1 #6E7B9A
+  p1 <-- a_t1
+}
+
+rectangle "**PHASE 2**\nAgentic engineering" as t2 #B7BDCC {
+  rectangle "Orchestrator\n(code)" as orch
+  hexagon "Sub-agent A" as sa1 #6E7B9A
+  hexagon "Sub-agent B" as sa2 #6E7B9A
+  hexagon "Sub-agent C" as sa3 #6E7B9A
+  orch --> sa1
+  orch --> sa2
+  orch --> sa3
+}
+
+rectangle "**PHASE 3**\nMesh" as t3 #DAF6F9 {
+  rectangle "Domain A" as da {
+    hexagon "Agent" as ag1 #00D2DD
+  }
+  rectangle "Domain B" as db {
+    hexagon "Agent" as ag2 #00D2DD
+  }
+  rectangle "Domain C" as dc {
+    hexagon "Agent" as ag3 #00D2DD
+  }
+  ag1 ..> ag2 : A2A
+  ag2 ..> ag3 : A2A
+}
+
+t1 -right-> t2 : **Tipping point**\nThe agent is invoked\nby a 2nd context
+t2 -right-> t3 : **Productization**\nDomain ownership\nIntent contract
+
+note bottom of t1
+  Validate hypotheses
+  Off-the-shelf system OK
+end note
+
+note bottom of t2
+  Move to software engineering
+  Parallelism, validation, observability
+end note
+
+note bottom of t3
+  Agent ecosystem
+  Cross-domain business processes
+end note
+
+@enduml

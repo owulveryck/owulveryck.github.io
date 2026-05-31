@@ -1,0 +1,190 @@
+// Wardley Map — Stratégie agentic mesh
+
+title: Mise en place d'un agentic mesh
+date: 2025-01-15
+author: Architecture
+scope: Transformation SI vers automatisation cognitive
+question: "Par où investir pour permettre l'émergence d'un agentic mesh ?"
+doctrine: context
+
+stages: Genesis, Custom, Product, Commodity
+legend
+
+// Anchors
+anchor Métier
+anchor Process Owner : III.2
+
+// Couche visible : processus métier automatisés
+Processus métier automatisé : II.2 {
+  asset: financial
+  note: "La vraie valeur — encore largement à construire"
+}
+
+// Niveau écosystème
+Agentic Mesh : I.7 >> II.5 {
+  asset: tech
+  color: #5DBEA3
+  note: "Cible stratégique"
+}
+
+// Les agents : différentes maturités selon les cas d'usage
+Agent décisionnel : I.5 >> II.7 {
+  type: build
+  asset: tech
+  color: #5DBEA3
+  cost: "Variable selon domaine"
+}
+
+pipeline Agent décisionnel {
+  Agent prototype : I.5
+  Agent applicatif : II.3
+  Agent-produit : III.3
+}
+
+// Patterns et frameworks d'ingénierie agentique
+Pattern d'ingénierie agentique : II.2 >> III.5 {
+  type: build
+  asset: tech
+  note: "Orchestration code, feedback loops, observabilité"
+}
+
+// Le piège dominant
+Système agentique sur étagère : III.7 (buy) {
+  asset: tech
+  color: #F39C12
+  note: "Tentation du raccourci — directives en langage naturel"
+}
+
+// Couche manifeste / standards
+Manifeste d'intention : I.3 >> II.5 {
+  type: build
+  asset: tech
+}
+
+Protocoles A2A / MCP : II.5 >> III.5 {
+  type: buy
+  asset: social
+}
+
+// Gouvernance
+Gouvernance automatisée : I.8 >> II.7 {
+  type: build
+  asset: social
+  cost: "Investissement organisationnel"
+}
+
+Ownership par domaine : II.3 {
+  asset: human
+  note: "Compétence nouvelle pour les équipes métier"
+}
+
+// Plateforme digitale : le vrai MVP
+Plateforme digitale : II.8 >> III.5 {
+  type: build
+  asset: tech
+  color: #3498DB
+  cost: "Investissement structurant — valeur indépendante des agents"
+  note: "LE vrai MVP"
+}
+
+API Lecture : III.2 >> III.7 {
+  type: build
+  asset: tech
+}
+
+API Écriture : III.0 >> III.7 {
+  type: build
+  asset: tech
+}
+
+// Infrastructure
+LLM : III.5 (buy) {
+  cost: "Coût variable, en baisse"
+}
+
+Cloud Infrastructure : IV.3 (buy)
+
+Données métier : III.5 {
+  asset: tech
+}
+
+SI existant : III.8 !!(tech,financial) {
+  asset: tech
+  cost: "70-80% du budget IT"
+}
+
+// Value chain
+Métier -> Processus métier automatisé
+Process Owner -> Processus métier automatisé
+Processus métier automatisé -> Agentic Mesh
+Agentic Mesh -> Agent décisionnel
+Agentic Mesh -> Gouvernance automatisée
+Agentic Mesh -> Manifeste d'intention
+Agentic Mesh -> Protocoles A2A / MCP
+
+Agent décisionnel -> Pattern d'ingénierie agentique
+Agent décisionnel -> Ownership par domaine
+Agent décisionnel -> Manifeste d'intention
+Agent décisionnel -> Plateforme digitale
+Agent décisionnel -> LLM
+
+Pattern d'ingénierie agentique -> LLM
+
+Plateforme digitale -> API Lecture
+Plateforme digitale -> API Écriture
+API Lecture -> Données métier
+API Écriture -> SI existant
+API Lecture -> SI existant
+Données métier -> SI existant
+
+LLM -> Cloud Infrastructure
+SI existant -> Cloud Infrastructure
+
+// Groupes par EVT
+group Équipe agent (par domaine) {
+  team: settler
+  color: #5DBEA3
+  Agent décisionnel
+  Manifeste d'intention
+  Ownership par domaine
+}
+
+group Équipe plateforme {
+  team: town-planner
+  color: #3498DB
+  Plateforme digitale
+  API Lecture
+  API Écriture
+  Pattern d'ingénierie agentique
+}
+
+group Cellule gouvernance {
+  team: settler
+  Gouvernance automatisée
+  Protocoles A2A / MCP
+}
+
+// Warnings — pièges classiques
+warning "NIH si on construit ce qu'on peut acheter — mais attention à la complexité réelle d'un agent de production" on Système agentique sur étagère
+warning "Tentation forte de partir directement ici — c'est un raccourci qui ne tient pas en production" on Système agentique sur étagère
+warning "SI legacy = inertie majeure pour exposer lecture/écriture" on SI existant
+warning "Sans manifeste standardisé, pas de maillage possible" on Manifeste d'intention
+
+// Notes stratégiques
+note "Le vrai MVP — apporte de la valeur AVANT et SANS les agents" on Plateforme digitale
+note "POC ici, puis productisation, puis ownership domaine" on Agent décisionnel
+note "Émerge naturellement à mesure que les agents se multiplient" on Agentic Mesh
+
+// Signaux climatiques
+signal commoditization on LLM
+signal commoditization on Cloud Infrastructure
+signal accelerating on Système agentique sur étagère
+signal co-evolution on Pattern d'ingénierie agentique
+signal network-effects on Agentic Mesh
+signal red-queen on Processus métier automatisé
+
+// Gameplays
+gameplay strangler-fig "Exposer progressivement le SI legacy via la plateforme" on SI existant
+gameplay ILC "Plateforme comme base, écosystème d'agents par domaine, standardisation des patterns" on Plateforme digitale
+gameplay land-grab "Établir le manifeste comme standard interne avant la fragmentation" on Manifeste d'intention
+

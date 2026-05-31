@@ -1,0 +1,37 @@
+@startuml ia-product-vs-as-a-product
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+package "IA-PRODUCT" #E7E9EE {
+  actor "Utilisateur\nfinal" as user1
+  rectangle "Produit numérique" as product #B7BDCC {
+    rectangle "UI / UX" as ui
+    rectangle "Logique métier" as biz
+    hexagon "IA\n(cachée)" as ia1 #3E4F78
+  }
+  user1 --> ui
+  ui --> biz
+  biz --> ia1
+  note bottom of product
+    L'IA est un **moyen interne**
+    L'utilisateur consomme le produit
+  end note
+}
+
+package "IA-AS-A-PRODUCT (Agent)" #DAF6F9 {
+  rectangle "Système consommateur\n(humain ou agent)" as consumer
+  rectangle "UI / Chatbot\n/ API" as iface #B7BDCC
+  hexagon "**Agent**\nCapacité de décision\nexposée" as agent #00D2DD
+  rectangle "Outils / APIs" as tools
+  consumer --> iface
+  iface --> agent : invoque\n(intention + contexte)
+  agent --> tools : utilise
+  note bottom
+    L'IA est l'**interface contractuelle**
+    Le consommateur invoque la capacité
+  end note
+}
+
+@enduml

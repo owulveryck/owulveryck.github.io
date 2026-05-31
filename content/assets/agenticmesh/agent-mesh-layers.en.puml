@@ -1,0 +1,41 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**BUSINESS PROCESS**\n\nH → A(logistics) → H → A(customer-service) → A(pricing) → H" as process #0E2356
+
+rectangle "**DOMAIN A**\nLogistics" as domA #DAF6F9 {
+  hexagon "Agent 1" as a1 #00D2DD
+  hexagon "Agent 2" as a2 #00D2DD
+}
+
+rectangle "**DOMAIN B**\nCustomer Service" as domB #DAF6F9 {
+  hexagon "Agent 3" as a3 #00D2DD
+  hexagon "Agent 4" as a4 #00D2DD
+}
+
+rectangle "**DOMAIN C**\nPricing" as domC #DAF6F9 {
+  hexagon "Agent 5" as a5 #00D2DD
+  hexagon "Agent 6" as a6 #00D2DD
+}
+
+rectangle "**AUTOMATED GOVERNANCE**\nEnablement · Standards · Ownership per domain" as gov #E7E9EE
+
+rectangle "**DIGITAL PLATFORM**\nExisting IS · APIs · Data · Business services · Read & Write" as platform #0E2356
+
+process -[hidden]down- domA
+domA -[hidden]right- domB
+domB -[hidden]right- domC
+domA -[hidden]down- gov
+gov -[hidden]down- platform
+
+a2 .[#00D2DD,thickness=2]right.> a3 : A2A
+a4 .[#00D2DD,thickness=2]right.> a5 : A2A
+
+domA --> platform
+domB --> platform
+domC --> platform
+
+@enduml

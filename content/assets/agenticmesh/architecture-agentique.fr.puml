@@ -1,0 +1,39 @@
+@startuml architecture-agentique
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**Orchestrateur** (code, pas prompt)" as orch #0E2356;text:white
+
+rectangle "Sous-agent A\n//modèle adapté//" as sa1 #DAF6F9 {
+  rectangle "Outils · Sortie structurée" as t1 #6E7B9A;text:white
+}
+
+rectangle "Sous-agent B\n//modèle adapté//" as sa2 #DAF6F9 {
+  rectangle "Outils · Sortie structurée" as t2 #6E7B9A;text:white
+}
+
+rectangle "Sous-agent C\n//modèle adapté//" as sa3 #DAF6F9 {
+  rectangle "Outils · Sortie structurée" as t3 #6E7B9A;text:white
+}
+
+rectangle "**Reviewer**\nboucle de feedback typée" as rev #00D2DD
+
+rectangle "État partagé typé · Métriques · Prompt caching" as state #E7E9EE
+
+orch -[#0E2356]down-> sa1
+orch -[#0E2356]down-> sa2
+orch -[#0E2356]down-> sa3
+
+rev .[#00D2DD,thickness=2]up.> sa1 : feedback
+rev .[#00D2DD,thickness=2]up.> sa2 : feedback
+rev .[#00D2DD,thickness=2]up.> sa3 : feedback
+
+sa1 -[#6E7B9A]down-> rev
+sa2 -[#6E7B9A]down-> rev
+sa3 -[#6E7B9A]down-> rev
+
+orch -[hidden]down- state
+
+@enduml

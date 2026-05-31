@@ -1,0 +1,31 @@
+@startuml affordances
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+hexagon "**AGENT**\nIA-as-a-product" as agent #00D2DD
+
+rectangle "**1. Exposer**\ndécisions & actions" as a1 #DAF6F9
+rectangle "**2. Consommer**\ndu contexte" as a2 #DAF6F9
+rectangle "**3. Raisonner**\n& décider\n(code, pas directive)" as a3 #DAF6F9
+rectangle "**4. Être découvrable**\nmanifeste, registre" as a4 #DAF6F9
+rectangle "**5. Gérer**\nson cycle de vie" as a5 #DAF6F9
+rectangle "**6. Tracer**\nles décisions" as a6 #DAF6F9
+rectangle "**7. Être gouvernable**\naccès, kill switch" as a7 #DAF6F9
+
+a1 -- agent
+a2 -- agent
+a3 -- agent
+a4 -- agent
+a5 -- agent
+a6 -- agent
+a7 -- agent
+
+note bottom of agent
+  Un agent qui n'offre pas ces 7 affordances
+  est un **prototype**, pas un produit.
+  Il ne peut pas entrer dans le maillage.
+end note
+
+@enduml

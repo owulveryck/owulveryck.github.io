@@ -1,0 +1,31 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+hexagon "**AGENT**\nAI-as-a-product" as agent #00D2DD
+
+rectangle "**1. Expose**\ndecisions & actions" as a1 #DAF6F9
+rectangle "**2. Consume**\ncontext" as a2 #DAF6F9
+rectangle "**3. Reason**\n& decide\n(code, not directives)" as a3 #DAF6F9
+rectangle "**4. Be discoverable**\nmanifest, registry" as a4 #DAF6F9
+rectangle "**5. Manage**\nits lifecycle" as a5 #DAF6F9
+rectangle "**6. Trace**\ndecisions" as a6 #DAF6F9
+rectangle "**7. Be governable**\naccess, kill switch" as a7 #DAF6F9
+
+a1 -- agent
+a2 -- agent
+a3 -- agent
+a4 -- agent
+a5 -- agent
+a6 -- agent
+a7 -- agent
+
+note bottom of agent
+  An agent that does not offer these 7 affordances
+  is a **prototype**, not a product.
+  It cannot join the mesh.
+end note
+
+@enduml

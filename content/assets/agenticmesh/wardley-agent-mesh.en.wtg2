@@ -1,0 +1,190 @@
+// Wardley Map — Agentic mesh strategy
+
+title: Setting up an agentic mesh
+date: 2025-01-15
+author: Architecture
+scope: IS transformation towards cognitive automation
+question: "Where to invest to enable the emergence of an agentic mesh?"
+doctrine: context
+
+stages: Genesis, Custom, Product, Commodity
+legend
+
+// Anchors
+anchor Business
+anchor Process Owner : III.2
+
+// Visible layer: automated business processes
+Automated business process : II.2 {
+  asset: financial
+  note: "The real value — still largely to be built"
+}
+
+// Ecosystem level
+Agentic Mesh : I.7 >> II.5 {
+  asset: tech
+  color: #5DBEA3
+  note: "Strategic target"
+}
+
+// Agents: different maturity levels depending on use cases
+Decision agent : I.5 >> II.7 {
+  type: build
+  asset: tech
+  color: #5DBEA3
+  cost: "Variable per domain"
+}
+
+pipeline Decision agent {
+  Prototype agent : I.5
+  Application agent : II.3
+  Agent-product : III.3
+}
+
+// Agentic engineering patterns and frameworks
+Agentic engineering pattern : II.2 >> III.5 {
+  type: build
+  asset: tech
+  note: "Code orchestration, feedback loops, observability"
+}
+
+// The dominant trap
+Off-the-shelf agentic system : III.7 (buy) {
+  asset: tech
+  color: #F39C12
+  note: "The shortcut temptation — natural language directives"
+}
+
+// Manifest / standards layer
+Intent manifest : I.3 >> II.5 {
+  type: build
+  asset: tech
+}
+
+A2A / MCP protocols : II.5 >> III.5 {
+  type: buy
+  asset: social
+}
+
+// Governance
+Automated governance : I.8 >> II.7 {
+  type: build
+  asset: social
+  cost: "Organizational investment"
+}
+
+Domain ownership : II.3 {
+  asset: human
+  note: "New competency for business teams"
+}
+
+// Digital platform: the real MVP
+Digital platform : II.8 >> III.5 {
+  type: build
+  asset: tech
+  color: #3498DB
+  cost: "Structural investment — value independent of agents"
+  note: "THE real MVP"
+}
+
+Read API : III.2 >> III.7 {
+  type: build
+  asset: tech
+}
+
+Write API : III.0 >> III.7 {
+  type: build
+  asset: tech
+}
+
+// Infrastructure
+LLM : III.5 (buy) {
+  cost: "Variable cost, declining"
+}
+
+Cloud Infrastructure : IV.3 (buy)
+
+Business data : III.5 {
+  asset: tech
+}
+
+Existing IS : III.8 !!(tech,financial) {
+  asset: tech
+  cost: "70-80% of IT budget"
+}
+
+// Value chain
+Business -> Automated business process
+Process Owner -> Automated business process
+Automated business process -> Agentic Mesh
+Agentic Mesh -> Decision agent
+Agentic Mesh -> Automated governance
+Agentic Mesh -> Intent manifest
+Agentic Mesh -> A2A / MCP protocols
+
+Decision agent -> Agentic engineering pattern
+Decision agent -> Domain ownership
+Decision agent -> Intent manifest
+Decision agent -> Digital platform
+Decision agent -> LLM
+
+Agentic engineering pattern -> LLM
+
+Digital platform -> Read API
+Digital platform -> Write API
+Read API -> Business data
+Write API -> Existing IS
+Read API -> Existing IS
+Business data -> Existing IS
+
+LLM -> Cloud Infrastructure
+Existing IS -> Cloud Infrastructure
+
+// Groups by EVT
+group Agent team (per domain) {
+  team: settler
+  color: #5DBEA3
+  Decision agent
+  Intent manifest
+  Domain ownership
+}
+
+group Platform team {
+  team: town-planner
+  color: #3498DB
+  Digital platform
+  Read API
+  Write API
+  Agentic engineering pattern
+}
+
+group Governance cell {
+  team: settler
+  Automated governance
+  A2A / MCP protocols
+}
+
+// Warnings — common traps
+warning "NIH if we build what we can buy — but beware the real complexity of a production agent" on Off-the-shelf agentic system
+warning "Strong temptation to start directly here — a shortcut that does not hold in production" on Off-the-shelf agentic system
+warning "Legacy IS = major inertia for exposing read/write" on Existing IS
+warning "Without a standardized manifest, no mesh is possible" on Intent manifest
+
+// Strategic notes
+note "The real MVP — delivers value BEFORE and WITHOUT agents" on Digital platform
+note "POC here, then productization, then domain ownership" on Decision agent
+note "Emerges naturally as agents multiply" on Agentic Mesh
+
+// Climate signals
+signal commoditization on LLM
+signal commoditization on Cloud Infrastructure
+signal accelerating on Off-the-shelf agentic system
+signal co-evolution on Agentic engineering pattern
+signal network-effects on Agentic Mesh
+signal red-queen on Automated business process
+
+// Gameplays
+gameplay strangler-fig "Progressively expose legacy IS via the platform" on Existing IS
+gameplay ILC "Platform as foundation, agent ecosystem per domain, pattern standardization" on Digital platform
+gameplay land-grab "Establish the manifest as internal standard before fragmentation" on Intent manifest
+

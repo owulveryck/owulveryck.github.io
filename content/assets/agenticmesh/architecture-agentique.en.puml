@@ -1,0 +1,39 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**Orchestrator** (code, not prompt)" as orch #0E2356;text:white
+
+rectangle "Sub-agent A\n//adapted model//" as sa1 #DAF6F9 {
+  rectangle "Tools · Structured output" as t1 #6E7B9A;text:white
+}
+
+rectangle "Sub-agent B\n//adapted model//" as sa2 #DAF6F9 {
+  rectangle "Tools · Structured output" as t2 #6E7B9A;text:white
+}
+
+rectangle "Sub-agent C\n//adapted model//" as sa3 #DAF6F9 {
+  rectangle "Tools · Structured output" as t3 #6E7B9A;text:white
+}
+
+rectangle "**Reviewer**\ntyped feedback loop" as rev #00D2DD
+
+rectangle "Typed shared state · Metrics · Prompt caching" as state #E7E9EE
+
+orch -[#0E2356]down-> sa1
+orch -[#0E2356]down-> sa2
+orch -[#0E2356]down-> sa3
+
+rev .[#00D2DD,thickness=2]up.> sa1 : feedback
+rev .[#00D2DD,thickness=2]up.> sa2 : feedback
+rev .[#00D2DD,thickness=2]up.> sa3 : feedback
+
+sa1 -[#6E7B9A]down-> rev
+sa2 -[#6E7B9A]down-> rev
+sa3 -[#6E7B9A]down-> rev
+
+orch -[hidden]down- state
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml agent-mesh-layers
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**PROCESSUS MÉTIER**\n\nH → A(logistics) → H → A(customer-service) → A(pricing) → H" as process #0E2356
+
+rectangle "**DOMAINE A**\nLogistics" as domA #DAF6F9 {
+  hexagon "Agent 1" as a1 #00D2DD
+  hexagon "Agent 2" as a2 #00D2DD
+}
+
+rectangle "**DOMAINE B**\nCustomer Service" as domB #DAF6F9 {
+  hexagon "Agent 3" as a3 #00D2DD
+  hexagon "Agent 4" as a4 #00D2DD
+}
+
+rectangle "**DOMAINE C**\nPricing" as domC #DAF6F9 {
+  hexagon "Agent 5" as a5 #00D2DD
+  hexagon "Agent 6" as a6 #00D2DD
+}
+
+rectangle "**GOUVERNANCE AUTOMATISÉE**\nEnablement · Standards · Ownership par domaine" as gov #E7E9EE
+
+rectangle "**PLATEFORME DIGITALE**\nSI existant · APIs · Données · Services métier · Lecture & Écriture" as platform #0E2356
+
+process -[hidden]down- domA
+domA -[hidden]right- domB
+domB -[hidden]right- domC
+domA -[hidden]down- gov
+gov -[hidden]down- platform
+
+a2 .[#00D2DD,thickness=2]right.> a3 : A2A
+a4 .[#00D2DD,thickness=2]right.> a5 : A2A
+
+domA --> platform
+domB --> platform
+domC --> platform
+
+@enduml

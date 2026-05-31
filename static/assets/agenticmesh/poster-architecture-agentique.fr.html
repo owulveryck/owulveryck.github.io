@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture Agentique : Convictions</title>
+<style>
+@page { size: landscape; margin: 0; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* OCTO bichrome */
+  --marine: #0E2356;
+  --marine-80: #3E4F78;
+  --marine-60: #6E7B9A;
+  --marine-30: #B7BDCC;
+  --marine-10: #E7E9EE;
+  --turquoise: #00D2DD;
+  --turquoise-10: #EBFAFB;
+  --turquoise-20: #DAF6F9;
+  --white: #FFFFFF;
+
+  /* Semantic aliases */
+  --agent: var(--turquoise);
+  --agent-light: var(--turquoise-10);
+  --tool: var(--marine-60);
+  --tool-light: var(--marine-10);
+  --orch: var(--marine);
+  --orch-light: var(--marine-10);
+  --text: var(--marine);
+  --muted: var(--marine-80);
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--white);
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 18px 24px 14px;
+  gap: 10px;
+}
+
+/* ---- HEADER ---- */
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, var(--marine), var(--turquoise)) 1;
+  padding-bottom: 8px;
+}
+
+header h1 {
+  font-size: 1.35em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--marine);
+}
+
+header .subtitle {
+  font-size: 0.75em;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ---- GRID ---- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  min-height: 0;
+}
+
+.zone {
+  border-radius: 10px;
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.zone-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.zone-num {
+  font-size: 0.65em;
+  font-weight: 800;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.zone-title {
+  font-size: 1.05em;
+  font-weight: 800;
+  color: var(--marine);
+}
+
+.zone-sub {
+  font-size: 0.92em;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.zone-sub strong {
+  color: var(--marine);
+  font-style: normal;
+}
+
+.zone-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.zone-body svg {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+/* Zone colours */
+.zone-a { background: var(--turquoise-10); border-top: 3px solid var(--turquoise); }
+.zone-b { background: var(--marine-10); border-top: 3px solid var(--marine); }
+.zone-c { background: linear-gradient(135deg, var(--marine-10), var(--turquoise-10)); border-top: 3px solid var(--marine-60); }
+.zone-d { background: var(--turquoise-10); border-top: 3px solid var(--turquoise); }
+
+/* ---- FOOTER ---- */
+footer {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 0.6em;
+  color: var(--muted);
+  border-top: 1px solid var(--marine-30);
+  padding-top: 6px;
+}
+
+footer .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+footer svg { flex-shrink: 0; }
+
+@media print {
+  .page { width: 297mm; height: 210mm; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===== HEADER ===== -->
+<header>
+  <h1>Architecture Agentique</h1>
+  <span class="subtitle">Convictions pour concevoir des systèmes à base d'agents</span>
+</header>
+
+<!-- ===== GRID 2x2 ===== -->
+<div class="grid">
+
+<!-- ────────────────────────────────────────── -->
+<!-- ZONE A : Agent vs Tool                     -->
+<!-- ────────────────────────────────────────── -->
+<div class="zone zone-a">
+  <div class="zone-header">
+    <span class="zone-num" style="background:var(--turquoise); color:var(--marine);">1</span>
+    <span class="zone-title">Agent vs Tool</span>
+    <span class="zone-sub">— La <strong>distinction fondatrice</strong></span>
+  </div>
+  <div class="zone-body">
+    <svg viewBox="0 0 440 168">
+      <!-- Agent column -->
+      <rect x="10" y="5" width="195" height="115" rx="10" fill="var(--turquoise)" opacity="0.12" stroke="var(--turquoise)" stroke-width="1.5"/>
+      <polygon points="55,18 72,10 89,18 89,38 72,46 55,38" fill="var(--turquoise)"/>
+      <text x="72" y="33" text-anchor="middle" fill="var(--marine)" font-size="10" font-weight="700">A</text>
+      <text x="100" y="25" fill="var(--marine)" font-size="14" font-weight="800">AGENT</text>
+      <text x="100" y="40" fill="var(--marine-80)" font-size="9">Non-déterministe</text>
+      <text x="25" y="62" fill="var(--marine)" font-size="10" font-weight="700">Travaille et décide</text>
+      <text x="25" y="74" fill="var(--marine)" font-size="10" font-weight="700">en autonomie</text>
+      <text x="25" y="90" fill="var(--marine)" font-size="8.5">sur la base d'une</text>
+      <text x="25" y="101" fill="var(--marine)" font-size="8.5" font-weight="600">intention</text>
+      <text x="25" y="115" fill="var(--marine-80)" font-size="8.5">en fonction d'un <tspan font-weight="600">contexte</tspan></text>
+
+      <!-- Separator -->
+      <line x1="220" y1="15" x2="220" y2="110" stroke="var(--marine-60)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <text x="220" y="133" text-anchor="middle" fill="var(--marine-60)" font-size="9" font-weight="600">vs</text>
+
+      <!-- Tool column -->
+      <rect x="235" y="5" width="195" height="115" rx="10" fill="var(--marine-60)" opacity="0.12" stroke="var(--marine-60)" stroke-width="1.5"/>
+      <rect x="250" y="12" width="30" height="22" rx="3" fill="var(--marine-60)"/>
+      <text x="265" y="28" text-anchor="middle" fill="white" font-size="10" font-weight="700">T</text>
+      <text x="290" y="25" fill="var(--marine)" font-size="14" font-weight="800">TOOL</text>
+      <text x="290" y="40" fill="var(--marine-80)" font-size="9">Déterministe</text>
+      <text x="250" y="62" fill="var(--marine)" font-size="10" font-weight="700">Utilisation</text>
+      <text x="250" y="74" fill="var(--marine)" font-size="10" font-weight="700">programmatique</text>
+      <text x="250" y="92" fill="var(--marine-80)" font-size="9">API ou MCP</text>
+      <text x="250" y="108" fill="var(--marine-80)" font-size="8" font-weight="600">Deterministe</text>
+      <text x="250" y="119" fill="var(--marine-80)" font-size="7.5">même appel = même résultat</text>
+
+      <!-- Bottom phrase -->
+      <text x="220" y="148" text-anchor="middle" fill="var(--marine-80)" font-size="7.5" font-style="italic">L'outil est deterministe. L'agent ne l'est pas : son résultat est statistique</text>
+      <text x="220" y="158" text-anchor="middle" fill="var(--marine-80)" font-size="7.5" font-style="italic">et dépend du contexte d'exécution.</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────── -->
+<!-- ZONE B : Plateforme & Orchestration        -->
+<!-- ────────────────────────────────────────── -->
+<div class="zone zone-b">
+  <div class="zone-header">
+    <span class="zone-num" style="background:var(--marine); color:white;">2</span>
+    <span class="zone-title">Fondations du socle</span>
+    <span class="zone-sub">— <strong>MVP</strong> = le socle · <strong>POC</strong> = une application agentique qui valide les concepts</span>
+  </div>
+  <div class="zone-body">
+    <svg viewBox="0 0 420 170">
+
+      <!-- === ENCADRÉ APPLICATION AGENTIQUE === -->
+      <rect x="60" y="2" width="300" height="84" rx="10" fill="none" stroke="var(--turquoise)" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+      <text x="210" y="12" text-anchor="middle" fill="var(--turquoise)" font-size="6.5" font-weight="700" opacity="0.7">APPLICATION AGENTIQUE</text>
+
+      <!-- Orchestrateur -->
+      <rect x="160" y="16" width="100" height="18" rx="8" fill="var(--marine)" opacity="0.7"/>
+      <text x="210" y="27" text-anchor="middle" fill="white" font-size="7" font-weight="700">Orchestrateur</text>
+      <text x="210" y="33" text-anchor="middle" fill="var(--marine-30)" font-size="4.5">coordonne</text>
+
+      <!-- Orch → Agents -->
+      <line x1="180" y1="34" x2="110" y2="50" stroke="var(--marine)" stroke-width="1" opacity="0.25"/>
+      <line x1="210" y1="34" x2="210" y2="50" stroke="var(--marine)" stroke-width="1" opacity="0.25"/>
+      <line x1="240" y1="34" x2="310" y2="50" stroke="var(--marine)" stroke-width="1" opacity="0.25"/>
+
+      <!-- Agents -->
+      <text x="210" y="46" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">décident et agissent</text>
+
+      <polygon points="95,58 110,50 125,58 125,74 110,82 95,74" fill="var(--turquoise)"/>
+      <text x="110" y="70" text-anchor="middle" fill="var(--marine)" font-size="8" font-weight="700">Ag. A</text>
+      <polygon points="195,58 210,50 225,58 225,74 210,82 195,74" fill="var(--turquoise)"/>
+      <text x="210" y="70" text-anchor="middle" fill="var(--marine)" font-size="8" font-weight="700">Ag. B</text>
+      <polygon points="295,58 310,50 325,58 325,74 310,82 295,74" fill="var(--turquoise)"/>
+      <text x="310" y="70" text-anchor="middle" fill="var(--marine)" font-size="8" font-weight="700">Ag. C</text>
+
+      <!-- === OUTILS (interface, en dehors de l'encadré) === -->
+      <line x1="110" y1="82" x2="110" y2="90" stroke="var(--marine-60)" stroke-width="1" opacity="0.4"/>
+      <line x1="210" y1="82" x2="210" y2="90" stroke="var(--marine-60)" stroke-width="1" opacity="0.4"/>
+      <line x1="310" y1="82" x2="310" y2="90" stroke="var(--marine-60)" stroke-width="1" opacity="0.4"/>
+
+      <rect x="90" y="90" width="40" height="10" rx="2" fill="var(--marine-60)"/>
+      <text x="110" y="97" text-anchor="middle" fill="white" font-size="5.5" font-weight="600">outils</text>
+      <rect x="190" y="90" width="40" height="10" rx="2" fill="var(--marine-60)"/>
+      <text x="210" y="97" text-anchor="middle" fill="white" font-size="5.5" font-weight="600">outils</text>
+      <rect x="290" y="90" width="40" height="10" rx="2" fill="var(--marine-60)"/>
+      <text x="310" y="97" text-anchor="middle" fill="white" font-size="5.5" font-weight="600">outils</text>
+
+      <!-- Outils → Capacités -->
+      <line x1="110" y1="100" x2="100" y2="108" stroke="var(--marine-60)" stroke-width="1" opacity="0.3"/>
+      <line x1="210" y1="100" x2="150" y2="108" stroke="var(--marine-60)" stroke-width="1" opacity="0.25"/>
+      <line x1="210" y1="100" x2="260" y2="108" stroke="var(--marine-60)" stroke-width="1" opacity="0.25"/>
+      <line x1="310" y1="100" x2="320" y2="108" stroke="var(--marine-60)" stroke-width="1" opacity="0.3"/>
+
+      <text x="80" y="106" fill="var(--marine)" font-size="7" font-weight="600">lit</text>
+      <text x="332" y="106" fill="var(--marine)" font-size="7" font-weight="600">écrit</text>
+
+      <!-- === CAPACITÉS EXPOSÉES === -->
+      <rect x="40" y="108" width="150" height="22" rx="5" fill="var(--marine-10)" stroke="var(--marine-60)" stroke-width="1.2"/>
+      <text x="115" y="119" text-anchor="middle" fill="var(--marine)" font-size="7.5" font-weight="700">LECTURE</text>
+      <text x="115" y="127" text-anchor="middle" fill="var(--marine-80)" font-size="5">Comprendre · Ressources · Contexte</text>
+
+      <rect x="230" y="108" width="150" height="22" rx="5" fill="var(--marine-10)" stroke="var(--marine-60)" stroke-width="1.2"/>
+      <text x="305" y="119" text-anchor="middle" fill="var(--marine)" font-size="7.5" font-weight="700">ÉCRITURE</text>
+      <text x="305" y="127" text-anchor="middle" fill="var(--marine-80)" font-size="5">Agir · Actions · Modifications</text>
+
+      <!-- Découplage fonctionnel -->
+      <text x="210" y="138" text-anchor="middle" fill="var(--marine)" font-size="6.5" font-weight="600" font-style="italic">découplage fonctionnel</text>
+
+      <!-- Capacités → Plateforme -->
+      <line x1="115" y1="130" x2="115" y2="142" stroke="var(--marine-60)" stroke-width="1.5" opacity="0.3"/>
+      <line x1="305" y1="130" x2="305" y2="142" stroke="var(--marine-60)" stroke-width="1.5" opacity="0.3"/>
+
+      <!-- === PLATEFORME DIGITALE (plus compacte) === -->
+      <rect x="30" y="142" width="360" height="18" rx="6" fill="var(--marine)" opacity="0.9"/>
+      <text x="210" y="153" text-anchor="middle" fill="white" font-size="7.5" font-weight="700">PLATEFORME DIGITALE</text>
+      <text x="210" y="159" text-anchor="middle" fill="var(--marine-30)" font-size="5">SI existant · APIs · Données · Services métier</text>
+
+      <!-- Keyphrase -->
+      <text x="210" y="170" text-anchor="middle" fill="var(--marine-80)" font-size="7" font-style="italic">D'abord cadrer la plateforme. Exposer lecture et écriture. Ensuite, les agents décident.</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────── -->
+<!-- ZONE C : Découplage & Domaines métier      -->
+<!-- ────────────────────────────────────────── -->
+<div class="zone zone-c">
+  <div class="zone-header">
+    <span class="zone-num" style="background:var(--marine-60); color:white;">3</span>
+    <span class="zone-title">Découplage &amp; Domaines métier</span>
+    <span class="zone-sub">— Rapprocher chaque agent de son <strong>contexte métier</strong></span>
+  </div>
+  <div class="zone-body">
+    <svg viewBox="0 0 480 170">
+
+      <!-- ===== PANEL 1 : Monolithe (réduit) ===== -->
+      <!-- Encadré "application monolithique" -->
+      <rect x="8" y="5" width="95" height="95" rx="4" fill="rgba(14,35,86,0.06)" stroke="var(--marine)" stroke-width="2.5"/>
+      <text x="55" y="15" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="600" opacity="0.7">Application monolithique</text>
+      <!-- Orchestrateur dans le monolithe -->
+      <rect x="25" y="20" width="60" height="14" rx="4" fill="var(--marine)"/>
+      <text x="55" y="30" text-anchor="middle" fill="white" font-size="6" font-weight="600">Orch.</text>
+      <line x1="55" y1="34" x2="55" y2="44" stroke="var(--marine)" stroke-width="2"/>
+      <polygon points="52,42 55,48 58,42" fill="var(--marine)"/>
+      <!-- Agent dans le monolithe -->
+      <polygon points="41,54 55,46 69,54 69,70 55,78 41,70" fill="var(--turquoise)"/>
+      <text x="55" y="66" text-anchor="middle" fill="var(--marine)" font-size="8" font-weight="700">Agent</text>
+      <!-- Labels -->
+      <text x="55" y="115" text-anchor="middle" fill="var(--marine)" font-size="8.5" font-weight="700">Monolithe</text>
+      <text x="55" y="127" text-anchor="middle" fill="var(--marine-80)" font-size="6.5">Dans le monolithe</text>
+      <text x="55" y="137" text-anchor="middle" fill="var(--marine-80)" font-size="6.5">avec l'orchestrateur</text>
+      <text x="55" y="151" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="600">Couplé · Synchrone</text>
+
+      <!-- Arrow 1→2 : découplage -->
+      <line x1="110" y1="55" x2="138" y2="55" stroke="var(--marine)" stroke-width="2" opacity="0.3"/>
+      <polygon points="136,52 142,55 136,58" fill="var(--marine)" opacity="0.3"/>
+      <text x="124" y="48" text-anchor="middle" fill="var(--marine-80)" font-size="5.5" font-style="italic">découplage</text>
+
+      <!-- ===== PANEL 2 : Couplage fort (taille moyenne) ===== -->
+      <!-- Orchestrateur externe (au-dessus du panel) -->
+      <rect x="170" y="0" width="50" height="12" rx="4" fill="var(--marine)" opacity="0.7"/>
+      <text x="195" y="9" text-anchor="middle" fill="white" font-size="6" font-weight="600">Orch.</text>
+      <line x1="195" y1="12" x2="195" y2="19" stroke="var(--marine)" stroke-width="1.5" opacity="0.5"/>
+      <!-- Badge API -->
+      <rect x="181" y="19" width="28" height="11" rx="3" fill="var(--marine-60)"/>
+      <text x="195" y="27" text-anchor="middle" fill="white" font-size="6" font-weight="600">API</text>
+      <line x1="195" y1="30" x2="195" y2="42" stroke="var(--marine-60)" stroke-width="1.5" opacity="0.5"/>
+      <polygon points="192,40 195,46 198,40" fill="var(--marine-60)" opacity="0.5"/>
+      <!-- Encadré agent -->
+      <rect x="145" y="35" width="100" height="65" rx="6" fill="rgba(14,35,86,0.03)" stroke="var(--marine)" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+      <!-- Agent -->
+      <polygon points="181,54 195,46 209,54 209,70 195,78 181,70" fill="var(--turquoise)"/>
+      <text x="195" y="66" text-anchor="middle" fill="var(--marine)" font-size="8" font-weight="700">Agent</text>
+      <text x="195" y="92" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">l'agent est utile</text>
+      <!-- Labels -->
+      <text x="195" y="115" text-anchor="middle" fill="var(--marine)" font-size="8.5" font-weight="700">Agent exposé</text>
+      <text x="195" y="127" text-anchor="middle" fill="var(--marine-80)" font-size="6.5">Appel couplé via API</text>
+      <text x="195" y="137" text-anchor="middle" fill="var(--marine-80)" font-size="6.5">l'agent est utile</text>
+      <text x="195" y="151" text-anchor="middle" fill="var(--marine)" font-size="6" font-weight="600">Prend en compte le contexte métier</text>
+
+      <!-- Arrow 2→3 : autonomisation -->
+      <line x1="252" y1="55" x2="280" y2="55" stroke="var(--marine)" stroke-width="2" opacity="0.3"/>
+      <polygon points="278,52 284,55 278,58" fill="var(--marine)" opacity="0.3"/>
+      <text x="266" y="48" text-anchor="middle" fill="var(--marine-80)" font-size="5.5" font-style="italic">autonomisation</text>
+
+      <!-- ===== PANEL 3 : Agent-produit (agrandi, multi-domaines) ===== -->
+
+      <!-- Domaine B (central, contient l'agent-produit) -->
+      <rect x="330" y="28" width="68" height="56" rx="6" fill="rgba(0,210,221,0.08)" stroke="var(--marine)" stroke-width="1.2" stroke-dasharray="4,2" opacity="0.5"/>
+      <text x="364" y="37" text-anchor="middle" fill="var(--marine)" font-size="5.5" font-weight="700">Dom. B</text>
+      <polygon points="350,52 364,44 378,52 378,68 364,76 350,68" fill="var(--turquoise)"/>
+      <text x="364" y="64" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">Agent</text>
+
+      <!-- Domaine A (en haut à gauche, contient l'orchestrateur) -->
+      <rect x="288" y="0" width="56" height="24" rx="4" fill="rgba(14,35,86,0.06)" stroke="var(--marine)" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+      <text x="316" y="9" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">Dom. A</text>
+      <rect x="298" y="12" width="36" height="10" rx="3" fill="var(--marine)" opacity="0.7"/>
+      <text x="316" y="20" text-anchor="middle" fill="white" font-size="5.5" font-weight="600">Orch.</text>
+      <!-- Connexion Orch → Agent -->
+      <line x1="320" y1="24" x2="356" y2="50" stroke="var(--marine)" stroke-width="1.5" opacity="0.3"/>
+
+      <!-- Domaine C (en haut à droite, contient un agent) -->
+      <rect x="410" y="0" width="52" height="24" rx="4" fill="rgba(14,35,86,0.06)" stroke="var(--marine)" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+      <text x="436" y="9" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">Dom. C</text>
+      <polygon points="426,13 433,10 440,13 440,21 433,24 426,21" fill="var(--turquoise)" opacity="0.6"/>
+      <!-- Connexion Agent C → Agent -->
+      <line x1="426" y1="18" x2="380" y2="54" stroke="var(--turquoise)" stroke-width="1.5" opacity="0.3"/>
+
+      <!-- Domaine D (à droite, contient un agent) -->
+      <rect x="410" y="44" width="52" height="24" rx="4" fill="rgba(14,35,86,0.06)" stroke="var(--marine)" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+      <text x="436" y="53" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">Dom. D</text>
+      <polygon points="426,57 433,54 440,57 440,65 433,68 426,65" fill="var(--turquoise)" opacity="0.6"/>
+      <!-- Connexion Agent D → Agent -->
+      <line x1="426" y1="61" x2="380" y2="62" stroke="var(--turquoise)" stroke-width="1.5" opacity="0.3"/>
+
+      <!-- Badges protocoles sous le domaine B -->
+      <rect x="335" y="82" width="24" height="9" rx="3" fill="var(--turquoise)" opacity="0.6"/>
+      <text x="347" y="89" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A2A</text>
+      <rect x="364" y="82" width="24" height="9" rx="3" fill="var(--turquoise)" opacity="0.6"/>
+      <text x="376" y="89" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">MCP</text>
+
+      <text x="364" y="100" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">ownership dans ce domaine</text>
+
+      <!-- Labels -->
+      <text x="364" y="115" text-anchor="middle" fill="var(--marine)" font-size="8.5" font-weight="700">Agent-produit</text>
+      <text x="364" y="127" text-anchor="middle" fill="var(--marine-80)" font-size="6.5">Pensé comme un produit</text>
+      <text x="364" y="137" text-anchor="middle" fill="var(--marine-80)" font-size="6.5">ownership dans un autre domaine</text>
+      <text x="364" y="151" text-anchor="middle" fill="var(--marine)" font-size="6" font-weight="600">Stratégie · Product management</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────── -->
+<!-- ZONE D : Agentic Mesh                        -->
+<!-- ────────────────────────────────────────── -->
+<div class="zone zone-d">
+  <div class="zone-header">
+    <span class="zone-num" style="background:var(--turquoise); color:var(--marine);">4</span>
+    <span class="zone-title">Agentic Mesh</span>
+    <span class="zone-sub">— 4 piliers pour un <strong>maillage à valeur</strong></span>
+  </div>
+  <div class="zone-body">
+    <svg viewBox="0 0 440 198">
+
+      <!-- ===== PROCESSUS MÉTIER (barre transverse, haut — agents + humains) ===== -->
+      <rect x="8" y="2" width="424" height="28" rx="5" fill="var(--marine)" opacity="0.9"/>
+      <text x="220" y="13" text-anchor="middle" fill="white" font-size="8" font-weight="700">PROCESSUS MÉTIER</text>
+
+      <!-- Groupe gauche : H → A → H → A -->
+      <circle cx="52" cy="23" r="5" fill="white" opacity="0.9"/>
+      <text x="52" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">H</text>
+      <line x1="58" y1="23" x2="67" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <polygon points="68,19 76,17 84,19 84,27 76,29 68,27" fill="var(--turquoise)"/>
+      <text x="76" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A</text>
+      <line x1="85" y1="23" x2="94" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="100" cy="23" r="5" fill="white" opacity="0.9"/>
+      <text x="100" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">H</text>
+      <line x1="106" y1="23" x2="115" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <polygon points="116,19 124,17 132,19 132,27 124,29 116,27" fill="var(--turquoise)"/>
+      <text x="124" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A</text>
+
+      <!-- Groupe centre : A → A → H -->
+      <polygon points="186,19 194,17 202,19 202,27 194,29 186,27" fill="var(--turquoise)"/>
+      <text x="194" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A</text>
+      <line x1="203" y1="23" x2="212" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <polygon points="213,19 221,17 229,19 229,27 221,29 213,27" fill="var(--turquoise)"/>
+      <text x="221" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A</text>
+      <line x1="230" y1="23" x2="239" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="245" cy="23" r="5" fill="white" opacity="0.9"/>
+      <text x="245" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">H</text>
+
+      <!-- Groupe droite : H → A → H → A -->
+      <circle cx="310" cy="23" r="5" fill="white" opacity="0.9"/>
+      <text x="310" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">H</text>
+      <line x1="316" y1="23" x2="325" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <polygon points="326,19 334,17 342,19 342,27 334,29 326,27" fill="var(--turquoise)"/>
+      <text x="334" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A</text>
+      <line x1="343" y1="23" x2="352" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="358" cy="23" r="5" fill="white" opacity="0.9"/>
+      <text x="358" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">H</text>
+      <line x1="364" y1="23" x2="373" y2="23" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      <polygon points="374,19 382,17 390,19 390,27 382,29 374,27" fill="var(--turquoise)"/>
+      <text x="382" y="26" text-anchor="middle" fill="var(--marine)" font-size="5" font-weight="700">A</text>
+
+      <!-- ===== DOMAINE A ===== -->
+      <rect x="12" y="34" width="130" height="100" rx="8" fill="rgba(14,35,86,0.04)" stroke="var(--marine)" stroke-width="1.2" stroke-dasharray="5,3"/>
+      <text x="77" y="47" text-anchor="middle" fill="var(--marine)" font-size="7.5" font-weight="700">DOMAINE A</text>
+      <polygon points="45,60 57,54 69,60 69,74 57,80 45,74" fill="var(--turquoise)"/>
+      <text x="57" y="71" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">1</text>
+      <polygon points="85,72 97,66 109,72 109,86 97,92 85,86" fill="var(--turquoise)"/>
+      <text x="97" y="83" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">2</text>
+      <text x="77" y="112" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">décide dans le cadre</text>
+      <text x="77" y="121" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">du domaine</text>
+
+      <!-- ===== DOMAINE B ===== -->
+      <rect x="155" y="34" width="130" height="100" rx="8" fill="rgba(14,35,86,0.04)" stroke="var(--marine)" stroke-width="1.2" stroke-dasharray="5,3"/>
+      <text x="220" y="47" text-anchor="middle" fill="var(--marine)" font-size="7.5" font-weight="700">DOMAINE B</text>
+      <polygon points="188,64 200,58 212,64 212,78 200,84 188,78" fill="var(--turquoise)"/>
+      <text x="200" y="75" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">3</text>
+      <polygon points="225,56 237,50 249,56 249,70 237,76 225,70" fill="var(--turquoise)"/>
+      <text x="237" y="67" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">4</text>
+      <text x="220" y="112" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">décide dans le cadre</text>
+      <text x="220" y="121" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">du domaine</text>
+
+      <!-- ===== DOMAINE C ===== -->
+      <rect x="298" y="34" width="130" height="100" rx="8" fill="rgba(14,35,86,0.04)" stroke="var(--marine)" stroke-width="1.2" stroke-dasharray="5,3"/>
+      <text x="363" y="47" text-anchor="middle" fill="var(--marine)" font-size="7.5" font-weight="700">DOMAINE C</text>
+      <polygon points="335,67 347,61 359,67 359,81 347,87 335,81" fill="var(--turquoise)"/>
+      <text x="347" y="78" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">5</text>
+      <polygon points="370,57 382,51 394,57 394,71 382,77 370,71" fill="var(--turquoise)"/>
+      <text x="382" y="68" text-anchor="middle" fill="var(--marine)" font-size="7" font-weight="700">6</text>
+      <text x="363" y="112" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">décide dans le cadre</text>
+      <text x="363" y="121" text-anchor="middle" fill="var(--marine-80)" font-size="5.5">du domaine</text>
+
+      <!-- ===== GOUVERNANCE / ENABLEMENT ===== -->
+      <rect x="8" y="138" width="424" height="16" rx="4" fill="var(--turquoise-10)" stroke="var(--turquoise)" stroke-width="1"/>
+      <text x="220" y="149" text-anchor="middle" fill="var(--marine)" font-size="6.5" font-weight="700">GOUVERNANCE  ·  Enablement : cadrer et faciliter l'utilisation des agents par les agents  ·  Ownership par domaine</text>
+
+      <!-- ===== PLATEFORME DIGITALE ===== -->
+      <rect x="8" y="158" width="424" height="24" rx="6" fill="var(--marine)" opacity="0.9"/>
+      <text x="220" y="171" text-anchor="middle" fill="white" font-size="8" font-weight="700">PLATEFORME DIGITALE</text>
+      <text x="220" y="180" text-anchor="middle" fill="var(--marine-30)" font-size="5.5">SI existant · APIs · Données · Services métier · Lecture &amp; Écriture</text>
+
+      <!-- ===== MESH CONNECTIONS ===== -->
+      <line x1="109" y1="79" x2="188" y2="71" stroke="var(--turquoise)" stroke-width="2" opacity="0.4"/>
+      <line x1="249" y1="63" x2="335" y2="74" stroke="var(--turquoise)" stroke-width="2" opacity="0.4"/>
+      <line x1="69" y1="67" x2="225" y2="63" stroke="var(--turquoise)" stroke-width="1" opacity="0.2"/>
+      <line x1="212" y1="71" x2="370" y2="64" stroke="var(--turquoise)" stroke-width="1" opacity="0.2"/>
+
+      <!-- Agent→Platform connections -->
+      <line x1="57" y1="80" x2="57" y2="158" stroke="var(--marine-60)" stroke-width="0.8" opacity="0.15"/>
+      <line x1="97" y1="92" x2="97" y2="158" stroke="var(--marine-60)" stroke-width="0.8" opacity="0.15"/>
+      <line x1="200" y1="84" x2="200" y2="158" stroke="var(--marine-60)" stroke-width="0.8" opacity="0.15"/>
+      <line x1="237" y1="76" x2="237" y2="158" stroke="var(--marine-60)" stroke-width="0.8" opacity="0.15"/>
+      <line x1="347" y1="87" x2="347" y2="158" stroke="var(--marine-60)" stroke-width="0.8" opacity="0.15"/>
+      <line x1="382" y1="77" x2="382" y2="158" stroke="var(--marine-60)" stroke-width="0.8" opacity="0.15"/>
+
+      <!-- Keyphrase -->
+      <text x="220" y="195" text-anchor="middle" fill="var(--marine-80)" font-size="7" font-style="italic">Les agents sont les points de communication entre domaines. La valeur naît du maillage.</text>
+
+    </svg>
+  </div>
+</div>
+
+</div><!-- /grid -->
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="legend-item">
+    <svg width="16" height="14" viewBox="0 0 16 14"><polygon points="8,1 15,4.5 15,10 8,13.5 1,10 1,4.5" fill="var(--turquoise)"/></svg>
+    <span>Agent (décide)</span>
+  </div>
+  <div class="legend-item">
+    <svg width="14" height="12" viewBox="0 0 14 12"><rect x="1" y="1" width="12" height="10" rx="2" fill="var(--marine-60)"/></svg>
+    <span>Tool (exécute, idempotent)</span>
+  </div>
+  <div class="legend-item">
+    <svg width="16" height="12" viewBox="0 0 16 12"><rect x="1" y="1" width="14" height="10" rx="5" fill="var(--marine)"/></svg>
+    <span>Orchestrateur (coordonne)</span>
+  </div>
+  <div class="legend-item">
+    <svg width="18" height="12" viewBox="0 0 18 12"><line x1="1" y1="6" x2="17" y2="6" stroke="var(--marine)" stroke-width="2"/></svg>
+    <span style="margin-right:2px;">Délègue (tâche)</span>
+  </div>
+  <div class="legend-item">
+    <svg width="18" height="12" viewBox="0 0 18 12"><line x1="1" y1="6" x2="17" y2="6" stroke="var(--turquoise)" stroke-width="1.5" stroke-dasharray="4,3"/></svg>
+    <span>Retourne (décision)</span>
+  </div>
+  <span style="margin-left: auto; font-size: 0.9em;">Fondation → Plateforme → Domaines → Maillage</span>
+</footer>
+
+</div><!-- /page -->
+</body>
+</html>

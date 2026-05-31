@@ -1,0 +1,18 @@
+@startuml progression-piliers
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+left to right direction
+
+rectangle "**Fondation**" as f #E7E9EE
+rectangle "**Plateforme**" as p #B7BDCC
+rectangle "**Domaines**" as d #DAF6F9
+rectangle "**Maillage**" as m #00D2DD
+
+f -[#0E2356,thickness=2]right-> p
+p -[#0E2356,thickness=2]right-> d
+d -[#0E2356,thickness=2]right-> m
+
+@enduml

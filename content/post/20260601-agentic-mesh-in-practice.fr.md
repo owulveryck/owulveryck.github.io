@@ -91,7 +91,7 @@ Le prototype avait rempli son rôle. Il fallait maintenant passer à l'ingénier
 
 ### L'architecture multi-agents
 
-La première décision d'architecture (ADR 001, le 5 mai 2026) a transformé le pipeline monolithique en **quatre agents spécialisés** coordonnés par un orchestrateur en code Go pur (pas d'IA dans l'orchestration).
+La première décision d'architecture ([ADR 001](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/001-agentic-architecture.md), le 5 mai 2026) a transformé le pipeline monolithique en **quatre agents spécialisés** coordonnés par un orchestrateur en code Go pur (pas d'IA dans l'orchestration).
 
 **L'Outliner** analyse la demande de l'utilisateur et produit un plan de présentation structuré. Point crucial : il ne reçoit **pas** le catalogue de templates. Cette isolation est délibérée : elle force le raisonnement *"de quoi a-t-on besoin ?"* avant *"qu'a-t-on à disposition ?"*, évitant le biais de disponibilité.
 
@@ -126,15 +126,15 @@ Le projet a accumulé **16 Architecture Decision Records** en 4 semaines. Chaque
 
 | ADR | Décision | Concept agentic mesh illustré |
 |-----|----------|-------------------------------|
-| 001 | Architecture multi-agents | Temps 2 : du prototype au produit |
-| 002 | Prompt caching explicite via Vertex AI | Maîtrise des coûts d'un agent-produit |
-| 004 | Externalisation des prompts (`go:embed`) | Versionnement et testabilité |
-| 005-006 | Chat interactif + mode par défaut | Human-in-the-loop structurel |
-| 007 | Architecture A2A (Agent-to-Agent) | Contrat d'interopérabilité, Agent Card |
-| 009 | Agent Designer pour les diagrammes | Spécialisation par sous-domaine |
-| 010-012 | Pipeline d'édition orchestré | Extension du domaine fonctionnel |
-| 015 | Mémoire d'apprentissage par agent | Amélioration continue gouvernée |
-| 016 | FormatAgent déterministe | Gouvernance automatisée sans LLM |
+| [001](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/001-agentic-architecture.md) | Architecture multi-agents | Temps 2 : du prototype au produit |
+| [002](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/002-prompt-caching.md) | Prompt caching explicite via Vertex AI | Maîtrise des coûts d'un agent-produit |
+| [004](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/004-prompt-externalization.md) | Externalisation des prompts (`go:embed`) | Versionnement et testabilité |
+| [005](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/005-interactive-chat-mode.md)-[006](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/006-default-agent-chat-mode.md) | Chat interactif + mode par défaut | Human-in-the-loop structurel |
+| [007](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/007-a2a-architecture.md) | Architecture A2A (Agent-to-Agent) | Contrat d'interopérabilité, Agent Card |
+| [009](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/009-diagram-agent.md) | Agent Designer pour les diagrammes | Spécialisation par sous-domaine |
+| [010](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/010-edit-existing-presentations.md)-[012](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/012-edit-post-processing.md) | Pipeline d'édition orchestré | Extension du domaine fonctionnel |
+| [015](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/015-agent-memory-learning.md) | Mémoire d'apprentissage par agent | Amélioration continue gouvernée |
+| [016](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/016-format-agent.md) | FormatAgent déterministe | Gouvernance automatisée sans LLM |
 
 ---
 
@@ -142,25 +142,25 @@ Le projet a accumulé **16 Architecture Decision Records** en 4 semaines. Chaque
 
 Dans l'article sur l'agentic mesh, j'ai défini **7 affordances** qu'un agent doit offrir pour être un véritable produit. Voici comment elles se sont incarnées dans agentigslide.
 
-**1. Exposer décisions et actions.** Chaque agent expose ses capacités via un schéma JSON strict imposé par le mécanisme `tool_use` de Claude. Avec l'ADR 007, chaque agent expose aussi une **Agent Card** A2A (un manifeste auto-descriptif publié sur `/.well-known/agent-card.json`).
+**1. Exposer décisions et actions.** Chaque agent expose ses capacités via un schéma JSON strict imposé par le mécanisme `tool_use` de Claude. Avec l'[ADR 007](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/007-a2a-architecture.md), chaque agent expose aussi une **Agent Card** A2A (un manifeste auto-descriptif publié sur `/.well-known/agent-card.json`).
 
 **2. Consommer du contexte.** Les agents consomment trois types de contexte : l'index sémantique du catalogue (construit une fois, réutilisé à chaque génération), les instructions spécifiques au template (un fichier `PROMPT.md` optionnel), et les fichiers mémoire issus des exécutions précédentes.
 
 **3. Raisonner et décider.** C'est le cœur du produit : Haiku pour les tâches simples, Sonnet pour les complexes, Opus avec extended thinking pour la review. Les prompts sont externalisés via `go:embed` et versionnés avec le code. La boucle Reviewer → Writer est une chaîne de raisonnement structurée, pas une conversation.
 
-**4. Être découvrable.** L'Outliner est déjà déployé comme serveur A2A autonome (`cmd/outliner/main.go`). L'ADR 014 a proposé un pattern de registre d'agents pour la composition dynamique.
+**4. Être découvrable.** L'Outliner est déjà déployé comme serveur A2A autonome (`cmd/outliner/main.go`). L'[ADR 014](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/014-agent-pipeline-registry.md) a proposé un pattern de registre d'agents pour la composition dynamique.
 
 **5. Gérer son cycle de vie.** Les modèles sont configurables par agent via des variables d'environnement (`AGENT_OUTLINER_MODEL`, `AGENT_WRITER_MODEL`...). Le mode monolithique original est conservé comme fallback (rétro-compatibilité sans dette).
 
-**6. Tracer les décisions.** Chaque agent rapporte ses tokens (input, output, cache read, cache creation), sa durée, et un issue log complet. L'extended thinking du Reviewer est tracé. Le FormatAgent (ADR 016) journalise chaque correction déterministe appliquée.
+**6. Tracer les décisions.** Chaque agent rapporte ses tokens (input, output, cache read, cache creation), sa durée, et un issue log complet. L'extended thinking du Reviewer est tracé. Le FormatAgent ([ADR 016](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/016-format-agent.md)) journalise chaque correction déterministe appliquée.
 
-**7. Être gouvernable.** `MaxReviewRetries` borne les itérations de correction. `enforceMaxChars()` est un filet de sécurité programmatique (*trust but verify*). La mémoire d'agent (ADR 015) est validée par l'humain avant écriture : l'agent propose des guidelines, l'utilisateur confirme.
+**7. Être gouvernable.** `MaxReviewRetries` borne les itérations de correction. `enforceMaxChars()` est un filet de sécurité programmatique (*trust but verify*). La mémoire d'agent ([ADR 015](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/015-agent-memory-learning.md)) est validée par l'humain avant écriture : l'agent propose des guidelines, l'utilisateur confirme.
 
 ---
 
 ## Le human-in-the-loop : un choix, pas une rustine
 
-Le mode par défaut d'agentigslide est le **chat interactif** (ADR 005-006). Le consultant décrit ce qu'il veut, l'Outliner propose une structure, le consultant raffine en conversation, et seulement quand le plan est validé, la génération se lance.
+Le mode par défaut d'agentigslide est le **chat interactif** ([ADR 005](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/005-interactive-chat-mode.md)-[006](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/006-default-agent-chat-mode.md)). Le consultant décrit ce qu'il veut, l'Outliner propose une structure, le consultant raffine en conversation, et seulement quand le plan est validé, la génération se lance.
 
 Ce n'est pas une béquille. C'est un choix délibéré, ancré dans une conviction : **celui qui présente est responsable de ce qu'il présente**. L'agent produit un support de qualité professionnelle, mais c'est le consultant qui l'examine, l'ajuste, et lui donne la teinte qui fera la différence entre une présentation générique et une présentation convaincante.
 
@@ -182,7 +182,7 @@ Et la doctrine de **non-intrusivité** renforce ce fossé : l'équipe communicat
 
 ### A2A : chaque agent expose une Agent Card
 
-L'ADR 007 (9 mai 2026) a été le moment charnière. Le pipeline Go fonctionne bien, mais il a trois limites structurelles qu'aucune optimisation ne peut résoudre :
+L'[ADR 007](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/007-a2a-architecture.md) (9 mai 2026) a été le moment charnière. Le pipeline Go fonctionne bien, mais il a trois limites structurelles qu'aucune optimisation ne peut résoudre :
 
 1. **Les agents ne peuvent pas orchestrer d'autres agents.** Le Selector ne peut pas décider dynamiquement d'appeler un agent de layout puis un agent de design.
 2. **Le pipeline est fermé à l'extension externe.** Ajouter un nouvel agent requiert de modifier, recompiler et redéployer le binaire.
@@ -198,7 +198,7 @@ Ce changement a une précondition non triviale : la **charte visuelle** de l'éq
 
 ### La mémoire comme gouvernance incrémentale
 
-L'ADR 015 a introduit la **mémoire d'apprentissage par agent**. Chaque agent dispose d'un fichier Markdown par template, stocké aux côtés du template et versionné avec git. Les guidelines sont actionnables : *"Sur le slide #42, ne jamais dépasser 120 caractères dans le champ titre (le texte déborde systématiquement)."*
+L'[ADR 015](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/015-agent-memory-learning.md) a introduit la **mémoire d'apprentissage par agent**. Chaque agent dispose d'un fichier Markdown par template, stocké aux côtés du template et versionné avec git. Les guidelines sont actionnables : *"Sur le slide #42, ne jamais dépasser 120 caractères dans le champ titre (le texte déborde systématiquement)."*
 
 En fin de pipeline, si des erreurs ont été détectées, le système synthétise des guidelines et les **propose à l'utilisateur** (pas d'écriture automatique). L'humain confirme avant que la mémoire ne soit enrichie. C'est l'affordance 7 (être gouvernable) appliquée concrètement : l'agent s'améliore à l'intérieur de limites définies par l'humain.
 
@@ -210,7 +210,7 @@ Après 4 semaines de construction, 16 ADR, et un système qui fonctionne en prod
 
 **Le vrai MVP, c'est la plateforme.** Le catalogue de slides, l'index sémantique, les API Google : c'est ça le socle qui a débloqué la valeur. L'agent n'est venu qu'après, et il n'aurait rien pu faire sans cette fondation.
 
-**L'agent n'est pas une directive, c'est un produit d'ingénierie.** La table de comparaison du RATIONALE.md le démontre sans ambiguïté. Les systèmes sur étagère sont un bon point de départ (j'y ai eu recours pour le Temps 1). Mais dès qu'on a besoin de parallélisme contrôlé, de feedback loops typés, de validation inter-étapes et de prompt caching partagé, on fait de l'ingénierie logicielle, pas de l'assemblage de directives.
+**L'agent n'est pas une directive, c'est un produit d'ingénierie.** La table de comparaison du [RATIONALE.md](https://github.com/owulveryck/agentigslide/blob/main/RATIONALE.md) le démontre sans ambiguïté. Les systèmes sur étagère sont un bon point de départ (j'y ai eu recours pour le Temps 1). Mais dès qu'on a besoin de parallélisme contrôlé, de feedback loops typés, de validation inter-étapes et de prompt caching partagé, on fait de l'ingénierie logicielle, pas de l'assemblage de directives.
 
 **Les ADR sont la gouvernance en action.** 16 décisions documentées en 4 semaines. Le contexte, les alternatives évaluées, les conséquences : tout est là. La gouvernance n'est pas dans un wiki, elle est dans le trail de décisions.
 

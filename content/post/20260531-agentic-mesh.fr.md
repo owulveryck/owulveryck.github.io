@@ -25,7 +25,7 @@ Non pas quand les agents feront notre travail, mais quand on aura **bien outill�
 
 Cet article propose un système de **maillage d'agents** (l'agentic mesh) susceptible d'apporter de la valeur à l'échelle. Beaucoup de ses principes, si ce n'est tous, sont empruntés au **data mesh**, un paradigme dont les idées étaient remarquables mais qui n'a malheureusement pas connu le succès qu'il aurait mérité. Selon moi, cet échec ne vient pas de la qualité de ses idées ni de sa conception. Par conséquent, beaucoup peuvent être recyclées ici (et c'est ce que nous allons faire).
 
-> **Note.** Cet article a été co-rédigé avec une IA. Je suis le pilote : je déclare les intentions, les idées, et je revois l'ensemble du document. La rédaction à proprement parler (la plume) a été faite par un robot. Mon objectif est de partager ces idées pour ouvrir une discussion, pas d'écrire une master-piece technique qui devienne une référence stylistique. D'ailleurs, en fin de document, vous trouverez un lien vers le markdown source pour le faire lire à votre IA préférée et discuter avec elle des différents concepts.
+> **Note.** Cet article a été co-rédigé avec une IA. Je suis le pilote : je déclare les intentions, les idées, et je revois l'ensemble du document. La rédaction à proprement parler (la plume) a été faite par un robot. Mon objectif est de partager ces idées pour ouvrir une discussion, pas d'écrire une master-piece technique qui devienne une référence stylistique. Cette version est conçue pour les humains ; si vous préférez une version adaptée aux IA, le [markdown source](https://raw.githubusercontent.com/owulveryck/owulveryck.github.io/refs/heads/master/content/post/20260531-agentic-mesh.fr.md) est disponible.
 
 ---
 
@@ -360,8 +360,3 @@ Pour résumer, le **cercle vertueux de l'agentic mesh** consiste en plusieurs é
 
 Le poster ci-dessous résume l'ensemble des convictions en une vue unique, organisée en 4 zones : [poster complet (HTML interactif)](/assets/agenticmesh/poster-architecture-agentique.fr.html).
 
----
-
-## Source
-
-Cet article est disponible en markdown pour le faire lire à votre IA préférée et discuter des concepts qu'il contient : [Télécharger le markdown source](https://github.com/owulveryck/owulveryck.github.io/tree/master/content/post/20260531-agentic-mesh.fr.md).

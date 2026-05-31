@@ -25,7 +25,7 @@ Not when agents do our work, but when we have **properly equipped the informatio
 
 This article proposes an **agent mesh** system (the agentic mesh) capable of delivering value at scale. Many of its principles, if not all, are borrowed from the **data mesh**, a paradigm whose ideas were remarkable but which unfortunately did not achieve the success it deserved. In my view, this failure does not stem from the quality of its ideas or its design. Consequently, many can be recycled here (and that is what we will do).
 
-> **Note.** This article was co-written with an AI. I am the pilot: I declare the intentions, the ideas, and I review the entire document. The actual writing (the pen) was done by a robot. My goal is to share these ideas to open a discussion, not to write a technical masterpiece that becomes a stylistic reference. Moreover, at the end of the document, you will find a link to the markdown source to have your favorite AI read it and discuss the various concepts.
+> **Note.** This article was co-written with an AI. I am the pilot: I declare the intentions, the ideas, and I review the entire document. The actual writing (the pen) was done by a robot. My goal is to share these ideas to open a discussion, not to write a technical masterpiece that becomes a stylistic reference. This version is designed for humans; if you prefer a version suited for AI consumption, the [markdown source](https://raw.githubusercontent.com/owulveryck/owulveryck.github.io/refs/heads/master/content/post/20260531-agentic-mesh.md) is available.
 
 ---
 
@@ -360,8 +360,3 @@ To summarize, the **virtuous circle of the agentic mesh** consists of several st
 
 The poster below summarizes all the convictions in a single view, organized in 4 zones: [full poster (interactive HTML)](/assets/agenticmesh/poster-architecture-agentique.en.html).
 
----
-
-## Source
-
-This article is available in markdown to have your favorite AI read it and discuss the concepts it contains: [Download the markdown source](https://github.com/owulveryck/owulveryck.github.io/tree/master/content/post/20260531-agentic-mesh.md).

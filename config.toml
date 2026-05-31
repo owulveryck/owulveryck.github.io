@@ -73,6 +73,7 @@ uglyURLs=true
     tabWidth = 4
 
 [params]
+  showMenuLanguageChooser = true
   since = "2015"            # Site creation time          # 站点建立时间
   homeFullContent = false   # if false, show post summaries on home page. Otherwise show full content.
   rssFullContent = true     # if false, Rss feed instead of the summary

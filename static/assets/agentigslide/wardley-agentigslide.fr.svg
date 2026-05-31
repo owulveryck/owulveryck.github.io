@@ -1,10 +1,17 @@
-<svg width="100%" height="100%" viewBox="0 0 3600 2455" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+<svg width="100%" height="100%" viewBox="0 0 1996 1362" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
     <defs>
         <linearGradient id="wardleyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="rgb(236,237,243)"></stop>
             <stop offset="30%" stop-color="rgb(255,255,255)"></stop>
             <stop offset="70%" stop-color="rgb(255,255,255)"></stop>
             <stop offset="100%" stop-color="rgb(236,237,243)"></stop>
+        </linearGradient>
+        <linearGradient id="pipelineTubeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgb(180,195,225)"></stop>
+            <stop offset="25%" stop-color="rgb(220,230,248)"></stop>
+            <stop offset="50%" stop-color="rgb(205,218,242)"></stop>
+            <stop offset="80%" stop-color="rgb(185,200,230)"></stop>
+            <stop offset="100%" stop-color="rgb(160,175,210)"></stop>
         </linearGradient>
         <marker id="arrow" refX="15" refY="0" markerWidth="12" markerHeight="12" viewBox="0 -5 10 10">
             <path d="M0,-5L10,0L0,5" fill="rgb(255,0,0)"></path>
@@ -13,184 +20,195 @@
             <path d="M0,-5L10,0L0,5" fill="rgb(0,0,0)"></path>
         </marker>
     </defs>
-    <rect x="81" y="136" width="2838" height="2142" style="fill:url(#wardleyGradient)"></rect>
-    <g transform=" translate(81,2278) rotate(270)">
-        <line x1="0" y1="0" x2="2142" y2="0" stroke-width="1" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
-        <line x1="0" y1="709" x2="2142" y2="709" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
-        <line x1="0" y1="1419" x2="2142" y2="1419" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
-        <line x1="0" y1="2128" x2="2142" y2="2128" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+    <rect x="45" y="75" width="1574" height="1189" style="fill:url(#wardleyGradient)"></rect>
+    <g transform=" translate(45,1264) rotate(270)">
+        <line x1="0" y1="0" x2="1189" y2="0" stroke-width="1" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="393" x2="1189" y2="393" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="787" x2="1189" y2="787" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <line x1="0" y1="1180" x2="1189" y2="1180" stroke-width="1" stroke-dasharray="2 2" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
             <tspan x="5" dy="-10">Invisible</tspan>
         </text>
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
-            <tspan x="2137" dy="-10">Visible</tspan>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+            <tspan x="1184" dy="-10">Visible</tspan>
         </text>
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="middle">
-            <tspan x="1071" dy="-10">Value Chain</tspan>
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="500" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="middle">
+            <tspan x="594" dy="-10">Value Chain</tspan>
         </text>
     </g>
-    <line x1="81" y1="2278" x2="2919" y2="2278" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
-        <tspan x="88" dy="151">Uncharted</tspan>
+    <line x1="45" y1="1264" x2="1619" y2="1264" marker-end="url(#graphArrow)" stroke="rgb(19,36,84)" stroke-opacity="1.0"></line>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="500" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
+        <tspan x="52" dy="90">Uncharted</tspan>
     </text>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="end">
-        <tspan x="2914" dy="151">Industrialised</tspan>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="500" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="end">
+        <tspan x="1614" dy="90">Industrialised</tspan>
     </text>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
-        <tspan x="81" dy="2298">I</tspan>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="600" font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="start">
+        <tspan x="45" dy="1284">I</tspan>
     </text>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
-        <tspan x="790" dy="2298">II</tspan>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="600" font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="438" dy="1284">II</tspan>
     </text>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
-        <tspan x="1500" dy="2298">III</tspan>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="600" font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="832" dy="1284">III</tspan>
     </text>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
-        <tspan x="2209" dy="2298">IV</tspan>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="600" font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="middle">
+        <tspan x="1225" dy="1284">IV</tspan>
     </text>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
-        <tspan x="2919" dy="2298">Evolution</tspan>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="500" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+        <tspan x="1619" dy="1284">Evolution</tspan>
     </text>
-    <rect x="2939" y="136" width="651" height="2269" fill="rgb(250,250,252)" fill-opacity="1.0" stroke="rgb(200,200,210)" stroke-opacity="1.0" stroke-width="1" ry="6" rx="6"></rect>
-    <g transform=" translate(3264,165)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="middle">
+    <rect x="1639" y="75" width="347" height="1237" fill="rgb(250,250,252)" fill-opacity="1.0" stroke="rgb(200,200,210)" stroke-opacity="1.0" stroke-width="1" ry="6" rx="6"></rect>
+    <g transform=" translate(1812,104)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="middle">
             <tspan x="0" dy="6">Legend</tspan>
         </text>
     </g>
-    <line x1="2949" y1="173" x2="3580" y2="173" stroke-width="1" stroke="rgb(200,200,210)" stroke-opacity="1.0"></line>
-    <g transform=" translate(2954,209)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+    <line x1="1649" y1="112" x2="1976" y2="112" stroke-width="1" stroke="rgb(200,200,210)" stroke-opacity="1.0"></line>
+    <g transform=" translate(1654,148)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="start">
             <tspan x="0" dy="6">Components</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="233" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-    <g transform=" translate(2974,231)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="172" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1674,170)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Component</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="257" r="8" fill="rgb(196,196,196)" fill-opacity="1.0" stroke="rgb(196,196,196)" stroke-opacity="1.0" stroke-width="1"></circle>
-    <circle cx="2954" cy="257" r="4" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-    <g transform=" translate(2974,255)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="196" r="7" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <path d="M 1653,201 L 1653,197 L 1651,197 L 1650,195 L 1651,193 L 1653,193 L 1653,195 L 1655,195 L 1655,193 L 1657,193 L 1658,195 L 1657,197 L 1655,197 L 1655,201 Z" fill="rgb(255,255,255)"></path>
+    <g transform=" translate(1674,194)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Build</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="281" r="8" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(170,165,169)" stroke-opacity="1.0" stroke-width="1"></circle>
-    <circle cx="2954" cy="281" r="4" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-    <g transform=" translate(2974,279)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="220" r="7" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <path d="M 1649,216 L 1651,216 L 1652,218 L 1658,218 L 1657,221 L 1653,221 Z" fill="rgb(255,255,255)"></path>
+    <circle cx="1653" cy="223" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <circle cx="1656" cy="223" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1674,218)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Buy</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="305" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1.5"></circle>
-    <g transform=" translate(2974,303)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="244" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1674,242)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Evolved</tspan>
         </text>
     </g>
-    <g transform=" translate(2954,329)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+    <g transform=" translate(1654,268)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="start">
             <tspan x="0" dy="6">Edges</tspan>
         </text>
     </g>
-    <line x1="2944" y1="353" x2="2964" y2="353" stroke-width="1" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
-    <g transform=" translate(2974,351)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <line x1="1644" y1="292" x2="1664" y2="292" stroke-width="1" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+    <g transform=" translate(1674,290)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Dependency</tspan>
         </text>
     </g>
-    <line x1="2944" y1="377" x2="2964" y2="377" stroke-width="1" stroke-dasharray="3 3" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
-    <g transform=" translate(2974,375)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <line x1="1644" y1="316" x2="1664" y2="316" stroke-width="1" stroke-dasharray="3 3" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+    <g transform=" translate(1674,314)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Evolution</tspan>
         </text>
     </g>
-    <g transform=" translate(2954,401)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+    <g transform=" translate(1654,340)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="start">
             <tspan x="0" dy="6">Groups</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="425" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
-    <g transform=" translate(2974,423)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="364" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1674,362)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Consultant</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="449" r="7" fill="rgb(39,174,96)" fill-opacity="0.2" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1.5"></circle>
-    <g transform=" translate(2974,447)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="388" r="7" fill="rgb(39,174,96)" fill-opacity="0.2" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1674,386)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Equipe communication</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="473" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
-    <g transform=" translate(2974,471)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="412" r="7" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1674,410)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">agentigslide</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="497" r="7" fill="rgb(149,165,166)" fill-opacity="0.2" stroke="rgb(149,165,166)" stroke-opacity="1.0" stroke-width="1.5"></circle>
-    <g transform=" translate(2974,495)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="436" r="7" fill="rgb(149,165,166)" fill-opacity="0.2" stroke="rgb(149,165,166)" stroke-opacity="1.0" stroke-width="1.5"></circle>
+    <g transform=" translate(1674,434)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Infrastructure</tspan>
         </text>
     </g>
-    <g transform=" translate(2954,521)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+    <g transform=" translate(1654,460)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="start">
             <tspan x="0" dy="6">Signals</tspan>
         </text>
     </g>
-    <path d="M 2947,538 q 4,-7 8,0 q 4,7 8,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="2"></path>
-    <g transform=" translate(2974,543)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <path d="M 1647,477 q 4,-7 8,0 q 4,7 8,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(1674,482)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Co-evolution</tspan>
         </text>
     </g>
-    <path d="M 2947,569 l 7,-7 l -7,-7 M 2955,569 l 7,-7 l -7,-7" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="2"></path>
-    <g transform=" translate(2974,567)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <path d="M 1647,508 l 7,-7 l -7,-7 M 1655,508 l 7,-7 l -7,-7" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(1674,506)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Accelerating</tspan>
         </text>
     </g>
-    <path d="M 2947,586 l 11,8 l -5,0 M 2947,586 l 11,8 l 0,-5" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="2"></path>
-    <g transform=" translate(2974,591)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <path d="M 1647,525 l 11,8 l -5,0 M 1647,525 l 11,8 l 0,-5" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="2"></path>
+    <g transform=" translate(1674,530)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Commoditization</tspan>
         </text>
     </g>
-    <path d="M 2947,610 l 11,0 l -4,-4 M 2947,610 l 11,0 l -4,4 M 2943,606 h 5 M 2943,614 h 4" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1.5"></path>
-    <g transform=" translate(2974,615)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <path d="M 1647,549 l 11,0 l -4,-4 M 1647,549 l 11,0 l -4,4 M 1643,545 h 5 M 1643,553 h 4" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1.5"></path>
+    <g transform=" translate(1674,554)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Red Queen</tspan>
         </text>
     </g>
-    <g transform=" translate(2954,641)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+    <g transform=" translate(1654,580)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="start">
             <tspan x="0" dy="6">Gameplays</tspan>
         </text>
     </g>
-    <rect x="2946" y="660" width="16" height="10" fill="rgb(155,89,182)" fill-opacity="1.0" stroke="rgb(155,89,182)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
-    <g transform=" translate(2974,663)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <rect x="1646" y="599" width="16" height="10" fill="rgb(155,89,182)" fill-opacity="1.0" stroke="rgb(155,89,182)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
+    <g transform=" translate(1674,602)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Gameplay</tspan>
         </text>
     </g>
-    <g transform=" translate(2954,689)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="13px" text-anchor="start">
+    <g transform=" translate(1654,628)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="13px" text-anchor="start">
             <tspan x="0" dy="6">Other</tspan>
         </text>
     </g>
-    <circle cx="2954" cy="713" r="6" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></circle>
-    <g transform=" translate(2974,711)">
-        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="11px" text-anchor="start">
+    <circle cx="1654" cy="652" r="6" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></circle>
+    <g transform=" translate(1674,650)">
+        <text fill="rgb(19,36,84)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" font-size="11px" text-anchor="start">
             <tspan x="0" dy="6">Annotation</tspan>
         </text>
     </g>
-    <style><![CDATA[
+    <style><![CDATA[@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+text {
+	font-family: 'Outfit', sans-serif;
+}
+
 .evolutionEdge {
 	stroke-dasharray: 7;
 	stroke-dashoffset: 7;
 	animation: dash 3s linear forwards infinite;
+}
+
+.evolutionEdgeFaded {
+	opacity: 0.25;
 }
 
 
@@ -225,39 +243,254 @@
   position: absolute;
 }
 
+.tooltip-box {
+    pointer-events: none;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+
+g[onmouseenter] {
+    cursor: pointer;
+}
+
+@keyframes notePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.has-note {
+    animation: notePulse 2s ease-in-out infinite;
+}
+
+@keyframes signalAccelerate {
+    0% { transform: translateX(0); opacity: 1; }
+    80% { transform: translateX(6px); opacity: 1; }
+    90% { transform: translateX(6px); opacity: 0; }
+    91% { transform: translateX(-3px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+.signal-animated .signal-accelerating {
+    animation: signalAccelerate 2s ease-in-out infinite;
+}
+
+@keyframes signalCommoditize {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(4px); opacity: 0.9; }
+    85% { transform: translateY(4px); opacity: 0; }
+    86% { transform: translateY(-2px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.signal-animated .signal-commoditization {
+    animation: signalCommoditize 2.5s ease-in-out infinite;
+}
+
+@keyframes signalRedQueen {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(2px); }
+    20% { transform: translateX(-1.5px); }
+    30% { transform: translateX(1px); }
+    40% { transform: translateX(-1px); }
+    50% { transform: translateX(0); }
+}
+.signal-animated .signal-red-queen {
+    animation: signalRedQueen 1.2s ease-in-out infinite;
+}
+
+@keyframes signalStagnate {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+.signal-animated .signal-stagnating {
+    animation: signalStagnate 3s ease-in-out infinite;
+}
+
+@keyframes signalDecline {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(5px); opacity: 0.8; }
+    85% { transform: translateY(5px); opacity: 0; }
+    86% { transform: translateY(-3px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.signal-animated .signal-declining {
+    animation: signalDecline 2.2s ease-in-out infinite;
+}
+
+@keyframes signalNetwork {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.18); opacity: 0.85; }
+}
+.signal-animated .signal-network-effects {
+    animation: signalNetwork 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .signal-animated * { animation: none !important; }
+}
+
 ]]></style>
-    <script id="SVGScript">var g = new Map();
-var allLinks = new Array(); 
+    <script id="SVGScript"><![CDATA[var allLinks = new Array();
 
 allLinks.push('edge_0_2','edge_0_4','edge_0_5','edge_0_7','edge_1_2','edge_2_3','edge_3_4','edge_3_6','edge_3_7','edge_4_5','edge_5_9','edge_6_8','edge_6_9','edge_8_19','edge_9_10','edge_9_11','edge_9_15','edge_9_16','edge_9_17','edge_11_8','edge_11_12','edge_12_13','edge_12_17','edge_12_19','edge_17_18',);
 
-g.set('element_0',Array('edge_0_2','edge_2_3','edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7','edge_0_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_0_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_0_7',));
-g.set('element_1',Array('edge_1_2','edge_2_3','edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7',));
-g.set('element_11',Array('edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19',));
-g.set('element_12',Array('edge_12_13','edge_12_17','edge_17_18','edge_12_19',));
-g.set('element_17',Array('edge_17_18',));
-g.set('element_2',Array('edge_2_3','edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7',));
-g.set('element_3',Array('edge_3_4','edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_6','edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18','edge_3_7',));
-g.set('element_4',Array('edge_4_5','edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
-g.set('element_5',Array('edge_5_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
-g.set('element_6',Array('edge_6_8','edge_8_19','edge_6_9','edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
-g.set('element_8',Array('edge_8_19',));
-g.set('element_9',Array('edge_9_10','edge_9_11','edge_11_8','edge_8_19','edge_11_12','edge_12_13','edge_12_17','edge_17_18','edge_12_19','edge_9_15','edge_9_16','edge_9_17','edge_17_18',));
-
 const max = 9
-function toggleLink(clicked_id)
-{
-	if (g.has(clicked_id)) {
-		g.get(clicked_id).forEach(element => {
-			var style = document.getElementById(element).style.display;
-			if(style === "none")
-				document.getElementById(element).style.display = "block";
-			else
-				document.getElementById(element).style.display = "none";
+function buildTooltip(el) {
+	var parts = [];
+	el.querySelectorAll('desc').forEach(function(t) {
+		var s = t.textContent.trim();
+		if (s) {
+			var sublines = s.split('\n');
+			for (var k = 0; k < sublines.length; k++) {
+				var trimmed = sublines[k].trim();
+				if (trimmed) parts.push(trimmed);
+			}
+		}
+	});
+	if (parts.length === 0) return null;
 
-		});
+	var maxWrap = 40;
+	var allLines = [];
+	for (var p = 0; p < parts.length; p++) {
+		var part = parts[p];
+		if (part.length <= maxWrap) {
+			allLines.push({text: part, isLabel: false});
+		} else {
+			var wrapped = part.match(new RegExp('.{1,' + maxWrap + '}(\\s|$)', 'g')) || [part];
+			for (var w = 0; w < wrapped.length; w++) {
+				allLines.push({text: wrapped[w].trim(), isLabel: false});
+			}
+		}
+		if (p < parts.length - 1) {
+			allLines.push({text: '', isLabel: false});
+		}
+	}
+
+	for (var i = 0; i < allLines.length; i++) {
+		if (/^(Asset|Cost):\s/.test(allLines[i].text)) {
+			allLines[i].isLabel = true;
+		}
+	}
+
+	var ns = 'http://www.w3.org/2000/svg';
+	var tip = document.createElementNS(ns, 'g');
+	tip.setAttribute('class', 'tooltip-box');
+
+	var fontSize = 13;
+	var lineHeight = 18;
+	var padX = 14;
+	var padY = 10;
+	var maxWidth = 0;
+	for (var i = 0; i < allLines.length; i++) {
+		if (allLines[i].text.length > maxWidth) maxWidth = allLines[i].text.length;
+	}
+	var boxW = maxWidth * 7.5 + padX * 2;
+	var boxH = allLines.length * lineHeight + padY * 2;
+
+	var rect = document.createElementNS(ns, 'rect');
+	rect.setAttribute('x', '12');
+	rect.setAttribute('y', String(-boxH / 2));
+	rect.setAttribute('width', String(boxW));
+	rect.setAttribute('height', String(boxH));
+	rect.setAttribute('rx', '6');
+	rect.setAttribute('ry', '6');
+	rect.setAttribute('fill', 'rgba(25,25,30,0.94)');
+	rect.setAttribute('stroke', 'rgba(255,255,255,0.15)');
+	rect.setAttribute('stroke-width', '1');
+	tip.appendChild(rect);
+
+	for (var i = 0; i < allLines.length; i++) {
+		var line = allLines[i];
+		if (line.text === '') continue;
+
+		var t = document.createElementNS(ns, 'text');
+		t.setAttribute('x', String(12 + padX));
+		t.setAttribute('y', String(-boxH / 2 + padY + fontSize + i * lineHeight));
+		t.setAttribute('font-size', fontSize + 'px');
+		t.setAttribute('font-family', "'Outfit', sans-serif");
+		t.setAttribute('fill', 'white');
+
+		if (line.isLabel) {
+			var colonIdx = line.text.indexOf(': ');
+			var labelPart = line.text.substring(0, colonIdx + 1);
+			var valuePart = line.text.substring(colonIdx + 1);
+
+			var boldSpan = document.createElementNS(ns, 'tspan');
+			boldSpan.setAttribute('font-weight', 'bold');
+			boldSpan.setAttribute('fill', 'rgba(255,255,255,0.95)');
+			boldSpan.textContent = labelPart;
+			t.appendChild(boldSpan);
+
+			var valueSpan = document.createElementNS(ns, 'tspan');
+			valueSpan.setAttribute('fill', 'rgba(255,255,255,0.75)');
+			valueSpan.textContent = valuePart;
+			t.appendChild(valueSpan);
+		} else {
+			t.textContent = line.text;
+		}
+		tip.appendChild(t);
+	}
+
+	return tip;
+}
+
+function getComponentTransform(el) {
+	var g = el.querySelector('g[transform]');
+	if (!g) return '';
+	return g.getAttribute('transform');
+}
+
+function findTooltipFor(id) {
+	var layer = document.getElementById('tooltip-layer');
+	if (!layer) return null;
+	return layer.querySelector('[data-for="' + id + '"]');
+}
+
+function showTooltip(id) {
+	if (findTooltipFor(id)) return;
+
+	var el = document.getElementById(id);
+	if (!el) return;
+
+	var tip = buildTooltip(el);
+	if (!tip) return;
+
+	tip.setAttribute('data-for', id);
+	tip.setAttribute('transform', getComponentTransform(el));
+
+	var layer = document.getElementById('tooltip-layer');
+	if (layer) layer.appendChild(tip);
+}
+
+function hideTooltip(id) {
+	var tip = findTooltipFor(id);
+	if (tip && tip.getAttribute('data-pinned') !== 'true') {
+		tip.remove();
 	}
 }
+
+function pinTooltip(id) {
+	var existing = findTooltipFor(id);
+	if (existing) {
+		if (existing.getAttribute('data-pinned') === 'true') {
+			existing.remove();
+		} else {
+			existing.setAttribute('data-pinned', 'true');
+		}
+		return;
+	}
+
+	var el = document.getElementById(id);
+	if (!el) return;
+
+	var tip = buildTooltip(el);
+	if (!tip) return;
+	tip.setAttribute('data-for', id);
+	tip.setAttribute('data-pinned', 'true');
+	tip.setAttribute('transform', getComponentTransform(el));
+
+	var layer = document.getElementById('tooltip-layer');
+	if (layer) layer.appendChild(tip);
+}
+
+function toggleLink(id) { pinTooltip(id); }
 function toggleLinks() {
 	allLinks.forEach(element => {
 		var style = document.getElementById(element).style.display;
@@ -299,335 +532,355 @@ function toggleVisibility() {
 
 
 setVisibility();
-</script>
-    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="16px" text-anchor="middle">
-        <tspan x="1500" dy="121">Paysage agentigslide</tspan>
+]]></script>
+    <text fill="rgb(19,36,84)" fill-opacity="1.0" font-weight="600" font-family="&#39;Outfit&#39;, sans-serif" font-size="16px" text-anchor="middle">
+        <tspan x="832" dy="60">Paysage agentigslide</tspan>
     </text>
     <g id="layer_0">
         <g id="edge_0_2" class="visibility0">
-            <line x1="1131" y1="200" x2="421" y2="435" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="627" y1="110" x2="233" y2="229" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_0_4" class="visibility0">
-            <path d="M 1131,200 Q 1012,515 932,842" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 627,110 Q 552,276 517,455" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_0_5" class="visibility0">
-            <path d="M 1131,200 Q 1151,649 1131,1099" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 627,110 Q 647,354 627,598" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_0_7" class="visibility0">
-            <path d="M 1131,200 Q 1007,550 847,885" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 627,110 Q 566,302 469,479" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_1_2" class="visibility0">
-            <line x1="1840" y1="200" x2="421" y2="435" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="1020" y1="110" x2="233" y2="229" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_2_3" class="visibility0">
-            <line x1="421" y1="435" x2="989" y2="650" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="233" y1="229" x2="548" y2="360" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_3_4" class="visibility0">
-            <path d="M 989,650 Q 941,740 932,842" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 548,360 Q 513,401 517,455" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_3_6" class="visibility0">
-            <line x1="989" y1="650" x2="1216" y2="949" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="548" y1="360" x2="674" y2="526" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_3_7" class="visibility0">
-            <path d="M 989,650 Q 935,777 847,885" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 548,360 Q 525,430 469,479" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_4_5" class="visibility0">
-            <line x1="932" y1="842" x2="1131" y2="1099" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="517" y1="455" x2="627" y2="598" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_5_9" class="visibility0">
-            <path d="M 1131,1099 Q 839,1198 563,1335" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 627,598 Q 461,650 312,740" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_6_8" class="visibility0">
-            <line x1="1216" y1="949" x2="1131" y2="1849" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="674" y1="526" x2="627" y2="1026" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_6_9" class="visibility0">
-            <path d="M 1216,949 Q 899,1159 563,1335" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 674,526 Q 503,650 312,740" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_8_19" class="visibility0">
-            <line x1="1131" y1="1849" x2="2067" y2="1999" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="627" y1="1026" x2="1146" y2="1109" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_9_10" class="visibility0">
-            <line x1="563" y1="1335" x2="989" y2="1335" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+            <line x1="312" y1="740" x2="548" y2="740" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_9_11" class="visibility0">
-            <line x1="563" y1="1335" x2="932" y2="1613" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="312" y1="740" x2="517" y2="895" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_9_15" class="visibility0">
-            <path d="M 563,1335 Q 1383,1461 2209,1549" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 312,740 Q 765,819 1225,859" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_9_16" class="visibility0">
-            <path d="M 563,1335 Q 1388,1400 2209,1506" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
+            <path d="M 312,740 Q 770,756 1225,812" fill="none" stroke="rgb(128,128,128)" stroke-opacity="1.0" stroke-width="1"></path>
         </g>
         <g id="edge_9_17" class="visibility0">
-            <line x1="563" y1="1335" x2="1641" y2="2042" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="312" y1="740" x2="910" y2="1145" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_11_8" class="visibility0">
-            <line x1="932" y1="1613" x2="1131" y2="1849" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="517" y1="895" x2="627" y2="1026" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_11_12" class="visibility0">
-            <line x1="932" y1="1613" x2="648" y2="1785" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="517" y1="895" x2="359" y2="990" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_12_13" class="visibility0">
-            <line x1="648" y1="1785" x2="932" y2="1785" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+            <line x1="359" y1="990" x2="517" y2="990" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_12_17" class="visibility0">
-            <line x1="648" y1="1785" x2="1641" y2="2042" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="359" y1="990" x2="910" y2="1145" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_12_19" class="visibility0">
-            <line x1="648" y1="1785" x2="2067" y2="1999" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
+            <line x1="359" y1="990" x2="1146" y2="1109" stroke-width="1" class="" stroke="rgb(128,128,128)" stroke-opacity="1.0"></line>
         </g>
         <g id="edge_17_18" class="visibility0">
-            <line x1="1641" y1="2042" x2="1982" y2="2042" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
+            <line x1="910" y1="1145" x2="1099" y2="1145" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrow)" class=" evolutionEdge" stroke="rgb(255,0,0)" stroke-opacity="1.0"></line>
         </g>
-        <g id="element_0" onclick="toggleLink(this.id)">
-            <g transform=" translate(1131,200)">
+        <g id="element_0" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)">
+            <g transform=" translate(627,110)">
                 <circle cx="0" cy="-10" r="5" fill="rgb(51,51,51)" fill-opacity="1.0" stroke="rgb(51,51,51)" stroke-opacity="1.0" stroke-width="1"></circle>
                 <path d="M -8,-4 C -8,6 8,6 8,-4 Z" fill="rgb(51,51,51)"></path>
-                <text font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
-                    <tspan x="25" dy="6">Consultant</tspan>
+                <text font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="end">
+                    <tspan x="-25" dy="6">Consultant</tspan>
                 </text>
             </g>
         </g>
-        <g id="element_1" onclick="toggleLink(this.id)">
-            <g transform=" translate(1840,200)">
+        <g id="element_1" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)">
+            <g transform=" translate(1020,110)">
                 <circle cx="0" cy="-10" r="5" fill="rgb(51,51,51)" fill-opacity="1.0" stroke="rgb(51,51,51)" stroke-opacity="1.0" stroke-width="1"></circle>
                 <path d="M -8,-4 C -8,6 8,6 8,-4 Z" fill="rgb(51,51,51)"></path>
-                <text font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="start">
+                <text font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="start">
                     <tspan x="25" dy="6">Client</tspan>
                 </text>
             </g>
         </g>
     </g>
     <g id="layer_1">
-        <g id="element_20" onclick="toggleLink(this.id)">
-            <path d="M 801.4,874.4 L 807.3,860.3 Q 811.6,849.6 854.2,779.1 L 911.0,685.1 Q 953.6,614.6 964.3,610.3 L 978.4,604.4 Q 989.0,600.0 999.6,604.4 L 1013.7,610.3 Q 1024.4,614.6 1028.7,625.3 L 1034.6,639.4 Q 1039.0,650.0 1081.6,784.7 L 1138.4,964.3 Q 1181.0,1099.0 1176.6,1109.6 L 1170.7,1123.7 Q 1166.4,1134.4 1155.7,1138.7 L 1141.6,1144.6 Q 1131.0,1149.0 1120.4,1144.6 L 1106.3,1138.7 Q 1095.6,1134.4 1010.4,1070.2 L 896.8,984.6 Q 811.6,920.4 807.3,909.7 L 801.4,895.6 Q 797.0,885.0 801.4,874.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
-            <path d="M 801.4,874.4 L 807.3,860.3 Q 811.6,849.6 854.2,779.1 L 911.0,685.1 Q 953.6,614.6 964.3,610.3 L 978.4,604.4 Q 989.0,600.0 999.6,604.4 L 1013.7,610.3 Q 1024.4,614.6 1028.7,625.3 L 1034.6,639.4 Q 1039.0,650.0 1081.6,784.7 L 1138.4,964.3 Q 1181.0,1099.0 1176.6,1109.6 L 1170.7,1123.7 Q 1166.4,1134.4 1155.7,1138.7 L 1141.6,1144.6 Q 1131.0,1149.0 1120.4,1144.6 L 1106.3,1138.7 Q 1095.6,1134.4 1010.4,1070.2 L 896.8,984.6 Q 811.6,920.4 807.3,909.7 L 801.4,895.6 Q 797.0,885.0 801.4,874.4 Z" fill="none" stroke-width="2" stroke="rgb(52,152,219)" stroke-opacity="0.6" stroke-dasharray="8,4"></path>
+        <g id="element_20" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)">
+            <path d="M 423.4,468.4 L 429.3,454.3 Q 433.6,443.6 457.3,407.9 L 488.9,360.3 Q 512.6,324.6 523.3,320.3 L 537.4,314.4 Q 548.0,310.0 558.6,314.4 L 572.7,320.3 Q 583.4,324.6 587.7,335.3 L 593.6,349.4 Q 598.0,360.0 621.7,431.4 L 653.3,526.6 Q 677.0,598.0 672.6,608.6 L 666.7,622.7 Q 662.4,633.4 651.7,637.7 L 637.6,643.6 Q 627.0,648.0 616.4,643.6 L 602.3,637.7 Q 591.6,633.4 544.2,597.7 L 481.0,550.1 Q 433.6,514.4 429.3,503.7 L 423.4,489.6 Q 419.0,479.0 423.4,468.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 423.4,468.4 L 429.3,454.3 Q 433.6,443.6 457.3,407.9 L 488.9,360.3 Q 512.6,324.6 523.3,320.3 L 537.4,314.4 Q 548.0,310.0 558.6,314.4 L 572.7,320.3 Q 583.4,324.6 587.7,335.3 L 593.6,349.4 Q 598.0,360.0 621.7,431.4 L 653.3,526.6 Q 677.0,598.0 672.6,608.6 L 666.7,622.7 Q 662.4,633.4 651.7,637.7 L 637.6,643.6 Q 627.0,648.0 616.4,643.6 L 602.3,637.7 Q 591.6,633.4 544.2,597.7 L 481.0,550.1 Q 433.6,514.4 429.3,503.7 L 423.4,489.6 Q 419.0,479.0 423.4,468.4 Z" fill="none" stroke-width="2" stroke="rgb(52,152,219)" stroke-opacity="0.6" stroke-dasharray="8,4"></path>
         </g>
-        <g id="element_21" onclick="toggleLink(this.id)">
-            <path d="M 1085.4,1838.4 L 1091.3,1824.3 Q 1095.6,1813.6 1106.3,1809.3 L 1120.4,1803.4 Q 1131.0,1799.0 1411.8,1844.0 L 1786.2,1904.0 Q 2067.0,1949.0 2077.6,1953.4 L 2091.7,1959.3 Q 2102.4,1963.6 2106.7,1974.3 L 2112.6,1988.4 Q 2117.0,1999.0 2112.6,2009.6 L 2106.7,2023.7 Q 2102.4,2034.4 2091.7,2038.7 L 2077.6,2044.6 Q 2067.0,2049.0 1786.2,2004.0 L 1411.8,1944.0 Q 1131.0,1899.0 1120.4,1894.6 L 1106.3,1888.7 Q 1095.6,1884.4 1091.3,1873.7 L 1085.4,1859.6 Q 1081.0,1849.0 1085.4,1838.4 Z" fill="rgb(39,174,96)" fill-opacity="0.2" stroke="none"></path>
-            <path d="M 1085.4,1838.4 L 1091.3,1824.3 Q 1095.6,1813.6 1106.3,1809.3 L 1120.4,1803.4 Q 1131.0,1799.0 1411.8,1844.0 L 1786.2,1904.0 Q 2067.0,1949.0 2077.6,1953.4 L 2091.7,1959.3 Q 2102.4,1963.6 2106.7,1974.3 L 2112.6,1988.4 Q 2117.0,1999.0 2112.6,2009.6 L 2106.7,2023.7 Q 2102.4,2034.4 2091.7,2038.7 L 2077.6,2044.6 Q 2067.0,2049.0 1786.2,2004.0 L 1411.8,1944.0 Q 1131.0,1899.0 1120.4,1894.6 L 1106.3,1888.7 Q 1095.6,1884.4 1091.3,1873.7 L 1085.4,1859.6 Q 1081.0,1849.0 1085.4,1838.4 Z" fill="none" stroke-width="2" stroke="rgb(39,174,96)" stroke-opacity="0.6"></path>
+        <g id="element_21" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)">
+            <path d="M 581.4,1015.4 L 587.3,1001.3 Q 591.6,990.6 602.3,986.3 L 616.4,980.4 Q 627.0,976.0 782.7,1000.9 L 990.3,1034.1 Q 1146.0,1059.0 1156.6,1063.4 L 1170.7,1069.3 Q 1181.4,1073.6 1185.7,1084.3 L 1191.6,1098.4 Q 1196.0,1109.0 1191.6,1119.6 L 1185.7,1133.7 Q 1181.4,1144.4 1170.7,1148.7 L 1156.6,1154.6 Q 1146.0,1159.0 990.3,1134.1 L 782.7,1100.9 Q 627.0,1076.0 616.4,1071.6 L 602.3,1065.7 Q 591.6,1061.4 587.3,1050.7 L 581.4,1036.6 Q 577.0,1026.0 581.4,1015.4 Z" fill="rgb(39,174,96)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 581.4,1015.4 L 587.3,1001.3 Q 591.6,990.6 602.3,986.3 L 616.4,980.4 Q 627.0,976.0 782.7,1000.9 L 990.3,1034.1 Q 1146.0,1059.0 1156.6,1063.4 L 1170.7,1069.3 Q 1181.4,1073.6 1185.7,1084.3 L 1191.6,1098.4 Q 1196.0,1109.0 1191.6,1119.6 L 1185.7,1133.7 Q 1181.4,1144.4 1170.7,1148.7 L 1156.6,1154.6 Q 1146.0,1159.0 990.3,1134.1 L 782.7,1100.9 Q 627.0,1076.0 616.4,1071.6 L 602.3,1065.7 Q 591.6,1061.4 587.3,1050.7 L 581.4,1036.6 Q 577.0,1026.0 581.4,1015.4 Z" fill="none" stroke-width="2" stroke="rgb(39,174,96)" stroke-opacity="0.6"></path>
         </g>
-        <g id="element_22" onclick="toggleLink(this.id)">
-            <path d="M 517.4,1324.4 L 523.3,1310.3 Q 527.6,1299.6 538.3,1295.3 L 552.4,1289.4 Q 563.0,1285.0 573.6,1289.4 L 587.7,1295.3 Q 598.4,1299.6 709.1,1383.0 L 856.7,1494.2 Q 967.4,1577.6 971.7,1588.3 L 977.6,1602.4 Q 982.0,1613.0 977.6,1623.6 L 971.7,1637.7 Q 967.4,1648.4 882.2,1700.0 L 768.6,1768.8 Q 683.4,1820.4 672.7,1824.7 L 658.6,1830.6 Q 648.0,1835.0 637.4,1830.6 L 623.3,1824.7 Q 612.6,1820.4 608.3,1809.7 L 602.4,1795.6 Q 598.0,1785.0 572.5,1650.0 L 538.5,1470.0 Q 513.0,1335.0 517.4,1324.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
-            <path d="M 517.4,1324.4 L 523.3,1310.3 Q 527.6,1299.6 538.3,1295.3 L 552.4,1289.4 Q 563.0,1285.0 573.6,1289.4 L 587.7,1295.3 Q 598.4,1299.6 709.1,1383.0 L 856.7,1494.2 Q 967.4,1577.6 971.7,1588.3 L 977.6,1602.4 Q 982.0,1613.0 977.6,1623.6 L 971.7,1637.7 Q 967.4,1648.4 882.2,1700.0 L 768.6,1768.8 Q 683.4,1820.4 672.7,1824.7 L 658.6,1830.6 Q 648.0,1835.0 637.4,1830.6 L 623.3,1824.7 Q 612.6,1820.4 608.3,1809.7 L 602.4,1795.6 Q 598.0,1785.0 572.5,1650.0 L 538.5,1470.0 Q 513.0,1335.0 517.4,1324.4 Z" fill="none" stroke-width="2" stroke="rgb(52,152,219)" stroke-opacity="0.6"></path>
+        <g id="element_22" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)">
+            <path d="M 266.4,729.4 L 272.3,715.3 Q 276.6,704.6 287.3,700.3 L 301.4,694.4 Q 312.0,690.0 322.6,694.4 L 336.7,700.3 Q 347.4,704.6 408.9,751.1 L 490.9,813.1 Q 552.4,859.6 556.7,870.3 L 562.6,884.4 Q 567.0,895.0 562.6,905.6 L 556.7,919.7 Q 552.4,930.4 505.0,958.9 L 441.8,996.9 Q 394.4,1025.4 383.7,1029.7 L 369.6,1035.6 Q 359.0,1040.0 348.4,1035.6 L 334.3,1029.7 Q 323.6,1025.4 319.3,1014.7 L 313.4,1000.6 Q 309.0,990.0 294.9,915.0 L 276.1,815.0 Q 262.0,740.0 266.4,729.4 Z" fill="rgb(52,152,219)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 266.4,729.4 L 272.3,715.3 Q 276.6,704.6 287.3,700.3 L 301.4,694.4 Q 312.0,690.0 322.6,694.4 L 336.7,700.3 Q 347.4,704.6 408.9,751.1 L 490.9,813.1 Q 552.4,859.6 556.7,870.3 L 562.6,884.4 Q 567.0,895.0 562.6,905.6 L 556.7,919.7 Q 552.4,930.4 505.0,958.9 L 441.8,996.9 Q 394.4,1025.4 383.7,1029.7 L 369.6,1035.6 Q 359.0,1040.0 348.4,1035.6 L 334.3,1029.7 Q 323.6,1025.4 319.3,1014.7 L 313.4,1000.6 Q 309.0,990.0 294.9,915.0 L 276.1,815.0 Q 262.0,740.0 266.4,729.4 Z" fill="none" stroke-width="2" stroke="rgb(52,152,219)" stroke-opacity="0.6"></path>
         </g>
-        <g id="element_23" onclick="toggleLink(this.id)">
-            <path d="M 1595.4,2031.4 L 1601.3,2017.3 Q 1605.6,2006.6 1776.0,1845.8 L 2003.2,1631.4 Q 2173.6,1470.6 2184.3,1466.3 L 2198.4,1460.4 Q 2209.0,1456.0 2219.6,1460.4 L 2233.7,1466.3 Q 2244.4,1470.6 2248.7,1481.3 L 2254.6,1495.4 Q 2259.0,1506.0 2259.0,1518.9 L 2259.0,1536.1 Q 2259.0,1549.0 2254.6,1559.6 L 2248.7,1573.7 Q 2244.4,1584.4 2074.0,1732.3 L 1846.8,1929.5 Q 1676.4,2077.4 1665.7,2081.7 L 1651.6,2087.6 Q 1641.0,2092.0 1630.4,2087.6 L 1616.3,2081.7 Q 1605.6,2077.4 1601.3,2066.7 L 1595.4,2052.6 Q 1591.0,2042.0 1595.4,2031.4 Z" fill="rgb(149,165,166)" fill-opacity="0.2" stroke="none"></path>
-            <path d="M 1595.4,2031.4 L 1601.3,2017.3 Q 1605.6,2006.6 1776.0,1845.8 L 2003.2,1631.4 Q 2173.6,1470.6 2184.3,1466.3 L 2198.4,1460.4 Q 2209.0,1456.0 2219.6,1460.4 L 2233.7,1466.3 Q 2244.4,1470.6 2248.7,1481.3 L 2254.6,1495.4 Q 2259.0,1506.0 2259.0,1518.9 L 2259.0,1536.1 Q 2259.0,1549.0 2254.6,1559.6 L 2248.7,1573.7 Q 2244.4,1584.4 2074.0,1732.3 L 1846.8,1929.5 Q 1676.4,2077.4 1665.7,2081.7 L 1651.6,2087.6 Q 1641.0,2092.0 1630.4,2087.6 L 1616.3,2081.7 Q 1605.6,2077.4 1601.3,2066.7 L 1595.4,2052.6 Q 1591.0,2042.0 1595.4,2031.4 Z" fill="none" stroke-width="4" stroke="rgb(149,165,166)" stroke-opacity="0.6"></path>
-            <path d="M 1595.4,2031.4 L 1601.3,2017.3 Q 1605.6,2006.6 1776.0,1845.8 L 2003.2,1631.4 Q 2173.6,1470.6 2184.3,1466.3 L 2198.4,1460.4 Q 2209.0,1456.0 2219.6,1460.4 L 2233.7,1466.3 Q 2244.4,1470.6 2248.7,1481.3 L 2254.6,1495.4 Q 2259.0,1506.0 2259.0,1518.9 L 2259.0,1536.1 Q 2259.0,1549.0 2254.6,1559.6 L 2248.7,1573.7 Q 2244.4,1584.4 2074.0,1732.3 L 1846.8,1929.5 Q 1676.4,2077.4 1665.7,2081.7 L 1651.6,2087.6 Q 1641.0,2092.0 1630.4,2087.6 L 1616.3,2081.7 Q 1605.6,2077.4 1601.3,2066.7 L 1595.4,2052.6 Q 1591.0,2042.0 1595.4,2031.4 Z" fill="none" stroke-width="1" stroke="rgb(149,165,166)" stroke-opacity="0.6"></path>
+        <g id="element_23" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)">
+            <path d="M 864.4,1134.4 L 870.3,1120.3 Q 874.6,1109.6 969.1,1009.7 L 1095.1,876.5 Q 1189.6,776.6 1200.3,772.3 L 1214.4,766.4 Q 1225.0,762.0 1235.6,766.4 L 1249.7,772.3 Q 1260.4,776.6 1264.7,787.3 L 1270.6,801.4 Q 1275.0,812.0 1275.0,826.1 L 1275.0,844.9 Q 1275.0,859.0 1270.6,869.6 L 1264.7,883.7 Q 1260.4,894.4 1165.9,980.2 L 1039.9,1094.6 Q 945.4,1180.4 934.7,1184.7 L 920.6,1190.6 Q 910.0,1195.0 899.4,1190.6 L 885.3,1184.7 Q 874.6,1180.4 870.3,1169.7 L 864.4,1155.6 Q 860.0,1145.0 864.4,1134.4 Z" fill="rgb(149,165,166)" fill-opacity="0.2" stroke="none"></path>
+            <path d="M 864.4,1134.4 L 870.3,1120.3 Q 874.6,1109.6 969.1,1009.7 L 1095.1,876.5 Q 1189.6,776.6 1200.3,772.3 L 1214.4,766.4 Q 1225.0,762.0 1235.6,766.4 L 1249.7,772.3 Q 1260.4,776.6 1264.7,787.3 L 1270.6,801.4 Q 1275.0,812.0 1275.0,826.1 L 1275.0,844.9 Q 1275.0,859.0 1270.6,869.6 L 1264.7,883.7 Q 1260.4,894.4 1165.9,980.2 L 1039.9,1094.6 Q 945.4,1180.4 934.7,1184.7 L 920.6,1190.6 Q 910.0,1195.0 899.4,1190.6 L 885.3,1184.7 Q 874.6,1180.4 870.3,1169.7 L 864.4,1155.6 Q 860.0,1145.0 864.4,1134.4 Z" fill="none" stroke-width="4" stroke="rgb(149,165,166)" stroke-opacity="0.6"></path>
+            <path d="M 864.4,1134.4 L 870.3,1120.3 Q 874.6,1109.6 969.1,1009.7 L 1095.1,876.5 Q 1189.6,776.6 1200.3,772.3 L 1214.4,766.4 Q 1225.0,762.0 1235.6,766.4 L 1249.7,772.3 Q 1260.4,776.6 1264.7,787.3 L 1270.6,801.4 Q 1275.0,812.0 1275.0,826.1 L 1275.0,844.9 Q 1275.0,859.0 1270.6,869.6 L 1264.7,883.7 Q 1260.4,894.4 1165.9,980.2 L 1039.9,1094.6 Q 945.4,1180.4 934.7,1184.7 L 920.6,1190.6 Q 910.0,1195.0 899.4,1190.6 L 885.3,1184.7 Q 874.6,1180.4 870.3,1169.7 L 864.4,1155.6 Q 860.0,1145.0 864.4,1134.4 Z" fill="none" stroke-width="1" stroke="rgb(149,165,166)" stroke-opacity="0.6"></path>
         </g>
     </g>
     <g id="layer_10">
-        <g id="element_2" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(421,435)">
+        <g id="element_2" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(233,229)">
                 <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="0">Convaincre</tspan>
-                    <tspan x="25" dy="18">le client</tspan>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Convaincre</tspan>
+                    <tspan x="-25" dy="18">le client</tspan>
                 </text>
-                <title>Objectif final</title>
+                <desc>Objectif final</desc>
             </g>
         </g>
-        <g id="element_3" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(989,650)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="0">Présentation</tspan>
-                    <tspan x="25" dy="18">de conviction</tspan>
+        <g id="element_3" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(548,360)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Présentation</tspan>
+                    <tspan x="-25" dy="18">de conviction</tspan>
                 </text>
-                <title>Singularité du discours</title>
+                <desc>Singularité du discours</desc>
             </g>
         </g>
-        <g id="element_4" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(932,842)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+        <g id="element_4" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(517,455)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
                     <tspan x="25" dy="0">Discours</tspan>
                     <tspan x="25" dy="18">et storytelling</tspan>
                 </text>
-                <title>Produit par le consultant</title>
+                <desc>Produit par le consultant</desc>
             </g>
         </g>
-        <g id="element_5" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(1131,1099)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="6">Brief structuré</tspan>
+        <g id="element_5" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(627,598)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6">Brief structuré</tspan>
                 </text>
-                <title>Entrée de l&#39;Outliner</title>
+                <desc>Entrée de l&#39;Outliner</desc>
             </g>
         </g>
-        <g id="element_6" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(1216,949)">
+        <g id="element_6" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(674,526)">
                 <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
-                    <tspan x="-12" dy="18">Support visuel</tspan>
-                    <tspan x="-12" dy="18">cohérent</tspan>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
+                    <tspan x="12" dy="30">Support visuel</tspan>
+                    <tspan x="12" dy="18">cohérent</tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_7" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(847,885)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+        <g id="element_7" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(469,479)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
                     <tspan x="-25" dy="6">Human-in-the-loop</tspan>
                 </text>
-                <title>Appropriation</title>
+                <desc>Appropriation</desc>
             </g>
         </g>
-        <g id="element_8" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(1131,1849)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(39,174,96)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+        <g id="element_8" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(627,1026)">
+                <g class="has-note">
+                    <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                    <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                </g>
+                <text fill="rgb(39,174,96)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
                     <tspan x="25" dy="0">Catalogue</tspan>
                     <tspan x="25" dy="18">de slides</tspan>
                 </text>
-                <title>Capital non copiable</title>
+                <desc>Capital non copiable</desc>
+                <g data-type="note">
+                    <circle cx="10" cy="-10" r="4" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="7px" text-anchor="middle">
+                        <tspan x="10" dy="-7">i</tspan>
+                    </text>
+                    <desc>Le fossé invisible du système</desc>
+                </g>
             </g>
         </g>
-        <g id="element_9" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(563,1335)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="0">Orchestration</tspan>
-                    <tspan x="25" dy="18">agentique</tspan>
+        <g id="element_9" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(312,740)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="0">Orchestration</tspan>
+                    <tspan x="-25" dy="18">agentique</tspan>
                 </text>
-                <title>Outliner, Selector, Writers, Reviewer</title>
-                <g data-type="signal">
-                    <path d="M 20,-20 q 6,-10 12,0 q 6,10 12,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="3"></path>
+                <desc>Outliner, Selector, Writers, Reviewer</desc>
+                <g data-type="signal" class="signal-animated">
+                    <path d="M 20,-20 q 6,-10 12,0 q 6,10 12,0" fill="none" stroke="rgb(142,68,173)" stroke-opacity="1.0" stroke-width="3" class=" signal-co-evolution"></path>
                 </g>
                 <g data-type="gameplay">
                     <rect x="-31" y="12" width="62" height="12" fill="rgb(231,76,60)" fill-opacity="1.0" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="1" ry="3" rx="3"></rect>
-                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="8px" text-anchor="middle">
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="8px" text-anchor="middle">
                         <tspan x="0" dy="22">land-grab</tspan>
                     </text>
                 </g>
             </g>
         </g>
-        <g id="element_10" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(989,1335)">
+        <g id="element_10" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(548,740)">
                 <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="6"></tspan>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6"></tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_11" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(932,1613)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="6">Index sémantique</tspan>
+        <g id="element_11" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(517,895)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6">Index sémantique</tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_12" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(648,1785)">
-                <circle cx="0" cy="0" r="20" fill="rgb(214,214,214)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(52,152,219)" fill-opacity="1.0" stroke="rgb(52,152,219)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+        <g id="element_12" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(359,990)">
+                <circle cx="0" cy="0" r="8" fill="rgb(41,128,185)" fill-opacity="1.0" stroke="rgb(41,128,185)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -1.5,6 L -1.5,1 L -4,1 L -5,-1 L -4,-4 L -1.5,-4 L -1.5,-1.5 L 1.5,-1.5 L 1.5,-4 L 4,-4 L 5,-1 L 4,1 L 1.5,1 L 1.5,6 Z" fill="rgb(255,255,255)"></path>
+                <text fill="rgb(52,152,219)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
                     <tspan x="-25" dy="0">Analyse vision</tspan>
                     <tspan x="-25" dy="18">IA</tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_13" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(932,1785)">
+        <g id="element_13" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(517,990)">
                 <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
-                    <tspan x="25" dy="6"></tspan>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
+                    <tspan x="-25" dy="6"></tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_14" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(1641,2213)">
-                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+        <g id="element_14" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(910,1228)">
+                <circle cx="0" cy="0" r="8" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -6,-5 L -4,-5 L -3,-2 L 5,-2 L 4,2 L -2,2 Z" fill="rgb(255,255,255)"></path>
+                <circle cx="-1" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="3" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
                     <tspan x="25" dy="6">Outils génériques</tspan>
                 </text>
-                <title>Gamma, Beautiful.ai, Pitch</title>
-                <g data-type="signal">
-                    <path d="M 20,-20 l 16,0 l -6,-6 M 20,-20 l 16,0 l -6,6 M 14,-26 h 8 M 14,-14 h 6" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="2.5"></path>
+                <desc>Gamma, Beautiful.ai, Pitch</desc>
+                <g data-type="signal" class="signal-animated">
+                    <path d="M 20,-20 l 16,0 l -6,-6 M 20,-20 l 16,0 l -6,6 M 14,-26 h 8 M 14,-14 h 6" fill="none" stroke="rgb(231,76,60)" stroke-opacity="1.0" stroke-width="2.5" class=" signal-red-queen"></path>
                 </g>
                 <g data-type="warning">
                     <path d="M -40,10 l 10,-20 l 10,20 Z" fill="rgb(230,126,34)"></path>
-                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" font-size="14px" text-anchor="middle">
+                    <text fill="rgb(255,255,255)" fill-opacity="1.0" font-weight="bold" font-family="&#39;Outfit&#39;, sans-serif" font-size="14px" text-anchor="middle">
                         <tspan x="-30" dy="6">!</tspan>
                     </text>
-                    <title>⚠ Fenêtre de 12-18 mois</title>
+                    <desc>⚠ Fenêtre de 12-18 mois</desc>
                 </g>
             </g>
         </g>
-        <g id="element_15" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(2209,1549)">
-                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
-                    <tspan x="-25" dy="0">API Google</tspan>
-                    <tspan x="-25" dy="18">Slides</tspan>
+        <g id="element_15" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(1225,859)">
+                <circle cx="0" cy="0" r="8" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -6,-5 L -4,-5 L -3,-2 L 5,-2 L 4,2 L -2,2 Z" fill="rgb(255,255,255)"></path>
+                <circle cx="-1" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="3" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
+                    <tspan x="12" dy="30">API Google</tspan>
+                    <tspan x="12" dy="18">Slides</tspan>
                 </text>
-                <title></title>
-                <g data-type="signal">
-                    <path d="M 20,-20 l 16,12 l -8,0 M 20,-20 l 16,12 l 0,-8" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="3"></path>
+                <desc></desc>
+                <g data-type="signal" class="signal-animated">
+                    <path d="M 20,-20 l 16,12 l -8,0 M 20,-20 l 16,12 l 0,-8" fill="none" stroke="rgb(52,73,94)" stroke-opacity="1.0" stroke-width="3" class=" signal-commoditization"></path>
                 </g>
             </g>
         </g>
-        <g id="element_16" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(2209,1506)">
-                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+        <g id="element_16" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(1225,812)">
+                <circle cx="0" cy="0" r="8" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -6,-5 L -4,-5 L -3,-2 L 5,-2 L 4,2 L -2,2 Z" fill="rgb(255,255,255)"></path>
+                <circle cx="-1" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="3" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
                     <tspan x="25" dy="0">API Google</tspan>
                     <tspan x="25" dy="18">Drive</tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_17" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(1641,2042)">
-                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
+        <g id="element_17" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(910,1145)">
+                <circle cx="0" cy="0" r="8" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -6,-5 L -4,-5 L -3,-2 L 5,-2 L 4,2 L -2,2 Z" fill="rgb(255,255,255)"></path>
+                <circle cx="-1" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="3" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="end">
                     <tspan x="-25" dy="0">LLM via Vertex</tspan>
                     <tspan x="-25" dy="18">AI</tspan>
                 </text>
-                <title></title>
-                <g data-type="signal">
-                    <path d="M 20,-10 l 10,-10 l -10,-10 M 32,-10 l 10,-10 l -10,-10" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="3"></path>
+                <desc></desc>
+                <g data-type="signal" class="signal-animated">
+                    <path d="M 20,-10 l 10,-10 l -10,-10 M 32,-10 l 10,-10 l -10,-10" fill="none" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="3" class=" signal-accelerating"></path>
                 </g>
             </g>
         </g>
-        <g id="element_18" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(1982,2042)">
+        <g id="element_18" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(1099,1145)">
                 <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="end">
-                    <tspan x="-25" dy="6"></tspan>
+                <text fill="rgb(255,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
+                    <tspan x="25" dy="6"></tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
-        <g id="element_19" onclick="toggleLink(this.id)" class="visibility0">
-            <g transform=" translate(2067,1999)">
-                <circle cx="0" cy="0" r="20" fill="rgb(170,165,169)" fill-opacity="1.0" stroke="rgb(214,214,214)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <circle cx="0" cy="0" r="5" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(0,0,0)" stroke-opacity="1.0" stroke-width="1"></circle>
-                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="Century Gothic,CenturyGothic,AppleGothic,sans-serif" text-anchor="start">
+        <g id="element_19" onclick="pinTooltip(this.id)" onmouseenter="showTooltip(this.id)" onmouseleave="hideTooltip(this.id)" class="visibility0">
+            <g transform=" translate(1146,1109)">
+                <circle cx="0" cy="0" r="8" fill="rgb(39,174,96)" fill-opacity="1.0" stroke="rgb(39,174,96)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <path d="M -6,-5 L -4,-5 L -3,-2 L 5,-2 L 4,2 L -2,2 Z" fill="rgb(255,255,255)"></path>
+                <circle cx="-1" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <circle cx="3" cy="4" r="1" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1"></circle>
+                <text fill="rgb(0,0,0)" fill-opacity="1.0" font-family="&#39;Outfit&#39;, sans-serif" text-anchor="start">
                     <tspan x="25" dy="0">Google Slides</tspan>
                     <tspan x="25" dy="18">natif</tspan>
                 </text>
-                <title></title>
+                <desc></desc>
             </g>
         </g>
     </g>
+    <g id="tooltip-layer"></g>
 </svg>

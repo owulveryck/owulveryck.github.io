@@ -1,0 +1,51 @@
+@startuml pipeline-multi-agents
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**Go Orchestrator**\n(pure code, no AI)" as orch #0E2356;text:white
+
+rectangle "**Outliner** (Sonnet)\nAnalyzes the request\nwithout the catalog" as outliner #DAF6F9
+
+rectangle "**Selector** (Sonnet)\nMatches needs to templates\nin the catalog" as selector #DAF6F9
+
+rectangle "**Writer Haiku**\n(simple slides)" as w1 #6E7B9A;text:white
+rectangle "**Writer Sonnet**\n(complex slides)" as w2 #6E7B9A;text:white
+rectangle "**Writer Sonnet**\n(complex slides)" as w3 #6E7B9A;text:white
+
+rectangle "**Reviewer** (Opus)\nExtended thinking\nFeedback loop" as reviewer #00D2DD
+
+rectangle "**Executor**\nGoogle Slides API" as executor #E7E9EE
+
+rectangle "**FormatAgent**\nDeterministic corrections" as formatter #E7E9EE
+
+orch -down-> outliner
+outliner -down-> selector
+
+selector -down-> w1
+selector -down-> w2
+selector -down-> w3
+
+w1 -down-> reviewer
+w2 -down-> reviewer
+w3 -down-> reviewer
+
+reviewer .up.> w1 : feedback
+reviewer .up.> w2 : feedback
+
+reviewer -down-> executor
+executor -down-> formatter
+
+note right of outliner
+  Isolated from catalog
+  to avoid availability
+  bias
+end note
+
+note right of w2
+  Goroutines + semaphore
+  Shared prompt caching
+end note
+
+@enduml

@@ -1,0 +1,139 @@
+title: agentigslide landscape
+evolution: Genesis -> Custom -> Product -> Commodity
+legend
+
+anchor Consultant : II.5
+anchor Client : III.5
+
+Convince the client : I.5 {
+  note: "Ultimate goal"
+}
+
+Conviction presentation : II.3 {
+  type: build
+  note: "Uniqueness of the discourse"
+}
+
+Discourse and storytelling : II.2 {
+  type: build
+  note: "Produced by the consultant"
+}
+
+Structured brief : II.5 {
+  type: build
+  note: "Outliner input"
+}
+
+Coherent visual support : II.6
+
+Human-in-the-loop : II.1 {
+  type: build
+  note: "Appropriation"
+}
+
+Slide catalog : II.5 {
+  type: build
+  color: #27AE60
+  note: "Non-copyable capital"
+}
+
+Agentic orchestration : I.7 >> II.3 {
+  type: build
+  color: #3498DB
+  note: "Outliner, Selector, Writers, Reviewer"
+}
+
+Semantic index : II.2 {
+  type: build
+  color: #3498DB
+}
+
+AI vision analysis : I.8 >> II.2 {
+  type: build
+  color: #3498DB
+}
+
+Generic tools : III.2 {
+  type: buy
+  note: "Gamma, Beautiful.ai, Pitch"
+}
+
+Google Slides API : IV.0 (buy)
+
+Google Drive API : IV.0 (buy)
+
+LLM via Vertex AI : III.2 >> III.7 (buy)
+
+Google Slides native : III.8 (buy)
+
+Consultant -> Convince the client
+Consultant -> Discourse and storytelling
+Consultant -> Structured brief
+Consultant -> Human-in-the-loop
+
+Client -> Convince the client
+
+Convince the client -> Conviction presentation
+Conviction presentation -> Discourse and storytelling
+Conviction presentation -> Coherent visual support
+Conviction presentation -> Human-in-the-loop
+
+Coherent visual support -> Slide catalog
+Coherent visual support -> Agentic orchestration
+
+Discourse and storytelling -> Structured brief
+Structured brief -> Agentic orchestration
+
+Agentic orchestration -> Semantic index
+Agentic orchestration -> LLM via Vertex AI
+Agentic orchestration -> Google Slides API
+Agentic orchestration -> Google Drive API
+
+Semantic index -> AI vision analysis
+Semantic index -> Slide catalog
+
+AI vision analysis -> LLM via Vertex AI
+AI vision analysis -> Google Slides native
+
+Slide catalog -> Google Slides native
+
+group Consultant {
+  team: explorer
+  Discourse and storytelling
+  Structured brief
+  Human-in-the-loop
+  Conviction presentation
+}
+
+group Communication team {
+  team: settler
+  color: #27AE60
+  Slide catalog
+  Google Slides native
+}
+
+group agentigslide {
+  team: settler
+  color: #3498DB
+  Agentic orchestration
+  Semantic index
+  AI vision analysis
+}
+
+group Infrastructure {
+  team: town-planner
+  color: #95A5A6
+  Google Slides API
+  Google Drive API
+  LLM via Vertex AI
+}
+
+signal co-evolution on Agentic orchestration
+signal accelerating on LLM via Vertex AI
+signal commoditization on Google Slides API
+signal red-queen on Generic tools
+
+gameplay land-grab "Occupy the conviction slides niche" on Agentic orchestration
+
+note "The invisible moat" on Slide catalog
+warning "12-18 month window" on Generic tools

@@ -1,0 +1,139 @@
+title: Paysage agentigslide
+evolution: Genesis -> Custom -> Product -> Commodity
+legend
+
+anchor Consultant : II.5
+anchor Client : III.5
+
+Convaincre le client : I.5 {
+  note: "Objectif final"
+}
+
+Présentation de conviction : II.3 {
+  type: build
+  note: "Singularité du discours"
+}
+
+Discours et storytelling : II.2 {
+  type: build
+  note: "Produit par le consultant"
+}
+
+Brief structuré : II.5 {
+  type: build
+  note: "Entrée de l'Outliner"
+}
+
+Support visuel cohérent : II.6
+
+Human-in-the-loop : II.1 {
+  type: build
+  note: "Appropriation"
+}
+
+Catalogue de slides : II.5 {
+  type: build
+  color: #27AE60
+  note: "Capital non copiable"
+}
+
+Orchestration agentique : I.7 >> II.3 {
+  type: build
+  color: #3498DB
+  note: "Outliner, Selector, Writers, Reviewer"
+}
+
+Index sémantique : II.2 {
+  type: build
+  color: #3498DB
+}
+
+Analyse vision IA : I.8 >> II.2 {
+  type: build
+  color: #3498DB
+}
+
+Outils génériques : III.2 {
+  type: buy
+  note: "Gamma, Beautiful.ai, Pitch"
+}
+
+API Google Slides : IV.0 (buy)
+
+API Google Drive : IV.0 (buy)
+
+LLM via Vertex AI : III.2 >> III.7 (buy)
+
+Google Slides natif : III.8 (buy)
+
+Consultant -> Convaincre le client
+Consultant -> Discours et storytelling
+Consultant -> Brief structuré
+Consultant -> Human-in-the-loop
+
+Client -> Convaincre le client
+
+Convaincre le client -> Présentation de conviction
+Présentation de conviction -> Discours et storytelling
+Présentation de conviction -> Support visuel cohérent
+Présentation de conviction -> Human-in-the-loop
+
+Support visuel cohérent -> Catalogue de slides
+Support visuel cohérent -> Orchestration agentique
+
+Discours et storytelling -> Brief structuré
+Brief structuré -> Orchestration agentique
+
+Orchestration agentique -> Index sémantique
+Orchestration agentique -> LLM via Vertex AI
+Orchestration agentique -> API Google Slides
+Orchestration agentique -> API Google Drive
+
+Index sémantique -> Analyse vision IA
+Index sémantique -> Catalogue de slides
+
+Analyse vision IA -> LLM via Vertex AI
+Analyse vision IA -> Google Slides natif
+
+Catalogue de slides -> Google Slides natif
+
+group Consultant {
+  team: explorer
+  Discours et storytelling
+  Brief structuré
+  Human-in-the-loop
+  Présentation de conviction
+}
+
+group Equipe communication {
+  team: settler
+  color: #27AE60
+  Catalogue de slides
+  Google Slides natif
+}
+
+group agentigslide {
+  team: settler
+  color: #3498DB
+  Orchestration agentique
+  Index sémantique
+  Analyse vision IA
+}
+
+group Infrastructure {
+  team: town-planner
+  color: #95A5A6
+  API Google Slides
+  API Google Drive
+  LLM via Vertex AI
+}
+
+signal co-evolution on Orchestration agentique
+signal accelerating on LLM via Vertex AI
+signal commoditization on API Google Slides
+signal red-queen on Outils génériques
+
+gameplay land-grab "Occuper la niche slides de conviction" on Orchestration agentique
+
+note "Le fossé invisible du système" on Catalogue de slides
+warning "Fenêtre de 12-18 mois" on Outils génériques

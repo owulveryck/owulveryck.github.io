@@ -1,0 +1,51 @@
+@startuml pipeline-multi-agents
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Helvetica
+skinparam RoundCorner 14
+
+rectangle "**Orchestrateur Go**\n(code pur, pas IA)" as orch #0E2356;text:white
+
+rectangle "**Outliner** (Sonnet)\nAnalyse la demande\nsans le catalogue" as outliner #DAF6F9
+
+rectangle "**Selector** (Sonnet)\nMatching besoins/templates\ndans le catalogue" as selector #DAF6F9
+
+rectangle "**Writer Haiku**\n(slides simples)" as w1 #6E7B9A;text:white
+rectangle "**Writer Sonnet**\n(slides complexes)" as w2 #6E7B9A;text:white
+rectangle "**Writer Sonnet**\n(slides complexes)" as w3 #6E7B9A;text:white
+
+rectangle "**Reviewer** (Opus)\nExtended thinking\nBoucle de feedback" as reviewer #00D2DD
+
+rectangle "**Executor**\nGoogle Slides API" as executor #E7E9EE
+
+rectangle "**FormatAgent**\nCorrections deterministes" as formatter #E7E9EE
+
+orch -down-> outliner
+outliner -down-> selector
+
+selector -down-> w1
+selector -down-> w2
+selector -down-> w3
+
+w1 -down-> reviewer
+w2 -down-> reviewer
+w3 -down-> reviewer
+
+reviewer .up.> w1 : feedback
+reviewer .up.> w2 : feedback
+
+reviewer -down-> executor
+executor -down-> formatter
+
+note right of outliner
+  Isole du catalogue
+  pour eviter le biais
+  de disponibilite
+end note
+
+note right of w2
+  Goroutines + semaphore
+  Prompt caching partage
+end note
+
+@enduml

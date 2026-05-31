@@ -1,33 +1,21 @@
-body {
-        font-family: 'Roboto';
-        /*font-size: 0.95em;*/
-        line-height: 1.4;
-}
-p {
-        font-size: 0.95em;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
 .post {
         margin: 0 0.5em 0.5em;
 }
 figure {
         width: 75%;
+        display: block;
+        margin: 0 auto;
 }
 .highlight {
-        font-family: 'Roboto';
-        /*font-size: 0.95em;*/
         font-size: 0.95em;
         line-height: 1;
 }
-
 img {
         display: block;
         margin: 0 auto;
 }
-figure {
-        display: block;
-        margin: 0 auto;
-}
-
 .post .post-content code, .post .post-content pre {
         font-size: .8em;
 }/* Background */ .chroma { color: #f8f8f2; background-color: #272822 }

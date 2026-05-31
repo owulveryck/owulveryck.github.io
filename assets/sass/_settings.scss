@@ -8,7 +8,7 @@
  * Values: 'red', 'pink', 'fuchsia', 'purple', 'violet', 'indigo', 'blue', 'azure', 'cyan',
  * 'jade', 'green', 'lime', 'yellow', 'amber', 'pumpkin', 'orange', 'sand', 'grey', 'zinc', 'slate'
  *------------------------------------------------------------------------**/
-$jane-theme-color: 'grey';
+$jane-theme-color: 'slate';
 
 /**------------------------------------------------------------------------
  *                            Article Max Width
@@ -20,11 +20,11 @@ $article-max-width: 40em;
  *------------------------------------------------------------------------**/
 
 // example import from google fonts
-$logo-font-family: 'Outfit', -apple-system, 'Open Sans', 'Segoe UI', 'Helvetica', Arial, sans-serif;
+$logo-font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
 
-$title-font-family: -apple-system, 'Open Sans', 'Segoe UI', 'Helvetica', Arial, sans-serif;
+$title-font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
 
-$global-font-family: -apple-system,'Open Sans', 'Segoe UI', 'Helvetica', Arial, sans-serif;
+$global-font-family: 'Inter', -apple-system, 'Segoe UI', 'Helvetica', Arial, sans-serif;
 $global-font-size: 18px;
 $global-mobile-font-size: 15px;
 

@@ -3,7 +3,7 @@ title: "L'agentic mesh en pratique : anatomie d'un agent-produit"
 date: 2026-05-31T14:00:00+02:00
 lastmod: 2026-05-31T14:00:00+02:00
 images: [/assets/agentigslide/pipeline-multi-agents.fr.svg]
-draft: true
+draft: false
 keywords: ["agentic mesh", "multi-agent", "Go", "Google Slides", "A2A"]
 summary: "Comment j'ai construit un système multi-agents en Go pour générer des présentations Google Slides à partir de templates préformatés (non pas pour présenter, mais pour convaincre). Retour d'expérience et illustration concrète des principes de l'agentic mesh."
 tags: ["AI", "agents", "architecture", "agentic-mesh", "Go", "retour-experience"]
@@ -19,7 +19,7 @@ mathjax: false
 
 Je suis consultant, et je construis régulièrement des présentations avec Google Slides. Mon équipe communication a créé des dizaines de templates préformatés (des slides pensées pour **convaincre**, pas juste pour présenter). Le problème : choisir les bons slides pour illustrer le bon discours prend du temps, et les remplir mécaniquement n'a aucune valeur ajoutée. J'ai construit un système multi-agents pour automatiser cette partie et me concentrer sur ce qui compte : le discours et l'appropriation.
 
-Ce projet (**agentigslide**) est aussi une application concrète des principes de l'agentic mesh que j'ai décrits dans [l'article précédent](/fr/2026/05/31/lagentic-mesh-automatisation-cognitive-à-léchelle.html). Là-bas, j'ai posé un cadre conceptuel : quatre piliers, une trajectoire en trois temps, des convictions sur ce que devrait être un agent-produit. Ici, je raconte comment ces principes se sont incarnés dans du code réel, des décisions d'architecture documentées par 16 ADR, et un outil qui fonctionne en production.
+Ce projet (**[agentigslide](https://github.com/owulveryck/agentigslide)**) est aussi une application concrète des principes de l'agentic mesh que j'ai décrits dans [l'article précédent](/fr/2026/05/31/lagentic-mesh-automatisation-cognitive-à-léchelle.html). Là-bas, j'ai posé un cadre conceptuel : quatre piliers, une trajectoire en trois temps, des convictions sur ce que devrait être un agent-produit. Ici, je raconte comment ces principes se sont incarnés dans du code réel, des décisions d'architecture documentées par 16 ADR, et un outil qui fonctionne en production.
 
 > **Note.** Cet article a été co-rédigé avec une IA. Je suis le pilote : je déclare les intentions, les idées, et je revois l'ensemble du document. La rédaction à proprement parler (la plume) a été faite par un robot. Mon objectif est de partager ces idées pour ouvrir une discussion, pas d'écrire une master-piece technique qui devienne une référence stylistique. Cette version est conçue pour les humains ; si vous préférez une version adaptée aux IA, le [markdown source](https://raw.githubusercontent.com/owulveryck/owulveryck.github.io/refs/heads/master/content/post/20260601-agentic-mesh-in-practice.fr.md) est disponible.
 

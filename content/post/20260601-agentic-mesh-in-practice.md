@@ -3,7 +3,7 @@ title: "The Agentic Mesh in Practice: Anatomy of an Agent-Product"
 date: 2026-05-31T14:00:00+02:00
 lastmod: 2026-05-31T14:00:00+02:00
 images: [/assets/agentigslide/pipeline-multi-agents.en.svg]
-draft: true
+draft: false
 keywords: ["agentic mesh", "multi-agent", "Go", "Google Slides", "A2A"]
 summary: "How I built a multi-agent system in Go to generate Google Slides presentations from pre-formatted templates (not just to present, but to convince). A hands-on account illustrating the principles of the agentic mesh."
 tags: ["AI", "agents", "architecture", "agentic-mesh", "Go", "experience-report"]
@@ -19,7 +19,7 @@ mathjax: false
 
 I am a consultant, and I regularly build presentations with Google Slides. My communication team has created dozens of pre-formatted templates (slides designed to **convince**, not just to present). The problem: choosing the right slides to illustrate the right narrative takes time, and filling them in mechanically adds no value. I built a multi-agent system to automate that part and focus on what matters: the discourse and the appropriation.
 
-This project (**agentigslide**) is also a concrete application of the agentic mesh principles I described in [the previous article](/2026/05/31/the-agentic-mesh-cognitive-automation-at-scale.html). There, I laid out a conceptual framework: four pillars, a three-phase trajectory, convictions about what an agent-product should be. Here, I tell the story of how these principles materialized in real code, architecture decisions documented through 16 ADRs, and a tool that works in production.
+This project (**[agentigslide](https://github.com/owulveryck/agentigslide)**) is also a concrete application of the agentic mesh principles I described in [the previous article](/2026/05/31/the-agentic-mesh-cognitive-automation-at-scale.html). There, I laid out a conceptual framework: four pillars, a three-phase trajectory, convictions about what an agent-product should be. Here, I tell the story of how these principles materialized in real code, architecture decisions documented through 16 ADRs, and a tool that works in production.
 
 > **Note.** This article was co-written with an AI. I am the pilot: I state the intentions, the ideas, and I review the entire document. The actual writing (the pen) was done by a robot. My goal is to share these ideas to open a discussion, not to write a technical masterpiece that becomes a stylistic reference. This version is designed for humans; if you prefer a version suited for AI consumption, the [markdown source](https://raw.githubusercontent.com/owulveryck/owulveryck.github.io/refs/heads/master/content/post/20260601-agentic-mesh-in-practice.md) is available.
 

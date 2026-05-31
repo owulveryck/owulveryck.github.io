@@ -91,15 +91,15 @@ Le prototype avait rempli son rôle. Il fallait maintenant passer à l'ingénier
 
 ### L'architecture multi-agents
 
-La première décision d'architecture ([ADR 001](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/001-agentic-architecture.md), le 5 mai 2026) a transformé le pipeline monolithique en **quatre agents spécialisés** coordonnés par un orchestrateur en code Go pur (pas d'IA dans l'orchestration).
+La première décision d'architecture ([ADR 001](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/001-agentic-architecture.md), le 5 mai 2026) a transformé le pipeline monolithique en **quatre agents spécialisés** coordonnés par un orchestrateur en code Go pur (pas d'IA dans l'orchestration). C'est le pattern **coordinateur-subagent** (hub-and-spoke) qui est aujourd'hui l'architecture de référence pour les systèmes multi-agents : un coordinateur central décompose la tâche, délègue à des agents spécialisés avec un **contexte isolé**, puis agrège leurs résultats.
 
-**L'Outliner** analyse la demande de l'utilisateur et produit un plan de présentation structuré. Point crucial : il ne reçoit **pas** le catalogue de templates. Cette isolation est délibérée : elle force le raisonnement *"de quoi a-t-on besoin ?"* avant *"qu'a-t-on à disposition ?"*, évitant le biais de disponibilité.
+**L'Outliner** analyse la demande de l'utilisateur et produit un plan de présentation structuré. Point crucial : il ne reçoit **pas** le catalogue de templates. Cette **isolation de contexte** est délibérée : elle force le raisonnement *"de quoi a-t-on besoin ?"* avant *"qu'a-t-on à disposition ?"*, évitant le biais de disponibilité. C'est un principe fondamental des architectures agentiques : les subagents n'héritent pas automatiquement du contexte du coordinateur, chacun ne reçoit que ce dont il a besoin.
 
 **Le Selector** fait le matching entre les besoins identifiés par l'Outliner et les templates disponibles dans le catalogue. Il travaille avec le contexte `itemCount` et `maxItemLength` fourni par l'Outliner pour faire des choix informés.
 
-**Les Writers** génèrent le contenu textuel de chaque slide, en parallèle. Le modèle est sélectionné selon la complexité : **Haiku** pour les slides simples (couverture, intercalaire, ≤ 2 champs), **Sonnet** pour les slides complexes (> 2 champs). L'exécution est en goroutines Go avec un sémaphore configurable.
+**Les Writers** génèrent le contenu textuel de chaque slide, en parallèle. Chaque Writer ne reçoit **qu'un seul outil** (`produce_slide_content`) avec un schéma JSON dynamique généré à partir des champs du template (principe du **scoped tool access** : restreindre les outils au strict nécessaire pour maximiser la fiabilité de sélection). Le modèle est sélectionné selon la complexité : **Haiku** pour les slides simples (≤ 2 champs), **Sonnet** pour les complexes.
 
-**Le Reviewer** valide le plan assemblé avant exécution. Il utilise **Opus avec extended thinking** pour une analyse en profondeur. S'il détecte des problèmes (overflow de texte, duplication, template inadéquat), il renvoie un feedback structuré (`ReviewIssue[]`) aux Writers concernés, qui corrigent et resoumettent (maximum 2 itérations pour borner le coût).
+**Le Reviewer** est une **instance de review indépendante** : il n'a pas le contexte de raisonnement des Writers, il reçoit uniquement le plan assemblé et la requête originale. Ce n'est pas une self-review (où le même modèle valide ses propres choix), c'est un agent séparé qui apporte un regard neuf. Il utilise **Opus avec extended thinking** pour une analyse en profondeur. S'il détecte des problèmes, il renvoie un feedback structuré (`ReviewIssue[]`) via le pattern **retry-with-error-feedback** : les erreurs spécifiques sont injectées dans le prompt du Writer concerné, pas un vague "réessaye" (maximum 2 itérations pour borner le coût).
 
 ![Pipeline multi-agents agentigslide](/assets/agentigslide/pipeline-multi-agents.fr.svg)
 
@@ -108,6 +108,8 @@ C'est le **Temps 2** de l'agentic mesh : *"Chaque sous-agent est spécialisé, u
 ### Pourquoi du code natif et pas des directives
 
 J'aurais pu utiliser Claude Code avec des serveurs MCP, ou l'Agent SDK d'Anthropic. J'ai choisi Go natif, et ce choix illustre la conviction fondatrice de l'agentic mesh : **un agent de production est un produit d'ingénierie logicielle, pas un assemblage de directives**.
+
+La distinction fondamentale est celle entre **enforcement programmatique** et **guidance par prompt**. Le premier offre des garanties déterministes (la validation bloque le pipeline si les templates sélectionnés n'existent pas), le second offre une compliance probabiliste (le modèle suivra les instructions la plupart du temps, mais pas toujours). Quand la non-conformité a des conséquences visibles (une présentation incohérente livrée à un client), l'enforcement programmatique n'est pas optionnel.
 
 | Critère | Go natif | Système sur étagère + directives |
 |---------|----------|----------------------------------|
@@ -122,7 +124,7 @@ L'ingénierie ne se trouve pas seulement dans les outils que l'agent utilise : e
 
 ### Les décisions d'ingénierie documentées par les ADR
 
-Le projet a accumulé **16 Architecture Decision Records** en 4 semaines. Chaque ADR est une décision d'ingénierie délibérée, documentée avec son contexte, ses alternatives évaluées, et ses conséquences. Ce n'est pas de la documentation a posteriori, c'est de la **gouvernance en action**.
+Le projet a accumulé **16 Architecture Decision Records** en 4 semaines. Chaque ADR est une décision d'ingénierie délibérée, documentée avec son contexte, ses alternatives évaluées, et ses conséquences. Ce n'est pas de la documentation a posteriori, c'est de la **gouvernance en action**. Voici les plus significatives, avec le principe agentique qu'elles illustrent :
 
 | ADR | Décision | Concept agentic mesh illustré |
 |-----|----------|-------------------------------|
@@ -142,11 +144,11 @@ Le projet a accumulé **16 Architecture Decision Records** en 4 semaines. Chaque
 
 Dans l'article sur l'agentic mesh, j'ai défini **7 affordances** qu'un agent doit offrir pour être un véritable produit. Voici comment elles se sont incarnées dans agentigslide.
 
-**1. Exposer décisions et actions.** Chaque agent expose ses capacités via un schéma JSON strict imposé par le mécanisme `tool_use` de Claude. Avec l'[ADR 007](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/007-a2a-architecture.md), chaque agent expose aussi une **Agent Card** A2A (un manifeste auto-descriptif publié sur `/.well-known/agent-card.json`).
+**1. Exposer décisions et actions.** Chaque agent expose ses capacités via un schéma JSON strict imposé par le mécanisme `tool_use` de Claude avec `tool_choice` forcé (le modèle *doit* appeler l'outil spécifié, éliminant les réponses textuelles parasites). Avec l'[ADR 007](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/007-a2a-architecture.md), chaque agent expose aussi une **Agent Card** A2A (un manifeste auto-descriptif publié sur `/.well-known/agent-card.json`).
 
 **2. Consommer du contexte.** Les agents consomment trois types de contexte : l'index sémantique du catalogue (construit une fois, réutilisé à chaque génération), les instructions spécifiques au template (un fichier `PROMPT.md` optionnel), et les fichiers mémoire issus des exécutions précédentes.
 
-**3. Raisonner et décider.** C'est le cœur du produit : Haiku pour les tâches simples, Sonnet pour les complexes, Opus avec extended thinking pour la review. Les prompts sont externalisés via `go:embed` et versionnés avec le code. La boucle Reviewer → Writer est une chaîne de raisonnement structurée, pas une conversation.
+**3. Raisonner et décider.** C'est le cœur du produit : Haiku pour les tâches simples, Sonnet pour les complexes, Opus avec extended thinking pour la review. Les prompts sont externalisés via `go:embed` et versionnés avec le code. La boucle Reviewer → Writer est un **prompt chaining** structuré (la sortie d'une étape devient l'entrée de la suivante avec validation programmatique entre chaque étape), pas une conversation ouverte.
 
 **4. Être découvrable.** L'Outliner est déjà déployé comme serveur A2A autonome (`cmd/outliner/main.go`). L'[ADR 014](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/014-agent-pipeline-registry.md) a proposé un pattern de registre d'agents pour la composition dynamique.
 
@@ -154,7 +156,7 @@ Dans l'article sur l'agentic mesh, j'ai défini **7 affordances** qu'un agent do
 
 **6. Tracer les décisions.** Chaque agent rapporte ses tokens (input, output, cache read, cache creation), sa durée, et un issue log complet. L'extended thinking du Reviewer est tracé. Le FormatAgent ([ADR 016](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/016-format-agent.md)) journalise chaque correction déterministe appliquée.
 
-**7. Être gouvernable.** `MaxReviewRetries` borne les itérations de correction. `enforceMaxChars()` est un filet de sécurité programmatique (*trust but verify*). La mémoire d'agent ([ADR 015](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/015-agent-memory-learning.md)) est validée par l'humain avant écriture : l'agent propose des guidelines, l'utilisateur confirme.
+**7. Être gouvernable.** `MaxReviewRetries` borne les itérations de correction. `enforceMaxChars()` agit comme un **hook post-exécution** : il intercepte la sortie des Writers et tronque les champs qui dépassent la limite du template, fournissant une garantie déterministe que le prompt seul ne peut offrir (*trust but verify*). La mémoire d'agent ([ADR 015](https://github.com/owulveryck/agentigslide/blob/main/docs/adr/015-agent-memory-learning.md)) est validée par l'humain avant écriture : l'agent propose des guidelines, l'utilisateur confirme.
 
 ---
 

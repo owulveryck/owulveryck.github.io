@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="{{ "css/print.css" | relURL }}" media="print">
+<script src="{{ "js/print-footnotes.js" | relURL }}" defer></script>
+<style>
+.print-header, .print-footer {
+  display: none;
+}
+@media print {
+  header.site-header,
+  footer#footer,
+  .site-header,
+  .site-footer,
+  .desktop-header,
+  .mobile-header,
+  .mobile-navbar,
+  .mobile-menu,
+  .mobile-menu-close-modal,
+  .sidebar,
+  #back-to-top,
+  nav.toc,
+  #toc,
+  .post-nav,
+  .post-tags,
+  .post-copyright,
+  .post-reward,
+  .post-title-i18n,
+  .comments,
+  .author-info,
+  .social-icon-links,
+  .icon-links,
+  .theme-toggle,
+  .iconfont,
+  .hi-svg-inline,
+  .post-footer {
+    display: none !important;
+  }
+
+  #content {
+    display: table-row-group !important;
+  }
+}
+</style>

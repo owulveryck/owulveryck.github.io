@@ -102,7 +102,7 @@ uglyURLs=true
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  customCSS = ['custom.css']
+  customCSS = []
   customJS = []             # if ['custom.js'], load '/static/js/custom.js' file
   [params.author]
   name = "Olivier Wulveryck"

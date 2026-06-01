@@ -200,3 +200,12 @@ button.theme-toggle {
     scroll-behavior: auto !important;
   }
 }
+
+.mobile-menu {
+  transition: width 0.5s;
+}
+
+.mobile-menu-close-modal {
+  height: 100vh;
+  height: 100dvh;
+}

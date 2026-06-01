@@ -29,7 +29,7 @@ jobs:
       - name: Sync fingerprinted assets (immutable cache)
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --acl public-read --follow-symlinks --cache-control "public, max-age=31536000, immutable" --exclude "*" --include "css/style.min.*.css" --include "js/main.*.js"
+          args: --acl public-read --follow-symlinks --cache-control "public, max-age=31536000, immutable" --exclude "*" --include "css/*.*.css" --include "js/*.*.js" --include "fonts/*.woff2"
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

@@ -1,3 +1,6 @@
-<link rel="stylesheet" href="{{ "css/print.css" | relURL }}" media="print">
-<script src="{{ "js/print-footnotes.js" | relURL }}" defer></script>
-<script src="{{ "js/lightbox.js" | relURL }}" defer></script>
+{{ $print := resources.Get "css/print.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $print.RelPermalink }}" integrity="{{ $print.Data.Integrity }}" media="print" crossorigin="anonymous">
+{{ $printFn := resources.Get "js/print-footnotes.js" | minify | fingerprint }}
+<script src="{{ $printFn.RelPermalink }}" integrity="{{ $printFn.Data.Integrity }}" defer></script>
+{{ $lightbox := resources.Get "js/lightbox.js" | minify | fingerprint }}
+<script src="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}" defer></script>

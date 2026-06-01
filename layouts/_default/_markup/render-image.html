@@ -46,29 +46,38 @@
 
   {{- if gt (len $sizes) 0 -}}
     {{- /* Build srcset strings */ -}}
+    {{- $avifSrcset := slice -}}
     {{- $webpSrcset := slice -}}
     {{- $origSrcset := slice -}}
     {{- range $w := $sizes -}}
       {{- $resized := $img.Resize (printf "%dx" $w) -}}
+      {{- $resizedAvif := $img.Resize (printf "%dx avif" $w) -}}
       {{- $resizedWebp := $img.Resize (printf "%dx webp" $w) -}}
       {{- $origSrcset = $origSrcset | append (printf "%s %dw" $resized.RelPermalink $w) -}}
+      {{- $avifSrcset = $avifSrcset | append (printf "%s %dw" $resizedAvif.RelPermalink $w) -}}
       {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" $resizedWebp.RelPermalink $w) -}}
     {{- end -}}
     {{- /* Add original size too */ -}}
+    {{- $avifFull := $img.Process "avif" -}}
     {{- $webpFull := $img.Process "webp" -}}
+    {{- $avifSrcset = $avifSrcset | append (printf "%s %dw" $avifFull.RelPermalink $origW) -}}
     {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" $webpFull.RelPermalink $origW) -}}
     {{- $origSrcset = $origSrcset | append (printf "%s %dw" $img.RelPermalink $origW) -}}
+    {{- $sizes := "(max-width: 768px) calc(100vw - 2rem), min(800px, 40em)" -}}
     <picture>
-      <source type="image/webp" srcset="{{ delimit $webpSrcset ", " }}" sizes="(max-width: 768px) 100vw, 800px">
-      <source srcset="{{ delimit $origSrcset ", " }}" sizes="(max-width: 768px) 100vw, 800px">
+      <source type="image/avif" srcset="{{ delimit $avifSrcset ", " }}" sizes="{{ $sizes }}">
+      <source type="image/webp" srcset="{{ delimit $webpSrcset ", " }}" sizes="{{ $sizes }}">
+      <source srcset="{{ delimit $origSrcset ", " }}" sizes="{{ $sizes }}">
       <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
         {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
         {{- with $.Title }} title="{{ . }}"{{ end }} />
     </picture>
   {{- else -}}
-    {{- /* Image too small for responsive variants, just do WebP */ -}}
+    {{- /* Image too small for responsive variants, just do AVIF/WebP */ -}}
+    {{- $avif := $img.Process "avif" -}}
     {{- $webp := $img.Process "webp" -}}
     <picture>
+      <source type="image/avif" srcset="{{ $avif.RelPermalink }}">
       <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
       <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
         {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"

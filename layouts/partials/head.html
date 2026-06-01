@@ -1,3 +1,9 @@
+<script>
+  (function () {
+    var savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>
@@ -82,14 +88,6 @@
 <script>eruda.init();</script>
 {{- end }}
 
-<!-- Resource hints -->
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Google Fonts -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-
 <!-- Jane theme main style -->
 {{ $styleOpts := dict "transpiler" "dartsass" "targetPath" "css/style.css" "vars" site.Params.style}}
 {{ $style := resources.Get "sass/jane.scss" | toCSS $styleOpts | minify | fingerprint }}
@@ -126,10 +124,3 @@
 <!-- Custom head -->
 {{ partial "custom_head.html" . }}
 
-{{/* init theme */}}
-<script>
-  (function () {
-    var savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  })();
-</script>

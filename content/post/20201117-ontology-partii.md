@@ -174,7 +174,7 @@ schema:object1 schema:otherPredicate schema:object2 .
 
 Would lead to the following graph:
 
-![](/assets/ontology/graph1.svg)
+![Directed graph with subject linked to objects via predicates](/assets/ontology/graph1.svg)
 
 This indicates a choice I’ve made: I want to produce a graph where its node corresponds to a subject declared **inside** the triplestore. 
 Therefore, in the example, _object2_ is not a node because it is not defined as a subject to a sentence. It is relatively easy to change this behavior and reference other nodes, but let’s keep that apart.
@@ -359,9 +359,9 @@ This prints the following output:
 
 If we check on schema.org's website ([https://schema.org/PostalAddress](https://schema.org/PostalAddress)), we find those elements but in two different tables:
 
-![](/assets/ontology/schemaorg1.png)
+![Schema.org PostalAddress type documentation showing properties and expected types](/assets/ontology/schemaorg1.png)
 
-![](/assets/ontology/schemaorg2.png)
+![Schema.org table showing which types use PostalAddress as a property value](/assets/ontology/schemaorg2.png)
 
 Remember, we are dealing with ontology; therefore, the link has a meaning. And this meaning has been set as an attribute of the edge. If we tweak the code to display the edge like this:
 

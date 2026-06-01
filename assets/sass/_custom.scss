@@ -1,0 +1,132 @@
+// Focus styles for elements outside PicoCSS scope
+.desktop-header a:focus-visible,
+.mobile-menu a:focus-visible,
+#mobile-navbar-icon:focus-visible,
+.theme-toggle:focus-visible,
+.footer a:focus-visible {
+  outline: 2px solid var(--jane-theme-color, #4a90d9);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+#lightbox-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+// Skip-to-content link
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100000;
+  padding: 0.5rem 1rem;
+  background: var(--jane-theme-color, #4a90d9);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// Visually hidden utility for screen readers
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Lightbox styles (moved from inline in custom_head.html)
+.post-content img {
+  cursor: zoom-in;
+}
+
+#lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    display: flex;
+  }
+}
+
+#lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fff;
+  padding: 1rem;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+
+  &:hover {
+    color: #ccc;
+  }
+}
+
+// Print overrides
+.print-header,
+.print-footer {
+  display: none;
+}
+
+@media print {
+  header.site-header,
+  footer#footer,
+  .site-header,
+  .site-footer,
+  .desktop-header,
+  .mobile-header,
+  .mobile-navbar,
+  .mobile-menu,
+  .mobile-menu-close-modal,
+  .sidebar,
+  #back-to-top,
+  nav.toc,
+  #toc,
+  .post-nav,
+  .post-tags,
+  .post-copyright,
+  .post-reward,
+  .post-title-i18n,
+  .comments,
+  .author-info,
+  .social-icon-links,
+  .icon-links,
+  .theme-toggle,
+  .iconfont,
+  .hi-svg-inline,
+  .post-footer {
+    display: none !important;
+  }
+
+  #content {
+    display: table-row-group !important;
+  }
+}

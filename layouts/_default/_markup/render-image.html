@@ -1,0 +1,90 @@
+{{- $alt := .Text -}}
+{{- $src := .Destination -}}
+{{- if not $alt }}{{ warnf "Image %q in %s has no alt text" $src .Page.File.Path }}{{ end -}}
+
+{{- /* Track image index per page: first image gets fetchpriority=high, rest get lazy */ -}}
+{{- $imgIndex := .Page.Store.Get "imageIndex" | default 0 -}}
+{{- .Page.Store.Set "imageIndex" (add $imgIndex 1) -}}
+{{- $isFirst := eq $imgIndex 0 -}}
+
+{{- /* Try to find the image as a Hugo resource for processing */ -}}
+{{- $img := resources.Get "" -}}
+
+{{- /* Images referenced as /assets/foo.png → try content-images/foo.png (module mount) */ -}}
+{{- if hasPrefix $src "/assets/" -}}
+  {{- with resources.Get (printf "content-images/%s" (strings.TrimPrefix "/assets/" $src)) -}}
+    {{- $img = . -}}
+  {{- else -}}
+    {{- with resources.Get (strings.TrimPrefix "/" $src) -}}
+      {{- $img = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $isSvg := false -}}
+{{- $isWebp := false -}}
+{{- if $img -}}
+  {{- $isSvg = in (slice "svg" "svg+xml") $img.MediaType.SubType -}}
+  {{- $isWebp = eq $img.MediaType.SubType "webp" -}}
+{{- end -}}
+
+{{- $canProcess := and $img (not $isSvg) (not $isWebp) -}}
+
+{{- if $canProcess -}}
+  {{- /* Generate responsive sizes + WebP variants */ -}}
+  {{- $origW := $img.Width -}}
+  {{- $sizes := slice -}}
+  {{- if ge $origW 480 -}}
+    {{- $sizes = $sizes | append 480 -}}
+  {{- end -}}
+  {{- if ge $origW 800 -}}
+    {{- $sizes = $sizes | append 800 -}}
+  {{- end -}}
+  {{- if ge $origW 1200 -}}
+    {{- $sizes = $sizes | append 1200 -}}
+  {{- end -}}
+
+  {{- if gt (len $sizes) 0 -}}
+    {{- /* Build srcset strings */ -}}
+    {{- $webpSrcset := slice -}}
+    {{- $origSrcset := slice -}}
+    {{- range $w := $sizes -}}
+      {{- $resized := $img.Resize (printf "%dx" $w) -}}
+      {{- $resizedWebp := $img.Resize (printf "%dx webp" $w) -}}
+      {{- $origSrcset = $origSrcset | append (printf "%s %dw" $resized.RelPermalink $w) -}}
+      {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" $resizedWebp.RelPermalink $w) -}}
+    {{- end -}}
+    {{- /* Add original size too */ -}}
+    {{- $webpFull := $img.Process "webp" -}}
+    {{- $webpSrcset = $webpSrcset | append (printf "%s %dw" $webpFull.RelPermalink $origW) -}}
+    {{- $origSrcset = $origSrcset | append (printf "%s %dw" $img.RelPermalink $origW) -}}
+    <picture>
+      <source type="image/webp" srcset="{{ delimit $webpSrcset ", " }}" sizes="(max-width: 768px) 100vw, 800px">
+      <source srcset="{{ delimit $origSrcset ", " }}" sizes="(max-width: 768px) 100vw, 800px">
+      <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
+        {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
+        {{- with $.Title }} title="{{ . }}"{{ end }} />
+    </picture>
+  {{- else -}}
+    {{- /* Image too small for responsive variants, just do WebP */ -}}
+    {{- $webp := $img.Process "webp" -}}
+    <picture>
+      <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+      <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
+        {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
+        {{- with $.Title }} title="{{ . }}"{{ end }} />
+    </picture>
+  {{- end -}}
+{{- else if and $img (not $isSvg) -}}
+  <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
+    {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
+    {{- with $.Title }} title="{{ . }}"{{ end }} />
+{{- else if $img -}}
+  <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}"
+    {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
+    {{- with $.Title }} title="{{ . }}"{{ end }} />
+{{- else -}}
+  <img src="{{ $src }}" alt="{{ $alt }}"
+    {{- if $isFirst }} fetchpriority="high"{{ else }} loading="lazy"{{ end }} decoding="async"
+    {{- with $.Title }} title="{{ . }}"{{ end }} />
+{{- end -}}

@@ -119,7 +119,7 @@ Le problème que je rencontre lors de la conception d'une carte avec un outil ba
 
 Le problème principal est avec l'axe vertical... qui n'est pas un axe :
 
-![](/assets/images/wardley_axis.png)
+![Tweet by Simon Wardley explaining that a Wardley Map has only one axis](/assets/images/wardley_axis.png)
 [source](https://twitter.com/swardley/status/1237707981116055552)
 
 De plus, l'axe d'évolution est décomposé en 4 étapes, et placer les composants sur une certaine étape nécessite l'utilisation de notre _système 2_ (comme décrit dans le livre ["_Système 1 / Système 2 : Les deux vitesses de la pensée_" par Daniel Kahneman](https://fr.wikipedia.org/wiki/Syst%C3%A8me_1_/_Syst%C3%A8me_2_:_Les_deux_vitesses_de_la_pens%C3%A9e))
@@ -164,7 +164,7 @@ a --- d
 
 signifie ceci :
 
-![](/assets/images/simplevc.svg)
+![Simple Wardley Map with four linked components labeled a, b, c, and d](/assets/images/simplevc.svg)
 
 _Notez_ que le placement horizontal est, pour l'instant, sans signification
 
@@ -223,6 +223,6 @@ Une fonctionnalité intéressante que j'aimerais voir à l'avenir est la possibi
 
 En conclusion, voici une simple carte qui tente de résumer les idées exposées dans ce post :
 
-![](/assets/images/wardleyToGo.svg)
+![Wardley Map showing wardleyToGo project components including parser and renderer](/assets/images/wardleyToGo.svg)
 
 Vous pouvez jouer avec la carte en suivant [ce lien](https://owulveryck.github.io/wardleyToGo/demo/?url=https://raw.githubusercontent.com/owulveryck/wardleyToGo/main/docs/content/en/illustration.wtg)

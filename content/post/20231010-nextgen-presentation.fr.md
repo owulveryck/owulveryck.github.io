@@ -90,7 +90,7 @@ Je peux aller plus loin en remplaçant les diapositives traditionnelles par des 
 
 Je peux inciter le public à réagir et adapter le dessin, favorisant l'apprentissage actif.
 
-![](/assets/present_looped.webp)
+![Animated loop of a live presentation with hand-drawn diagrams](/assets/present_looped.webp)
 
 ### Les compromis
 

@@ -176,7 +176,7 @@ schema:object1 schema:otherPredicate schema:object2 .
 
 Cela conduirait au graphe suivant :
 
-![](/assets/ontology/graph1.svg)
+![Directed graph with subject linked to objects via predicates](/assets/ontology/graph1.svg)
 
 Cela indique un choix que j'ai fait : je veux produire un graphe où son nœud correspond à un sujet déclaré **à l'intérieur** du triplestore.
 Par conséquent, dans l'exemple, _object2_ n'est pas un nœud car il n'est pas défini comme sujet d'une phrase. Il est relativement facile de changer ce comportement et de référencer d'autres nœuds, mais laissons cela de côté.
@@ -361,9 +361,9 @@ Cela imprime la sortie suivante :
 
 Si nous vérifions sur le site web de schema.org ([https://schema.org/PostalAddress](https://schema.org/PostalAddress)), nous trouvons ces éléments mais dans deux tableaux différents :
 
-![](/assets/ontology/schemaorg1.png)
+![Schema.org PostalAddress type documentation showing properties and expected types](/assets/ontology/schemaorg1.png)
 
-![](/assets/ontology/schemaorg2.png)
+![Schema.org table showing which types use PostalAddress as a property value](/assets/ontology/schemaorg2.png)
 
 Rappelez-vous, nous traitons avec l'ontologie ; par conséquent, le lien a une signification. Et cette signification a été définie comme un attribut de l'arête. Si nous modifions le code pour afficher l'arête comme ceci :
 

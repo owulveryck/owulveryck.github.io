@@ -77,7 +77,7 @@ Pour transformer une API en plugin, vous devez fournir deux fichiers :
 Le format du manifeste est important car, outre la sérialisation en JSON, le format est contraint.
 Par exemple, le champ `name_for_model` ne doit pas contenir d'espace et doit être limité à 50 caractères maximum.
 
-![](/assets/gpt/gpt.png)
+![Sequence diagram showing interactions between User, ChatGPT, and Plugin](/assets/gpt/gpt.png)
 
 ### Tuyauterie Golang
 
@@ -368,7 +368,7 @@ donnera le résultat.
 
 Je suis heureux d'avoir conçu wardleyToGo comme un SDK, maintenant, pour moi, le ciel est la limite !
 
-![](/assets/gpt/gpt-evolution-result.png)
+![ChatGPT conversation generating Wardley evolution maps for Kubernetes and Data Mesh](/assets/gpt/gpt-evolution-result.png)
 
 Références :
 

@@ -205,7 +205,7 @@ So far, so good... You notice that I did not specify any output format, I will l
 The remaining work involves integrating all the components. I created a generic `MCPServerTool` structure on the host, which registers a tool configurable via the `MCP_SERVER` environment variable.
 
 Here is the final schema of the code:
-![](/assets/mcp/diagram.png)
+![Architecture diagram showing client, API gateway, MCP server, and LLM data flow](/assets/mcp/diagram.png)
 
 The result, as you might have guessed, is that the initial dialog is now an actual conversation I conduct with the agent.
 

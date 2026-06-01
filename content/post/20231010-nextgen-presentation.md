@@ -88,7 +88,7 @@ I can take it a step further by replacing traditional slides with elements store
 
 I can prompt the audience to react and adapt the drawing, fostering active learning.
 
-![](/assets/present_looped.webp)
+![Animated loop of a live presentation with hand-drawn diagrams](/assets/present_looped.webp)
 
 ### The Trade-offs
 

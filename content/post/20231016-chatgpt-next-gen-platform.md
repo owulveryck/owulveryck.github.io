@@ -64,7 +64,7 @@ The aim is to find suitable attire within budget, and purchase it from a nearby 
 Here's where an LLM-powered assistant like ChatGPT comes into play.
 The assistant, leveraging a network of digital platforms, can help identify clothing options, compare prices, and locate a nearby store, all while ensuring the user stays within budget and timeline.
 
-![](/assets/chatgpt-platform-illustration_small.png)
+![Person using smartphone next to humanoid robot with digital icons](/assets/chatgpt-platform-illustration_small.png)
 
 ### Rationale
 With my colleague [Nicolas](https://www.linkedin.com/in/nicolasgutierrez/), we conducted the exercise to create a (Wardley) map for this need.
@@ -72,7 +72,7 @@ The fundamental requirement is about finding a good.
 Given Nicolas's background in knowledge graphs and semantic search, we initially explored how these elements could address the use-case.
 Subsequently, we considered the potential role of personal assistants in this context.
 Below is the resulting map:
-![](/assets/chatgpt-kg.png)
+![Wardley Map plotting LLM, search engine, and catalog components by evolution](/assets/chatgpt-kg.png)
 
 We then asked: Does the LLM need to be in-house for the retailer, or can it operate independently using the data provided by the retailer?
 The colors indicate the components owned by the retailer (note, I am not necessarily stating they should remain in-house, especially the commodities).
@@ -119,7 +119,7 @@ Taking Apple's example from the HBR paper, the **App Store platform** facilitate
 It shifts from mass production linked to mass consumption to distributed production connected to personalized consumption.
 The platform provides an interface easing the onboarding of new producers while also ensuring **governance** by implementing rules for both producers and consumers, ensuring, for example, that App Store applications are safe for users.
 
-![](/assets/platform_pipeline.png)
+![Platform ecosystem diagram showing producers, consumers, and governance](/assets/platform_pipeline.png)
 
 ### The platform for LLM? 
 
@@ -150,7 +150,7 @@ This might necessitate a thorough comprehension of the platform's foundational w
 
 ## Conclusion:
 
-![](/assets/chatgpt-platform_small.webp)
+![Wardley Map of ChatGPT as a platform with LLM and plugin ecosystem](/assets/chatgpt-platform_small.webp)
 
 The advent of LLM-powered personal assistants like ChatGPT heralds a new era in the platform economy, merging the digital and physical realms in a user-centric ecosystem.
 

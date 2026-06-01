@@ -117,7 +117,7 @@ The problem I face when designing a map with a tool based on Euclidean represent
 
 The main issue is with the vertical axis... which is not an axis:
 
-![](/assets/images/wardley_axis.png)
+![Tweet by Simon Wardley explaining that a Wardley Map has only one axis](/assets/images/wardley_axis.png)
 [source](https://twitter.com/swardley/status/1237707981116055552)
 
 On top of that, the evolution axis is decomposed into 4 stages, and placing the components on a certain stage requires the use of our _system 2_ (as described in the book ["_thinking fast and slow_" by Daniel Kahneman](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow))
@@ -162,7 +162,7 @@ a --- d
 
 means that this:
 
-![](/assets/images/simplevc.svg)
+![Simple Wardley Map with four linked components labeled a, b, c, and d](/assets/images/simplevc.svg)
 
 _Note_ that the horizontal placement is, by now, meaningless
 
@@ -221,7 +221,7 @@ A nice feature I'd like to see in the future is the ability to group some elemen
 
 In conclusion, here is a simple map that tries to summarize the ideas exposed in this post:
 
-![](/assets/images/wardleyToGo.svg)
+![Wardley Map showing wardleyToGo project components including parser and renderer](/assets/images/wardleyToGo.svg)
 
 You can play with the map by following [this link](https://owulveryck.github.io/wardleyToGo/demo/?url=https://raw.githubusercontent.com/owulveryck/wardleyToGo/main/docs/content/en/illustration.wtg)
 

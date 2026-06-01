@@ -20,7 +20,7 @@ Le moteur devrait être suffisamment extensible pour générer n'importe quel ra
 
 | schema.org | notre implémentation (localhost) |
 |-|-|
-| ![](/assets/ontology/schemaorg1.png) | ![](/assets/ontology/schemaorg_olwu.png) | 
+| ![Schema.org PostalAddress type documentation showing properties and expected types](/assets/ontology/schemaorg1.png) | ![Extended Schema.org property table listing PostalAddress and ContactPoint fields](/assets/ontology/schemaorg_olwu.png) | 
 
 **Attention:** la solution est une preuve de concept, son implémentation fonctionne mais n'est pas à toute épreuve. Certains tests la rendraient plus sûre à utiliser, et un TDD influencerait la conception du package. Considérez-le comme un code à des fins éducatives uniquement.
 
@@ -326,7 +326,7 @@ curl -s https://schema.org/version/latest/schemaorg-current-http.ttl | go run ma
 
 Ensuite, pointez votre navigateur vers "http://localhost:8080/PostalAddress" et vous devriez obtenir quelque chose qui ressemble à ceci :
 
-![](/assets/ontology/schemaorg_olwu.png)
+![Extended Schema.org property table listing PostalAddress and ContactPoint fields](/assets/ontology/schemaorg_olwu.png)
 
 ## Conclusion
 

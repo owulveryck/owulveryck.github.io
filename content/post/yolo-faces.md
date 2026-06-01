@@ -42,7 +42,7 @@ On the technical side, I am using the following technologies:
 ### Overall picture 
 
 Those layers can represent the architecture of the tool:
-![](/assets/yolofaces/archi1.png)
+![Three-layer architecture diagram with application, domain neural net, and infrastructure](/assets/yolofaces/archi1.png)
 
 The basic principle is that every layer is a "closed area"; therefore, it is accessible through API, and every layer is testable independently.
 Different paragraphs of this post describe each layer.
@@ -155,7 +155,7 @@ onnx.save(onnx_model, '../FACES/yolo.onnx')
 It is interesting to visualize the result of the conversion. I am using the tool `netron` which have a [web version](https://lutzroeder.github.io/netron/).
 
 Here is an extract of the picture it generates:
-![](/assets/yolofaces/netron-extract.png)
+![Netron visualization of an ONNX neural network with convolution layers](/assets/yolofaces/netron-extract.png)
 
 I made a copy of the full representation [here](/assets/yolofaces/netron.png) if you want to see how the model looks.
 
@@ -243,7 +243,7 @@ fmt.Println(string(b))
 
 (the full graph is [here](/assets/yolofaces/yolo-gorgonia.))
 
-![](/assets/yolofaces/onnx-gorgonia-preview.png)
+![Computational graph showing ONNX model operations including convolution nodes](/assets/yolofaces/onnx-gorgonia-preview.png)
 
 The infrastructure is ok, and is implementing the SPI! Let's move to the application part!
 
@@ -311,7 +311,7 @@ The repository is composed of:
 
 ## Example 
 I am using a famous meme as input.
-![](/assets/yolofaces/meme.jpg)
+![Distracted boyfriend meme used as test image for face detection](/assets/yolofaces/meme.jpg)
 
 ```shell
 cd $GOPATH/src/github.com/owulveryck/gofaces/cmd
@@ -351,8 +351,8 @@ convert \
         -compose over -composite /tmp/result2.png
 ```
 
-![](/assets/yolofaces/mask2.png)
-![](/assets/yolofaces/result2.png)
+![Two face detection bounding boxes with 100% confidence labels](/assets/yolofaces/mask2.png)
+![Face detection results with colored bounding boxes on the meme image](/assets/yolofaces/result2.png)
 
 # Conclusion
 

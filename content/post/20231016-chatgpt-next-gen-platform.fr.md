@@ -65,7 +65,7 @@ L'objectif est de trouver des vêtements appropriés dans le budget, et de les a
 C'est là qu'un assistant alimenté par un LLM comme ChatGPT entre en jeu.
 L'assistant, exploitant un réseau de plateformes numériques, peut aider à identifier les options de vêtements, comparer les prix et localiser un magasin à proximité, tout en s'assurant que l'utilisateur reste dans les limites du budget et du calendrier.
 
-![](/assets/chatgpt-platform-illustration_small.png)
+![Person using smartphone next to humanoid robot with digital icons](/assets/chatgpt-platform-illustration_small.png)
 
 ### Raisonnement
 Avec mon collègue [Nicolas](https://www.linkedin.com/in/nicolasgutierrez/), nous avons effectué l'exercice de créer une carte (Wardley) pour ce besoin.
@@ -73,7 +73,7 @@ Le besoin fondamental concerne la recherche d'un bien.
 Étant donné l'expérience de Nicolas en graphes de connaissances et en recherche sémantique, nous avons d'abord exploré comment ces éléments pourraient répondre au cas d'utilisation.
 Par la suite, nous avons considéré le rôle potentiel des assistants personnels dans ce contexte.
 Voici la carte qui en résulte :
-![](/assets/chatgpt-kg.png)
+![Wardley Map plotting LLM, search engine, and catalog components by evolution](/assets/chatgpt-kg.png)
 
 Nous nous sommes alors demandé : Le LLM doit-il être en interne pour le détaillant, ou peut-il fonctionner de manière indépendante en utilisant les données fournies par le détaillant ?
 Les couleurs indiquent les composants appartenant au détaillant (notez que je ne dis pas nécessairement qu'ils doivent rester en interne, en particulier les produits de base).
@@ -120,7 +120,7 @@ Prenant l'exemple d'Apple dans l'article HBR, la **plateforme App Store** facili
 Elle passe de la production de masse liée à la consommation de masse à la production distribuée connectée à la consommation personnalisée.
 La plateforme fournit une interface facilitant l'intégration de nouveaux producteurs tout en assurant également la **gouvernance** en mettant en œuvre des règles pour les producteurs et les consommateurs, assurant, par exemple, que les applications de l'App Store sont sûres pour les utilisateurs.
 
-![](/assets/platform_pipeline.png)
+![Platform ecosystem diagram showing producers, consumers, and governance](/assets/platform_pipeline.png)
 
 ### La plateforme pour LLM ? 
 
@@ -151,7 +151,7 @@ Cela pourrait nécessiter une compréhension approfondie du fonctionnement fonda
 
 ## Conclusion :
 
-![](/assets/chatgpt-platform_small.webp)
+![Wardley Map of ChatGPT as a platform with LLM and plugin ecosystem](/assets/chatgpt-platform_small.webp)
 
 L'avènement des assistants personnels alimentés par les LLM comme ChatGPT annonce une nouvelle ère dans l'économie de plateforme, fusionnant les domaines numériques et physiques dans un écosystème centré sur l'utilisateur.
 

@@ -38,7 +38,7 @@ In a second part, I will expose some considerations to use C4 at scale and expos
 
 Therefore, this article is about an evolution from _making it efficient_ toward _make c4 ambient_.
 
-![](/assets/images/evolution.png)
+![Evolution axis showing stages from make it work to ambient](/assets/images/evolution.png)
 
 ## Part I - Working in a single context: toward efficiency
 
@@ -148,14 +148,14 @@ In simple terms, these tags act as markers to highlight any changes or transform
 For example, you can use tags to indicate when a component is slated for removal or when it will undergo a transformation. 
 By using these tags, you can effectively communicate the future state of the system or its components, providing a clearer understanding of the system's life cycle and evolution.
 
-![](/assets/images/c4_tags.png)
+![C4 diagram of a sample system with administrator and Go web application](/assets/images/c4_tags.png)
 
 In this case, tags are specifics and are relative to the context of the current diagram. Therefore they can be declared in the same codebase / packages.
 
 But some other elements needs tags that are standardized, therefore, a good practice is to declare them in their own package and make it available to the wild.
 This is an example with [Team Topologies](https://github.com/owulveryck/cue4puml4c4/tree/main/tags/teamtopologies).
 
-![](/assets/images/c4_tt.png)
+![C4 team topology diagram showing four teams with Java, YAML, and Kubernetes](/assets/images/c4_tt.png)
 
 ### Applying the DevOps practices
 
@@ -231,7 +231,7 @@ As it is a big area and I want to stay pragmatic in this article, let's focus on
 
 Remember:
 
-![](/assets/images/evolution.png)
+![Evolution axis showing stages from make it work to ambient](/assets/images/evolution.png)
 
 ### From convention to model: enforcing best practices
 

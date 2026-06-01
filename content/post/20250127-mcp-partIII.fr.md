@@ -211,7 +211,7 @@ Tout fonctionne bien jusqu’ici... Vous remarquez que je n’ai spécifié aucu
 Le travail restant consiste à intégrer tous les composants. J’ai créé une structure générique `MCPServerTool` côté hôte, qui enregistre un outil configurable via la variable d’environnement `MCP_SERVER`.
 
 Voici le schéma final du code :  
-![](/assets/mcp/diagram.png)
+![Architecture diagram showing client, API gateway, MCP server, and LLM data flow](/assets/mcp/diagram.png)
 
 Le résultat, comme vous pouvez l’imaginer, est que le dialogue initial est maintenant une véritable conversation que je mène avec l’agent.
 

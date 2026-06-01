@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default `en` }}" itemscope itemtype="http://schema.org/WebPage" data-theme="light">
+
+<head>
+  {{ partial "head.html" . }}
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="back-to-top"></div>
+
+  <header aria-label="Site header">
+    {{ partial "desktop_header.html" . }}
+    {{ partial "mobile_header.html" . }}
+  </header>
+
+  <main id="main" class="main pico container">
+    {{ block "content" . }}{{ end }}
+  </main>
+
+  <footer id="footer" class="footer">
+    {{ partial "footer.html" . }}
+  </footer>
+
+  {{ partial "scripts.html" . }}
+</body>
+
+</html>

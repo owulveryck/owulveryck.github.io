@@ -18,7 +18,7 @@ At the end of the post, we eventually build a basic webserver that similarly pre
 
 | schema.org | our implementation (localhost) |
 |-|-|
-| ![](/assets/ontology/schemaorg1.png) | ![](/assets/ontology/schemaorg_olwu.png) | 
+| ![Schema.org PostalAddress type documentation showing properties and expected types](/assets/ontology/schemaorg1.png) | ![Extended Schema.org property table listing PostalAddress and ContactPoint fields](/assets/ontology/schemaorg_olwu.png) | 
 
 **Caution:** the solution is a proof of concept, its implementation works but is not bulletproof. Some tests would make it safer to use, and a TDD would influence the package's design. Consider it as a code for educational purposes only.
 
@@ -324,7 +324,7 @@ curl -s https://schema.org/version/latest/schemaorg-current-http.ttl | go run ma
 
 Then point your browser to "http://localhost:8080/PostalAddress" and you should get something that looks like this:
 
-![](/assets/ontology/schemaorg_olwu.png)
+![Extended Schema.org property table listing PostalAddress and ContactPoint fields](/assets/ontology/schemaorg_olwu.png)
 
 ## Conclusion
 

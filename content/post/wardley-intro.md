@@ -116,7 +116,7 @@ The orientation phase, on the other hand, requires knowledge of the profession a
 
 Wardley then synthesizes all the elements into a strategic cycle illustrated below:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image6-2-edited.png)
+![Wardley strategic cycle combining Sun Tzu and Boyd concepts](https://blog.octo.com/wp-content/uploads/2022/11/image6-2-edited.png)
 
 The basis of the strategy is to understand the context and situation, observe and understand the climate, and orient oneself. To do this, Wardley needs a tool.
 
@@ -168,7 +168,7 @@ The hot water needs water and a kettle, and the kettle needs energy.
 
 Here is what the value chain could look like:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image11-1-423x1024.png)
+![Value chain for a tea room from cup of tea to energy](https://blog.octo.com/wp-content/uploads/2022/11/image11-1-423x1024.png)
 
 Let's now move on to the second axis.
 
@@ -180,14 +180,14 @@ The challenge is to be able to compare the different heterogeneous components (a
 
 To do this, Simon Wardley relied on Rogers' innovation diffusion curve, which is represented below:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image3-2.png)
+![Rogers innovation diffusion curve showing adopter categories over time](https://blog.octo.com/wp-content/uploads/2022/11/image3-2.png)
 
 Rogers' innovation curve - number of adopters over time
 This curve represents the number of adopters over time.
 
 A cumulative projection gives the graph below...
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image12-1.png)
+![Cumulative adoption curve of innovation over time](https://blog.octo.com/wp-content/uploads/2022/11/image12-1.png)
 
 Cumulative frequency of individuals who have adopted the innovation over time
 One interpretation is that each innovation evolves over time (horizontal axis) from something "rare" (innovative) to something ubiquitous. We can therefore adapt the vertical scale to move from quantitative to qualitative by replacing cumulative frequency with ubiquity.
@@ -200,7 +200,7 @@ To facilitate understanding, let's use the following intuition: the more a compo
 
 By using the quantitative scales of ubiquity and certainty on the Rogers model, and applying it to the different components, Simon Wardley obtains the following curve and identifies 4 phases of evolution:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image10-1.png)
+![Four phases of evolution on ubiquity and certainty axes](https://blog.octo.com/wp-content/uploads/2022/11/image10-1.png)
 
 Note: For the sake of brevity, this article does not detail how Wardley moves from diffusion to evolution; for more information on this topic, you can refer to this article: [On Diffusion and Evolution](https://blog.gardeviance.org/2015/08/on-diffusion-and-evolution.html)
 
@@ -225,13 +225,13 @@ Let's take the example of the tea room; by applying some common sense, we can pl
 
 In representation, this gives the following map:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image4-2-1024x570.png)
+![Wardley Map of a tea room with components placed on evolution axis](https://blog.octo.com/wp-content/uploads/2022/11/image4-2-1024x570.png)
 
 One of the primary benefits of the map is to identify aberrations. And we note an important point: a map is not an illustration element of a story that you want to tell: it is an element that directs the story.
 
 Thus, you take the elements of your tea shop, and you realize that you are making your own kettles for design and efficiency reasons. The corrected map is as follows:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image2-2-1024x558.png)
+![Corrected tea room map showing kettle as custom-built component](https://blog.octo.com/wp-content/uploads/2022/11/image2-2-1024x558.png)
 
 ### How to place components
 
@@ -294,7 +294,7 @@ Two causes are at the origin of evolution:
 
 Let us below review the phases of evolution of supply and demand:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/screenshot-2022-11-28-at-095238.png)
+![Supply and demand evolution across the four phases](https://blog.octo.com/wp-content/uploads/2022/11/screenshot-2022-11-28-at-095238.png)
 
 #### Second « pattern »: Characteristics change with evolution of capability
 As we have already mentioned, the characteristics of a component evolving in an exploratory space (phase I) are not the same as those of the same component in the industrial space (phase IV).
@@ -307,7 +307,7 @@ It is fundamental to remember the importance of transition phases in evolution a
 
 Below is a table of qualifiers for components based on their position in evolution.
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/screenshot-2022-11-28-at-095335.png)
+![Component characteristics changing from genesis to commodity](https://blog.octo.com/wp-content/uploads/2022/11/screenshot-2022-11-28-at-095335.png)
 
 ## How to build the complete landscape
 Now that we have all the tools to build a Wardley map, let's go through a step-by-step process to create one.
@@ -341,7 +341,7 @@ To effectively place components, we can refer to the cheat sheet mentioned above
 
 For each component, we can explicitly tag observed properties that will, on average, allow us to assess its maturity.
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image5-2-1024x576.png)
+![Placing components on the evolution axis using the cheat sheet](https://blog.octo.com/wp-content/uploads/2022/11/image5-2-1024x576.png)
 
 ### Applying Climatic Patterns
 Not all climatic patterns can be physically represented on the map. Two elements are generally represented:
@@ -351,7 +351,7 @@ Not all climatic patterns can be physically represented on the map. Two elements
 
 For example, on this map, it could be indicated that the standardization of energy will favor the rapid evolution of kettles.
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/image1-2-1024x579.png)
+![Tea room map with climatic patterns and evolution arrows applied](https://blog.octo.com/wp-content/uploads/2022/11/image1-2-1024x579.png)
 
 ## Conclusion: Which Path to Take Now? (Deciding and Acting)
 The first part of this article established the why of the approach.
@@ -360,7 +360,7 @@ The second part of this article was structured around the exploration and unders
 
 In summary, by applying the evolution theory described in this document, this article started from phase I where it describes the subject, to arrive at the beginning of phase II, by providing some elements for making your first map in an artisanal way:
 
-![](https://blog.octo.com/wp-content/uploads/2022/11/screenshot-2022-11-28-at-095510.png)
+![This article positioned on the evolution axis from genesis to custom](https://blog.octo.com/wp-content/uploads/2022/11/screenshot-2022-11-28-at-095510.png)
 
 Now, it remains to decide and act. No tool can make decisions for you, but knowledge of the situation and context is essential to understanding the issues and making informed decisions.
 

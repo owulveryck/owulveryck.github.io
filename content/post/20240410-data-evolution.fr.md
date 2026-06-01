@@ -92,7 +92,7 @@ En un sens, **la certitude est guidée par l'offre**.
 Par exemple, considérons une entreprise manufacturière qui produit des gadgets électroniques. Dans ce scénario, l'un des composants critiques dont ils ont besoin sont les puces semi-conductrices. Lorsque l'approvisionnement de ces puces est faible en raison de pénuries sur le marché ou de problèmes logistiques, l'entreprise fait face à une grande incertitude concernant ses calendriers de production et sa capacité à répondre à la demande des clients.
 
 Une analyse empirique a conduit à cette représentation :
-![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgatdAD8t3Jp7BEjlcpxMwwUMGPbmu-zs9kwEX4KlVqZ31VwHzShmyAr1ZE0zC4YWUnTXWncgIVFPr6_-CQhKn8FO2He4qs-KGd5CrlLcW7S-ZzNxUZLAQqDQE-Vqe11g8Rt7eOaA/s1600/Screen+Shot+2014-03-15+at+18.48.03.png)
+![S-curve showing evolution as a function of ubiquity and certainty](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgatdAD8t3Jp7BEjlcpxMwwUMGPbmu-zs9kwEX4KlVqZ31VwHzShmyAr1ZE0zC4YWUnTXWncgIVFPr6_-CQhKn8FO2He4qs-KGd5CrlLcW7S-ZzNxUZLAQqDQE-Vqe11g8Rt7eOaA/s1600/Screen+Shot+2014-03-15+at+18.48.03.png)
 (source [Blog de Simon Wardley blog.garvediance.org](https://blog.gardeviance.org/2014/03/on-mapping-and-evolution-axis.html))
 
 Le modèle est une sorte de courbe en S.
@@ -101,11 +101,11 @@ Le modèle est une sorte de courbe en S.
 
 L'analyse du modèle a permis de formaliser quatre étapes d'évolution étiquetées par défaut _Genèse, Construction personnalisée, Produit et Commodité_ :
 
-![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMFN3o1ujMDfd4y78hHCRFmPSTf9BP5C_Ej1jtEyZrmNC21aBw-18gAbVk88nKHdVa3gd_-D3z3pKKfO4Wa6XsIa1BuTkeiazqGLdu8vlUPsSaXeDgbkbvrMy3CSHlUiqk5ol1ig/s1600/Screen+Shot+2014-01-09+at+13.26.48.png)
+![Wardley evolution stages: Genesis, Custom Built, Product, and Commodity](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMFN3o1ujMDfd4y78hHCRFmPSTf9BP5C_Ej1jtEyZrmNC21aBw-18gAbVk88nKHdVa3gd_-D3z3pKKfO4Wa6XsIa1BuTkeiazqGLdu8vlUPsSaXeDgbkbvrMy3CSHlUiqk5ol1ig/s1600/Screen+Shot+2014-01-09+at+13.26.48.png)
 (source [Blog de Simon Wardley blog.garvediance.org](https://blog.gardeviance.org/2014/03/on-mapping-and-evolution-axis.html))
 
 Ce ne sont que des étiquettes communes pour une forme de capital. Pour les données, selon la théorie de Wardley, les étiquettes des quatre étapes sont : **_Non modélisé, divergent, convergent et modélisé_** :
-![](https://i0.wp.com/learnwardleymapping.com/wp-content/uploads/2020/01/20200122_124314.jpg?resize=1080%2C466&ssl=1)
+![Data evolution stages: Unmodeled, Divergent, Convergent, and Modeled](https://i0.wp.com/learnwardleymapping.com/wp-content/uploads/2020/01/20200122_124314.jpg?resize=1080%2C466&ssl=1)
 (source : [learnwardleymapping.com](https://learnwardleymapping.com/2020/01/22/visualizing-the-interaction-of-evolution-and-data-measurement/))
 
 ### Dérivation du modèle

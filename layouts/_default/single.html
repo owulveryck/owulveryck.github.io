@@ -49,7 +49,7 @@
           {{ with .NextInSection }}
           <a class="prev" href="{{ .RelPermalink }}">
             {{/* icon left */}}
-            <i class="iconfont">
+            <i class="iconfont" aria-hidden="true">
               {{ partial "svg/left.svg" }}
             </i>
             <span class="prev-text nav-default">{{ .Title }}</span>
@@ -61,7 +61,7 @@
             <span class="next-text nav-default">{{ .Title }}</span>
             <span class="prev-text nav-mobile">{{ i18n "next_post" }}</span>
             {{/* icon right */}}
-            <i class="iconfont">
+            <i class="iconfont" aria-hidden="true">
               {{ partial "svg/right.svg" }}
             </i>
           </a>

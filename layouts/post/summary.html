@@ -34,7 +34,7 @@
       </div>
       <div class="post-meta-time">
         {{ partial "icons/icon" $icons.calendar }}
-        <time datetime="{{ .Date.Format " 2006-01-02" }}">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
           {{ .Date | time.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}
         </time>
       </div>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="read-more">
-      <a role="button" href="{{ .RelPermalink }}" class="read-more-link outline">{{ i18n "readmore" }}<span class="visually-hidden">: {{ .Title }}</span></a>
+      <a href="{{ .RelPermalink }}" class="read-more-link outline">{{ i18n "readmore" }}<span class="visually-hidden">: {{ .Title }}</span></a>
     </div>
     {{ end }}
   </div>

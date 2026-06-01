@@ -2,12 +2,12 @@
 
 <div class="mobile-header">
   <div id="mobile-navbar" class="mobile-navbar">
-    <div id="mobile-navbar-icon" class="mobile-navbar-icon"
-         role="button" tabindex="0"
-         aria-expanded="false" aria-controls="mobile-menu"
-         aria-label="Toggle menu">
+    <button id="mobile-navbar-icon" class="mobile-navbar-icon"
+            type="button"
+            aria-expanded="false" aria-controls="mobile-menu"
+            aria-label="Toggle menu">
       {{ partial "icons/icon" $icons.menu }}
-    </div>
+    </button>
     <div class="mobile-navbar-logo">
       <a href="{{ " /" | relLangURL }}" class="logo">
         {{- if .Site.Params.logoTitle -}}
@@ -86,10 +86,11 @@
       {{ end }}
 
       <li class="mobile-menu-item">
-        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
-          <span class="theme-icon theme-icon-light">{{ partial "icons/icon" $icons.sun }}</span>
-          <span class="theme-icon theme-icon-dark">{{ partial "icons/icon" $icons.moon }}</span>
-        </a>
+        <button class="theme-toggle menu-item-link" type="button"
+                aria-label="Toggle dark mode">
+          <span class="theme-icon theme-icon-light" aria-hidden="true">{{ partial "icons/icon" $icons.sun }}</span>
+          <span class="theme-icon theme-icon-dark" aria-hidden="true">{{ partial "icons/icon" $icons.moon }}</span>
+        </button>
       </li>
 
       <li class="mobile-menu-item">
@@ -122,21 +123,37 @@
     }
 
     icon.addEventListener('click', openMenu);
-    icon.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        icon.click();
-      }
-    });
 
     if (modal) {
       modal.addEventListener('click', closeMenu);
     }
 
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && icon.getAttribute('aria-expanded') === 'true') {
+      if (icon.getAttribute('aria-expanded') !== 'true') return;
+
+      if (e.key === 'Escape') {
         modal.click();
         icon.focus();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        var focusable = menu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first || document.activeElement === icon) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       }
     });
   });

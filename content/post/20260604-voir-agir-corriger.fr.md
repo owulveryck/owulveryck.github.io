@@ -180,7 +180,7 @@ C'est votre angle mort. Et c'est votre responsabilité.
 
 ### L'autonomie n'est pas un objectif, c'est un moyen
 
-L'objectif n'est pas que l'agent fasse ce qu'il veut. L'objectif est qu'il travaille **dans le cadre que vous avez défini**, sans supervision constante. La nuance est fondamentale.
+L'objectif n'est pas que l'agent fasse ce qu'il veut. L'objectif final reste de produire des solutions logicielles fiables. L'autonomie de l'agent n'est que le moyen d'accélérer cette production, d'améliorer efficacité et/ou efficience en le faisant travailler **dans le cadre que vous avez défini**, sans supervision constante. La nuance est fondamentale.
 
 Observez le contraste : le code de votre extension VS Code passe par une CI complète (lint, typecheck, tests, intégration, sécurité), une couverture de tests minimale et des analytics hebdomadaires. Le code généré par votre agent ? Souvent aucune vérification post-génération, aucune feedback loop programmatique, aucune observabilité (tokens, coût, qualité), aucun audit trail.
 

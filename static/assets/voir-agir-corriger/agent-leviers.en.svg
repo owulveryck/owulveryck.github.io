@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="perf-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec5a3a"/>
+      <stop offset="1" stop-color="#d94a2c"/>
+    </linearGradient>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#8890a5" stroke-width="0.8" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="#f8f9fc"/>
+
+  <!-- Title -->
+  <text x="450" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1b2547">
+    The three levers of a code agent
+  </text>
+  <text x="450" y="55" text-anchor="middle" font-size="13" fill="#7a8299" letter-spacing="3">
+    See &#xb7; Act &#xb7; Correct
+  </text>
+
+  <!-- ======================================================= -->
+  <!-- PILLAR SEE -->
+  <!-- ======================================================= -->
+  <rect x="135" y="95" width="155" height="340" rx="4" fill="none" stroke="#c5c9d4" stroke-width="1.5"/>
+  <rect x="136" y="96" width="153" height="180" rx="3" fill="#eceef3"/>
+  <rect x="136" y="96" width="153" height="180" rx="3" fill="url(#hatch)"/>
+  <rect x="136" y="276" width="153" height="158" rx="3" fill="#ffffff"/>
+  <rect x="135" y="275" width="155" height="160" rx="4" fill="none" stroke="#1b2547" stroke-width="2"/>
+  <g transform="translate(212 320)">
+    <ellipse cx="0" cy="0" rx="17" ry="10" fill="none" stroke="#39b5c9" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="6" fill="#39b5c9"/>
+    <circle cx="0" cy="0" r="2.5" fill="#1b2547"/>
+  </g>
+  <text x="212" y="358" text-anchor="middle" font-size="20" font-weight="bold" fill="#1b2547">SEE</text>
+  <text x="212" y="380" text-anchor="middle" font-size="12" fill="#5a6480">code &#xb7; logs &#xb7; docs</text>
+  <text x="212" y="418" text-anchor="middle" font-size="11" font-style="italic" fill="#9ea5b8">What does the agent see?</text>
+
+  <!-- ======================================================= -->
+  <!-- PILLAR CORRECT -->
+  <!-- ======================================================= -->
+  <rect x="610" y="95" width="155" height="340" rx="4" fill="none" stroke="#a3d4df" stroke-width="1.5"/>
+  <rect x="611" y="96" width="153" height="180" rx="3" fill="#daf0f5"/>
+  <rect x="611" y="96" width="153" height="180" rx="3" fill="url(#hatch)"/>
+  <rect x="611" y="276" width="153" height="158" rx="3" fill="#39b5c9"/>
+  <rect x="610" y="275" width="155" height="160" rx="4" fill="none" stroke="#2a9db0" stroke-width="2"/>
+  <g transform="translate(687 320)">
+    <path d="M -11,-7 A 14 14 0 1 1 11,7" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <polygon points="11,7 16,1 8,1" fill="#ffffff"/>
+    <path d="M 11,7 A 14 14 0 1 1 -11,-7" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <polygon points="-11,-7 -16,-1 -8,-1" fill="#ffffff"/>
+  </g>
+  <text x="687" y="358" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff">CORRECT</text>
+  <text x="687" y="380" text-anchor="middle" font-size="12" fill="#e0f8ff">linters &#xb7; tests &#xb7; review</text>
+  <text x="687" y="418" text-anchor="middle" font-size="11" font-style="italic" fill="#e0f8ff">What corrects it?</text>
+
+  <!-- ======================================================= -->
+  <!-- PILLAR ACT -->
+  <!-- ======================================================= -->
+  <rect x="372" y="275" width="155" height="160" rx="4" fill="#1b2547"/>
+  <g transform="translate(450 320)">
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#39b5c9"/>
+    <rect x="-2" y="-15" width="4" height="5" fill="#ffffff" rx="1"/>
+    <rect x="-2" y="10" width="4" height="5" fill="#ffffff" rx="1"/>
+    <rect x="10" y="-2" width="5" height="4" fill="#ffffff" rx="1"/>
+    <rect x="-15" y="-2" width="5" height="4" fill="#ffffff" rx="1"/>
+    <rect x="7" y="-10" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(45 9 -8)"/>
+    <rect x="-11" y="6" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(45 -9 8)"/>
+    <rect x="7" y="6" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(-45 9 8)"/>
+    <rect x="-11" y="-10" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(-45 -9 -8)"/>
+  </g>
+  <text x="450" y="358" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff">ACT</text>
+  <text x="450" y="380" text-anchor="middle" font-size="11" fill="#c7cede">edit &#xb7; CI &#xb7; open a PR</text>
+  <text x="450" y="418" text-anchor="middle" font-size="11" font-style="italic" fill="#a5adc5">What can it do?</text>
+
+  <!-- ======================================================= -->
+  <!-- PERFORMANCE LINE -->
+  <!-- ======================================================= -->
+  <line x1="90" y1="275" x2="810" y2="275" stroke="#ec5a3a" stroke-width="2.5"/>
+  <text x="88" y="266" text-anchor="end" font-size="11" font-weight="bold" fill="#ec5a3a">actual</text>
+  <text x="88" y="280" text-anchor="end" font-size="11" font-weight="bold" fill="#ec5a3a">performance &#x2192;</text>
+
+  <text x="450" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#ec5a3a">
+    &#x25bc; the shortest pillar sets the ceiling
+  </text>
+
+  <text x="450" y="175" text-anchor="middle" font-size="12" fill="#9ea5b8" font-style="italic">
+    unused capacity
+  </text>
+
+  <!-- ===== CONTEXT base ===== -->
+  <rect x="95" y="435" width="710" height="55" rx="4" fill="#ec5a3a"/>
+  <text x="450" y="459" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">
+    CONTEXT &#x2014; finite &amp; costly
+  </text>
+  <text x="450" y="479" text-anchor="middle" font-size="11" fill="#ffe3da">
+    every token counts &#xb7; all three pillars rest on it
+  </text>
+
+  <!-- ===== Punchline ===== -->
+  <text x="450" y="524" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b2547">
+    An agent is never better than its weakest lever.
+  </text>
+  <text x="450" y="544" text-anchor="middle" font-size="12" font-style="italic" fill="#5a6480">
+    Skills, hooks, MCP, instructions are just ways to implement them.
+  </text>
+
+  <!-- Credit -->
+  <text x="793" y="585" text-anchor="end" font-size="8" fill="#c0c5d0">
+    After "Beyond the Basics with Claude Code" &#x2014; Daisy Holman, Anthropic
+  </text>
+</svg>

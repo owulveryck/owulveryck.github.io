@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" font-family="Consolas,'Courier New',monospace" font-size="13">
+  <style>
+    .label { fill: #333; }
+    .dim { fill: #888; font-style: italic; font-size: 12px; }
+    .small { fill: #666; font-size: 10px; }
+  </style>
+
+  <!-- Axis line -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFCDD2"/>
+      <stop offset="100%" stop-color="#C8E6C9"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="48" width="660" height="6" fill="url(#grad)" rx="3"/>
+
+  <!-- Arrow heads -->
+  <polygon points="35,51 50,44 50,58" fill="#C62828"/>
+  <polygon points="705,51 690,44 690,58" fill="#2E7D32"/>
+
+  <!-- Top labels -->
+  <text x="40" y="30" class="label" font-weight="bold" fill="#C62828">Declarative</text>
+  <text x="580" y="30" class="label" font-weight="bold" fill="#2E7D32">Programmatic</text>
+
+  <!-- Subtitles -->
+  <text x="40" y="80" class="dim">(the engineer describes, hopes the agent obeys)</text>
+  <text x="490" y="80" class="dim">(the engineer codes, the agent executes and adapts)</text>
+
+  <!-- Items on the spectrum -->
+  <text x="50" y="115" class="label" font-size="12">instructions.md</text>
+  <text x="220" y="115" class="label" font-size="12">prompt files</text>
+  <text x="380" y="115" class="label" font-size="12">MCP tools</text>
+  <text x="550" y="115" class="label" font-size="12">hooks / scripts</text>
+
+  <!-- Dots on axis -->
+  <circle cx="110" cy="51" r="5" fill="#E53935"/>
+  <circle cx="270" cy="51" r="5" fill="#FB8C00"/>
+  <circle cx="430" cy="51" r="5" fill="#7CB342"/>
+  <circle cx="600" cy="51" r="5" fill="#2E7D32"/>
+
+  <!-- Bottom: COMPENSATORY box -->
+  <rect x="30" y="138" width="330" height="70" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="50" y="159" font-weight="bold" font-size="14" fill="#C62828">&lt;- COMPENSATORY</text>
+  <text x="50" y="177" class="small">Compensates for current model limitations</text>
+  <text x="50" y="193" class="small">Becomes less useful as the model improves</text>
+
+  <!-- Bottom: AMPLIFIER box -->
+  <rect x="550" y="138" width="300" height="70" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="570" y="159" font-weight="bold" font-size="14" fill="#2E7D32">AMPLIFIER -&gt;</text>
+  <text x="570" y="177" class="small">Leverages the model's capabilities</text>
+  <text x="570" y="193" class="small">Becomes more useful as the model improves</text>
+</svg>

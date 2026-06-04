@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="perf-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec5a3a"/>
+      <stop offset="1" stop-color="#d94a2c"/>
+    </linearGradient>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#8890a5" stroke-width="0.8" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="#f8f9fc"/>
+
+  <!-- Titre -->
+  <text x="450" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1b2547">
+    Les trois leviers d'un agent de code
+  </text>
+  <text x="450" y="55" text-anchor="middle" font-size="13" fill="#7a8299" letter-spacing="3">
+    Voir · Agir · Corriger
+  </text>
+
+  <!-- ======================================================= -->
+  <!-- PILIER VOIR : partie haute grisée + partie basse active -->
+  <!-- ======================================================= -->
+  <!-- Contour complet (toute la hauteur) -->
+  <rect x="135" y="95" width="155" height="340" rx="4" fill="none" stroke="#c5c9d4" stroke-width="1.5" stroke-dasharray="0"/>
+  <!-- Partie haute = capacité inutilisée -->
+  <rect x="136" y="96" width="153" height="180" rx="3" fill="#eceef3"/>
+  <rect x="136" y="96" width="153" height="180" rx="3" fill="url(#hatch)"/>
+  <!-- Partie basse = active -->
+  <rect x="136" y="276" width="153" height="158" rx="3" fill="#ffffff"/>
+  <!-- Bordure active plus marquée -->
+  <rect x="135" y="275" width="155" height="160" rx="4" fill="none" stroke="#1b2547" stroke-width="2"/>
+  <!-- Icône œil -->
+  <g transform="translate(212 320)">
+    <ellipse cx="0" cy="0" rx="17" ry="10" fill="none" stroke="#39b5c9" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="6" fill="#39b5c9"/>
+    <circle cx="0" cy="0" r="2.5" fill="#1b2547"/>
+  </g>
+  <text x="212" y="358" text-anchor="middle" font-size="20" font-weight="bold" fill="#1b2547">VOIR</text>
+  <text x="212" y="380" text-anchor="middle" font-size="12" fill="#5a6480">code · logs · docs</text>
+  <text x="212" y="418" text-anchor="middle" font-size="11" font-style="italic" fill="#9ea5b8">Que voit l'agent ?</text>
+
+  <!-- ======================================================= -->
+  <!-- PILIER CORRIGER : partie haute grisée + partie basse    -->
+  <!-- ======================================================= -->
+  <rect x="610" y="95" width="155" height="340" rx="4" fill="none" stroke="#a3d4df" stroke-width="1.5"/>
+  <!-- Partie haute = capacité inutilisée -->
+  <rect x="611" y="96" width="153" height="180" rx="3" fill="#daf0f5"/>
+  <rect x="611" y="96" width="153" height="180" rx="3" fill="url(#hatch)"/>
+  <!-- Partie basse = active -->
+  <rect x="611" y="276" width="153" height="158" rx="3" fill="#39b5c9"/>
+  <rect x="610" y="275" width="155" height="160" rx="4" fill="none" stroke="#2a9db0" stroke-width="2"/>
+  <!-- Icône boucle feedback -->
+  <g transform="translate(687 320)">
+    <path d="M -11,-7 A 14 14 0 1 1 11,7" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <polygon points="11,7 16,1 8,1" fill="#ffffff"/>
+    <path d="M 11,7 A 14 14 0 1 1 -11,-7" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <polygon points="-11,-7 -16,-1 -8,-1" fill="#ffffff"/>
+  </g>
+  <text x="687" y="358" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff">CORRIGER</text>
+  <text x="687" y="380" text-anchor="middle" font-size="12" fill="#e0f8ff">linters · tests · revue</text>
+  <text x="687" y="418" text-anchor="middle" font-size="11" font-style="italic" fill="#e0f8ff">Qu'est-ce qui le corrige ?</text>
+
+  <!-- ======================================================= -->
+  <!-- PILIER AGIR : pas de partie haute (il EST le limitant)  -->
+  <!-- ======================================================= -->
+  <rect x="372" y="275" width="155" height="160" rx="4" fill="#1b2547"/>
+  <!-- Icône engrenage -->
+  <g transform="translate(450 320)">
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#39b5c9"/>
+    <rect x="-2" y="-15" width="4" height="5" fill="#ffffff" rx="1"/>
+    <rect x="-2" y="10" width="4" height="5" fill="#ffffff" rx="1"/>
+    <rect x="10" y="-2" width="5" height="4" fill="#ffffff" rx="1"/>
+    <rect x="-15" y="-2" width="5" height="4" fill="#ffffff" rx="1"/>
+    <rect x="7" y="-10" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(45 9 -8)"/>
+    <rect x="-11" y="6" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(45 -9 8)"/>
+    <rect x="7" y="6" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(-45 9 8)"/>
+    <rect x="-11" y="-10" width="4" height="4" fill="#ffffff" rx="1" transform="rotate(-45 -9 -8)"/>
+  </g>
+  <text x="450" y="358" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff">AGIR</text>
+  <text x="450" y="380" text-anchor="middle" font-size="11" fill="#c7cede">éditer · CI · ouvrir une PR</text>
+  <text x="450" y="418" text-anchor="middle" font-size="11" font-style="italic" fill="#a5adc5">Que peut-il faire ?</text>
+
+  <!-- ======================================================= -->
+  <!-- LIGNE DE PERFORMANCE (au sommet d'AGIR = le plafond)    -->
+  <!-- Dessinée APRÈS les piliers pour être au premier plan     -->
+  <!-- ======================================================= -->
+  <line x1="90" y1="275" x2="810" y2="275" stroke="#ec5a3a" stroke-width="2.5"/>
+  <!-- Label performance à gauche -->
+  <text x="88" y="266" text-anchor="end" font-size="11" font-weight="bold" fill="#ec5a3a">performance</text>
+  <text x="88" y="280" text-anchor="end" font-size="11" font-weight="bold" fill="#ec5a3a">réelle →</text>
+
+  <!-- Annotation : pourquoi la ligne est là -->
+  <text x="450" y="262" text-anchor="middle" font-size="11" font-weight="bold" fill="#ec5a3a">
+    ▼ c'est le pilier le plus court qui fixe le plafond
+  </text>
+
+  <!-- Label dans la zone grisée -->
+  <text x="450" y="175" text-anchor="middle" font-size="12" fill="#9ea5b8" font-style="italic">
+    capacité inutilisée
+  </text>
+
+  <!-- ===== Socle CONTEXTE ===== -->
+  <rect x="95" y="435" width="710" height="55" rx="4" fill="#ec5a3a"/>
+  <text x="450" y="459" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">
+    CONTEXTE — fini &amp; coûteux
+  </text>
+  <text x="450" y="479" text-anchor="middle" font-size="11" fill="#ffe3da">
+    chaque token compte · les trois piliers reposent dessus
+  </text>
+
+  <!-- ===== Punchline ===== -->
+  <text x="450" y="524" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b2547">
+    Un agent n'est jamais meilleur que le plus faible de ses trois leviers.
+  </text>
+  <text x="450" y="544" text-anchor="middle" font-size="12" font-style="italic" fill="#5a6480">
+    Skills, hooks, MCP, instructions ne sont que des façons de les implémenter.
+  </text>
+
+  <!-- Crédit -->
+  <text x="793" y="585" text-anchor="end" font-size="8" fill="#c0c5d0">
+    D'après "Beyond the Basics with Claude Code" — Daisy Holman, Anthropic
+  </text>
+</svg>

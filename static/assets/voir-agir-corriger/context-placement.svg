@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="ctx-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b2547"/>
+      <stop offset="100%" stop-color="#ec5a3a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="200" fill="#f8f9fc" rx="6"/>
+
+  <!-- Vertical bar (gradient stable → volatile) -->
+  <rect x="40" y="20" width="50" height="160" rx="4" fill="url(#ctx-grad)"/>
+
+  <!-- Arrow pointing down -->
+  <polygon points="65,185 55,175 75,175" fill="#ec5a3a"/>
+
+  <!-- Top label on bar -->
+  <text x="65" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">HAUT</text>
+
+  <!-- Bottom label on bar -->
+  <text x="65" y="170" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">BAS</text>
+
+  <!-- Top row: stable -->
+  <rect x="120" y="25" width="540" height="60" rx="6" fill="#E8EAF6" stroke="#1b2547" stroke-width="1.5"/>
+  <text x="140" y="50" font-size="15" font-weight="bold" fill="#1b2547">Stable, partag&#xe9;</text>
+  <text x="140" y="72" font-size="12" fill="#5a6480">Conventions de code &#xb7; architecture &#xb7; r&#xe8;gles p&#xe9;rennes</text>
+
+  <!-- Bottom row: volatile -->
+  <rect x="120" y="110" width="540" height="60" rx="6" fill="#FFEBEE" stroke="#ec5a3a" stroke-width="1.5"/>
+  <text x="140" y="135" font-size="15" font-weight="bold" fill="#C62828">Volatile, par-t&#xe2;che</text>
+  <text x="140" y="157" font-size="12" fill="#5a6480">&#xc9;tat du jour &#xb7; r&#xe9;sultat CI &#xb7; fichier en cours d'&#xe9;dition</text>
+
+  <!-- Cache annotation top -->
+  <text x="640" y="55" text-anchor="end" font-size="11" font-style="italic" fill="#2E7D32">&#x2713; en cache</text>
+
+  <!-- Cache annotation bottom -->
+  <text x="640" y="145" text-anchor="end" font-size="11" font-style="italic" fill="#C62828">&#x21bb; recalcul&#xe9;</text>
+</svg>

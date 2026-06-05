@@ -75,7 +75,7 @@ Customizing a single axis is pointless. Giving dozens of tools to an agent that 
 
 ## 2. Context is a physical resource: package to scale
 
-An agent's context window is a fixed, expensive resource. Most agent engines today operate around 200,000 effective tokens; some models advertise much larger windows (Gemini 2.5 claims up to 1 million), but the *usable* window for an agent in a working session remains constrained by cost and latency. Everything injected into it (tools, instructions, conversation, files read) **competes with actual work**.
+An agent's context window is a fixed, expensive resource. Most agent engines today operate with context windows of around one million tokens — a ceiling that has stabilized across major providers. But the *usable* window for an agent in a working session remains far smaller, constrained by cost, latency, and the attention degradation inherent in the transformer architecture. Everything injected into it (tools, instructions, conversation, files read) **competes with actual work**.
 
 As in any constrained system, every byte counts (you don't run `npm install` on an Arduino). A hidden cost compounds this: tokenizer evolution can affect the bill without any change in behavior. The token budget is not just about what you inject, but also about how the model consumes it.
 

@@ -76,7 +76,7 @@ Customiser un seul axe ne sert à rien. Donner des dizaines d'outils à un agent
 
 ## 2. Le contexte est une ressource physique : packagez pour scaler
 
-La fenêtre de contexte d'un agent est une ressource fixe et coûteuse. La plupart des moteurs d'agents opèrent aujourd'hui autour de 200 000 tokens effectifs ; certains modèles annoncent des fenêtres bien plus larges (Gemini 2.5 revendique jusqu'à 1 million), mais la fenêtre *exploitable* par un agent en session de travail reste contrainte par le coût et la latence. Tout ce qu'on y injecte (outils, instructions, conversation, fichiers lus) **entre en compétition avec le travail réel**.
+La fenêtre de contexte d'un agent est une ressource fixe et coûteuse. La plupart des moteurs d'agents disposent aujourd'hui de fenêtres de contexte d'environ un million de tokens — un plafond qui s'est stabilisé chez les principaux fournisseurs. Mais la fenêtre *exploitable* par un agent en session de travail reste bien plus réduite, contrainte par le coût, la latence et la dégradation d'attention inhérente à l'architecture transformer. Tout ce qu'on y injecte (outils, instructions, conversation, fichiers lus) **entre en compétition avec le travail réel**.
 
 Comme dans tout système contraint, chaque octet compte (je ne fais pas tourner un `npm install` sur un Arduino). Un coût caché s'y ajoute : l'évolution des tokenizers peut influer sur la facture sans changement de comportement. Le budget token n'est pas seulement une question de ce que vous injectez, mais aussi de comment le modèle le consomme.
 

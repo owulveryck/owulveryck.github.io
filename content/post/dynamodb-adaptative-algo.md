@@ -27,7 +27,7 @@ In a [previous post](/2017/01/13/a-foot-in-nosql-and-a-toe-in-big-data/) I expla
 
 On top of the API that deals with products and offers, AWS can provide a "billing report". Those reports are delivered to am Amazon S3 bucket in CSV format at least once a day.
 
-The rows of the CSV are organized in _topics_ as described [here](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports.html#Topics).
+The rows of the CSV are organized in _topics_ as described [in the AWS billing report documentation](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports.html#Topics).
 
 Each line of the CSV represents an item that is billed. But every resource is made of several billable items. For example on EC2, you pay the "compute", the bandwidth, the volume etc...
 
@@ -76,7 +76,7 @@ for i := 0; i < et.NumField(); i++ {
 {{</ highlight >}}
 
 Then I can parse the CSV file and fill a channel with one object by row... 
-See the full example [here](https://gist.github.com/owulveryck/0fc68c90fa4875647b54f62e2066707d)
+See the full example [in this Gist](https://gist.github.com/owulveryck/0fc68c90fa4875647b54f62e2066707d)
 
 # Step 2: Creating the table in DynamoDB
 
@@ -115,7 +115,7 @@ ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
 },
 {{</ highlight >}}
 
-The code for creating the table is [here](https://gist.github.com/owulveryck/6663983b41c669617704558a030a3392#file-dynamodbcreatetable-go)
+The code for creating the table is [in this DynamoDB Gist](https://gist.github.com/owulveryck/6663983b41c669617704558a030a3392#file-dynamodbcreatetable-go)
 
 # Step 3: Inserting the data
 

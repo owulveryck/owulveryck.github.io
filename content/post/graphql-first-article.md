@@ -66,7 +66,7 @@ As an example, here is a tree representation of the same graph:
 
 ![Graph Representation](/assets/graphql/graph_tree.svg)
 
-_Note_: I wrote a very quick'n'dirty parser to get the information which can be found [here](https://gist.github.com/owulveryck/bac700e2f5e5b1af0fffda4e7adb9eed). I wrote an idiomatic one but it is the property of the company I made it for.
+_Note_: I wrote a very quick'n'dirty parser to get the information which can be found [in this Gist](https://gist.github.com/owulveryck/bac700e2f5e5b1af0fffda4e7adb9eed). I wrote an idiomatic one but it is the property of the company I made it for.
 
 # Defining the GraphQL schema
 
@@ -169,7 +169,7 @@ To keep it simple, I will load all the products and offers in memory. In the rea
 
 ### Defining the schema and the query in go
 
-Most of the work has already been done and documented in a series of blog posts [here](http://mycodesmells.com/post/building-graphql-api-in-go)
+Most of the work has already been done and documented in a series of blog posts [on mycodesmells.com](http://mycodesmells.com/post/building-graphql-api-in-go)
 
 First we must define a couple of things:
 

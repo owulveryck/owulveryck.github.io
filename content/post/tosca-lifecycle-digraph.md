@@ -35,7 +35,7 @@ current specification in YAML introduces the following concepts.
 I do believe that TOSCA may be a very good leverage to port a "legacy application" (aka _born in the datacenter_ application) into a cloud ready application without rewriting it completely to be cloud compliant.
 To be clear, It may act on the hosting and execution plan of the application, and not on the application itself.
 
-A single wordpress installation in a TOSCA way as written [here](http://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.0/csprd01/TOSCA-Simple-Profile-YAML-v1.0-csprd01.html#_Toc430015847) is represented like that
+A single wordpress installation in a TOSCA way as written [in the TOSCA specification](http://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.0/csprd01/TOSCA-Simple-Profile-YAML-v1.0-csprd01.html#_Toc430015847) is represented like that
 
 <img class="img-square img-responsive" src="http://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.0/csprd01/TOSCA-Simple-Profile-YAML-v1.0-csprd01_files/image035.png" alt="Single Wordpress representation"/>
 

@@ -26,7 +26,7 @@ All of it has been installed thanks to the "brew" package manager and following 
 
 ## Google Development Environment
 
-I've installed the Google Development Environement as described [here](https://cloud.google.com/appengine/docs/go/gettingstarted/devenvironment).
+I've installed the Google Development Environement as described [in the App Engine Go setup guide](https://cloud.google.com/appengine/docs/go/gettingstarted/devenvironment).
 
 Python 2.7 is a requirements so I `brewed it` without any noticeable issue.
 

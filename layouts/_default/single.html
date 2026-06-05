@@ -47,7 +47,7 @@
         <!-- Post Pagination -->
         <nav class="post-nav">
           {{ with .NextInSection }}
-          <a class="prev" href="{{ .RelPermalink }}">
+          <a class="prev" href="{{ .RelPermalink }}" aria-label="{{ i18n "prev_post" }}: {{ .Title }}">
             {{/* icon left */}}
             <i class="iconfont" aria-hidden="true">
               {{ partial "svg/left.svg" }}
@@ -57,7 +57,7 @@
           </a>
           {{- end }}
           {{ with .PrevInSection }}
-          <a class="next" href="{{ .RelPermalink }}">
+          <a class="next" href="{{ .RelPermalink }}" aria-label="{{ i18n "next_post" }}: {{ .Title }}">
             <span class="next-text nav-default">{{ .Title }}</span>
             <span class="prev-text nav-mobile">{{ i18n "next_post" }}</span>
             {{/* icon right */}}

@@ -60,7 +60,7 @@ The data type conversion and the raw data processing is a (little) bit trickier,
 
 A tensor is composed of elements of certain types. The supported data types are described as constants in ONNX. They can be found [in the documentation of ONNX](https://github.com/onnx/onnx/blob/master/docs/IR.md#standard-data-types) and are represented in [Go constant values](https://godoc.org/github.com/owulveryck/onnx-go#TensorProto_DataType) of our Go API.
 
-On the other hand, the tensor package of Gorgonia also has its own declaration of types represented by values of [`Dtypes`](https://godoc.org/gorgonia.org/tensor#Dtype). The list is a set of variables declared [here](https://godoc.org/gorgonia.org/tensor#pkg-variables).
+On the other hand, the tensor package of Gorgonia also has its own declaration of types represented by values of [`Dtypes`](https://godoc.org/gorgonia.org/tensor#Dtype). The list is a set of variables declared [in the tensor package documentation](https://godoc.org/gorgonia.org/tensor#pkg-variables).
 
 Writing a function to return a `Dtype` from a `TensorProto_DataType` is relatively straightforward: 
 
@@ -113,7 +113,7 @@ for {
 
 ## Vizualizing the tensor
 
-With all those elements, it is easy to write the content of the `NewTensor` function. No need to paste all the code in this post, but you can find the implementation [here](https://github.com/owulveryck/gorgonnx/blob/9df285e6d96d6ad9494aeeb420fb9f42ebe7f360/vendor/gorgonia.org/tensor/tensonnx/tensor.go#L16).
+With all those elements, it is easy to write the content of the `NewTensor` function. No need to paste all the code in this post, but you can find the implementation [on GitHub](https://github.com/owulveryck/gorgonnx/blob/9df285e6d96d6ad9494aeeb420fb9f42ebe7f360/vendor/gorgonia.org/tensor/tensonnx/tensor.go#L16).
 
 To do an eye-test of the result, let's convert a 3D-tensor back into an image.
 
@@ -237,7 +237,7 @@ Most of the work here is to analyze the documentation of the operators from ONNX
 
 ### Obstacle with the broadcastable operators
 
-A quick word about an obstacle I have faced. It is written in the ONNX documentation that the element-wise operators are broadcastable (the behavior is similar of what numpy implements). The behavior is explained [here](https://github.com/onnx/onnx/blob/master/docs/Broadcasting.md). I made a filthy hack to make my MNIST test pass, but we have an [open issue](https://github.com/gorgonia/gorgonia/issues/223) in Gorgonia to implement a proper way to apply broadcasting in a non-transparent way.
+A quick word about an obstacle I have faced. It is written in the ONNX documentation that the element-wise operators are broadcastable (the behavior is similar of what numpy implements). The behavior is explained [in the ONNX broadcasting documentation](https://github.com/onnx/onnx/blob/master/docs/Broadcasting.md). I made a filthy hack to make my MNIST test pass, but we have an [open issue](https://github.com/gorgonia/gorgonia/issues/223) in Gorgonia to implement a proper way to apply broadcasting in a non-transparent way.
 
 # Computing the MNIST model
 

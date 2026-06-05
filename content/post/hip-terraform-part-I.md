@@ -108,7 +108,7 @@ type InitCommand struct {
 }
 {{</ highlight >}}
 
-This command holds a substructure called `Meta`. `Meta` is defined [here](https://godoc.org/github.com/hashicorp/terraform/command#Meta) and holds _the meta-options that are available on all or most commands_. Obviously we need a Meta definition in the command to make it work properly.
+This command holds a substructure called `Meta`. `Meta` is defined [in the Terraform command documentation](https://godoc.org/github.com/hashicorp/terraform/command#Meta) and holds _the meta-options that are available on all or most commands_. Obviously we need a Meta definition in the command to make it work properly.
 
 For now, let's add it to the `grpcCommand` globally, and we will see later how to implement it.
 

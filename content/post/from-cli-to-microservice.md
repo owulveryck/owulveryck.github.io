@@ -12,7 +12,7 @@ title: From command line tools to microservices - The example of Hashicorp tools
 This post is a little different from the last ones. As usual, the introduction tries to be open, but it quickly goes deeper into a go implementation.
 Some explanations may be tricky from time to times and therefore not very clear. As usual, do not hesitate to send me any comment via this blog or via twitter [@owulveryck](https://twitter.com/owulveryck).
 
-**TL;DR**: This is a step-by-step example that turns a golang cli utility into a webservice powered by gRPC and protobuf. The code can be found [here](https://github.com/owulveryck/cli-grpc-example).
+**TL;DR**: This is a step-by-step example that turns a golang cli utility into a webservice powered by gRPC and protobuf. The code can be found [on GitHub](https://github.com/owulveryck/cli-grpc-example).
 
 # About the cli utilities
 
@@ -367,7 +367,7 @@ func (g *grpcCommands) Goodbye(ctx context.Context, in *myservice.Arg) (*myservi
 {{</ highlight >}}
 
 Now we have everything needed to turn our cli into a gRPC service. With a bit of plumbing, the code compiles and the service runs.
-The full implementation of the service can be found [here](https://github.com/owulveryck/cli-grpc-example/blob/master/server/main.go).
+The full implementation of the service can be found [in the server/main.go file](https://github.com/owulveryck/cli-grpc-example/blob/master/server/main.go).
 
 ## A very quick client
 

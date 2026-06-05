@@ -149,4 +149,4 @@ Meanwhile, I will try to test this setup on a worldwide cluster (maybe based on 
 ----
 Credit:
 
-The illustration has been found [here](https://www.flickr.com/photos/joebehr/23704122254)
+The illustration has been found [on Flickr](https://www.flickr.com/photos/joebehr/23704122254)

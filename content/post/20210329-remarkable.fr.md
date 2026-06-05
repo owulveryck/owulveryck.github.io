@@ -213,7 +213,7 @@ La création et l'exposition du flux MJPEG ne sont pas détaillées dans ce post
 
 ### Sécurité
 
-Même si HTTP/2 ne nécessite pas de chiffrement (voir [ici](https://http2.github.io/faq/#does-http2-require-encryption)), de nombreuses implémentations ne prennent en charge le protocole que s'il est utilisé sur une connexion chiffrée.
+Même si HTTP/2 ne nécessite pas de chiffrement (voir [la FAQ HTTP/2](https://http2.github.io/faq/#does-http2-require-encryption)), de nombreuses implémentations ne prennent en charge le protocole que s'il est utilisé sur une connexion chiffrée.
 L'implémentation Go de gRPC nécessite par défaut un canal de chiffrement (qui peut être contourné avec l'utilisation d'une méthode `Insecure`, mais nous savons tous que ce n'est pas une bonne façon de procéder ;)).
 
 C'est donc une bonne pratique d'implémenter ce mécanisme de sécurité qui évitera l'espionnage des images du wifi si vous utilisez l'outil sur un réseau non fiable.

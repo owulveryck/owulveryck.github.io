@@ -237,7 +237,7 @@ The topology is composed of 8 nodes with dependencies which can be represented l
 
 Nodes 0-3 are targeted on the chromebook while nodes 5-7 are targeted on the BSD machine.
 
-The topology is described as a simple yaml file [here](https://github.com/owulveryck/khoreia/blob/e32af3d77d0b57bf36b68a2460e5a47132f29118/samples/topology.yaml)
+The topology is described as a simple yaml file [in the khoreia repository](https://github.com/owulveryck/khoreia/blob/e32af3d77d0b57bf36b68a2460e5a47132f29118/samples/topology.yaml)
 
 Each node is fulfilling two methods:
 

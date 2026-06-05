@@ -44,7 +44,7 @@ mathjax: false
 > **Note**: Cet article est une traduction automatique. [L'article original a été écrit en anglais](/post/20230725-remarkable-nextgen/).
 
 En 2021, j'ai développé un outil pour diffuser le contenu de ma reMarkable 
-(et j'ai également écrit un article à ce sujet [ici](https://blog.owulveryck.info/2021/03/30/streaming-the-remarkable-2.html)).
+(et j'ai également écrit un article à ce sujet [dans un précédent billet](https://blog.owulveryck.info/2021/03/30/streaming-the-remarkable-2.html)).
 Étant donné que je travaillais principalement de chez moi, cet outil était très utile, me permettant d'esquisser des éléments pendant les appels en conférence.
 
 L'un des principaux avantages de cet outil était sa capacité à diffuser du contenu directement dans un onglet de navigateur web. 

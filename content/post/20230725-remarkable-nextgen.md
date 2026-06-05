@@ -42,7 +42,7 @@ mathjax: false
 ---
 
 In 2021, I developed a tool to stream the content of my reMarkable. 
-(and I also blogged about it [here](https://blog.owulveryck.info/2021/03/30/streaming-the-remarkable-2.html)).
+(and I also blogged about it [in a previous post](https://blog.owulveryck.info/2021/03/30/streaming-the-remarkable-2.html)).
 Given that I was predominantly working from home, this tool was very useful, allowing me to sketch elements during conference calls.
 
 One of the primary benefits of this tool was its ability to stream content directly into a web browser tab. 

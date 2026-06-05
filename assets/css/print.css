@@ -76,9 +76,9 @@ main, .main, .main.container, .main.pico.container {
   text-align: center;
   font-family: 'Literata', Georgia, serif;
   font-size: 8pt;
-  color: #999 !important;
+  color: #595959 !important;
   padding: 0.5cm 0 0.4em 0;
-  border-bottom: 0.5pt solid #ddd !important;
+  border-bottom: 0.5pt solid #aaa !important;
   margin-bottom: 0.5em;
 }
 
@@ -86,9 +86,9 @@ main, .main, .main.container, .main.pico.container {
   text-align: center;
   font-family: 'Literata', Georgia, serif;
   font-size: 7pt;
-  color: #999 !important;
+  color: #595959 !important;
   padding: 0.4em 0 0.5cm 0;
-  border-top: 0.5pt solid #ddd !important;
+  border-top: 0.5pt solid #aaa !important;
   margin-top: 0.5em;
 }
 

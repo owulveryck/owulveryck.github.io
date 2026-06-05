@@ -182,7 +182,7 @@ Consequently, there is a version of Tailscale compatible with the reMarkable dev
 
 Sadly, the reMarkable linux kernel does not support the [tun/tap](https://docs.kernel.org/networking/tuntap.html) device driver, and so it is impossible to run tailscale out-of-the-box.
 
-_Note_: it was pointed out on Reddit that running Tailscale on the reMarkable is actually possible, as explained [here](https://remarkable.guide/tech/tailscale.html).
+_Note_: it was pointed out on Reddit that running Tailscale on the reMarkable is actually possible, as explained [in the reMarkable guide](https://remarkable.guide/tech/tailscale.html).
 
 However, as Tailscale operates as an SDN, there is an alternative method to connect to the service without depending on kernel support, purely in userspace: [_tsnet_](https://tailscale.com/kb/1244/tsnet).
 

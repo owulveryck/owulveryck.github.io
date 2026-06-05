@@ -213,7 +213,7 @@ The creation and exposition of the MJPEG stream is not detailed in this post as 
 
 ### Security
 
-Even if HTTP/2 does not require any encryption (see [here](https://http2.github.io/faq/#does-http2-require-encryption)), a lot of implementation only supports the protocol if used over an encrypted connexion. 
+Even if HTTP/2 does not require any encryption (see [the HTTP/2 FAQ](https://http2.github.io/faq/#does-http2-require-encryption)), a lot of implementation only supports the protocol if used over an encrypted connexion. 
 The Go implementation of gRPC requires by default an encryption channel (that can be bypassed with the use of an `Insecure` method, but we all know that is not a good way to Go ;)).
 
 It is, therefore, a good practice to implement this security mechanism that will avoid sniffing of the pictures from the wifi if you use the tool on an untrusted network.

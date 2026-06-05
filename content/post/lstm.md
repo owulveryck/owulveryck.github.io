@@ -27,7 +27,7 @@ mathjax: false
 
 ---
 
-This post describes the concept of software 2.0. It evaluates an instance of the Unicode equation parser (as described [here](https://blog.owulveryck.info/2017/12/18/parsing-mathematical-equation-to-generate-computation-graphs---first-step-from-software-1.0-to-2.0-in-go.html)) to give a strict separation of the software 1.0 and the software 2.0.
+This post describes the concept of software 2.0. It evaluates an instance of the Unicode equation parser (as described [in my earlier post on equation parsing](https://blog.owulveryck.info/2017/12/18/parsing-mathematical-equation-to-generate-computation-graphs---first-step-from-software-1.0-to-2.0-in-go.html)) to give a strict separation of the software 1.0 and the software 2.0.
 
 In this article, I will go further in the description of this concept with the help of the famous “char RNN” example.
 

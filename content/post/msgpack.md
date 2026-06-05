@@ -54,7 +54,7 @@ and that will, _in fine_ transfer it to the backend.
 
 ## The RestFull API.
 
-I will use the example described [here](http://thenewstack.io/make-a-restful-json-api-go/) as a basis for this post.
+I will use the example described [in this RESTful JSON API tutorial](http://thenewstack.io/make-a-restful-json-api-go/) as a basis for this post.
 Of course there are many other examples and excellent go packages that may be used, but according to Mat Ryer, I will stick to the idiomatic approach.
 
 ## The glue: MSGPACK-RPC
@@ -214,4 +214,4 @@ That's all folks! What's left:
 * To implement the swagger interface and documentation of the API
 * Whatever fancy stuff you may want from a production ready interface.
 
-You can find all the codes in the github repository [here](https://github.com/owulveryck/example-iaas) in the branch `iaas-like-restfull-api-based-on-microservices`
+You can find all the codes [in the GitHub repository](https://github.com/owulveryck/example-iaas) in the branch `iaas-like-restfull-api-based-on-microservices`

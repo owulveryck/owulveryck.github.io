@@ -280,7 +280,7 @@ Pour simplifier les choses, nous divisons le modèle en trois sous-modèles.
 {{</highlight>}}
 
 Il n'y a pas beaucoup d'intérêt à afficher tout le câblage dans cet article.
-Le modèle complet est disponible [ici](https://github.com/owulveryck/rdf2graph/blob/7a6127ae4428c5501a1d07eb541a16fb4ee3ad83/examples/webview/index.tmpl#L1-L59)
+Le modèle complet est disponible [sur GitHub](https://github.com/owulveryck/rdf2graph/blob/7a6127ae4428c5501a1d07eb541a16fb4ee3ad83/examples/webview/index.tmpl#L1-L59)
 
 Cela affichera une page bien formatée lorsqu'elle sera mélangée avec un nœud du graphe.
 

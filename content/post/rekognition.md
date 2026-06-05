@@ -155,7 +155,7 @@ The person 0 is HAPPY, CONFUSED, CALM,
 
 # Conclusion
 
-That's all folks. The full code can be found [here](https://gist.github.com/owulveryck/33753125afa6284cd5dbbb1bd4d1eb54).
+That's all folks. The full code can be found [in this Gist](https://gist.github.com/owulveryck/33753125afa6284cd5dbbb1bd4d1eb54).
 
 In the test I made, I was always happy. I've tried to be angry or sad, without success... Maybe I have a happy face.
 I should try with someone else maybe.

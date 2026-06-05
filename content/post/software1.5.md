@@ -13,7 +13,7 @@ The target is to use the RNN as a processing unit. The ultimate goal is to creat
 I have many applications in mind such as finding the root-cause of an incident or managing the capacity of an infrastructure.
 
 _Note_ I stick to the Go language for many reasons:
-Some of them a personnal and not opposable (I simply like it). But another reason is that, in a distant future, this tool could act as a node of a processing network that would communicate via a tuple space (see my previous posts about Linda [here](https://blog.owulveryck.info/2017/02/03/linda-31yo-with-5-starving-philosophers....html), [here](https://blog.owulveryck.info/2017/02/28/to-go-and-touch-lindas-lisp.html) and [here](https://blog.owulveryck.info/2017/03/13/lindas-evalc-a-tuplespace-oddity.html).
+Some of them a personnal and not opposable (I simply like it). But another reason is that, in a distant future, this tool could act as a node of a processing network that would communicate via a tuple space (see my previous posts about Linda: [Linda, 31yo with 5 starving philosophers](https://blog.owulveryck.info/2017/02/03/linda-31yo-with-5-starving-philosophers....html), [To Go and touch Linda's Lisp](https://blog.owulveryck.info/2017/02/28/to-go-and-touch-lindas-lisp.html) and [Linda's eval/C: a tuplespace oddity](https://blog.owulveryck.info/2017/03/13/lindas-evalc-a-tuplespace-oddity.html).
 
 All the node would work in a choreography. The set of nodes would be a kind of distributed bot that could monitor a complete IT system. But that's for another story in a couple of years...
 
@@ -230,7 +230,7 @@ set(`hc`, `tanh(cₜ)`)
 ht, _ := l.parser.Parse(`oₜ*hc`)
 ```
 
-_Note_ If you don't have the correct font to display the unicode character click [here](/assets/lstm/uni-code.png)
+_Note_ If you don't have the correct font to display the unicode character click [to view the unicode character screenshot](/assets/lstm/uni-code.png)
 
 ## Good ol' software 1.0
 
@@ -245,7 +245,7 @@ The parser was more difficult to write because of the mathematical [operator pre
 After a bunch of documentation about LALR parser, I have decided to call an old friend: _yacc_
 
 In the world of go, there is [goyacc](https://godoc.org/golang.org/x/tools/cmd/goyacc) whose syntax is compatible with yacc, but which generates parsers written in go.
-I have found a perfect example of a calculator [here](https://github.com/golang/tools/tree/master/cmd/goyacc/testdata/expr)
+I have found a perfect example of a calculator [in the goyacc test data](https://github.com/golang/tools/tree/master/cmd/goyacc/testdata/expr)
 
 ###  The grammar
 
@@ -332,7 +332,7 @@ func (x *exprLex) Let(ident  string, value *G.Node) {
 ```
 
 I will not describe the rest of the parser because the implementation is straightforward and easy to read.
-You can find the complete implementation [here](https://raw.githubusercontent.com/owulveryck/charRNN/colah/parser/src/expr.y).
+You can find the complete implementation [in the expr.y source file](https://raw.githubusercontent.com/owulveryck/charRNN/colah/parser/src/expr.y).
 
 ### Generating the package
 

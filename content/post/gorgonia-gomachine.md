@@ -135,7 +135,7 @@ sigma(output, E)
 fmt.Println(<-output)
 ```
 
-Running this code prints `0.8807970779778823` (see the full code [here](https://gist.github.com/owulveryck/b1255077d7e1d940f9cc472bc69ef733))
+Running this code prints `0.8807970779778823` (see the full code [in this Gist](https://gist.github.com/owulveryck/b1255077d7e1d940f9cc472bc69ef733))
 
 ### Adding concurrency
 
@@ -287,7 +287,7 @@ So, the "Pregel" implementation we are seeking is eventually an implementation o
 
 an Experimental implementation called `GoMachine` lives in the master branch of Gorgonia (under the `x` subdirectory).
 
-The code and godoc are accessible [here](https://godoc.org/gorgonia.org/gorgonia/x/vm#GoMachine). The whole logic is carried by the `RunAll` method
+The code and godoc are accessible [on GoDoc](https://godoc.org/gorgonia.org/gorgonia/x/vm#GoMachine). The whole logic is carried by the `RunAll` method
 (it uses the structure and the implementation described in this article.).
 
 For clarity, the package uses two helper functions:

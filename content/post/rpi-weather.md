@@ -242,7 +242,7 @@ Nothing more because the code ends by
   _ = ep 
 ```
 
-Cool... Now let's add some code to read from the endpoint (which is an interface and that implements a Read method as described [here](https://godoc.org/github.com/jpoirier/gousb/usb#Endpoint))
+Cool... Now let's add some code to read from the endpoint (which is an interface and that implements a Read method as described [in the gousb Endpoint documentation](https://godoc.org/github.com/jpoirier/gousb/usb#Endpoint))
 
 ```go
   b := make([]byte, 16)
@@ -275,7 +275,7 @@ OK! Here are the data, now what I need to figure out, is how to interpret them!
 
 ## Decoding the Protocol
 
-Internet is a great tool: I've found a description of the protocol [here](http://www.bashewa.com/wmr200-protocol.php)
+Internet is a great tool: I've found a description of the protocol [on the WMR200 protocol reference page](http://www.bashewa.com/wmr200-protocol.php)
 
 I've read that it was mandatory to send a heartbeat sequence every 30 seconds.
 I will implement the heartbeat later. For now I will send it initially to request data from the station:
@@ -318,7 +318,7 @@ __What did² I do wrong?__
 Easy, I didn't RTFM...
 Actually, I didn't read the specification of the USB.
 
-As described [here](http://events.linuxfoundation.org/sites/events/files/slides/elc_2014_usb_0.pdf) the USB is a __host-controlled__ bus which means that:
+As described [in this USB specification presentation](http://events.linuxfoundation.org/sites/events/files/slides/elc_2014_usb_0.pdf) the USB is a __host-controlled__ bus which means that:
 
 * Nothing on the bus happens without the host first initiating it.
 * Devices cannot initiate a transaction.

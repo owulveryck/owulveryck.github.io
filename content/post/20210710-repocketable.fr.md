@@ -326,7 +326,7 @@ Sur l'image, nous aimerions voir :
 
 Avec le package `image/draw` de la bibliothèque standard, nous créons une image RGB et composons la couverture frontale.
 
-Le code de la génération de couverture est [ici](https://github.com/owulveryck/rePocketable/blob/master/internal/epub/cover.go).
+Le code de la génération de couverture est [dans le dépôt](https://github.com/owulveryck/rePocketable/blob/master/internal/epub/cover.go).
 Ensuite, les méthodes de la bibliothèque go-epub l'ajoutent à l'ePub.
 
 ### Intégration GetPocket

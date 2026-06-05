@@ -249,7 +249,7 @@ The purpose of the adaptation is to reduce the loss at every step.
 From now on, let's talk about the implementation; feel free to skip this part and jump straight to the conclusion if your are not interested in coding.
 
 I want to create a tool able to generate a Shakespeare play as described in Karpathy's blog post.
-His implementation in Python is [here](https://gist.github.com/karpathy/d4dee566867f8291f086); you can find mine [here](https://github.com/owulveryck/min-char-rnn).
+His implementation in Python is [in this Gist](https://gist.github.com/karpathy/d4dee566867f8291f086); you can find mine [on GitHub](https://github.com/owulveryck/min-char-rnn).
 
 **edit** At first, it was a simple transcript from Python to GO, but the tool has been enhanced. It is now a more generic tool able to use RNN as a processing unit. It's pluggable to any code able to encode and decode a sequence of bytes into a vector.
 

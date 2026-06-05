@@ -157,7 +157,7 @@ It is interesting to visualize the result of the conversion. I am using the tool
 Here is an extract of the picture it generates:
 ![Netron visualization of an ONNX neural network with convolution layers](/assets/yolofaces/netron-extract.png)
 
-I made a copy of the full representation [here](/assets/yolofaces/netron.png) if you want to see how the model looks.
+I made a copy of the [full model representation](/assets/yolofaces/netron.png) if you want to see how the model looks.
 
 #### Preparing the test of the infrastructure
 
@@ -241,7 +241,7 @@ fmt.Println(string(b))
 }
 ```
 
-(the full graph is [here](/assets/yolofaces/yolo-gorgonia.))
+(the [full graph visualization](/assets/yolofaces/yolo-gorgonia.))
 
 ![Computational graph showing ONNX model operations including convolution nodes](/assets/yolofaces/onnx-gorgonia-preview.png)
 
@@ -306,7 +306,7 @@ You can find the code of the application in my [`gofaces`](https://github.com/ow
 
 The repository is composed of:
 
-* the `gofaces` package which is at the root level (see the godoc [here](https://godoc.org/github.com/owulveryck/gofaces);
+* the `gofaces` package which is at the root level (see the [godoc reference](https://godoc.org/github.com/owulveryck/gofaces);
 * a `cmd` subdirectory is holding a sample implementation to analyze the picture in the command line.
 
 ## Example 

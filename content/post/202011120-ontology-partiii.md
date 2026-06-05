@@ -278,7 +278,7 @@ To make things easier, we split the tamplate into three subtemplates.
 {{</highlight>}}
 
 There is not much interest in displaying all the wiring inside this article.
-The full template is available [here](https://github.com/owulveryck/rdf2graph/blob/7a6127ae4428c5501a1d07eb541a16fb4ee3ad83/examples/webview/index.tmpl#L1-L59)
+The full template is available [on GitHub](https://github.com/owulveryck/rdf2graph/blob/7a6127ae4428c5501a1d07eb541a16fb4ee3ad83/examples/webview/index.tmpl#L1-L59)
 
 This will display a nice formated page when mixed with a node of the graph.
 

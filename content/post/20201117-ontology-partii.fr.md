@@ -134,7 +134,7 @@ type Edge interface {
 }
 {{</ highlight >}}
 
-_Note_ : tous les commentaires ont été supprimés pour être concis. La définition complète est disponible [ici](https://pkg.go.dev/gonum.org/v1/gonum/graph#Graph)
+_Note_ : tous les commentaires ont été supprimés pour être concis. La définition complète est disponible [dans la documentation de gonum](https://pkg.go.dev/gonum.org/v1/gonum/graph#Graph)
 
 Une fois que les objets du graphe remplissent ces interfaces, il devient possible d'utiliser tous les algorithmes de graphe qui ont été implémentés par l'équipe gonum.
 Veuillez aller à ce lien si vous souhaitez en savoir plus sur les capacités : [pkg.go.dev/gonum.org/v1/gonum/graph#section-directories](https://pkg.go.dev/gonum.org/v1/gonum/graph#section-directories)

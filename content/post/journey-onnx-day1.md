@@ -61,7 +61,7 @@ Once a message is serialized, it is represented in a binary format.
 
 _Note_: I will not go deeper in the _protobuf_ description here. But, in my humble opinion, it is a perfect way to express an API when implementing a machine-to-machine communication. Better than JSON because of its simplicity, efficiency and the ability to validate a schema natively.
 
-But let's go back to ONNX. The primary definition file for ONNX (the API contract) is hosted [here](https://github.com/onnx/onnx/blob/master/onnx/onnx.proto3) and is named `onnx.proto3`.
+But let's go back to ONNX. The primary definition file for ONNX (the API contract) is hosted [on the ONNX GitHub repository](https://github.com/onnx/onnx/blob/master/onnx/onnx.proto3) and is named `onnx.proto3`.
 This is *the* file used to generate bindings to other languages.
 
 To create a bridge between the _protobuf_ binary format and the Go ecosystem, the first thing to do is to generate the Go API. This will allow to read an ONNX file and to transpile it into a Go compatible object.
@@ -72,7 +72,7 @@ Merely running `protoc --gofast_out=. onnx.proto3` will generate a file [onnx.pb
 
 ## onnx-go 
 
-After some discussions with the [official team](https://github.com/onnx/onnx/pull/1328), we agreed that, before the _onnx-go_ package reaches a certain level maturity, it was best to host it on my personal GitHub account. So, as of today, I am hosting the repository here: [github.com/owulveryck/onnx-go](https://godoc.org/github.com/owulveryck/onnx-go). The corresponding Godoc is hosted [here](https://godoc.org/github.com/owulveryck/onnx-go).
+After some discussions with the [official team](https://github.com/onnx/onnx/pull/1328), we agreed that, before the _onnx-go_ package reaches a certain level maturity, it was best to host it on my personal GitHub account. So, as of today, I am hosting the repository here: [github.com/owulveryck/onnx-go](https://godoc.org/github.com/owulveryck/onnx-go). The corresponding Godoc is hosted [on godoc.org](https://godoc.org/github.com/owulveryck/onnx-go).
 
 This package on its own is enough to read an ONNX format. 
 

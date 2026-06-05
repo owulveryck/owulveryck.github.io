@@ -209,3 +209,28 @@ button.theme-toggle {
   height: 100vh;
   height: 100dvh;
 }
+
+// Accessibility: color contrast overrides (WCAG AA 4.5:1 minimum)
+:root {
+  --pico-secondary: #4a5670;
+  --pico-secondary-hover: #3d4860;
+  --pico-secondary-underline: rgba(74, 86, 112, 0.5);
+}
+
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  --pico-muted-color: #8c95a8;
+}
+
+.post-content figure figcaption h4,
+.post-content figure figcaption p {
+  color: #767676;
+}
+
+.post-content blockquote {
+  border-left-color: #767676;
+
+  &::before {
+    color: #767676;
+  }
+}

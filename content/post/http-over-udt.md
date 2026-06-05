@@ -54,7 +54,7 @@ The problem is that it is not open source and a bit expensive.
 
 ### The UDT protocol
 
-The UDT protocol is described by ASPERA as its main competitor [here](http://asperasoft.com/fileadmin/media/Asperasoft.com/Resources/White_Papers/fasp_Critical_Technology_Comparison_AsperaWP.pdf).
+The UDT protocol is described by ASPERA as its main competitor [in their technology comparison whitepaper](http://asperasoft.com/fileadmin/media/Asperasoft.com/Resources/White_Papers/fasp_Critical_Technology_Comparison_AsperaWP.pdf).
 It's open source and worth the try.
 It's the one I will use for my tests.
 The code is distributed as a C++ library, but it exists GO bindings.

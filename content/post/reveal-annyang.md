@@ -50,7 +50,7 @@ Best of all, they provide a userland access via a Javascript API to this functio
 
 This means that you can develop a web page that will access you microphone, sends what you say to the Google cloud, get the result back and process it in your page.
 
-You can see an introduction [here](https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API)
+You can see an introduction [in the Web Speech API guide](https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API)
 
 # What can I use that for: A case study?
 

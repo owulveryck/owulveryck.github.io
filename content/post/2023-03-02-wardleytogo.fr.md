@@ -210,7 +210,7 @@ Vous pouvez le construire étape par étape en suivant [ce tutoriel](https://owu
 Le langage `wtg` répond à mes propres besoins. J'ai réalisé plusieurs cartes avec.
 
 Il est au-delà de la portée de cet article de décrire complètement la grammaire. J'ai commencé un site web basé sur le [cadre de documentation divio](https://documentation.divio.com/) comme compagnon du langage.
-Vous pouvez trouver la référence du langage [ici](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
+Vous pouvez trouver la référence du langage [sur la page de référence wtg](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
 
 Il existe une version en ligne qui peut être utilisée pour créer facilement des cartes avec le langage.
 Même si j'ai ajouté quelques petites fonctionnalités à la démo comme la possibilité de cacher des liens dans la chaîne pour avoir une meilleure observation des composants, la version en ligne est une démo.

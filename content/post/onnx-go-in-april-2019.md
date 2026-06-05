@@ -180,7 +180,7 @@ For more information on the wiring that makes this work with WASM etc., please r
 
 ---
 
-Download the MNIST `model.onnx` from the [model zoo (you may need to unzip it first)](https://www.cntk.ai/OnnxModels/mnist/opset_7/mnist.tar.gz) (if not available, there is a copy [here](/assets/onnx/mnist/model.onnx)). This file contains the pre-trained neural network.
+Download the MNIST `model.onnx` from the [model zoo (you may need to unzip it first)](https://www.cntk.ai/OnnxModels/mnist/opset_7/mnist.tar.gz) (if not available, there is a [local copy](/assets/onnx/mnist/model.onnx)). This file contains the pre-trained neural network.
 
 
 <a style="color:red">Upload it here: </a><input type="file" id="knowledgeFile" multiple size="1" style="width:250px" accept=".onnx" onChange="fileOK();">

@@ -78,7 +78,7 @@ Linda's principle is very simple as it relies on 4 basic operations:
 _Important_ A tuple can be __actual__ or __formal__. An actual tuple holds real values. Therefore the _in_ and _rd_ operations on an actual tuple succeed if every single value of the tuple matches.
 A formal tuple may holds "variables". Therefore the _in_ and _rd_ operations succeed if the real values match and if the type of the formal match the actual value.
 
-You can find a more complete description of the language and examples [here](http://www.cs.bu.edu/~best/crs/cs551/lectures/lecture-22.html).
+You can find a more complete description of the language and examples [in this Linda lecture](http://www.cs.bu.edu/~best/crs/cs551/lectures/lecture-22.html).
 
 # Think big, start small, move fast
 

@@ -132,7 +132,7 @@ type Edge interface {
 }
 {{</ highlight >}}
 
-_Note_: all comments have been removed for brevity. The full definition is available [here](https://pkg.go.dev/gonum.org/v1/gonum/graph#Graph)
+_Note_: all comments have been removed for brevity. The full definition is available [in the gonum documentation](https://pkg.go.dev/gonum.org/v1/gonum/graph#Graph)
 
 Once the graph objects are fulfilling those interfaces, it becomes possible to use all the graph algorithms that have been implemented by the gonum team.
 Please go to this link if you wish to learn more about the capabilities: [pkg.go.dev/gonum.org/v1/gonum/graph#section-directories](https://pkg.go.dev/gonum.org/v1/gonum/graph#section-directories)

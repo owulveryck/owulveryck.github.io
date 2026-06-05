@@ -333,7 +333,7 @@ It works!
 
 {{< youtube psb9r_YhwiY >}}
 
-The code is [here](https://github.com/owulveryck/socketcam).
+The code is [available on GitHub](https://github.com/owulveryck/socketcam).
 
 ### In the cloud with AWS
 
@@ -345,7 +345,7 @@ I will provide a sample picture of me to the cortex.
 
 I took the sample picture at work, to make the task a little bit trickier for the engine because the environment will not match what it will see.
 
-I won't dig into the code that can be found [here](https://github.com/owulveryck/socketcam/blob/master/processors/rekognition/main.go).
+I won't dig into the code that can be found [in the rekognition processor source](https://github.com/owulveryck/socketcam/blob/master/processors/rekognition/main.go).
 
 And does it work?
 

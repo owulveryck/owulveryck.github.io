@@ -195,7 +195,7 @@ fmt.Println("This is the end!")
 ```
 
 __Note__ I have set up a timeout, just in case ([reference](https://talks.golang.org/2012/concurrency.slide#36))...
-__Note2__ I do not talk about the fanIn funtion which is described [here](https://talks.golang.org/2012/concurrency.slide#28)
+__Note2__ I do not talk about the fanIn funtion which is described [in the Go concurrency talk](https://talks.golang.org/2012/concurrency.slide#28)
 
 ## The test
 
@@ -222,7 +222,7 @@ All done!
 
 Pretty cool
 
-The complete source can be found [here](https://github.com/owulveryck/gorchestrator).
+The complete source can be found [on GitHub](https://github.com/owulveryck/gorchestrator).
 
 If you want to play: download go, setup a directory and a `$GOPATH` then simply
 

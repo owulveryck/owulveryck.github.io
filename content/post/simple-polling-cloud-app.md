@@ -8,7 +8,7 @@ title = "Simple polling, a cloud native app - part 1"
 In this series of posts I'll explain how to setup a simple polling app, the cloud way.
 This app, written in go, will be hosted on a PAAS, and I've chosen the [Google App Engine](https://cloud.google.com/appengine/docs) for convenience.
 
-I will not explain in this post how to setup the Development environment as it is described [here](https://cloud.google.com/appengine/docs/go/gettingstarted/devenvironment)
+I will not explain in this post how to setup the Development environment as it is described [in the App Engine Getting Started guide](https://cloud.google.com/appengine/docs/go/gettingstarted/devenvironment)
 
 # A word about the Hosting
 
@@ -84,7 +84,7 @@ _Note_: For convenience I've created a github repo named "google-app-example" to
 Let's create the hello world first to validate the whole development chain.
 As written in the doc, create the two files `hello.go` and `app.yaml`.
 Obviously the `simple-polling.go` file will hold the code of the application. Let's focus a bit on the _app.yaml_ file.
-The documentation of the _app.yaml_ file is [here](https://cloud.google.com/appengine/docs/go/config/appconfig). The goal of this file is to specifiy the runtime configuration of the engine.
+The documentation of the _app.yaml_ file is [in the App Engine configuration reference](https://cloud.google.com/appengine/docs/go/config/appconfig). The goal of this file is to specifiy the runtime configuration of the engine.
 This simple file replace the "integration" task for an application typed "born in the datacenter"
 
 Here is my app.yaml

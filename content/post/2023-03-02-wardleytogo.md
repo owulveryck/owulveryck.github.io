@@ -208,7 +208,7 @@ You can build it step by step by following [this tutorial](https://owulveryck.gi
 The `wtg` language suits my own need. I've made several maps with it.
 
 It is beyond the scope of this article to fully describe the grammar. I started a website based on the [divio documentation framework](https://documentation.divio.com/) as a companion to the language. 
-You can find the language reference [here](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
+You can find the language reference [on the wtg reference page](https://owulveryck.github.io/wardleyToGo/reference/wtg/).
 
 There is an online version that can be used to create maps with the language easily. 
 Even if I added some small features to the demo such as the ability to hide links in the chain to have a better observation of the components,the online version is a demo. 

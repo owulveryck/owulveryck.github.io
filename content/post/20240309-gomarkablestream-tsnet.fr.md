@@ -184,7 +184,7 @@ Par conséquent, il existe une version de Tailscale compatible avec l'appareil r
 
 Malheureusement, le noyau Linux de reMarkable ne prend pas en charge le pilote de périphérique [tun/tap](https://docs.kernel.org/networking/tuntap.html), et il est donc impossible d'exécuter tailscale tel quel.
 
-_Note_ : il a été signalé sur Reddit qu'exécuter Tailscale sur le reMarkable est en fait possible, comme expliqué [ici](https://remarkable.guide/tech/tailscale.html).
+_Note_ : il a été signalé sur Reddit qu'exécuter Tailscale sur le reMarkable est en fait possible, comme expliqué [dans le guide reMarkable](https://remarkable.guide/tech/tailscale.html).
 
 Cependant, comme Tailscale fonctionne comme un SDN, il existe une méthode alternative pour se connecter au service sans dépendre du support du noyau, purement en espace utilisateur : [_tsnet_](https://tailscale.com/kb/1244/tsnet).
 

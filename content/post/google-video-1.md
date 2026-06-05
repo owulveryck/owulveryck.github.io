@@ -102,7 +102,7 @@ It returns a result in `json` that in which we can find three important fields:
 * `shotAnnotations`: an array of the shot annotations as described earlier
 * `labelAnnotations`: an array of label annotations
 
-Here is a sample output: (the full result is [here](/assets/video-intelligence/video-analysis-a-la-recherche.json))
+Here is a sample output: (the full result is [in the JSON analysis file](/assets/video-intelligence/video-analysis-a-la-recherche.json))
 {{< highlight js >}}
 {
   "response": {
@@ -151,7 +151,7 @@ The API has found a lot of label described under the `description` fields and 1 
 
 What I can do is to manipulate the data to list all the label with their frequency.
 
-You can find [here](https://gist.github.com/owulveryck/70d97e1e73d664c1c927c253a862ac17) a little go code that will display labels as many times as they occur.
+You can find [in this Gist](https://gist.github.com/owulveryck/70d97e1e73d664c1c927c253a862ac17) a little go code that will display labels as many times as they occur.
 
 For example:
 
@@ -195,4 +195,4 @@ For example, in this video, it can be possible to find the original movies were 
 
 I will postpone this for another geek-time.
 
-_P.S._ The javascript has been made with _gopherjs_. It is not optimize at all (I should avoid the encoding/json package for example). If you are curious about the implementation, the code is [here](/assets/video-intelligence/main.go), [here](/assets/video-intelligence/structure.go) and [here](/assets/video-intelligence/data.go).
+_P.S._ The javascript has been made with _gopherjs_. It is not optimize at all (I should avoid the encoding/json package for example). If you are curious about the implementation, the code is in [main.go](/assets/video-intelligence/main.go), [structure.go](/assets/video-intelligence/structure.go) and [data.go](/assets/video-intelligence/data.go).

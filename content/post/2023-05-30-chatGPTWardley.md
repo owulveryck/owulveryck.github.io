@@ -64,7 +64,7 @@ You may want to read this article if:
 
 ## How a plugin works
 
-The development of plugins for ChatGPT is documented [here](https://platform.openai.com/docs/plugins/introduction)
+The development of plugins for ChatGPT is documented [in the OpenAI documentation](https://platform.openai.com/docs/plugins/introduction)
 In a glimpse, a plugin is a REST API that is called by ChatGPT.
 
 To turn an API into a plugin, you must provide two files:

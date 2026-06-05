@@ -403,7 +403,7 @@ dataset: [{
 }]
 ```
 
-As documented in the data-contract you can find the code used to generate the chromadb [here](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py).
+As documented in the data-contract you can find the code used to generate the chromadb [in this Gist](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-chromageneration-py).
 
 ### Play along with the data
 Assuming you have an instance of Ollama installed locally, you can now experiment with a RAG (Retrieval-Augmented Generation). I created a small [Python script](https://gist.github.com/owulveryck/dcf3de4e0ad82ab99bf116828112eacd#file-query-py) that queries Ollama by asking:

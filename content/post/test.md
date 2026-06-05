@@ -36,7 +36,7 @@ All those experiments led me to a write a proof of concepts that can illustrate 
 For a demo, I have developed a simple LSTM that can play the tic-tac-toe game.
 I am a fan of this example for AI-related kinds of stuff, it is indeed a "[Madeleine](https://en.wikipedia.org/wiki/Madeleine_(cake)#Literary_reference)" for me.
 
-I will not go into every single detail here, and you can find the code [here](https://github.com/owulveryck/rnnttt/tree/blog).
+I will not go into every single detail here, and you can find the code [in the rnnttt repository](https://github.com/owulveryck/rnnttt/tree/blog).
 But the principle is as follow:
 
 An autonomous code based on an LSTM is learning the possible combinations of a winning tic-tac-toe board for token X.

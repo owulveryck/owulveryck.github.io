@@ -53,7 +53,7 @@ In this part I will explain how to get the data from AWS and to store them in th
 
 ## The product informations
 
-A product's technical representation is described [here](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html).
+A product's technical representation is described [in the AWS documentation](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html).
 We have:
 
 {{< highlight js >}}
@@ -190,7 +190,7 @@ From the documentation the definition is:
 
 _AttributeValue Represents the data for an attribute. You can set one, and only one, of the elements._
 
-The AttributeValue is _typed_ (The types are described [here](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_AttributeValue.html))
+The AttributeValue is _typed_ (The types are described [in the DynamoDB API reference](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_AttributeValue.html))
 Therefore our informations (remember the `map[string]inteface{}`) must be "convrted" to a dynamodb format.
 This task has been made easy by using the package [dynamodbattribute](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_AttributeValue.html) which does it for us:
 

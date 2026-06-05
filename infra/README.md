@@ -7,8 +7,9 @@ Distribution ID : `EJVG52EKHMUNU`
 - **Origin** : S3 REST (`blog.owulveryck.info.s3.amazonaws.com`), ACL `public-read`
 - **Compression** : Brotli + Gzip activée (`Compress: true`)
 - **HTTP** : HTTP/3 (QUIC)
-- **Cache** : legacy settings, TTL respecte les headers `Cache-Control` S3
-- **Security headers** : Response Headers Policy `blog-security-headers` (`8f8054a8-14ac-452e-942a-f4e3c438807b`)
+- **Cache** : AWS managed Cache Policy `CachingOptimized` (`658327ea-f89d-4fab-a63d-7e88639e58f6`), TTL respecte les headers `Cache-Control` S3
+- **Security headers** : AWS managed Response Headers Policy `SecurityHeadersPolicy` (`67f7725c-6f97-4210-82d7-5512b31e9d03`) — HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, X-XSS-Protection
+- **Logging** : désactivé
 - **URL rewrite** : CloudFront Function `blog-url-rewrite` sur `viewer-request`
 - **Price Class** : `PriceClass_All`
 

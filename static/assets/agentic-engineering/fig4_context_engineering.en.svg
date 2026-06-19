@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="'Outfit', sans-serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8691AB"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="540" rx="12" fill="#E7E9EE"/>
+
+  <!-- ===== LEFT SIDE: Six types of agent context ===== -->
+
+  <!-- Label: "Six types of agent context" -->
+  <text x="62" y="212" font-size="10" fill="#586586" text-anchor="middle" font-style="italic">Six types of</text>
+  <text x="62" y="224" font-size="10" fill="#586586" text-anchor="middle" font-style="italic">agent context</text>
+
+  <!-- Box 1: Instructions -->
+  <rect x="110" y="42" width="230" height="52" rx="8" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+  <text x="130" y="63" font-size="13" font-weight="bold" fill="#0E2356">Instructions</text>
+  <text x="130" y="80" font-size="11" fill="#586586">Roles, goals, boundaries</text>
+
+  <!-- Box 2: Knowledge -->
+  <rect x="110" y="104" width="230" height="52" rx="8" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+  <text x="130" y="125" font-size="13" font-weight="bold" fill="#0E2356">Knowledge</text>
+  <text x="130" y="142" font-size="11" fill="#586586">Documents, diagrams, domain data</text>
+
+  <!-- Box 3: Memory -->
+  <rect x="110" y="166" width="230" height="52" rx="8" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+  <text x="130" y="187" font-size="13" font-weight="bold" fill="#0E2356">Memory</text>
+  <text x="130" y="204" font-size="11" fill="#586586">Session logs, persistent state</text>
+
+  <!-- Box 4: Examples -->
+  <rect x="110" y="228" width="230" height="52" rx="8" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+  <text x="130" y="249" font-size="13" font-weight="bold" fill="#0E2356">Examples</text>
+  <text x="130" y="266" font-size="11" fill="#586586">Few-shot demos, reference patterns</text>
+
+  <!-- Box 5: Tools -->
+  <rect x="110" y="290" width="230" height="52" rx="8" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+  <text x="130" y="311" font-size="13" font-weight="bold" fill="#0E2356">Tools</text>
+  <text x="130" y="328" font-size="11" fill="#586586">APIs, scripts, external services</text>
+
+  <!-- Box 6: Guardrails -->
+  <rect x="110" y="352" width="230" height="52" rx="8" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+  <text x="130" y="373" font-size="13" font-weight="bold" fill="#0E2356">Guardrails</text>
+  <text x="130" y="390" font-size="11" fill="#586586">Hard constraints, security rules</text>
+
+  <!-- ===== CENTER: Design decision label + arrows ===== -->
+
+  <!-- Label -->
+  <text x="415" y="245" font-size="11" font-weight="bold" fill="#0E2356" text-anchor="middle">Design decision:</text>
+  <text x="415" y="260" font-size="11" font-style="italic" fill="#586586" text-anchor="middle">what goes where?</text>
+
+  <!-- Arrows from left boxes to right panels -->
+  <!-- Arrow from Instructions to Static -->
+  <line x1="340" y1="68" x2="490" y2="90" stroke="#8691AB" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <!-- Arrow from Knowledge fan -->
+  <line x1="340" y1="130" x2="490" y2="110" stroke="#8691AB" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <!-- Arrow from Memory fan -->
+  <line x1="340" y1="192" x2="490" y2="130" stroke="#8691AB" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+  <!-- Arrow from Examples to Dynamic -->
+  <line x1="340" y1="254" x2="490" y2="310" stroke="#8691AB" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <!-- Arrow from Tools to Dynamic -->
+  <line x1="340" y1="316" x2="490" y2="330" stroke="#8691AB" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <!-- Arrow from Guardrails to Dynamic -->
+  <line x1="340" y1="378" x2="490" y2="360" stroke="#8691AB" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+  <!-- Cross arrows: some go to both -->
+  <line x1="340" y1="192" x2="490" y2="310" stroke="#8691AB" stroke-width="0.8" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.5"/>
+  <line x1="340" y1="378" x2="490" y2="160" stroke="#8691AB" stroke-width="0.8" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.5"/>
+
+  <!-- ===== RIGHT SIDE TOP: Static context ===== -->
+  <rect x="490" y="38" width="440" height="190" rx="10" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Blue header bar -->
+  <rect x="490" y="38" width="440" height="36" rx="10" fill="#0E2356"/>
+  <!-- Fix bottom corners of header -->
+  <rect x="490" y="58" width="440" height="16" fill="#0E2356"/>
+
+  <text x="510" y="62" font-size="14" font-weight="bold" fill="#FFFFFF">Static context</text>
+
+  <!-- Token cost badge -->
+  <rect x="800" y="47" width="120" height="20" rx="4" fill="#00D2DD"/>
+  <text x="860" y="61" font-size="9" fill="#0E2356" text-anchor="middle" font-weight="bold">Token cost: high</text>
+
+  <!-- Progress bar indicator -->
+  <rect x="700" y="50" width="90" height="6" rx="3" fill="#EBFAFB"/>
+  <rect x="700" y="50" width="70" height="6" rx="3" fill="#00D2DD"/>
+
+  <!-- Subtitle -->
+  <text x="510" y="92" font-size="11" fill="#586586" font-style="italic">Always loaded, on every interaction</text>
+
+  <!-- Content items -->
+  <text x="520" y="116" font-size="12" fill="#0E2356">System instructions</text>
+  <text x="520" y="136" font-size="12" fill="#0E2356">Rules files (AGENTS.md)</text>
+  <text x="520" y="156" font-size="12" fill="#0E2356">Global memory</text>
+  <text x="520" y="176" font-size="12" fill="#0E2356">Core guardrails</text>
+
+  <!-- Bullet dots -->
+  <circle cx="510" cy="113" r="2.5" fill="#0E2356"/>
+  <circle cx="510" cy="133" r="2.5" fill="#0E2356"/>
+  <circle cx="510" cy="153" r="2.5" fill="#0E2356"/>
+  <circle cx="510" cy="173" r="2.5" fill="#0E2356"/>
+
+  <!-- Bottom note -->
+  <text x="510" y="216" font-size="10" fill="#8691AB" font-style="italic">Expensive but reliable. The agent never forgets them.</text>
+
+  <!-- ===== RIGHT SIDE BOTTOM: Dynamic context ===== -->
+  <rect x="490" y="260" width="440" height="185" rx="10" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Blue header bar -->
+  <rect x="490" y="260" width="440" height="36" rx="10" fill="#0E2356"/>
+  <rect x="490" y="280" width="440" height="16" fill="#0E2356"/>
+
+  <text x="510" y="284" font-size="14" font-weight="bold" fill="#FFFFFF">Dynamic context</text>
+
+  <!-- Token cost badge -->
+  <rect x="770" y="269" width="150" height="20" rx="4" fill="#00D2DD"/>
+  <text x="845" y="283" font-size="9" fill="#0E2356" text-anchor="middle" font-weight="bold">Token cost: low per turn</text>
+
+  <!-- Toggle icon (blue) -->
+  <rect x="720" y="272" width="30" height="14" rx="7" fill="#00D2DD"/>
+  <circle cx="742" cy="279" r="5" fill="#FFFFFF"/>
+
+  <!-- Subtitle -->
+  <text x="510" y="314" font-size="11" fill="#586586" font-style="italic">Loaded on demand, per task</text>
+
+  <!-- Content items -->
+  <text x="520" y="340" font-size="12" fill="#0E2356">Agent skills</text>
+  <text x="610" y="340" font-size="10" fill="#586586">(triggered by task matching)</text>
+
+  <text x="520" y="362" font-size="12" fill="#0E2356">Tool results</text>
+  <text x="610" y="362" font-size="10" fill="#586586">(fetched during execution)</text>
+
+  <text x="520" y="384" font-size="12" fill="#0E2356">Retrieved documents</text>
+  <text x="652" y="384" font-size="10" fill="#586586">(RAG)</text>
+
+  <!-- Bullet dots -->
+  <circle cx="510" cy="337" r="2.5" fill="#00D2DD"/>
+  <circle cx="510" cy="359" r="2.5" fill="#00D2DD"/>
+  <circle cx="510" cy="381" r="2.5" fill="#00D2DD"/>
+
+  <!-- Bottom note -->
+  <text x="510" y="430" font-size="10" fill="#8691AB" font-style="italic">Efficient and scalable. Only pay for what you use.</text>
+
+  <!-- ===== BOTTOM ANNOTATION ===== -->
+  <text x="480" y="520" font-size="11" fill="#263967" text-anchor="middle" font-weight="600">The best systems treat this as a first-class architectural decision, reviewed and versioned like code.</text>
+
+</svg>

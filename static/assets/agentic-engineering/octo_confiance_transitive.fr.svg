@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" font-family="'Outfit', sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="2" stdDeviation="4" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background card -->
+  <rect x="0" y="0" width="920" height="560" rx="12" fill="#ffffff" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Title -->
+  <text x="290" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#0E2356">La Confiance Transitive</text>
+  <text x="290" y="48" text-anchor="middle" font-size="10" fill="#586586" font-style="italic">Chaque application d&#233;ploy&#233;e est un test pour la r&#233;putation de la marque</text>
+
+  <!-- ====== CHART AREA: x=70..560, y=60..440 ====== -->
+
+  <!-- Y-axis label (rotated) -->
+  <text x="22" y="248" text-anchor="middle" font-size="9" fill="#586586" transform="rotate(-90,22,248)">Niveau de confiance de la marque</text>
+
+  <!-- X-axis label -->
+  <text x="315" y="470" text-anchor="middle" font-size="10" fill="#586586">Nombre d'applications d&#233;ploy&#233;es</text>
+
+  <!-- Axes -->
+  <line x1="70" y1="60" x2="70" y2="440" stroke="#9FA7BB" stroke-width="1.5"/>
+  <line x1="70" y1="440" x2="565" y2="440" stroke="#9FA7BB" stroke-width="1.5"/>
+  <polygon points="70,58 66,67 74,67" fill="#9FA7BB"/>
+  <polygon points="567,440 558,436 558,444" fill="#9FA7BB"/>
+
+  <!-- Y-axis scale labels -->
+  <text x="60" y="104" text-anchor="end" font-size="7" fill="#8691AB">&#201;lev&#233;e</text>
+  <text x="60" y="280" text-anchor="end" font-size="7" fill="#8691AB">Moyenne</text>
+  <text x="60" y="434" text-anchor="end" font-size="7" fill="#8691AB">Faible</text>
+
+  <!-- X-axis scale labels -->
+  <text x="120" y="456" text-anchor="middle" font-size="7" fill="#8691AB">1 app</text>
+  <text x="250" y="456" text-anchor="middle" font-size="7" fill="#8691AB">Quelques</text>
+  <text x="390" y="456" text-anchor="middle" font-size="7" fill="#8691AB">Dizaines</text>
+  <text x="520" y="456" text-anchor="middle" font-size="7" fill="#8691AB">Centaines</text>
+
+  <!-- Light grid lines -->
+  <line x1="70" y1="100" x2="560" y2="100" stroke="#E7E9EE" stroke-width="0.7" stroke-dasharray="4,4"/>
+  <line x1="70" y1="200" x2="560" y2="200" stroke="#E7E9EE" stroke-width="0.7" stroke-dasharray="4,4"/>
+  <line x1="70" y1="280" x2="560" y2="280" stroke="#E7E9EE" stroke-width="0.7" stroke-dasharray="4,4"/>
+  <line x1="70" y1="360" x2="560" y2="360" stroke="#E7E9EE" stroke-width="0.7" stroke-dasharray="4,4"/>
+
+  <!-- ====== RISK ZONE (shading below threshold) ====== -->
+  <rect x="70" y="174" width="490" height="266" fill="#F5E6E6" opacity="0.15"/>
+
+  <!-- ====== THRESHOLD LINE at Y=70% ====== -->
+  <line x1="70" y1="174" x2="560" y2="174" stroke="#9E3A3A" stroke-width="1" stroke-dasharray="6,4" opacity="0.6"/>
+  <text x="565" y="166" font-size="6.5" fill="#9E3A3A" font-weight="bold">Seuil de perte</text>
+  <text x="565" y="175" font-size="6.5" fill="#9E3A3A" font-weight="bold">de confiance</text>
+  <text x="565" y="185" font-size="5.5" fill="#9E3A3A" font-style="italic">Au-del&#224;, chaque nouvelle</text>
+  <text x="565" y="193" font-size="5.5" fill="#9E3A3A" font-style="italic">app d&#233;grade l'image</text>
+
+  <!-- ====== VIBE CODING CURVE (cyan, collapse) ====== -->
+  <path d="M 80,106 C 120,110 180,160 232,212
+           C 260,250 285,278 315,307
+           C 345,338 368,358 393,372
+           C 440,395 510,408 550,410"
+        fill="none" stroke="#00D2DD" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- ====== BMAD CURVE (blue-grey, delayed decline) ====== -->
+  <path d="M 80,106 C 120,108 180,118 232,128
+           C 280,145 340,172 393,204
+           C 430,226 500,255 550,269"
+        fill="none" stroke="#4A7C8A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- ====== INGÉNIERIE AGENTIQUE CURVE (dark blue, stable/rising) ====== -->
+  <line x1="80" y1="106" x2="550" y2="106"
+        stroke="#0E2356" stroke-width="3.2" stroke-linecap="round"/>
+
+  <!-- ====== ANNOTATIONS — VIBE CODING (descending) ====== -->
+
+  <!-- Faille de sécurité -->
+  <line x1="232" y1="212" x2="218" y2="195" stroke="#00D2DD" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="158" y="192" font-size="7.5" fill="#586586" font-weight="bold">Faille de s&#233;curit&#233;</text>
+
+  <!-- Ton inadapté -->
+  <line x1="315" y1="307" x2="300" y2="288" stroke="#00D2DD" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="245" y="285" font-size="7.5" fill="#586586" font-weight="bold">Ton inadapt&#233;</text>
+
+  <!-- Perte de clientèle -->
+  <line x1="393" y1="372" x2="378" y2="353" stroke="#00D2DD" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="312" y="350" font-size="7.5" fill="#586586" font-weight="bold">Perte de client&#232;le</text>
+
+  <!-- ====== ANNOTATION — BMAD threshold crossing ====== -->
+  <circle cx="329" cy="174" r="4" fill="#ffffff" stroke="#4A7C8A" stroke-width="1.2"/>
+  <line x1="333" y1="178" x2="350" y2="218" stroke="#4A7C8A" stroke-width="0.7" stroke-dasharray="2,2"/>
+  <rect x="245" y="220" width="240" height="24" rx="4" fill="#F0F4F5" stroke="#4A7C8A" stroke-width="0.8"/>
+  <text x="365" y="236" text-anchor="middle" font-size="7.5" fill="#4A7C8A" font-style="italic">La certitude est locale : chaque projet repart de z&#233;ro</text>
+
+  <!-- ====== ANNOTATION — Agentique advantage ====== -->
+  <rect x="290" y="66" width="270" height="26" rx="3" fill="#E7E9EE" stroke="#0E2356" stroke-width="0.5"/>
+  <text x="425" y="76" text-anchor="middle" font-size="6.5" fill="#0E2356" font-style="italic">Avantage plateforme : la confiance se maintient</text>
+  <text x="425" y="86" text-anchor="middle" font-size="6.5" fill="#0E2356" font-style="italic">&#x2014; et se renforce &#x2014; &#224; l'&#233;chelle</text>
+
+  <!-- ====== CURVE LABELS ====== -->
+  <text x="130" y="99" font-size="8" fill="#0E2356" font-weight="bold">Ing&#233;nierie agentique</text>
+  <text x="420" y="260" font-size="8" fill="#4A7C8A" font-weight="bold" font-style="italic">IA structur&#233;e</text>
+  <text x="440" y="400" font-size="8" fill="#00D2DD" font-weight="bold" font-style="italic">Vibe Coding</text>
+
+  <!-- ====== CONTREFORTS (3 vertical arrows from threshold up to agentique curve) ====== -->
+
+  <!-- Contrefort 1: Sûreté & Sécurité (X≈45%) -->
+  <g>
+    <line x1="291" y1="174" x2="291" y2="114" stroke="#0E2356" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="291,106 287,114 295,114" fill="#0E2356" opacity="0.8"/>
+    <text x="291" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0E2356">S&#251;ret&#233; &amp;</text>
+    <text x="291" y="199" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0E2356">S&#233;curit&#233;</text>
+  </g>
+
+  <!-- Contrefort 2: Fiabilité (X≈65%) -->
+  <g>
+    <line x1="389" y1="174" x2="389" y2="114" stroke="#0E2356" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="389,106 385,114 393,114" fill="#0E2356" opacity="0.8"/>
+    <text x="389" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0E2356">Fiabilit&#233;</text>
+  </g>
+
+  <!-- Contrefort 3: Cohérence de marque (X≈85%) -->
+  <g>
+    <line x1="487" y1="174" x2="487" y2="114" stroke="#0E2356" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="487,106 483,114 491,114" fill="#0E2356" opacity="0.8"/>
+    <text x="487" y="190" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0E2356">Coh&#233;rence</text>
+    <text x="487" y="199" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0E2356">de marque</text>
+  </g>
+
+  <!-- ====== RIGHT SIDE: TRUST CHAIN ====== -->
+
+  <!-- Chain title -->
+  <text x="745" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">La cha&#238;ne de confiance</text>
+
+  <!-- Chain: Consommateur → Marque → Applications → Code -->
+  <!-- Link 1: Consommateur -->
+  <rect x="610" y="85" width="270" height="42" rx="6" fill="#E7E9EE" stroke="#CFD3DD" stroke-width="1"/>
+  <g transform="translate(628,100)">
+    <circle cx="0" cy="-4" r="5" fill="none" stroke="#586586" stroke-width="1"/>
+    <path d="M-7,10 Q-7,2 0,3 Q7,2 7,10" fill="none" stroke="#586586" stroke-width="1"/>
+  </g>
+  <text x="645" y="104" font-size="10" fill="#0E2356" font-weight="bold">Utilisateur final</text>
+  <text x="645" y="118" font-size="8" fill="#8691AB" font-style="italic">&#171; J'ai confiance en cette marque &#187;</text>
+
+  <!-- Arrow down -->
+  <text x="745" y="140" text-anchor="middle" font-size="14" fill="#586586">&#x25BC;</text>
+  <text x="800" y="140" font-size="7" fill="#8691AB" font-style="italic">fait confiance &#224;</text>
+
+  <!-- Link 2: Marque -->
+  <rect x="610" y="148" width="270" height="42" rx="6" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.5"/>
+  <!-- Star icon -->
+  <text x="628" y="175" font-size="14" fill="#0E2356">&#x2605;</text>
+  <text x="645" y="167" font-size="10" fill="#0E2356" font-weight="bold">Marque premium</text>
+  <text x="645" y="181" font-size="8" fill="#8691AB" font-style="italic">Exigence de qualit&#233; et d'excellence</text>
+
+  <!-- Arrow down -->
+  <text x="745" y="204" text-anchor="middle" font-size="14" fill="#586586">&#x25BC;</text>
+  <text x="800" y="204" font-size="7" fill="#8691AB" font-style="italic">d&#233;ploie</text>
+
+  <!-- Link 3: Applications -->
+  <rect x="610" y="212" width="270" height="42" rx="6" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1"/>
+  <!-- Multi-window icon -->
+  <rect x="619" y="221" width="8" height="6" rx="1" fill="none" stroke="#586586" stroke-width="0.8"/>
+  <rect x="622" y="224" width="8" height="6" rx="1" fill="none" stroke="#586586" stroke-width="0.8"/>
+  <rect x="625" y="227" width="8" height="6" rx="1" fill="#E7E9EE" stroke="#586586" stroke-width="0.8"/>
+  <text x="645" y="232" font-size="10" fill="#0E2356" font-weight="bold">Applications (&#xD7;N)</text>
+  <text x="645" y="246" font-size="8" fill="#8691AB" font-style="italic">Doivent refl&#233;ter le niveau premium</text>
+
+  <!-- Arrow down -->
+  <text x="745" y="268" text-anchor="middle" font-size="14" fill="#586586">&#x25BC;</text>
+  <text x="800" y="268" font-size="7" fill="#8691AB" font-style="italic">sont produites par</text>
+
+  <!-- Link 4: Code produit -->
+  <rect x="610" y="276" width="270" height="42" rx="6" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1"/>
+  <!-- Code icon -->
+  <text x="630" y="301" font-size="11" fill="#586586" font-weight="bold">{}</text>
+  <text x="645" y="296" font-size="10" fill="#0E2356" font-weight="bold">Code produit par les agents</text>
+  <text x="645" y="310" font-size="8" fill="#8691AB" font-style="italic">Qualit&#233; invisible mais cons&#233;quences visibles</text>
+
+  <!-- ====== WARNING CALLOUT ====== -->
+  <rect x="600" y="332" width="300" height="38" rx="6" fill="#EBFAFB" stroke="#00D2DD" stroke-width="1.2"/>
+  <text x="618" y="350" font-size="13" fill="#00D2DD">&#x26A0;</text>
+  <text x="636" y="347" font-size="8.5" fill="#0E2356" font-weight="bold">Une application amateur compromet</text>
+  <text x="636" y="361" font-size="8.5" fill="#0E2356" font-weight="bold">la confiance en la marque enti&#232;re.</text>
+
+  <!-- ====== 3 PILLARS OF TRUST (bottom) ====== -->
+
+  <!-- Dark bar -->
+  <rect x="585" y="385" width="320" height="28" rx="6" fill="#0E2356"/>
+  <text x="745" y="404" text-anchor="middle" font-size="11" fill="#FFFFFF" font-weight="bold">Les 3 piliers de confiance de la plateforme</text>
+
+  <!-- Pillar 1: Sûreté -->
+  <rect x="585" y="418" width="100" height="65" rx="4" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1"/>
+  <!-- Shield icon -->
+  <path d="M635,430 L625,435 L625,442 C625,448 635,453 635,453 C635,453 645,448 645,442 L645,435 Z" fill="none" stroke="#0E2356" stroke-width="1.2"/>
+  <text x="635" y="462" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">S&#251;ret&#233; &amp;</text>
+  <text x="635" y="473" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">S&#233;curit&#233;</text>
+
+  <!-- Pillar 2: Fiabilité -->
+  <rect x="695" y="418" width="100" height="65" rx="4" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1"/>
+  <!-- Checkmark in circle -->
+  <circle cx="745" cy="440" r="8" fill="none" stroke="#0E2356" stroke-width="1.2"/>
+  <polyline points="739,440 743,444 751,436" fill="none" stroke="#0E2356" stroke-width="1.5"/>
+  <text x="745" y="466" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Fiabilit&#233;</text>
+
+  <!-- Pillar 3: Cohérence (emphasized) -->
+  <rect x="805" y="418" width="100" height="65" rx="4" fill="#FFFFFF" stroke="#00D2DD" stroke-width="1.5"/>
+  <!-- Brand/palette icon -->
+  <rect x="735" y="0" width="0" height="0"/>
+  <rect x="838" y="430" width="5" height="12" rx="1" fill="#0E2356"/>
+  <rect x="845" y="430" width="5" height="12" rx="1" fill="#00D2DD"/>
+  <rect x="852" y="430" width="5" height="12" rx="1" fill="#8691AB"/>
+  <text x="855" y="462" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Coh&#233;rence</text>
+  <text x="855" y="473" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">de marque</text>
+
+  <!-- ====== BOTTOM LEGEND ====== -->
+  <line x1="70" y1="510" x2="100" y2="510" stroke="#00D2DD" stroke-width="2.5"/>
+  <text x="105" y="513" font-size="8" fill="#263967">Vibe Coding &#x2014; confiance non g&#233;r&#233;e</text>
+
+  <line x1="285" y1="510" x2="315" y2="510" stroke="#4A7C8A" stroke-width="2.5"/>
+  <text x="320" y="513" font-size="8" fill="#263967">IA structur&#233;e &#x2014; fiable localement, d&#233;croche &#224; l'&#233;chelle</text>
+
+  <line x1="570" y1="510" x2="600" y2="510" stroke="#0E2356" stroke-width="2.5"/>
+  <text x="605" y="513" font-size="8" fill="#263967">Ing&#233;nierie agentique &#x2014; confiance port&#233;e par la plateforme</text>
+
+  <!-- Annotation -->
+  <text x="460" y="545" text-anchor="middle" font-size="11" font-weight="600" fill="#263967">La confiance se construit lentement et se perd en un instant. Chaque application est un test.</text>
+
+</svg>

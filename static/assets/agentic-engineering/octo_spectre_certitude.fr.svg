@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Outfit', sans-serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="spectrumGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D2DD"/>
+      <stop offset="35%" stop-color="#00D2DD"/>
+      <stop offset="55%" stop-color="#586586"/>
+      <stop offset="100%" stop-color="#0E2356"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background card -->
+  <rect x="0" y="0" width="900" height="520" rx="12" fill="#ffffff" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#0E2356">Certitude contextuelle vs. Certitude syst&#233;mique</text>
+  <text x="450" y="50" text-anchor="middle" font-size="10" fill="#586586" font-style="italic">Trois approches, trois niveaux de ma&#238;trise &#x2014; ce qui change quand on passe &#224; l'&#233;chelle</text>
+
+  <!-- ===== THREE COLUMNS ===== -->
+
+  <!-- Column 1: Vibe Coding -->
+  <text x="150" y="90" text-anchor="middle" font-size="17" font-weight="bold" fill="#586586">Vibe Coding</text>
+  <text x="150" y="110" text-anchor="middle" font-size="10" fill="#586586">Prompts informels</text>
+  <text x="150" y="124" text-anchor="middle" font-size="10" fill="#586586">&#171; &#199;a a l'air de marcher &#187;</text>
+  <text x="150" y="138" text-anchor="middle" font-size="10" fill="#586586">Prototypage rapide</text>
+
+  <line x1="150" y1="150" x2="150" y2="178" stroke="#00D2DD" stroke-width="2"/>
+
+  <!-- Column 2: IA assist&#233;e structur&#233;e -->
+  <text x="450" y="90" text-anchor="middle" font-size="17" font-weight="bold" fill="#263967">IA assist&#233;e structur&#233;e</text>
+  <rect x="395" y="96" width="110" height="18" rx="9" fill="#EBFAFB" stroke="#00D2DD" stroke-width="0.8"/>
+  <text x="450" y="109" text-anchor="middle" font-size="9" fill="#263967" font-weight="bold">ex : BMAD</text>
+  <text x="450" y="128" text-anchor="middle" font-size="10" fill="#586586">Prompts d&#233;taill&#233;s + r&#232;gles + templates</text>
+  <text x="450" y="142" text-anchor="middle" font-size="10" fill="#586586">V&#233;rifications ponctuelles, code structur&#233;</text>
+
+  <line x1="450" y1="150" x2="450" y2="178" stroke="#586586" stroke-width="2"/>
+
+  <!-- Column 3: Ing&#233;nierie agentique -->
+  <text x="750" y="90" text-anchor="middle" font-size="17" font-weight="bold" fill="#0E2356">Ing&#233;nierie agentique</text>
+  <text x="750" y="110" text-anchor="middle" font-size="10" fill="#586586">Sp&#233;cifications formelles + plateforme</text>
+  <text x="750" y="124" text-anchor="middle" font-size="10" fill="#586586">Garde-fous syst&#233;miques + CI/CD</text>
+  <text x="750" y="138" text-anchor="middle" font-size="10" fill="#586586">Production &#224; l'&#233;chelle</text>
+
+  <line x1="750" y1="150" x2="750" y2="178" stroke="#0E2356" stroke-width="2"/>
+
+  <!-- ===== GRADIENT BAR ===== -->
+  <rect x="60" y="182" width="780" height="36" rx="18" fill="url(#spectrumGrad)"/>
+
+  <!-- Axis labels -->
+  <text x="60" y="240" text-anchor="start" font-size="10" fill="#586586">&#x2190; Moins de structure, plus de vitesse</text>
+  <text x="840" y="240" text-anchor="end" font-size="10" fill="#586586">Plus de structure, plus de fiabilit&#233; &#x2192;</text>
+
+  <!-- ===== CERTITUDE GAUGES ===== -->
+
+  <!-- Section title -->
+  <text x="60" y="278" font-size="12" font-weight="bold" fill="#0E2356">Quel niveau de certitude ?</text>
+
+  <!-- Row 1: Certitude contextuelle -->
+  <text x="60" y="310" font-size="11" fill="#0E2356" font-weight="600">Certitude contextuelle</text>
+  <text x="60" y="323" font-size="8" fill="#8691AB" font-style="italic">Cette app fonctionne-t-elle bien ?</text>
+
+  <!-- Gauge Vibe: faible -->
+  <rect x="260" y="302" width="120" height="14" rx="4" fill="#E7E9EE"/>
+  <rect x="260" y="302" width="25" height="14" rx="4" fill="#00D2DD"/>
+  <text x="320" y="312" text-anchor="middle" font-size="7" fill="#8691AB">Al&#233;atoire</text>
+
+  <!-- Gauge Structur&#233;e: haute -->
+  <rect x="430" y="302" width="120" height="14" rx="4" fill="#E7E9EE"/>
+  <rect x="430" y="302" width="105" height="14" rx="4" fill="#263967"/>
+  <text x="490" y="312" text-anchor="middle" font-size="7" fill="#FFFFFF" font-weight="bold">&#201;lev&#233;e</text>
+
+  <!-- Gauge Agentique: haute -->
+  <rect x="610" y="302" width="120" height="14" rx="4" fill="#E7E9EE"/>
+  <rect x="610" y="302" width="110" height="14" rx="4" fill="#0E2356"/>
+  <text x="670" y="312" text-anchor="middle" font-size="7" fill="#FFFFFF" font-weight="bold">&#201;lev&#233;e</text>
+
+  <!-- Row 2: Certitude syst&#233;mique -->
+  <text x="60" y="362" font-size="11" fill="#0E2356" font-weight="600">Certitude syst&#233;mique</text>
+  <text x="60" y="375" font-size="8" fill="#8691AB" font-style="italic">Toutes les apps sont-elles au m&#234;me niveau ?</text>
+
+  <!-- Gauge Vibe: n&#233;ant -->
+  <rect x="260" y="354" width="120" height="14" rx="4" fill="#E7E9EE"/>
+  <rect x="260" y="354" width="5" height="14" rx="4" fill="#00D2DD"/>
+  <text x="320" y="364" text-anchor="middle" font-size="7" fill="#8691AB">N&#233;ant</text>
+
+  <!-- Gauge Structur&#233;e: faible -->
+  <rect x="430" y="354" width="120" height="14" rx="4" fill="#E7E9EE"/>
+  <rect x="430" y="354" width="22" height="14" rx="4" fill="#586586"/>
+  <text x="504" y="364" text-anchor="middle" font-size="7" fill="#8691AB">Faible</text>
+
+  <!-- Gauge Agentique: haute -->
+  <rect x="610" y="354" width="120" height="14" rx="4" fill="#E7E9EE"/>
+  <rect x="610" y="354" width="110" height="14" rx="4" fill="#0E2356"/>
+  <text x="670" y="364" text-anchor="middle" font-size="7" fill="#FFFFFF" font-weight="bold">&#201;lev&#233;e</text>
+
+  <!-- ===== CALLOUT BOXES ===== -->
+
+  <!-- Callout BMAD (turquoise border) -->
+  <rect x="60" y="400" width="370" height="50" rx="6" fill="#EBFAFB" stroke="#00D2DD" stroke-width="1.2"/>
+  <text x="78" y="420" font-size="10" fill="#263967" font-weight="bold">BMAD / IA structur&#233;e</text>
+  <text x="78" y="436" font-size="9" fill="#586586">Une app bien construite, dans les r&#232;gles de l'art.</text>
+  <text x="78" y="448" font-size="9" fill="#586586" font-weight="bold">Mais la suivante repart de z&#233;ro.</text>
+
+  <!-- Callout Plateforme (navy border) -->
+  <rect x="470" y="400" width="370" height="50" rx="6" fill="#E7E9EE" stroke="#0E2356" stroke-width="1.5"/>
+  <text x="488" y="420" font-size="10" fill="#0E2356" font-weight="bold">Plateforme agentique</text>
+  <text x="488" y="436" font-size="9" fill="#586586">Toutes les apps au m&#234;me niveau de qualit&#233;,</text>
+  <text x="488" y="448" font-size="9" fill="#0E2356" font-weight="bold">par construction, pas par effort individuel.</text>
+
+  <!-- ===== BOTTOM ANNOTATION ===== -->
+  <text x="450" y="490" text-anchor="middle" font-size="11" font-weight="600" fill="#263967">La certitude contextuelle est n&#233;cessaire mais insuffisante.</text>
+  <text x="450" y="506" text-anchor="middle" font-size="11" font-weight="600" fill="#263967">Seule la certitude syst&#233;mique passe &#224; l'&#233;chelle.</text>
+
+</svg>

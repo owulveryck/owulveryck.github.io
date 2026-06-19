@@ -9,11 +9,11 @@
     <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#0E2356"/>
     </marker>
-    <marker id="arrowDown" markerWidth="8" markerHeight="6" refX="4" refY="6" orient="auto">
-      <polygon points="0 0, 8 0, 4 6" fill="#586586"/>
+    <marker id="arrowDown" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#586586"/>
     </marker>
-    <marker id="arrowDownNavy" markerWidth="8" markerHeight="6" refX="4" refY="6" orient="auto">
-      <polygon points="0 0, 8 0, 4 6" fill="#0E2356"/>
+    <marker id="arrowDownNavy" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0E2356"/>
     </marker>
     <marker id="arrowTurquoise" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#00D2DD"/>

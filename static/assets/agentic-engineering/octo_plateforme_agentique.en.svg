@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 645" font-family="'Outfit', sans-serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowDown" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#586586"/>
+    </marker>
+    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#586586"/>
+    </marker>
+    <marker id="arrowUp" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00D2DD"/>
+    </marker>
+    <marker id="arrowDownWhite" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#B7BDCC"/>
+    </marker>
+    <marker id="arrowTurquoise" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00D2DD"/>
+    </marker>
+  </defs>
+
+  <!-- Background card -->
+  <rect x="0" y="0" width="900" height="645" rx="12" fill="#ffffff" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#0E2356">The Agentic Platform</text>
+  <text x="450" y="50" text-anchor="middle" font-size="11" fill="#586586" font-style="italic">Shared AI-ready capabilities for building reliable applications at scale</text>
+
+  <!-- ===== APPLICATION PRODUCTION ZONE (y=65-175) ===== -->
+  <rect x="40" y="65" width="820" height="110" rx="8" fill="#E7E9EE" stroke="#CFD3DD" stroke-width="1"/>
+  <text x="58" y="85" font-size="12" font-weight="bold" fill="#0E2356">Application production zone</text>
+  <text x="290" y="85" font-size="9" fill="#8691AB" font-style="italic">&#x2014; configures the production line, not the product</text>
+
+  <!-- PM icon -->
+  <g transform="translate(100,118)">
+    <circle cx="0" cy="-12" r="8" fill="none" stroke="#586586" stroke-width="1.5"/>
+    <path d="M-12,12 Q-12,-2 0,0 Q12,-2 12,12" fill="none" stroke="#586586" stroke-width="1.5"/>
+  </g>
+  <text x="100" y="146" font-size="10" fill="#586586" text-anchor="middle">PM</text>
+
+  <!-- Arrow PM to Intentions -->
+  <line x1="122" y1="118" x2="155" y2="118" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- Intentions & Specifications -->
+  <rect x="168" y="103" width="195" height="30" rx="4" fill="white" stroke="#CFD3DD" stroke-width="1.2"/>
+  <text x="265" y="123" font-size="11" fill="#0E2356" text-anchor="middle">Intents &amp; specifications</text>
+
+  <!-- Arrow to Review -->
+  <line x1="367" y1="118" x2="620" y2="118" stroke="#586586" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Dev icon -->
+  <g transform="translate(445,118)">
+    <circle cx="0" cy="-12" r="8" fill="none" stroke="#586586" stroke-width="1.5"/>
+    <path d="M-12,12 Q-12,-2 0,0 Q12,-2 12,12" fill="none" stroke="#586586" stroke-width="1.5"/>
+  </g>
+  <text x="445" y="146" font-size="10" fill="#586586" text-anchor="middle">Developer</text>
+
+  <!-- Arrow Dev to Specific guardrails -->
+  <line x1="467" y1="118" x2="498" y2="118" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- Specific guardrails -->
+  <rect x="510" y="103" width="100" height="30" rx="4" fill="white" stroke="#00D2DD" stroke-width="1.2"/>
+  <text x="560" y="123" font-size="10" fill="#0E2356" text-anchor="middle">Guardrails</text>
+  <text x="560" y="113" font-size="7" fill="#00D2DD" text-anchor="middle">specific</text>
+
+  <!-- Arrow to Review -->
+  <line x1="614" y1="118" x2="640" y2="118" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- Review & Approval -->
+  <rect x="652" y="103" width="175" height="30" rx="4" fill="white" stroke="#CFD3DD" stroke-width="1.2"/>
+  <text x="740" y="123" font-size="11" fill="#0E2356" text-anchor="middle">Review &amp; approval</text>
+
+  <!-- ===== Arrow from production zone down to platform ===== -->
+  <line x1="265" y1="175" x2="265" y2="215" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+
+  <!-- ===== UPWARD ARROW: Token cost borne by the product ===== -->
+  <line x1="60" y1="220" x2="60" y2="178" stroke="#00D2DD" stroke-width="2" marker-end="url(#arrowUp)"/>
+  <text x="68" y="188" font-size="8" fill="#00D2DD" font-weight="bold">Token cost</text>
+  <text x="68" y="198" font-size="8" fill="#00D2DD" font-weight="bold">borne by</text>
+  <text x="68" y="208" font-size="8" fill="#00D2DD" font-weight="bold">the product</text>
+
+  <!-- ===== AI-READY PLATFORM (y=220-470) — THE HERO ===== -->
+  <rect x="40" y="220" width="820" height="250" rx="10" fill="#0E2356"/>
+
+  <!-- Platform header -->
+  <text x="100" y="245" font-size="15" font-weight="bold" fill="#FFFFFF">AI-Ready Platform</text>
+  <text x="300" y="245" font-size="10" fill="#00D2DD">Shared systemic capabilities</text>
+
+  <!-- Proportion bar: effort distribution -->
+  <text x="840" y="230" text-anchor="end" font-size="7" fill="#8691AB" font-style="italic">Effort distribution</text>
+  <rect x="580" y="235" width="260" height="18" rx="4" fill="#263967"/>
+  <rect x="580" y="235" width="228" height="18" rx="4" fill="#00D2DD"/>
+  <text x="694" y="247" text-anchor="middle" font-size="7.5" fill="#0E2356" font-weight="bold">Platform design (once)</text>
+  <text x="825" y="247" text-anchor="middle" font-size="6.5" fill="#B7BDCC">Per app</text>
+
+  <!-- ===== 3 PILLARS (white boxes on blue background) ===== -->
+
+  <!-- PILLAR 1: Systemic context -->
+  <rect x="60" y="260" width="240" height="190" rx="8" fill="#FFFFFF" stroke="none"/>
+
+  <text x="80" y="284" font-size="13" font-weight="bold" fill="#0E2356">Systemic context</text>
+  <text x="80" y="299" font-size="9" fill="#8691AB" font-style="italic">Provided by the platform</text>
+
+  <circle cx="78" cy="320" r="2.5" fill="#00D2DD"/>
+  <text x="88" y="324" font-size="10.5" fill="#0E2356">Instructions &amp; roles</text>
+
+  <circle cx="78" cy="340" r="2.5" fill="#00D2DD"/>
+  <text x="88" y="344" font-size="10.5" fill="#0E2356">Domain knowledge</text>
+
+  <circle cx="78" cy="360" r="2.5" fill="#00D2DD"/>
+  <text x="88" y="364" font-size="10.5" fill="#0E2356">Memory &amp; persistent state</text>
+
+  <circle cx="78" cy="380" r="2.5" fill="#00D2DD"/>
+  <text x="88" y="384" font-size="10.5" fill="#0E2356">Examples &amp; patterns</text>
+
+  <text x="80" y="420" font-size="8" fill="#8691AB" font-style="italic">Defined once.</text>
+  <text x="80" y="432" font-size="8" fill="#8691AB" font-style="italic">Applied to every agent.</text>
+
+  <!-- PILLAR 2: Systemic guardrails — THE DIFFERENTIATING PILLAR -->
+  <rect x="320" y="260" width="240" height="190" rx="8" fill="#FFFFFF" stroke="#00D2DD" stroke-width="1.5"/>
+
+  <text x="340" y="284" font-size="13" font-weight="bold" fill="#0E2356">Systemic guardrails</text>
+  <text x="340" y="299" font-size="9" fill="#8691AB" font-style="italic">Provided by the platform</text>
+
+  <circle cx="338" cy="320" r="2.5" fill="#00D2DD"/>
+  <text x="348" y="324" font-size="10.5" fill="#0E2356">Security</text>
+  <text x="348" y="336" font-size="8.5" fill="#8691AB">vulnerabilities, injections, data</text>
+
+  <circle cx="338" cy="354" r="2.5" fill="#00D2DD"/>
+  <text x="348" y="358" font-size="10.5" fill="#0E2356">Reliability</text>
+  <text x="348" y="370" font-size="8.5" fill="#8691AB">tests, regressions, monitoring</text>
+
+  <circle cx="338" cy="388" r="2.5" fill="#00D2DD"/>
+  <text x="348" y="392" font-size="10.5" fill="#0E2356" font-weight="bold">Brand consistency</text>
+  <text x="348" y="404" font-size="8.5" fill="#8691AB">tone, UX, design system, polish level</text>
+
+  <circle cx="338" cy="422" r="2.5" fill="#00D2DD"/>
+  <text x="348" y="426" font-size="10.5" fill="#0E2356">Standards &amp; conventions</text>
+
+  <!-- PILLAR 3: Tooling -->
+  <rect x="580" y="260" width="260" height="190" rx="8" fill="#FFFFFF" stroke="none"/>
+
+  <text x="600" y="284" font-size="13" font-weight="bold" fill="#0E2356">Tooling</text>
+  <text x="600" y="299" font-size="9" fill="#8691AB" font-style="italic">What the agent can use</text>
+
+  <circle cx="598" cy="320" r="2.5" fill="#00D2DD"/>
+  <text x="608" y="324" font-size="10.5" fill="#0E2356">MCP servers</text>
+
+  <circle cx="598" cy="340" r="2.5" fill="#00D2DD"/>
+  <text x="608" y="344" font-size="10.5" fill="#0E2356">External APIs &amp; services</text>
+
+  <circle cx="598" cy="360" r="2.5" fill="#00D2DD"/>
+  <text x="608" y="364" font-size="10.5" fill="#0E2356">CI/CD pipelines</text>
+
+  <circle cx="598" cy="380" r="2.5" fill="#00D2DD"/>
+  <text x="608" y="384" font-size="10.5" fill="#0E2356">Evaluations &amp; metrics</text>
+
+  <text x="600" y="420" font-size="8" fill="#8691AB" font-style="italic">Ready to use.</text>
+  <text x="600" y="432" font-size="8" fill="#8691AB" font-style="italic">No reinvention on every project.</text>
+
+  <!-- ===== CONVERGENCE: Specific context + Systemic context ===== -->
+
+  <!-- Arrow systemic context (from platform bottom) -->
+  <line x1="300" y1="470" x2="300" y2="495" stroke="#B7BDCC" stroke-width="1.5" marker-end="url(#arrowDownWhite)"/>
+  <text x="288" y="488" text-anchor="end" font-size="12" fill="#B7BDCC" font-weight="bold">Systemic context</text>
+
+  <!-- Arrow specific context: from right edge of production zone, bypassing the platform -->
+  <path d="M860,120 L870,120 L870,526 L742,526" fill="none" stroke="#00D2DD" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowTurquoise)"/>
+  <text x="752" y="492" font-size="12" fill="#00D2DD" font-weight="bold">Specific context</text>
+
+  <!-- ===== AGENT ORCHESTRATION ===== -->
+  <rect x="160" y="505" width="580" height="42" rx="21" fill="#0E2356"/>
+  <text x="450" y="531" text-anchor="middle" font-size="14" fill="white" font-weight="600">Agent orchestration</text>
+
+  <!-- Arrow to Application -->
+  <line x1="450" y1="547" x2="450" y2="565" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+
+  <!-- Produced application -->
+  <rect x="330" y="572" width="240" height="40" rx="6" fill="white" stroke="#00D2DD" stroke-width="1.5"/>
+  <text x="450" y="597" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">Application</text>
+
+  <!-- ===== FINAL ANNOTATION ===== -->
+  <text x="450" y="632" text-anchor="middle" font-size="11" font-weight="600" fill="#263967">The specific (intents, domain guardrails) merges with the systemic (platform) to produce the application.</text>
+
+</svg>

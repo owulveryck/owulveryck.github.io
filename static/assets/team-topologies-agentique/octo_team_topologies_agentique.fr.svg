@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 650" font-family="'Outfit', sans-serif" style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowGray" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+      <polygon points="0 0, 5 2, 0 4" fill="#8691AB"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+      <polygon points="0 0, 5 2, 0 4" fill="#34A853"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+      <polygon points="0 0, 5 2, 0 4" fill="#7B61FF"/>
+    </marker>
+    <marker id="arrowNavy" markerWidth="5" markerHeight="4" refX="5" refY="2" orient="auto">
+      <polygon points="0 0, 5 2, 0 4" fill="#586586"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="920" height="650" rx="12" fill="#ffffff" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Title -->
+  <text x="460" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#0E2356">Team Topologies de la Plateforme Agentique</text>
+  <text x="460" y="50" text-anchor="middle" font-size="11" fill="#586586" font-style="italic">Quatre types d'&#233;quipes, trois modes d'interaction</text>
+
+  <!-- ===== ENABLING (left, vertical) ===== -->
+  <rect x="40" y="90" width="120" height="200" rx="10" fill="#DFBDCF" stroke="#D09CB7" stroke-width="2"/>
+  <text x="100" y="118" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">Enabling</text>
+  <text x="100" y="136" text-anchor="middle" font-size="9" fill="#586586" font-style="italic">(temporaire)</text>
+  <circle cx="56" cy="165" r="2.5" fill="#D09CB7"/>
+  <text x="66" y="169" font-size="9.5" fill="#0E2356">Formation</text>
+  <circle cx="56" cy="188" r="2.5" fill="#D09CB7"/>
+  <text x="66" y="192" font-size="9.5" fill="#0E2356">Shift-left</text>
+  <circle cx="56" cy="211" r="2.5" fill="#D09CB7"/>
+  <text x="66" y="215" font-size="9.5" fill="#0E2356">Onboarding</text>
+  <circle cx="56" cy="234" r="2.5" fill="#D09CB7"/>
+  <text x="66" y="238" font-size="9.5" fill="#0E2356">Config. orchestrateur</text>
+  <text x="100" y="265" text-anchor="middle" font-size="8" fill="#586586" font-style="italic">Rend les &#233;quipes</text>
+  <text x="100" y="277" text-anchor="middle" font-size="8" fill="#586586" font-style="italic">autonomes</text>
+
+  <!-- ===== STREAM-ALIGNED A ===== -->
+  <rect x="420" y="75" width="310" height="95" rx="10" fill="#FFEDB8" stroke="#FFD966" stroke-width="2"/>
+  <text x="440" y="100" font-size="13" font-weight="bold" fill="#0E2356">&#201;quipe produit A</text>
+  <text x="618" y="100" font-size="9" fill="#586586" font-style="italic">stream-aligned</text>
+  <circle cx="438" cy="122" r="2.5" fill="#FFD966"/>
+  <text x="448" y="126" font-size="9.5" fill="#0E2356">Contexte dynamique</text>
+  <circle cx="438" cy="145" r="2.5" fill="#FFD966"/>
+  <text x="448" y="149" font-size="9.5" fill="#0E2356">Garde-fous sp&#233;cifiques</text>
+  <!-- Orchestrator mini-icon with enabling highlight -->
+  <rect x="626" y="106" width="88" height="50" rx="7" fill="none" stroke="#34A853" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="630" y="110" width="80" height="42" rx="5" fill="#EEF3FC" stroke="#6D9EEB" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="670" y="127" text-anchor="middle" font-size="8" fill="#586586">Orchestrateur</text>
+  <text x="670" y="140" text-anchor="middle" font-size="8" fill="#586586">IA</text>
+  <!-- Arrow to App -->
+  <line x1="734" y1="130" x2="790" y2="130" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowNavy)"/>
+  <rect x="800" y="115" width="80" height="32" rx="6" fill="white" stroke="#00D2DD" stroke-width="1.5"/>
+  <text x="840" y="136" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">App A</text>
+
+  <!-- ===== STREAM-ALIGNED B ===== -->
+  <rect x="420" y="195" width="310" height="95" rx="10" fill="#FFEDB8" stroke="#FFD966" stroke-width="2"/>
+  <text x="440" y="220" font-size="13" font-weight="bold" fill="#0E2356">&#201;quipe produit B</text>
+  <text x="618" y="220" font-size="9" fill="#586586" font-style="italic">stream-aligned</text>
+  <circle cx="438" cy="242" r="2.5" fill="#FFD966"/>
+  <text x="448" y="246" font-size="9.5" fill="#0E2356">Contexte dynamique</text>
+  <circle cx="438" cy="265" r="2.5" fill="#FFD966"/>
+  <text x="448" y="269" font-size="9.5" fill="#0E2356">Garde-fous sp&#233;cifiques</text>
+  <!-- Orchestrator mini-icon with enabling highlight -->
+  <rect x="626" y="226" width="88" height="50" rx="7" fill="none" stroke="#34A853" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="630" y="230" width="80" height="42" rx="5" fill="#EEF3FC" stroke="#6D9EEB" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="670" y="247" text-anchor="middle" font-size="8" fill="#586586">Orchestrateur</text>
+  <text x="670" y="260" text-anchor="middle" font-size="8" fill="#586586">IA</text>
+  <!-- Arrow to App -->
+  <line x1="734" y1="250" x2="790" y2="250" stroke="#586586" stroke-width="1.5" marker-end="url(#arrowNavy)"/>
+  <rect x="800" y="235" width="80" height="32" rx="6" fill="white" stroke="#00D2DD" stroke-width="1.5"/>
+  <text x="840" y="256" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">App B</text>
+
+  <!-- Equipe N hint -->
+  <rect x="500" y="310" width="160" height="22" rx="8" fill="none" stroke="#FFD966" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="580" y="325" text-anchor="middle" font-size="10" fill="#8691AB" font-style="italic">&#201;quipe N &#8230;</text>
+
+  <!-- ============================================================ -->
+  <!-- ===== INTERACTION 1: FACILITATING (prominent) ===== -->
+  <!-- ============================================================ -->
+  <path d="M160,155 C240,155 340,130 416,130" fill="none" stroke="#34A853" stroke-width="3" stroke-dasharray="8,5" marker-end="url(#arrowGreen)"/>
+  <path d="M160,230 C240,230 340,250 416,250" fill="none" stroke="#34A853" stroke-width="3" stroke-dasharray="8,5" marker-end="url(#arrowGreen)"/>
+  <!-- Prominent label with background -->
+  <rect x="248" y="106" width="90" height="22" rx="11" fill="#E8F5E1" stroke="#34A853" stroke-width="1.2"/>
+  <text x="293" y="121" text-anchor="middle" font-size="10" font-weight="bold" fill="#2D7D24">Facilitating</text>
+
+  <!-- ============================================================ -->
+  <!-- ===== PLATFORM (bottom center) ===== -->
+  <!-- ============================================================ -->
+  <rect x="185" y="375" width="615" height="195" rx="0" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="205" y="400" font-size="14" font-weight="bold" fill="#0E2356">&#201;quipe Plateforme</text>
+
+  <!-- Pillar 1: Contexte -->
+  <rect x="200" y="415" width="175" height="138" rx="6" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1"/>
+  <text x="218" y="438" font-size="11" font-weight="bold" fill="#0E2356">Contexte syst&#233;mique</text>
+  <circle cx="216" cy="460" r="2.5" fill="#00D2DD"/>
+  <text x="226" y="464" font-size="9" fill="#0E2356">Instructions &amp; r&#244;les</text>
+  <circle cx="216" cy="482" r="2.5" fill="#00D2DD"/>
+  <text x="226" y="486" font-size="9" fill="#0E2356">Connaissances m&#233;tier</text>
+  <circle cx="216" cy="504" r="2.5" fill="#00D2DD"/>
+  <text x="226" y="508" font-size="9" fill="#0E2356">M&#233;moire &amp; patterns</text>
+
+  <!-- Pillar 2: Garde-fous -->
+  <rect x="395" y="415" width="175" height="138" rx="6" fill="#FFFFFF" stroke="#00D2DD" stroke-width="1.5"/>
+  <text x="413" y="438" font-size="11" font-weight="bold" fill="#0E2356">Garde-fous</text>
+  <circle cx="411" cy="460" r="2.5" fill="#00D2DD"/>
+  <text x="421" y="464" font-size="9" fill="#0E2356">S&#233;curit&#233;</text>
+  <circle cx="411" cy="482" r="2.5" fill="#00D2DD"/>
+  <text x="421" y="486" font-size="9" fill="#0E2356">Fiabilit&#233; &amp; tests</text>
+  <circle cx="411" cy="504" r="2.5" fill="#00D2DD"/>
+  <text x="421" y="508" font-size="9" fill="#0E2356">Coh&#233;rence de marque</text>
+
+  <!-- Pillar 3: Outillage -->
+  <rect x="590" y="415" width="195" height="138" rx="6" fill="#FFFFFF" stroke="#CFD3DD" stroke-width="1"/>
+  <text x="608" y="438" font-size="11" font-weight="bold" fill="#0E2356">Outillage &amp; Skills</text>
+  <circle cx="606" cy="460" r="2.5" fill="#00D2DD"/>
+  <text x="616" y="464" font-size="9" fill="#0E2356">Serveurs MCP</text>
+  <circle cx="606" cy="482" r="2.5" fill="#00D2DD"/>
+  <text x="616" y="486" font-size="9" fill="#0E2356">Pipelines CI/CD</text>
+  <circle cx="606" cy="504" r="2.5" fill="#00D2DD"/>
+  <text x="616" y="508" font-size="9" fill="#0E2356">&#201;valuations &amp; skills</text>
+
+  <!-- ============================================================ -->
+  <!-- ===== INTERACTION 2: X-AS-A-SERVICE (prominent) ===== -->
+  <!-- ============================================================ -->
+  <path d="M500,375 L500,175" fill="none" stroke="#8691AB" stroke-width="3" stroke-dasharray="8,5" marker-end="url(#arrowGray)"/>
+  <path d="M620,375 L620,295" fill="none" stroke="#8691AB" stroke-width="3" stroke-dasharray="8,5" marker-end="url(#arrowGray)"/>
+  <!-- Prominent label -->
+  <rect x="380" y="343" width="120" height="22" rx="11" fill="#E7E9EE" stroke="#8691AB" stroke-width="1.2"/>
+  <text x="440" y="358" text-anchor="middle" font-size="10" font-weight="bold" fill="#586586">X-as-a-Service</text>
+
+  <!-- ============================================================ -->
+  <!-- ===== COMPLICATED SUBSYSTEM (octagon) ===== -->
+  <!-- ============================================================ -->
+  <polygon points="28,460 48,430 98,430 118,460 118,510 98,540 48,540 28,510" fill="#FFC08B" stroke="#E88814" stroke-width="2"/>
+  <text x="73" y="472" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Complicated</text>
+  <text x="73" y="485" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Subsystem</text>
+  <text x="73" y="506" text-anchor="middle" font-size="8" fill="#586586">Mod&#232;les IA</text>
+  <text x="73" y="520" text-anchor="middle" font-size="8" fill="#586586">Cache &amp; inf&#233;rence</text>
+
+  <!-- ============================================================ -->
+  <!-- ===== INTERACTION 3: COLLABORATION (prominent) ===== -->
+  <!-- ============================================================ -->
+  <!-- Two parallel arrows for bidirectional collaboration -->
+  <line x1="120" y1="478" x2="183" y2="478" stroke="#7B61FF" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrowPurple)"/>
+  <line x1="183" y1="492" x2="120" y2="492" stroke="#7B61FF" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrowPurple)"/>
+  <!-- Prominent label -->
+  <rect x="105" y="545" width="100" height="22" rx="11" fill="#E8E0F7" stroke="#7B61FF" stroke-width="1.2"/>
+  <text x="155" y="560" text-anchor="middle" font-size="10" font-weight="bold" fill="#5B3EA7">Collaboration</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="40" y="590" width="840" height="48" rx="6" fill="#F8F9FB" stroke="#E7E9EE" stroke-width="1"/>
+
+  <!-- Team types -->
+  <rect x="55" y="601" width="16" height="10" rx="3" fill="#FFEDB8" stroke="#FFD966" stroke-width="1"/>
+  <text x="76" y="610" font-size="8" fill="#586586">Stream-aligned</text>
+  <rect x="170" y="601" width="16" height="10" rx="3" fill="#DFBDCF" stroke="#D09CB7" stroke-width="1"/>
+  <text x="191" y="610" font-size="8" fill="#586586">Enabling</text>
+  <rect x="250" y="601" width="16" height="10" rx="0" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="271" y="610" font-size="8" fill="#586586">Plateforme</text>
+  <polygon points="345,599 353,599 357,606 353,613 345,613 341,606" fill="#FFC08B" stroke="#E88814" stroke-width="1"/>
+  <text x="363" y="610" font-size="8" fill="#586586">Complicated Subsystem</text>
+
+  <!-- Interaction modes -->
+  <line x1="495" y1="606" x2="525" y2="606" stroke="#34A853" stroke-width="3" stroke-dasharray="6,4"/>
+  <text x="530" y="610" font-size="8" fill="#586586">Facilitating</text>
+  <line x1="600" y1="606" x2="630" y2="606" stroke="#8691AB" stroke-width="3" stroke-dasharray="6,4"/>
+  <text x="635" y="610" font-size="8" fill="#586586">X-as-a-Service</text>
+  <line x1="730" y1="606" x2="760" y2="606" stroke="#7B61FF" stroke-width="3" stroke-dasharray="6,4"/>
+  <text x="765" y="610" font-size="8" fill="#586586">Collaboration</text>
+
+  <!-- Legend subtitle -->
+  <text x="460" y="630" text-anchor="middle" font-size="7" fill="#8691AB" font-style="italic">Conventions Team Topologies (Skelton &amp; Pais, 2019)</text>
+
+</svg>

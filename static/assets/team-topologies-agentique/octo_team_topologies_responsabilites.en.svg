@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 730" font-family="'Outfit', sans-serif" style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background card -->
+  <rect x="0" y="0" width="920" height="730" rx="12" fill="#ffffff" stroke="#CFD3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Title -->
+  <text x="460" y="32" text-anchor="middle" font-size="18" font-weight="bold" fill="#0E2356">Who owns what?</text>
+  <text x="460" y="50" text-anchor="middle" font-size="11" fill="#586586" font-style="italic">Responsibility matrix: each capability has an owner and often contributors</text>
+
+  <!-- ===== COLUMN HEADERS ===== -->
+  <rect x="40" y="65" width="340" height="30" rx="4" fill="#E7E9EE"/>
+  <text x="210" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">Capability</text>
+
+  <rect x="395" y="65" width="120" height="30" rx="4" fill="#FFEDB8" stroke="#FFD966" stroke-width="1"/>
+  <text x="455" y="85" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Stream-aligned</text>
+
+  <rect x="525" y="65" width="120" height="30" rx="4" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1"/>
+  <text x="585" y="85" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Platform</text>
+
+  <rect x="655" y="65" width="120" height="30" rx="4" fill="#DFBDCF" stroke="#D09CB7" stroke-width="1"/>
+  <text x="715" y="85" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Enabling</text>
+
+  <rect x="785" y="65" width="120" height="30" rx="4" fill="#FFC08B" stroke="#E88814" stroke-width="1"/>
+  <text x="845" y="80" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Complicated</text>
+  <text x="845" y="91" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Subsystem</text>
+
+  <!-- ===== SECTION A: CONTEXT ===== -->
+  <rect x="40" y="100" width="865" height="22" rx="3" fill="#0E2356"/>
+  <text x="55" y="115" font-size="10" font-weight="bold" fill="#FFFFFF">Context</text>
+
+  <!-- Row 1: Dynamic context — SA(P) -->
+  <rect x="40" y="124" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="124" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="124" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="124" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="124" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="143" font-size="10" fill="#0E2356">Dynamic context (intentions, specs)</text>
+  <circle cx="455" cy="138" r="7" fill="#FFD966"/>
+  <text x="455" y="142" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- Row 2: Systemic context — Platform(P), Enabling(C) -->
+  <rect x="40" y="154" width="340" height="28" fill="#F8F9FB"/>
+  <rect x="395" y="154" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="525" y="154" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="655" y="154" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="785" y="154" width="120" height="28" fill="#F8F9FB"/>
+  <text x="55" y="173" font-size="10" fill="#0E2356">Systemic context (instructions, roles)</text>
+  <circle cx="585" cy="168" r="7" fill="#6D9EEB"/>
+  <text x="585" y="172" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="715" cy="168" r="7" fill="none" stroke="#D09CB7" stroke-width="2"/>
+  <text x="715" y="172" text-anchor="middle" font-size="8" font-weight="bold" fill="#D09CB7">C</text>
+
+  <!-- Row 3: Business knowledge — SA(P), Platform(C) -->
+  <rect x="40" y="184" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="184" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="184" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="184" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="184" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="203" font-size="10" fill="#0E2356">Business knowledge</text>
+  <circle cx="455" cy="198" r="7" fill="#FFD966"/>
+  <text x="455" y="202" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="585" cy="198" r="7" fill="none" stroke="#6D9EEB" stroke-width="2"/>
+  <text x="585" y="202" text-anchor="middle" font-size="8" font-weight="bold" fill="#6D9EEB">C</text>
+
+  <!-- Row 4: Memory & persistent state — Platform(P), SA(C) -->
+  <rect x="40" y="214" width="340" height="28" fill="#F8F9FB"/>
+  <rect x="395" y="214" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="525" y="214" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="655" y="214" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="785" y="214" width="120" height="28" fill="#F8F9FB"/>
+  <text x="55" y="233" font-size="10" fill="#0E2356">Memory &amp; persistent state</text>
+  <circle cx="455" cy="228" r="7" fill="none" stroke="#FFD966" stroke-width="2"/>
+  <text x="455" y="232" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFD966">C</text>
+  <circle cx="585" cy="228" r="7" fill="#6D9EEB"/>
+  <text x="585" y="232" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- Row 5: Examples & patterns — Platform(P), SA(C) -->
+  <rect x="40" y="244" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="244" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="244" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="244" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="244" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="263" font-size="10" fill="#0E2356">Examples &amp; patterns</text>
+  <circle cx="455" cy="258" r="7" fill="none" stroke="#FFD966" stroke-width="2"/>
+  <text x="455" y="262" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFD966">C</text>
+  <circle cx="585" cy="258" r="7" fill="#6D9EEB"/>
+  <text x="585" y="262" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- ===== SECTION B: GUARDRAILS ===== -->
+  <rect x="40" y="276" width="865" height="22" rx="3" fill="#0E2356"/>
+  <text x="55" y="291" font-size="10" font-weight="bold" fill="#FFFFFF">Guardrails</text>
+
+  <!-- Row 6: Security — Platform(P), Enabling(C) -->
+  <rect x="40" y="300" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="300" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="300" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="300" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="300" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="319" font-size="10" fill="#0E2356">Security (vulnerabilities, injections, data)</text>
+  <circle cx="585" cy="314" r="7" fill="#6D9EEB"/>
+  <text x="585" y="318" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="715" cy="314" r="7" fill="none" stroke="#D09CB7" stroke-width="2"/>
+  <text x="715" y="318" text-anchor="middle" font-size="8" font-weight="bold" fill="#D09CB7">C</text>
+
+  <!-- Row 7: Reliability — Platform(P), Enabling(C) -->
+  <rect x="40" y="330" width="340" height="28" fill="#F8F9FB"/>
+  <rect x="395" y="330" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="525" y="330" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="655" y="330" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="785" y="330" width="120" height="28" fill="#F8F9FB"/>
+  <text x="55" y="349" font-size="10" fill="#0E2356">Reliability (tests, regressions, monitoring)</text>
+  <circle cx="585" cy="344" r="7" fill="#6D9EEB"/>
+  <text x="585" y="348" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="715" cy="344" r="7" fill="none" stroke="#D09CB7" stroke-width="2"/>
+  <text x="715" y="348" text-anchor="middle" font-size="8" font-weight="bold" fill="#D09CB7">C</text>
+
+  <!-- Row 8: Brand consistency — Platform(P), Enabling(C) -->
+  <rect x="40" y="360" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="360" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="360" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="360" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="360" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="379" font-size="10" fill="#0E2356">Brand consistency (tone, UX, guidelines)</text>
+  <circle cx="585" cy="374" r="7" fill="#6D9EEB"/>
+  <text x="585" y="378" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="715" cy="374" r="7" fill="none" stroke="#D09CB7" stroke-width="2"/>
+  <text x="715" y="378" text-anchor="middle" font-size="8" font-weight="bold" fill="#D09CB7">C</text>
+
+  <!-- Row 9: Product-specific guardrails — SA(P), Platform(C), Enabling(C) -->
+  <rect x="40" y="390" width="340" height="28" fill="#F8F9FB"/>
+  <rect x="395" y="390" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="525" y="390" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="655" y="390" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="785" y="390" width="120" height="28" fill="#F8F9FB"/>
+  <text x="55" y="409" font-size="10" fill="#0E2356">Product-specific guardrails</text>
+  <circle cx="455" cy="404" r="7" fill="#FFD966"/>
+  <text x="455" y="408" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="585" cy="404" r="7" fill="none" stroke="#6D9EEB" stroke-width="2"/>
+  <text x="585" y="408" text-anchor="middle" font-size="8" font-weight="bold" fill="#6D9EEB">C</text>
+  <circle cx="715" cy="404" r="7" fill="none" stroke="#D09CB7" stroke-width="2"/>
+  <text x="715" y="408" text-anchor="middle" font-size="8" font-weight="bold" fill="#D09CB7">C</text>
+
+  <!-- ===== SECTION C: TOOLING ===== -->
+  <rect x="40" y="422" width="865" height="22" rx="3" fill="#0E2356"/>
+  <text x="55" y="437" font-size="10" font-weight="bold" fill="#FFFFFF">Tooling &amp; Skills</text>
+
+  <!-- Row 10: MCP Servers & skills — Platform(P), CS(C) -->
+  <rect x="40" y="446" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="446" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="446" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="446" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="446" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="465" font-size="10" fill="#0E2356">MCP servers &amp; shared skills</text>
+  <circle cx="585" cy="460" r="7" fill="#6D9EEB"/>
+  <text x="585" y="464" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <circle cx="845" cy="460" r="7" fill="none" stroke="#E88814" stroke-width="2"/>
+  <text x="845" y="464" text-anchor="middle" font-size="8" font-weight="bold" fill="#E88814">C</text>
+
+  <!-- Row 11: CI/CD Pipelines — Platform(P) -->
+  <rect x="40" y="476" width="340" height="28" fill="#F8F9FB"/>
+  <rect x="395" y="476" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="525" y="476" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="655" y="476" width="120" height="28" fill="#F8F9FB"/>
+  <rect x="785" y="476" width="120" height="28" fill="#F8F9FB"/>
+  <text x="55" y="495" font-size="10" fill="#0E2356">CI/CD pipelines &amp; evaluations</text>
+  <circle cx="585" cy="490" r="7" fill="#6D9EEB"/>
+  <text x="585" y="494" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- Row 12: AI Orchestrator — Platform(P), SA(C) -->
+  <rect x="40" y="506" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="506" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="506" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="506" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="506" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="525" font-size="10" fill="#0E2356">AI Orchestrator (tool + configuration)</text>
+  <circle cx="455" cy="520" r="7" fill="none" stroke="#FFD966" stroke-width="2"/>
+  <text x="455" y="524" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFD966">C</text>
+  <circle cx="585" cy="520" r="7" fill="#6D9EEB"/>
+  <text x="585" y="524" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- ===== SECTION D: ENABLEMENT ===== -->
+  <rect x="40" y="538" width="865" height="22" rx="3" fill="#0E2356"/>
+  <text x="55" y="553" font-size="10" font-weight="bold" fill="#FFFFFF">Enablement</text>
+  <text x="155" y="553" font-size="8" fill="#00D2DD" font-style="italic">(temporary)</text>
+
+  <!-- Row 13: Training — Enabling(P) -->
+  <rect x="40" y="562" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="562" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="562" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="562" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="562" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="581" font-size="10" fill="#0E2356">Training, onboarding, shift-left</text>
+  <circle cx="715" cy="576" r="7" fill="#D09CB7"/>
+  <text x="715" y="580" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- ===== SECTION E: SUBSYSTEM ===== -->
+  <rect x="40" y="594" width="865" height="22" rx="3" fill="#0E2356"/>
+  <text x="55" y="609" font-size="10" font-weight="bold" fill="#FFFFFF">AI Efficiency</text>
+
+  <!-- Row 14: AI Models — CS(P), Platform(C) -->
+  <rect x="40" y="618" width="340" height="28" fill="#FFFFFF"/>
+  <rect x="395" y="618" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="525" y="618" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="655" y="618" width="120" height="28" fill="#FFFFFF"/>
+  <rect x="785" y="618" width="120" height="28" fill="#FFFFFF"/>
+  <text x="55" y="637" font-size="10" fill="#0E2356">AI models, KV cache, sovereign inference</text>
+  <circle cx="585" cy="632" r="7" fill="none" stroke="#6D9EEB" stroke-width="2"/>
+  <text x="585" y="636" text-anchor="middle" font-size="8" font-weight="bold" fill="#6D9EEB">C</text>
+  <circle cx="845" cy="632" r="7" fill="#E88814"/>
+  <text x="845" y="636" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+
+  <!-- Grid lines -->
+  <line x1="395" y1="100" x2="395" y2="646" stroke="#E7E9EE" stroke-width="0.5"/>
+  <line x1="525" y1="100" x2="525" y2="646" stroke="#E7E9EE" stroke-width="0.5"/>
+  <line x1="655" y1="100" x2="655" y2="646" stroke="#E7E9EE" stroke-width="0.5"/>
+  <line x1="785" y1="100" x2="785" y2="646" stroke="#E7E9EE" stroke-width="0.5"/>
+
+  <!-- Outer border for the grid -->
+  <rect x="40" y="100" width="865" height="546" rx="0" fill="none" stroke="#CFD3DD" stroke-width="1"/>
+
+  <!-- ===== LEGEND ===== -->
+  <circle cx="220" cy="670" r="7" fill="#8691AB"/>
+  <text x="220" y="674" text-anchor="middle" font-size="8" font-weight="bold" fill="#FFFFFF">O</text>
+  <text x="235" y="674" font-size="9" fill="#586586">Owner</text>
+
+  <circle cx="340" cy="670" r="7" fill="none" stroke="#8691AB" stroke-width="2"/>
+  <text x="340" y="674" text-anchor="middle" font-size="8" font-weight="bold" fill="#8691AB">C</text>
+  <text x="355" y="674" font-size="9" fill="#586586">Contributor</text>
+
+  <rect x="440" y="664" width="12" height="12" rx="2" fill="#F8F9FB" stroke="#CFD3DD" stroke-width="0.8"/>
+  <text x="458" y="674" font-size="9" fill="#586586">Empty = not involved</text>
+
+  <!-- Bottom annotation -->
+  <text x="460" y="710" text-anchor="middle" font-size="10" font-weight="600" fill="#263967">Specifics stay with product teams. Systemics are industrialized by the platform.</text>
+  <text x="460" y="724" text-anchor="middle" font-size="9" fill="#8691AB" font-style="italic">Contributors co-build without being accountable for the outcome.</text>
+
+</svg>

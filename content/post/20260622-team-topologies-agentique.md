@@ -241,3 +241,12 @@ The developer does not disappear: they shift. They no longer produce the applica
 
 [^fowler]: Don Roberts, cited by Martin Fowler — *"Refactoring: Improving the Design of Existing Code"*, Addison-Wesley, 1999. "Three strikes and you refactor." The principle is transposed here from code refactoring to guardrail graduation.
 
+--- 
+## The Open Points of Debate
+
+Based on the community's feedback, the core ideas in this article sparked several valid counter-arguments and open questions regarding how we structure teams around AI:
+
+* **The Risk of "Agentic Waterfall":** Several experienced developers pointed out that the proposed roles (where one agent/person designs, another tests, another deploys) heavily mirror an outdated Waterfall methodology. A major open question is how to prevent rigid, linear hand-offs from choking the flexibility of modern, agile software development when using agents.
+* **Complexity vs. Utility in Topologies:** The article introduces many different concepts and roles to solve platform problems. The community raised the point that over-engineering the team topology or the agent orchestration might create more problems than it solves. The debate remains: how much orchestration is actually necessary?
+* **The Baseline Quality Dilemma:** Is building complex harnesses and multi-agent roles the right path? An alternative philosophy suggested in the comments is that we should instead focus purely on writing genuinely good software for a few years, allowing future models to train on excellent defaults rather than building complex boilerplate to manage mediocre AI outputs.
+* **Code Degradation:** A persistent fear in the debate is the long-term viability of AI-generated code bases. If agentic platforms are left to orchestrate themselves without the right structure, there is a serious risk of code quality degrading over time (generating "ghetto code" that no human fully understands or cares about).

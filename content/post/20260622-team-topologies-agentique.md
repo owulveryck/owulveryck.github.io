@@ -20,6 +20,10 @@ mathjax: false
 
 > *The agentic platform defines what needs to be provided. Team Topologies defines who provides it, and how teams interact to make it happen.*
 
+
+---
+EDIT: Author's Note & Hacker News Aftermath: This article was originally written for a French audience, and I used an AI ghostwriter to translate and adapt it for English readers. As the Hacker News community rightly pointed out, this resulted in a dense, "word-salad" reading experience. However, my main goal was to share a foundational idea to spark debate—and that debate absolutely happened. I am leaving this original text unedited to preserve the context of the HN discussion, but I want to thank the community for their candor. Below is a summary of the very real, open engineering questions raised by the readers.
+
 ---
 
 In [the first article of this series](/2026/06/19/vibe-coding-at-scale-engineering-strikes-back.html), we asked the **what**: which systemic capabilities (context, guardrails, tooling) are needed to produce reliable applications at scale. The answer was the agentic platform, and at its core, the *agentic factory*: the mechanism where agents plan, code, test, and ship.
@@ -236,3 +240,4 @@ The developer does not disappear: they shift. They no longer produce the applica
 [^osmani2026]: Addy Osmani, Shubham Saboo, Sokratis Kartakis — *"The New SDLC With Vibe Coding: From ad-hoc prompting to Agentic Engineering"*, Google, May 2026.
 
 [^fowler]: Don Roberts, cited by Martin Fowler — *"Refactoring: Improving the Design of Existing Code"*, Addison-Wesley, 1999. "Three strikes and you refactor." The principle is transposed here from code refactoring to guardrail graduation.
+

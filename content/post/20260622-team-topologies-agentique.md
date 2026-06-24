@@ -22,6 +22,8 @@ mathjax: false
 
 
 ---
+### ⚠️ This article is now obsolete and is replaced by a human-reviewed version [here](/2026/06/24/who-does-what-team-topologies-for-the-agentic-platform.html) ⚠️
+
 EDIT: Author's Note & Hacker News Aftermath: This article was originally written for a French audience, and I used an AI ghostwriter to translate and adapt it for English readers. As the Hacker News community rightly pointed out, this resulted in a dense, "word-salad" reading experience. However, my main goal was to share a foundational idea to spark debate—and that debate absolutely happened. I am leaving this original text unedited to preserve the context of the HN discussion, but I want to thank the community for their candor. Below is a summary of the very real, open engineering questions raised by the readers.
 
 ---

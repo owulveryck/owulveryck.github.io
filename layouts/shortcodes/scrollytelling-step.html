@@ -1,0 +1,5 @@
+{{ $phase := .Get "phase" }}
+{{ $id := .Get "id" | default "" }}
+<section class="st-step{{ if eq $phase "0" }} active{{ end }}" data-phase="{{ $phase }}"{{ with $id }} id="{{ . }}"{{ end }}>
+  {{ .Inner | markdownify }}
+</section>

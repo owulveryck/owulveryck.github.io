@@ -234,3 +234,7 @@ button.theme-toggle {
     color: #767676;
   }
 }
+
+body:has(.scrollytelling-wrap) {
+  overflow-x: hidden;
+}

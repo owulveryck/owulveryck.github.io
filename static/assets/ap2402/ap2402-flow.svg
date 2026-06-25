@@ -1,0 +1,499 @@
+<svg viewBox="0 0 830 650" preserveAspectRatio="xMidYMid meet" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <style>
+    /* === Base === */
+    .actor-rect { stroke-width: 2; }
+    .actor-name { font-size: 14px; font-weight: 600; text-anchor: middle; }
+    .actor-type { font-size: 11px; text-anchor: middle; opacity: 0.7; }
+    .actor-icon { transform-origin: center; }
+
+    /* === Connection paths === */
+    .conn { fill: none; stroke-width: 2; }
+    .conn-base { opacity: 0.25; }
+    .conn-dashed { stroke-dasharray: 8,5; }
+
+    /* === Protocol labels === */
+    .proto-bg { fill: #FFFFFF; rx: 3; }
+    .proto-label { font-size: 11px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+
+    /* === Annotations === */
+    .anno { opacity: 0; font-size: 12px; text-anchor: middle; dominant-baseline: central; }
+    .anno-bg { fill: #FFFFFF; stroke: #B7BDCC; stroke-width: 1; rx: 4; opacity: 0; }
+    .anno-text { fill: #0E2356; font-weight: 600; }
+
+/* === Traveling dots === */
+    .dot { r: 4; opacity: 0; }
+
+    /* === Node glow === */
+    .glow { opacity: 0; }
+
+    /* === Team / Domain zones === */
+    .zone { stroke-width: 2; stroke-dasharray: 6,4; }
+    .zone-label { font-size: 12px; font-weight: 700; text-anchor: middle; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* === Phase 1: Demande d'aide (0-10%) === */
+    @keyframes phase1-arrow { 0%,1% { opacity: 0.25; } 2% { opacity: 1; } 8% { opacity: 1; } 10% { opacity: 0.25; } 100% { opacity: 0.25; } }
+    @keyframes phase1-dot { 0%,1% { opacity: 0; } 2% { opacity: 1; } 8% { opacity: 1; } 10% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase1-anno { 0%,1% { opacity: 0; } 3% { opacity: 1; } 8% { opacity: 1; } 10% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase1-glow-human { 0%,1% { opacity: 0; } 2% { opacity: 1; } 8% { opacity: 1; } 10% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase1-glow-bob { 0%,1% { opacity: 0; } 2% { opacity: 1; } 8% { opacity: 1; } 10% { opacity: 0; } 100% { opacity: 0; } }
+
+    /* === Phase 2: Devis + 402 (10-21%) === */
+    @keyframes phase2-arrow-ap { 0%,10% { opacity: 0.25; } 12% { opacity: 1; } 19% { opacity: 1; } 21% { opacity: 0.25; } 100% { opacity: 0.25; } }
+    @keyframes phase2-dot { 0%,10% { opacity: 0; } 12% { opacity: 1; } 19% { opacity: 1; } 21% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase2-anno { 0%,13% { opacity: 0; } 15% { opacity: 1; } 19% { opacity: 1; } 21% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase2-anno-early { 0%,10% { opacity: 0; } 12% { opacity: 1; } 19% { opacity: 1; } 21% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes archi-bob-ret-combined {
+      0%,16% { opacity: 0; } 17% { opacity: 1; } 20% { opacity: 1; } 21% { opacity: 0; }
+      54% { opacity: 0; } 56% { opacity: 1; } 63% { opacity: 1; } 65% { opacity: 0; }
+      85% { opacity: 0; } 87% { opacity: 1; } 97% { opacity: 1; } 100% { opacity: 0; }
+    }
+    @keyframes bob-archi-combined {
+      0%,10% { opacity: 0.25; } 12% { opacity: 1; } 14% { opacity: 1; } 15% { opacity: 0.25; }
+      40% { opacity: 0.25; } 42% { opacity: 1; } 44% { opacity: 1; } 45% { opacity: 0.25; }
+      54% { opacity: 0.25; } 56% { opacity: 1; } 63% { opacity: 1; } 65% { opacity: 0.25; }
+      100% { opacity: 0.25; }
+    }
+
+    /* === Phase 3: Escalade (21-30%) === */
+    @keyframes phase3-arrow { 0%,21% { opacity: 0.25; } 23% { opacity: 1; } 28% { opacity: 1; } 30% { opacity: 0.25; } 100% { opacity: 0.25; } }
+    @keyframes phase3-dot { 0%,21% { opacity: 0; } 23% { opacity: 1; } 28% { opacity: 1; } 30% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase3-anno { 0%,22% { opacity: 0; } 24% { opacity: 1; } 28% { opacity: 1; } 30% { opacity: 0; } 100% { opacity: 0; } }
+
+    /* === Phase 4: Mandat AP2 (30-54%) === */
+    @keyframes phase4-arrow { 0%,30% { opacity: 0.25; } 32% { opacity: 1; } 52% { opacity: 1; } 54% { opacity: 0.25; } 100% { opacity: 0.25; } }
+    @keyframes phase4-dot { 0%,30% { opacity: 0; } 32% { opacity: 1; } 52% { opacity: 1; } 54% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase4-anno { 0%,31% { opacity: 0; } 33% { opacity: 1; } 52% { opacity: 1; } 54% { opacity: 0; } 100% { opacity: 0; } }
+
+    /* === Phase 5: Dialogue (54-65%) === */
+    @keyframes phase5-arrow { 0%,54% { opacity: 0.25; } 56% { opacity: 1; } 63% { opacity: 1; } 65% { opacity: 0.25; } 100% { opacity: 0.25; } }
+    @keyframes phase5-dot { 0%,54% { opacity: 0; } 56% { opacity: 1; } 63% { opacity: 1; } 65% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase5-anno { 0%,55% { opacity: 0; } 57% { opacity: 1; } 63% { opacity: 1; } 65% { opacity: 0; } 100% { opacity: 0; } }
+
+    /* === Phase 6: Interrogation architecte (65-78%) === */
+    @keyframes phase6-arrow { 0%,65% { opacity: 0.25; } 67% { opacity: 1; } 76% { opacity: 1; } 78% { opacity: 0.25; } 100% { opacity: 0.25; } }
+    @keyframes phase6-dot { 0%,65% { opacity: 0; } 67% { opacity: 1; } 76% { opacity: 1; } 78% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes phase6-anno { 0%,66% { opacity: 0; } 68% { opacity: 1; } 76% { opacity: 1; } 78% { opacity: 0; } 100% { opacity: 0; } }
+
+    /* === Phase 7: Rapport final (78-100%) === */
+    @keyframes phase7-arrow { 0%,78% { opacity: 0.25; } 80% { opacity: 1; } 97% { opacity: 1; } 100% { opacity: 0.25; } }
+    @keyframes phase7-dot { 0%,78% { opacity: 0; } 80% { opacity: 1; } 97% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes phase7-anno { 0%,79% { opacity: 0; } 81% { opacity: 1; } 97% { opacity: 1; } 100% { opacity: 0; } }
+
+/* === Pulse glow === */
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* === Apply animations === */
+    /* Phase 1 */
+    #arrow-human-bob { animation: phase1-arrow 28s ease-in-out infinite; }
+    #glow-human { animation: phase1-glow-human 28s ease-in-out infinite; }
+    #glow-bob-p1 { animation: phase1-glow-bob 28s ease-in-out infinite; }
+    .anno-p1 { animation: phase1-anno 28s ease-in-out infinite; }
+    .anno-bg-p1 { animation: phase1-anno 28s ease-in-out infinite; }
+
+    /* Phase 2 */
+    #arrow-archi-bob-ret { animation: archi-bob-ret-combined 28s ease-in-out infinite; }
+    .anno-p2 { animation: phase2-anno 28s ease-in-out infinite; }
+    .anno-bg-p2 { animation: phase2-anno 28s ease-in-out infinite; }
+    #glow-archi-p2 { animation: phase2-arrow-ap 28s ease-in-out infinite; }
+
+    /* Phase 3 */
+    #arrow-bob-human { animation: phase3-arrow 28s ease-in-out infinite; }
+    .anno-p3 { animation: phase3-anno 28s ease-in-out infinite; }
+    .anno-bg-p3 { animation: phase3-anno 28s ease-in-out infinite; }
+    #glow-bob-p3 { animation: phase3-arrow 28s ease-in-out infinite; }
+    #glow-human-p3 { animation: phase3-arrow 28s ease-in-out infinite; }
+
+    /* Phase 4 */
+    #arrow-bob-pay { animation: phase4-arrow 28s ease-in-out infinite; }
+    #arrow-archi-pay-p4 { animation: phase4-arrow 28s ease-in-out infinite; }
+    .anno-p4 { animation: phase4-anno 28s ease-in-out infinite; }
+    .anno-bg-p4 { animation: phase4-anno 28s ease-in-out infinite; }
+    #glow-bob-p4 { animation: phase4-arrow 28s ease-in-out infinite; }
+    #glow-pay-p4 { animation: phase4-arrow 28s ease-in-out infinite; }
+
+    /* Phase 5 */
+    #arrow-bob-archi { animation: bob-archi-combined 28s ease-in-out infinite; }
+    #glow-bob-p2 { animation: phase2-arrow-ap 28s ease-in-out infinite; }
+    .anno-p5 { animation: phase5-anno 28s ease-in-out infinite; }
+    .anno-bg-p5 { animation: phase5-anno 28s ease-in-out infinite; }
+    #glow-bob-p5 { animation: phase5-arrow 28s ease-in-out infinite; }
+    #glow-archi-p5 { animation: phase5-arrow 28s ease-in-out infinite; }
+
+    /* Phase 6 */
+    #arrow-archi-domain { animation: phase6-arrow 28s ease-in-out infinite; }
+    .anno-p6 { animation: phase6-anno 28s ease-in-out infinite; }
+    .anno-bg-p6 { animation: phase6-anno 28s ease-in-out infinite; }
+    #glow-archi-p6 { animation: phase6-arrow 28s ease-in-out infinite; }
+    #glow-domain-p6 { animation: phase6-arrow 28s ease-in-out infinite; }
+
+    /* Phase 7 */
+    #arrow-archi-pay { animation: phase7-arrow 28s ease-in-out infinite; }
+    .anno-p7 { animation: phase7-anno 28s ease-in-out infinite; }
+    .anno-bg-p7 { animation: phase7-anno 28s ease-in-out infinite; }
+    #glow-archi-p7 { animation: phase7-arrow 28s ease-in-out infinite; }
+    #glow-bob-p7 { animation: phase7-arrow 28s ease-in-out infinite; }
+    #glow-pay-p7 { animation: phase7-arrow 28s ease-in-out infinite; }
+
+  </style>
+
+  <defs>
+    <marker id="arr-navy" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#0E2356"/>
+    </marker>
+    <marker id="arr-teal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#00D2DD"/>
+    </marker>
+    <marker id="arr-lteal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#5BDDE4"/>
+    </marker>
+    <marker id="arr-violet" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#9B59B6"/>
+    </marker>
+    <filter id="glow-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ========== BACKGROUND ========== -->
+  <rect width="830" height="650" fill="#FFFFFF"/>
+
+  <!-- Legend -->
+  <line x1="30" y1="15" x2="70" y2="15" stroke="#00D2DD" stroke-width="2"/>
+  <text x="78" y="19" font-size="11" fill="#8691AB">A2A (Agent-to-Agent)</text>
+  <line x1="30" y1="35" x2="70" y2="35" stroke="#9B59B6" stroke-width="2" stroke-dasharray="8,5"/>
+  <text x="78" y="39" font-size="11" fill="#8691AB">AP2 (Agent Payments)</text>
+
+  <!-- ========== TEAM / DOMAIN ZONES (behind everything) ========== -->
+
+  <!-- Zone: Domaine métier DDD (outer wrapper around Stream-aligned team) -->
+  <g id="zone-ddd">
+    <rect x="40" y="70" width="460" height="290" rx="18" fill="#FEF9F0" fill-opacity="0.6" stroke="#B8860B" class="zone"/>
+    <text x="270" y="90" class="zone-label" fill="#B8860B">Business domain (DDD)</text>
+  </g>
+
+  <!-- Zone: Stream-aligned team (Humain + Bob, inside DDD) -->
+  <g id="zone-stream-aligned">
+    <rect x="58" y="102" width="420" height="225" rx="14" fill="#EEF2FF" fill-opacity="0.5" stroke="#0E2356" class="zone"/>
+    <text x="268" y="122" class="zone-label" fill="#0E2356">Stream-aligned team</text>
+  </g>
+
+  <!-- Zone: Domaine métier (Domain agent) -->
+  <g id="zone-domain">
+    <rect x="560" y="70" width="200" height="290" rx="16" fill="#FEF9F0" fill-opacity="0.6" stroke="#B8860B" class="zone"/>
+    <text x="660" y="90" class="zone-label" fill="#B8860B">Business domain</text>
+  </g>
+
+  <!-- Zone: Plateforme (Architect + Payment) -->
+  <g id="zone-platform">
+    <rect x="40" y="430" width="720" height="230" rx="16" fill="#E8FAFB" fill-opacity="0.5" stroke="#00D2DD" class="zone"/>
+    <text x="400" y="450" class="zone-label" fill="#00A5B0">Platform</text>
+  </g>
+
+  <!-- ========== CONNECTION PATHS (drawn before nodes) ========== -->
+  <g id="connections">
+    <g id="conn-human-bob">
+      <path d="M210,180 L310,180" class="conn conn-base" stroke="#0E2356" marker-end="url(#arr-navy)"/>
+      <path d="M210,180 L310,180" class="conn" stroke="#0E2356" id="arrow-human-bob" opacity="0.25" marker-end="url(#arr-navy)"/>
+      <path d="M310,200 L210,200" class="conn conn-base" stroke="#0E2356" marker-end="url(#arr-navy)"/>
+      <path d="M310,200 L210,200" class="conn" stroke="#0E2356" id="arrow-bob-human" opacity="0.25" marker-end="url(#arr-navy)"/>
+    </g>
+
+    <g id="conn-bob-archi">
+      <path d="M400,235 Q460,400 560,505" class="conn conn-base" stroke="#00D2DD" marker-end="url(#arr-teal)"/>
+      <path d="M400,235 Q460,400 560,505" class="conn" stroke="#00D2DD" id="arrow-bob-archi" opacity="0.25" marker-end="url(#arr-teal)"/>
+      <path d="M620,470 Q540,300 440,210" class="conn conn-base" stroke="#00D2DD" marker-end="url(#arr-teal)"/>
+      <path d="M620,470 Q540,300 440,210" class="conn" stroke="#00D2DD" id="arrow-archi-bob-ret" opacity="0" marker-end="url(#arr-teal)"/>
+      <rect x="482" y="345" width="36" height="18" class="proto-bg"/>
+      <text x="500" y="355" class="proto-label" fill="#00D2DD">A2A</text>
+    </g>
+
+    <g id="conn-bob-pay">
+      <path d="M360,235 L360,480" class="conn conn-base conn-dashed" stroke="#9B59B6" marker-end="url(#arr-violet)"/>
+      <path d="M360,235 L360,480" class="conn conn-dashed" stroke="#9B59B6" id="arrow-bob-pay" opacity="0.25" marker-end="url(#arr-violet)"/>
+      <rect x="340" y="355" width="32" height="18" class="proto-bg"/>
+      <text x="356" y="365" class="proto-label" fill="#9B59B6">AP2</text>
+    </g>
+
+    <g id="conn-archi-pay">
+      <path d="M560,520 L440,520" class="conn conn-base conn-dashed" stroke="#9B59B6" marker-end="url(#arr-violet)"/>
+      <path d="M560,520 L440,520" class="conn conn-dashed" stroke="#9B59B6" id="arrow-archi-pay" opacity="0.25" marker-end="url(#arr-violet)"/>
+      <path d="M560,535 L440,535" class="conn conn-dashed" stroke="#9B59B6" id="arrow-archi-pay-p4" opacity="0.25" marker-end="url(#arr-violet)"/>
+      <rect x="482" y="498" width="32" height="18" class="proto-bg"/>
+      <text x="498" y="508" class="proto-label" fill="#9B59B6">AP2</text>
+    </g>
+
+    <g id="conn-archi-domain">
+      <path d="M640,470 Q650,350 655,235" class="conn conn-base" stroke="#5BDDE4" marker-end="url(#arr-lteal)"/>
+      <path d="M640,470 Q650,350 655,235" class="conn" stroke="#5BDDE4" id="arrow-archi-domain" opacity="0.25" marker-end="url(#arr-lteal)"/>
+      <rect x="630" y="345" width="36" height="18" class="proto-bg"/>
+      <text x="648" y="355" class="proto-label" fill="#5BDDE4">A2A</text>
+    </g>
+  </g>
+
+  <!-- ========== TRAVELING DOTS (SMIL) ========== -->
+  <!-- Phase 1: Human -> Bob (0-10%) -->
+  <circle r="5" fill="#0E2356" opacity="0">
+    <animateMotion path="M210,180 L310,180" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.02;0.05;0.08;0.10;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.01;0.02;0.05;0.08;0.10;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 2: Bob -> Architect (A2A tasks/send) (10-21%) -->
+  <circle r="5" fill="#00D2DD" opacity="0">
+    <animateMotion path="M400,235 Q460,400 560,505" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.11;0.13;0.15;0.21;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.10;0.11;0.15;0.16;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 2: Architect -> Bob (quote + 402) -->
+  <circle r="5" fill="#00D2DD" opacity="0">
+    <animateMotion path="M620,470 Q540,300 440,210" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.17;0.18;0.20;0.21;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.16;0.17;0.20;0.205;0.21;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 3: Bob -> Human (21-30%) -->
+  <circle r="5" fill="#0E2356" opacity="0">
+    <animateMotion path="M310,200 L210,200" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.23;0.25;0.27;0.30;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.21;0.23;0.27;0.28;0.30;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 4: Bob -> Payment (checkout + payment mandates) (30-54%) -->
+  <circle r="5" fill="#9B59B6" opacity="0">
+    <animateMotion path="M360,235 L360,480" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.33;0.35;0.38;0.54;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.32;0.33;0.38;0.39;0.40;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 4: Bob -> Architect (mandate IDs) -->
+  <circle r="5" fill="#00D2DD" opacity="0">
+    <animateMotion path="M400,235 Q460,400 560,505" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.42;0.43;0.45;0.54;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.41;0.42;0.45;0.46;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 4: Architect -> Payment (verify mandates) -->
+  <circle r="5" fill="#9B59B6" opacity="0">
+    <animateMotion path="M560,535 L440,535" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.48;0.49;0.51;0.54;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.47;0.48;0.51;0.52;0.53;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 5: Bob <-> Architect (bidirectional) (54-65%) -->
+  <circle r="5" fill="#00D2DD" opacity="0">
+    <animateMotion path="M400,235 Q460,400 560,505" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.56;0.58;0.61;0.65;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.54;0.56;0.61;0.63;0.65;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="5" fill="#00D2DD" opacity="0">
+    <animateMotion path="M620,470 Q540,300 440,210" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.59;0.61;0.63;0.65;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.57;0.59;0.63;0.64;0.65;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 6: Architect -> Domain (65-78%) -->
+  <circle r="5" fill="#5BDDE4" opacity="0">
+    <animateMotion path="M640,470 Q650,350 655,235" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.67;0.71;0.75;0.78;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.65;0.67;0.75;0.76;0.78;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 7: Architect -> Payment (settle) (78-100%) -->
+  <circle r="5" fill="#9B59B6" opacity="0">
+    <animateMotion path="M560,520 L440,520" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.80;0.83;0.86;0.92;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;1;0;0" keyTimes="0;0.78;0.80;0.86;0.87;0.88;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase 7: Architect -> Bob (decision) -->
+  <circle r="5" fill="#00D2DD" opacity="0">
+    <animateMotion path="M620,470 Q540,300 440,210" dur="28s" repeatCount="indefinite" keyPoints="0;0;0.5;1;1;1" keyTimes="0;0.90;0.93;0.96;1;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.88;0.90;0.96;0.98;1" dur="28s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ========== CSS OFFSET-PATH DOTS (for scrollytelling) ========== -->
+  <circle r="5" fill="#0E2356" class="dot-p1" opacity="0" data-follow="arrow-human-bob"/>
+  <circle r="5" fill="#00D2DD" class="dot-p2a" opacity="0" data-follow="arrow-bob-archi"/>
+  <circle r="5" fill="#00D2DD" class="dot-p2b" opacity="0" data-follow="arrow-archi-bob-ret"/>
+  <circle r="5" fill="#0E2356" class="dot-p3" opacity="0" data-follow="arrow-bob-human"/>
+  <circle r="5" fill="#9B59B6" class="dot-p4a" opacity="0" data-follow="arrow-bob-pay"/>
+  <circle r="5" fill="#00D2DD" class="dot-p4b" opacity="0" data-follow="arrow-bob-archi"/>
+  <circle r="5" fill="#9B59B6" class="dot-p4c" opacity="0" data-follow="arrow-archi-pay-p4"/>
+  <circle r="5" fill="#00D2DD" class="dot-p5a" opacity="0" data-follow="arrow-bob-archi"/>
+  <circle r="5" fill="#00D2DD" class="dot-p5b" opacity="0" data-follow="arrow-archi-bob-ret"/>
+  <circle r="5" fill="#5BDDE4" class="dot-p6" opacity="0" data-follow="arrow-archi-domain"/>
+  <circle r="5" fill="#9B59B6" class="dot-p7a" opacity="0" data-follow="arrow-archi-pay"/>
+  <circle r="5" fill="#00D2DD" class="dot-p7b" opacity="0" data-follow="arrow-archi-bob-ret"/>
+
+  <!-- ========== ACTOR NODES ========== -->
+  <!-- Node glow layers (behind nodes) -->
+  <rect x="80" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-human" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="80" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-human-p3" class="glow" opacity="0" filter="url(#glow-filter)"/>
+
+  <rect x="310" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-bob-p1" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="310" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-bob-p2" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="310" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-bob-p3" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="310" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-bob-p4" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="310" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-bob-p5" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="310" y="145" width="130" height="90" rx="12" fill="none" stroke="#00D2DD" stroke-width="3" id="glow-bob-p7" class="glow" opacity="0" filter="url(#glow-filter)"/>
+
+  <rect x="560" y="470" width="130" height="100" rx="12" fill="none" stroke="#5BDDE4" stroke-width="3" id="glow-archi-p2" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="560" y="470" width="130" height="100" rx="12" fill="none" stroke="#5BDDE4" stroke-width="3" id="glow-archi-p5" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="560" y="470" width="130" height="100" rx="12" fill="none" stroke="#5BDDE4" stroke-width="3" id="glow-archi-p6" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="560" y="470" width="130" height="100" rx="12" fill="none" stroke="#5BDDE4" stroke-width="3" id="glow-archi-p7" class="glow" opacity="0" filter="url(#glow-filter)"/>
+
+  <rect x="310" y="480" width="130" height="90" rx="12" fill="none" stroke="#9B59B6" stroke-width="3" id="glow-pay-p4" class="glow" opacity="0" filter="url(#glow-filter)"/>
+  <rect x="310" y="480" width="130" height="90" rx="12" fill="none" stroke="#9B59B6" stroke-width="3" id="glow-pay-p7" class="glow" opacity="0" filter="url(#glow-filter)"/>
+
+  <rect x="595" y="145" width="130" height="90" rx="12" fill="none" stroke="#5BDDE4" stroke-width="3" id="glow-domain-p6" class="glow" opacity="0" filter="url(#glow-filter)"/>
+
+  <!-- Actor: Humain -->
+  <g id="actor-human">
+    <rect x="80" y="145" width="130" height="90" rx="12" fill="#E7E9EE" stroke="#0E2356" class="actor-rect"/>
+    <g transform="translate(133,165)">
+      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" fill="#0E2356" transform="scale(0.9)"/>
+    </g>
+    <text x="145" y="203" class="actor-name" fill="#0E2356">human</text>
+    <text x="145" y="220" class="actor-type" fill="#0E2356">user</text>
+  </g>
+
+  <!-- Actor: Bob -->
+  <g id="actor-bob">
+    <rect x="310" y="145" width="130" height="90" rx="12" fill="#0E2356" stroke="#0E2356" class="actor-rect"/>
+    <g transform="translate(363,163)">
+      <circle cx="12" cy="2.5" r="2" fill="#00D2DD"/>
+      <rect x="11" y="4" width="2" height="3" fill="#00D2DD"/>
+      <rect x="4" y="6.5" width="16" height="13" rx="3" fill="#00D2DD"/>
+      <circle cx="8.5" cy="12" r="2" fill="#0E2356"/>
+      <circle cx="15.5" cy="12" r="2" fill="#0E2356"/>
+      <rect x="8" y="16" width="8" height="1.5" rx="0.75" fill="#0E2356"/>
+    </g>
+    <text x="375" y="203" class="actor-name" fill="#FFFFFF">Winston</text>
+    <text x="375" y="220" class="actor-type" fill="#00D2DD">AI agent</text>
+  </g>
+
+  <!-- Actor: Domaine -->
+  <g id="actor-domain">
+    <rect x="595" y="145" width="130" height="90" rx="12" fill="#3E4F78" stroke="#586586" class="actor-rect"/>
+    <g transform="translate(648,163)">
+      <circle cx="12" cy="2.5" r="2" fill="#5BDDE4"/>
+      <rect x="11" y="4" width="2" height="3" fill="#5BDDE4"/>
+      <rect x="4" y="6.5" width="16" height="13" rx="3" fill="#5BDDE4"/>
+      <circle cx="8.5" cy="12" r="2" fill="#3E4F78"/>
+      <circle cx="15.5" cy="12" r="2" fill="#3E4F78"/>
+      <rect x="8" y="16" width="8" height="1.5" rx="0.75" fill="#3E4F78"/>
+    </g>
+    <text x="660" y="203" class="actor-name" fill="#FFFFFF">Winston@domain</text>
+    <text x="660" y="220" class="actor-type" fill="#5BDDE4">AI agent</text>
+  </g>
+
+  <!-- Actor: Archi. Entreprise -->
+  <g id="actor-archi">
+    <rect x="560" y="470" width="130" height="100" rx="12" fill="#263967" stroke="#3E4F78" class="actor-rect"/>
+    <g transform="translate(613,483)">
+      <circle cx="12" cy="2.5" r="2" fill="#5BDDE4"/>
+      <rect x="11" y="4" width="2" height="3" fill="#5BDDE4"/>
+      <rect x="4" y="6.5" width="16" height="13" rx="3" fill="#5BDDE4"/>
+      <circle cx="8.5" cy="12" r="2" fill="#263967"/>
+      <circle cx="15.5" cy="12" r="2" fill="#263967"/>
+      <rect x="8" y="16" width="8" height="1.5" rx="0.75" fill="#263967"/>
+    </g>
+    <text x="625" y="523" class="actor-name" fill="#FFFFFF">enterprise arch.</text>
+    <text x="625" y="540" class="actor-type" fill="#5BDDE4">AI agent</text>
+    <text x="625" y="558" font-size="10" fill="#B7BDCC" text-anchor="middle">A2A Server :8080</text>
+  </g>
+
+  <!-- Actor: Paiement -->
+  <g id="actor-payment">
+    <rect x="310" y="480" width="130" height="90" rx="12" fill="#E7E9EE" stroke="#9B59B6" class="actor-rect"/>
+    <g transform="translate(363,498)">
+      <path d="M19.14 12.94a7 7 0 0 0 .07-.94 7 7 0 0 0-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.04 7.04 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54a7.04 7.04 0 0 0-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58a7 7 0 0 0-.07.94c0 .32.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.04.68 1.62.94l.36 2.54c.05.24.26.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54a7.04 7.04 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.03-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" fill="#9B59B6" transform="scale(0.85)"/>
+    </g>
+    <text x="375" y="535" class="actor-name" fill="#0E2356">payment</text>
+    <text x="375" y="552" class="actor-type" fill="#586586">service</text>
+    <text x="375" y="568" font-size="10" fill="#8691AB" text-anchor="middle">AP2 Broker :8082</text>
+  </g>
+
+  <!-- ========== ANNOTATIONS ========== -->
+
+  <!-- Phase 1: Question d'architecture -->
+  <g>
+    <rect x="180" y="155" width="150" height="20" rx="4" fill="#FFFFFF" stroke="#B7BDCC" stroke-width="1" class="anno-bg-p1"/>
+    <text x="255" y="168" class="anno anno-p1 anno-text" font-size="11">Application design</text>
+  </g>
+
+  <!-- Phase 2: A2A task send + Devis + 402 -->
+  <g>
+    <rect x="395" y="310" width="115" height="32" rx="4" fill="#FFFFFF" stroke="#00D2DD" stroke-width="1" class="anno-bg-p2-early"/>
+    <text x="453" y="323" class="anno anno-text anno-p2-early" font-size="11" font-weight="600" fill="#00D2DD">A2A tasks/send</text>
+    <text x="453" y="336" class="anno anno-text anno-p2-early" font-size="9" fill="#586586">TaskId + message</text>
+  </g>
+  <g>
+    <rect x="545" y="320" width="55" height="20" rx="4" fill="#FFFFFF" stroke="#00D2DD" stroke-width="1" class="anno-bg-p2"/>
+    <text x="573" y="333" class="anno anno-p2 anno-text" font-size="11" fill="#00D2DD">Quote</text>
+  </g>
+  <g>
+    <rect x="525" y="345" width="136" height="20" rx="4" fill="#FFFFFF" stroke="#c0392b" stroke-width="1" class="anno-bg-p2"/>
+    <text x="593" y="358" class="anno anno-p2 anno-text" font-size="11" fill="#c0392b">402 Payment Required</text>
+  </g>
+
+  <!-- Phase 3: Escalade paiement -->
+  <g>
+    <rect x="180" y="205" width="130" height="20" rx="4" fill="#FFFFFF" stroke="#3E4F78" stroke-width="1" class="anno-bg-p3"/>
+    <text x="245" y="218" class="anno anno-p3 anno-text" font-size="11" fill="#3E4F78">Payment escalation</text>
+  </g>
+
+  <!-- Phase 4: Checkout + Mandats + hold -->
+  <g>
+    <rect x="180" y="370" width="180" height="20" rx="4" fill="#FFFFFF" stroke="#9B59B6" stroke-width="1" class="anno-bg-p4"/>
+    <text x="270" y="383" class="anno anno-p4 anno-text" font-size="11" fill="#9B59B6">Checkout + mandats + hold</text>
+  </g>
+  <g>
+    <rect x="445" y="550" width="110" height="20" rx="4" fill="#FFFFFF" stroke="#9B59B6" stroke-width="1" class="anno-bg-p4"/>
+    <text x="500" y="563" class="anno anno-p4 anno-text" font-size="11" fill="#9B59B6">Verify mandates</text>
+  </g>
+
+  <!-- Phase 5: Clarification + RGPD -->
+  <g>
+    <rect x="445" y="350" width="130" height="20" rx="4" fill="#FFFFFF" stroke="#00D2DD" stroke-width="1" class="anno-bg-p5"/>
+    <text x="510" y="363" class="anno anno-p5 anno-text" font-size="11" fill="#00D2DD">Design dialogue</text>
+  </g>
+
+  <!-- Phase 6: Consultation faisabilite -->
+  <g>
+    <rect x="660" y="345" width="145" height="20" rx="4" fill="#FFFFFF" stroke="#5BDDE4" stroke-width="1" class="anno-bg-p6"/>
+    <text x="733" y="358" class="anno anno-p6 anno-text" font-size="11" fill="#3E4F78">Feasibility consultation</text>
+  </g>
+
+  <!-- Phase 7: Decision + ADR -->
+  <g>
+    <rect x="455" y="385" width="120" height="20" rx="4" fill="#FFFFFF" stroke="#0E2356" stroke-width="1" class="anno-bg-p7"/>
+    <text x="515" y="398" class="anno anno-p7 anno-text" font-size="11" fill="#0E2356">Decision + ADR</text>
+  </g>
+  <g>
+    <rect x="445" y="555" width="80" height="20" rx="4" fill="#FFFFFF" stroke="#9B59B6" stroke-width="1" class="anno-bg-p7"/>
+    <text x="485" y="568" class="anno anno-p7 anno-text" font-size="11" fill="#9B59B6">Settlement</text>
+  </g>
+
+  <!-- ========== KEY CONCEPTS (static labels) ========== -->
+  <!-- Concept badges on actors -->
+  <g id="badge-human" transform="translate(80, 250)">
+    <rect width="130" height="36" rx="6" fill="#EBFAFB" stroke="#00D2DD" stroke-width="1"/>
+    <text x="65" y="15" font-size="10" font-weight="600" fill="#0E2356" text-anchor="middle">Authorizes payment</text>
+    <text x="65" y="28" font-size="9" fill="#586586" text-anchor="middle">GDPR / compliance</text>
+  </g>
+
+  <g id="badge-payment" transform="translate(310, 585)">
+    <rect width="130" height="36" rx="6" fill="#F4ECF7" stroke="#9B59B6" stroke-width="1"/>
+    <text x="65" y="15" font-size="10" font-weight="600" fill="#0E2356" text-anchor="middle">Ledger + Mandats</text>
+    <text x="65" y="28" font-size="9" fill="#586586" text-anchor="middle">HMAC tokens</text>
+  </g>
+
+  <g id="badge-archi" transform="translate(560, 585)">
+    <rect width="130" height="36" rx="6" fill="#EBFAFB" stroke="#00D2DD" stroke-width="1"/>
+    <text x="65" y="15" font-size="10" font-weight="600" fill="#0E2356" text-anchor="middle">Delegates via A2A</text>
+    <text x="65" y="28" font-size="9" fill="#586586" text-anchor="middle">Generates ADR</text>
+  </g>
+
+  <g id="badge-domain" transform="translate(595, 250)">
+    <rect width="130" height="36" rx="6" fill="#EBFAFB" stroke="#5BDDE4" stroke-width="1"/>
+    <text x="65" y="15" font-size="10" font-weight="600" fill="#3E4F78" text-anchor="middle">Technical expert</text>
+    <text x="65" y="28" font-size="9" fill="#586586" text-anchor="middle">Feasibility</text>
+  </g>
+
+
+</svg>

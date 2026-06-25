@@ -1,0 +1,538 @@
+{{ $svg := .Get "svg" }}
+{{ $id := printf "st-%d" .Ordinal }}
+
+<div class="scrollytelling-wrap" data-svg-src="{{ $svg }}" id="{{ $id }}">
+  <aside class="st-diagram-sticky" id="{{ $id }}-diagram">
+    <span class="st-expand-hint">tap to expand</span>
+  </aside>
+  <article class="st-narrative">
+    {{ .Inner }}
+  </article>
+</div>
+
+<style>
+  /* === Full-width breakout from .post container === */
+  .scrollytelling-wrap {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    display: flex;
+    flex-direction: column;
+    color: var(--pico-color);
+    background: var(--pico-background-color);
+  }
+
+  /* === Sticky diagram panel === */
+  .st-diagram-sticky {
+    position: sticky;
+    top: 0;
+    height: 35vh;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--pico-background-color);
+    z-index: 10;
+    border-bottom: 2px solid var(--pico-muted-border-color, #e7e9ee);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: height 0.35s ease, box-shadow 0.35s ease;
+  }
+  .st-diagram-sticky svg {
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    transition: opacity 0.3s;
+  }
+  .st-expand-hint {
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    font-size: 11px;
+    color: var(--pico-muted-color);
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .st-diagram-sticky.expanded {
+    height: 70vh;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .st-diagram-sticky.expanded .st-expand-hint { opacity: 0; }
+
+  /* === Narrative column === */
+  .st-narrative {
+    padding: 0 16px;
+  }
+
+  /* === Sections === */
+  .st-step {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 8px;
+    opacity: 0.35;
+    transition: opacity 0.5s ease;
+  }
+  .st-step.active {
+    opacity: 1;
+  }
+  .st-step h2 {
+    color: var(--pico-h2-color, var(--pico-color));
+    margin-bottom: 12px !important;
+    margin-top: 0 !important;
+    border-left: 3px solid var(--pico-primary);
+    padding-left: 12px;
+  }
+  .st-step h3 {
+    color: var(--pico-h3-color, var(--pico-color));
+    margin-bottom: 10px !important;
+    margin-top: 0 !important;
+    padding-left: 15px;
+  }
+  .st-step p {
+    color: var(--pico-color);
+    max-width: 100%;
+    margin-bottom: 10px !important;
+    margin-top: 0 !important;
+    padding-left: 15px;
+  }
+  .st-step .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .badge-a2a { background: #E8FAFB; color: #00A5B0; border: 1px solid #00D2DD; }
+  .badge-ap2 { background: #F4ECF7; color: #9B59B6; border: 1px solid #9B59B6; }
+  .badge-402 { background: #FDE8E8; color: #c0392b; border: 1px solid #c0392b; }
+
+  /* === Tablet (>=600px) === */
+  @media (min-width: 600px) {
+    .st-diagram-sticky {
+      height: 40vh;
+      min-height: 240px;
+    }
+    .st-narrative { padding: 0 24px; }
+    .st-step { min-height: 75vh; padding: 50px 16px; }
+    .st-step p { max-width: 560px; }
+    .st-step .badge { font-size: 12px; padding: 4px 12px; }
+  }
+
+  /* === Desktop (>=1024px) === */
+  @media (min-width: 1024px) {
+    .scrollytelling-wrap {
+      flex-direction: row;
+    }
+    .st-diagram-sticky {
+      flex: 0 0 55%;
+      order: 2;
+      height: 100vh;
+      min-height: unset;
+      border-bottom: none;
+      box-shadow: none;
+      cursor: default;
+    }
+    .st-expand-hint { display: none; }
+    .st-diagram-sticky.expanded { height: 100vh; }
+    .st-diagram-sticky svg { width: 100%; height: 100%; padding: 8px; }
+    .st-narrative {
+      flex: 0 0 45%;
+      order: 1;
+      padding: 0 24px;
+    }
+    .st-step {
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+    .st-step h2 { border-left-width: 4px; padding-left: 16px; }
+    .st-step h3 { padding-left: 20px; }
+    .st-step p { max-width: 480px; padding-left: 20px; }
+    .st-step .badge { margin-left: 20px; }
+  }
+
+  /* === Wide desktop (>=1440px) === */
+  @media (min-width: 1440px) {
+    .st-diagram-sticky { flex: 0 0 60%; }
+    .st-narrative { flex: 0 0 40%; padding: 0 40px; }
+    .st-step p { max-width: 520px; }
+  }
+
+  /* === SVG base styles === */
+  .st-diagram-sticky .actor-rect { stroke-width: 2; }
+  .st-diagram-sticky .actor-name { font-size: 14px; font-weight: 600; text-anchor: middle; }
+  .st-diagram-sticky .actor-type { font-size: 11px; text-anchor: middle; opacity: 0.7; }
+  .st-diagram-sticky .conn { fill: none; stroke-width: 2; }
+  .st-diagram-sticky .conn-base { opacity: 0.25; }
+  .st-diagram-sticky .conn-dashed { stroke-dasharray: 8,5; }
+  .st-diagram-sticky .proto-bg { fill: #FFFFFF; rx: 3; }
+  .st-diagram-sticky .proto-label { font-size: 11px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+  .st-diagram-sticky .anno-bg { fill: #FFFFFF; stroke: #B7BDCC; stroke-width: 1; rx: 4; opacity: 0; }
+  .st-diagram-sticky .anno-text { fill: #0E2356; font-weight: 600; }
+  .st-diagram-sticky .dot { r: 4; opacity: 0; }
+  .st-diagram-sticky .zone { stroke-width: 2; stroke-dasharray: 6,4; }
+  .st-diagram-sticky .zone-label { font-size: 12px; font-weight: 700; text-anchor: middle; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* === Progressive reveal — hide all, show per phase === */
+  .st-diagram-sticky #zone-ddd,
+  .st-diagram-sticky #zone-stream-aligned,
+  .st-diagram-sticky #zone-domain,
+  .st-diagram-sticky #zone-platform,
+  .st-diagram-sticky #actor-human,
+  .st-diagram-sticky #actor-bob,
+  .st-diagram-sticky #actor-domain,
+  .st-diagram-sticky #actor-archi,
+  .st-diagram-sticky #actor-payment,
+  .st-diagram-sticky #conn-human-bob,
+  .st-diagram-sticky #conn-bob-archi,
+  .st-diagram-sticky #conn-bob-pay,
+  .st-diagram-sticky #conn-archi-pay,
+  .st-diagram-sticky #conn-archi-domain,
+  .st-diagram-sticky #badge-human,
+  .st-diagram-sticky #badge-payment,
+  .st-diagram-sticky #badge-archi,
+  .st-diagram-sticky #badge-domain {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  /* Phase 1 */
+  svg[data-active-phase="1"] #zone-ddd,
+  svg[data-active-phase="1"] #zone-stream-aligned,
+  svg[data-active-phase="1"] #actor-human,
+  svg[data-active-phase="1"] #actor-bob,
+  svg[data-active-phase="1"] #conn-human-bob,
+  svg[data-active-phase="1"] #badge-human { opacity: 1; }
+
+  /* Phase 2 & 3 */
+  svg[data-active-phase="2"] #zone-ddd,
+  svg[data-active-phase="2"] #zone-stream-aligned,
+  svg[data-active-phase="2"] #actor-human,
+  svg[data-active-phase="2"] #actor-bob,
+  svg[data-active-phase="2"] #conn-human-bob,
+  svg[data-active-phase="2"] #badge-human,
+  svg[data-active-phase="2"] #zone-platform,
+  svg[data-active-phase="2"] #actor-archi,
+  svg[data-active-phase="2"] #conn-bob-archi,
+  svg[data-active-phase="2"] #badge-archi,
+  svg[data-active-phase="3"] #zone-ddd,
+  svg[data-active-phase="3"] #zone-stream-aligned,
+  svg[data-active-phase="3"] #actor-human,
+  svg[data-active-phase="3"] #actor-bob,
+  svg[data-active-phase="3"] #conn-human-bob,
+  svg[data-active-phase="3"] #badge-human,
+  svg[data-active-phase="3"] #zone-platform,
+  svg[data-active-phase="3"] #actor-archi,
+  svg[data-active-phase="3"] #conn-bob-archi,
+  svg[data-active-phase="3"] #badge-archi { opacity: 1; }
+
+  /* Phase 4 */
+  svg[data-active-phase="4"] #zone-ddd,
+  svg[data-active-phase="4"] #zone-stream-aligned,
+  svg[data-active-phase="4"] #actor-human,
+  svg[data-active-phase="4"] #actor-bob,
+  svg[data-active-phase="4"] #conn-human-bob,
+  svg[data-active-phase="4"] #badge-human,
+  svg[data-active-phase="4"] #zone-platform,
+  svg[data-active-phase="4"] #actor-archi,
+  svg[data-active-phase="4"] #conn-bob-archi,
+  svg[data-active-phase="4"] #badge-archi,
+  svg[data-active-phase="4"] #actor-payment,
+  svg[data-active-phase="4"] #conn-bob-pay,
+  svg[data-active-phase="4"] #conn-archi-pay,
+  svg[data-active-phase="4"] #badge-payment { opacity: 1; }
+
+  /* Phase 5 */
+  svg[data-active-phase="5"] #zone-ddd,
+  svg[data-active-phase="5"] #zone-stream-aligned,
+  svg[data-active-phase="5"] #actor-human,
+  svg[data-active-phase="5"] #actor-bob,
+  svg[data-active-phase="5"] #conn-human-bob,
+  svg[data-active-phase="5"] #badge-human,
+  svg[data-active-phase="5"] #zone-platform,
+  svg[data-active-phase="5"] #actor-archi,
+  svg[data-active-phase="5"] #conn-bob-archi,
+  svg[data-active-phase="5"] #badge-archi { opacity: 1; }
+
+  /* Phase 6 */
+  svg[data-active-phase="6"] #zone-ddd,
+  svg[data-active-phase="6"] #zone-stream-aligned,
+  svg[data-active-phase="6"] #actor-human,
+  svg[data-active-phase="6"] #actor-bob,
+  svg[data-active-phase="6"] #conn-human-bob,
+  svg[data-active-phase="6"] #badge-human,
+  svg[data-active-phase="6"] #zone-platform,
+  svg[data-active-phase="6"] #actor-archi,
+  svg[data-active-phase="6"] #conn-bob-archi,
+  svg[data-active-phase="6"] #badge-archi,
+  svg[data-active-phase="6"] #zone-domain,
+  svg[data-active-phase="6"] #actor-domain,
+  svg[data-active-phase="6"] #conn-archi-domain,
+  svg[data-active-phase="6"] #badge-domain { opacity: 1; }
+
+  /* Phase 7 */
+  svg[data-active-phase="7"] #zone-ddd,
+  svg[data-active-phase="7"] #zone-stream-aligned,
+  svg[data-active-phase="7"] #actor-human,
+  svg[data-active-phase="7"] #actor-bob,
+  svg[data-active-phase="7"] #conn-human-bob,
+  svg[data-active-phase="7"] #badge-human,
+  svg[data-active-phase="7"] #zone-platform,
+  svg[data-active-phase="7"] #actor-archi,
+  svg[data-active-phase="7"] #conn-bob-archi,
+  svg[data-active-phase="7"] #badge-archi,
+  svg[data-active-phase="7"] #actor-payment,
+  svg[data-active-phase="7"] #conn-bob-pay,
+  svg[data-active-phase="7"] #conn-archi-pay,
+  svg[data-active-phase="7"] #badge-payment { opacity: 1; }
+
+  /* Phase 8 (conclusion): everything visible */
+  svg[data-active-phase="8"] #zone-ddd,
+  svg[data-active-phase="8"] #zone-stream-aligned,
+  svg[data-active-phase="8"] #zone-domain,
+  svg[data-active-phase="8"] #zone-platform,
+  svg[data-active-phase="8"] #actor-human,
+  svg[data-active-phase="8"] #actor-bob,
+  svg[data-active-phase="8"] #actor-domain,
+  svg[data-active-phase="8"] #actor-archi,
+  svg[data-active-phase="8"] #actor-payment,
+  svg[data-active-phase="8"] #conn-human-bob,
+  svg[data-active-phase="8"] #conn-bob-archi,
+  svg[data-active-phase="8"] #conn-bob-pay,
+  svg[data-active-phase="8"] #conn-archi-pay,
+  svg[data-active-phase="8"] #conn-archi-domain,
+  svg[data-active-phase="8"] #badge-human,
+  svg[data-active-phase="8"] #badge-payment,
+  svg[data-active-phase="8"] #badge-archi,
+  svg[data-active-phase="8"] #badge-domain { opacity: 1; }
+
+  /* === SVG phase-gated animations === */
+  .st-diagram-sticky .glow { opacity: 0; transition: opacity 0.4s; }
+  .st-diagram-sticky .anno { opacity: 0; transition: opacity 0.4s; text-anchor: middle; dominant-baseline: central; font-size: 12px; }
+  .st-diagram-sticky .anno-bg-p1,
+  .st-diagram-sticky .anno-bg-p2,
+  .st-diagram-sticky .anno-bg-p2-early,
+  .st-diagram-sticky .anno-bg-p3,
+  .st-diagram-sticky .anno-bg-p4,
+  .st-diagram-sticky .anno-bg-p5,
+  .st-diagram-sticky .anno-bg-p6,
+  .st-diagram-sticky .anno-bg-p7 { opacity: 0; transition: opacity 0.4s; }
+
+  @keyframes st-fade-in-out {
+    0%, 100% { opacity: 0.25; }
+    15%, 85% { opacity: 1; }
+  }
+  @keyframes st-glow-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+  @keyframes st-anno-show {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+  }
+  @keyframes st-dot-travel {
+    0% { offset-distance: 0%; opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { offset-distance: 100%; opacity: 0; }
+  }
+
+  /* Phase 1 animations */
+  svg[data-active-phase="1"] #arrow-human-bob { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="1"] #glow-human { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="1"] #glow-bob-p1 { animation: st-glow-pulse 2s ease-in-out infinite 0.3s; }
+  svg[data-active-phase="1"] .anno-p1 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="1"] .anno-bg-p1 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="1"] .dot-p1 { animation: st-dot-travel 2.5s ease-in-out infinite; }
+
+  /* Phase 2 animations */
+  svg[data-active-phase="2"] #arrow-bob-archi { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="2"] #arrow-archi-bob-ret { animation: st-fade-in-out 3s ease-in-out infinite 1.5s; }
+  svg[data-active-phase="2"] #glow-archi-p2 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="2"] #glow-bob-p2 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="2"] .anno-p2 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="2"] .anno-bg-p2 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="2"] .anno-p2-early { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="2"] .anno-bg-p2-early { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="2"] .dot-p2a { animation: st-dot-travel 2.5s ease-in-out infinite; }
+  svg[data-active-phase="2"] .dot-p2b { animation: st-dot-travel 2.5s ease-in-out infinite 1.2s; }
+
+  /* Phase 3 animations */
+  svg[data-active-phase="3"] #arrow-bob-human { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="3"] #glow-bob-p3 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="3"] #glow-human-p3 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="3"] .anno-p3 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="3"] .anno-bg-p3 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="3"] .dot-p3 { animation: st-dot-travel 2.5s ease-in-out infinite; }
+
+  /* Phase 4 animations */
+  svg[data-active-phase="4"] #arrow-bob-pay { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="4"] #arrow-archi-pay-p4 { animation: st-fade-in-out 3s ease-in-out infinite 1s; }
+  svg[data-active-phase="4"] #arrow-bob-archi { animation: st-fade-in-out 3s ease-in-out infinite 0.5s; }
+  svg[data-active-phase="4"] #glow-bob-p4 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="4"] #glow-pay-p4 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="4"] .anno-p4 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="4"] .anno-bg-p4 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="4"] .dot-p4a { animation: st-dot-travel 2.5s ease-in-out infinite; }
+  svg[data-active-phase="4"] .dot-p4b { animation: st-dot-travel 2.5s ease-in-out infinite 0.8s; }
+  svg[data-active-phase="4"] .dot-p4c { animation: st-dot-travel 2.5s ease-in-out infinite 1.6s; }
+
+  /* Phase 5 animations */
+  svg[data-active-phase="5"] #arrow-bob-archi { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="5"] #arrow-archi-bob-ret { animation: st-fade-in-out 3s ease-in-out infinite 1.5s; }
+  svg[data-active-phase="5"] #glow-bob-p5 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="5"] #glow-archi-p5 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="5"] .anno-p5 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="5"] .anno-bg-p5 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="5"] .dot-p5a { animation: st-dot-travel 2.5s ease-in-out infinite; }
+  svg[data-active-phase="5"] .dot-p5b { animation: st-dot-travel 2.5s ease-in-out infinite 1.2s; }
+
+  /* Phase 6 animations */
+  svg[data-active-phase="6"] #arrow-archi-domain { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="6"] #glow-archi-p6 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="6"] #glow-domain-p6 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="6"] .anno-p6 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="6"] .anno-bg-p6 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="6"] .dot-p6 { animation: st-dot-travel 2.5s ease-in-out infinite; }
+
+  /* Phase 7 animations */
+  svg[data-active-phase="7"] #arrow-archi-pay { animation: st-fade-in-out 3s ease-in-out infinite; }
+  svg[data-active-phase="7"] #arrow-archi-bob-ret { animation: st-fade-in-out 3s ease-in-out infinite 1.5s; }
+  svg[data-active-phase="7"] #glow-archi-p7 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="7"] #glow-bob-p7 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="7"] #glow-pay-p7 { animation: st-glow-pulse 2s ease-in-out infinite; }
+  svg[data-active-phase="7"] .anno-p7 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="7"] .anno-bg-p7 { animation: st-anno-show 3s ease-in-out infinite; }
+  svg[data-active-phase="7"] .dot-p7a { animation: st-dot-travel 2.5s ease-in-out infinite; }
+  svg[data-active-phase="7"] .dot-p7b { animation: st-dot-travel 2.5s ease-in-out infinite 1.2s; }
+
+  /* Hide dots by default */
+  [class^="dot-p"] { opacity: 0; }
+  @supports not (offset-path: path('M0,0 L1,1')) {
+    [class^="dot-p"] { display: none; }
+  }
+</style>
+
+<script>
+(function() {
+  var wrapperId = '{{ $id }}';
+  var wrapper = document.getElementById(wrapperId);
+  if (!wrapper) return;
+
+  var svgSrc = wrapper.dataset.svgSrc;
+  var diagramContainer = document.getElementById(wrapperId + '-diagram');
+  var sections = wrapper.querySelectorAll('.st-step[data-phase]');
+  var currentPhase = -1;
+  var svg = null;
+
+  function isDesktop() {
+    return window.matchMedia('(min-width: 1024px)').matches;
+  }
+
+  diagramContainer.addEventListener('click', function() {
+    if (!isDesktop()) {
+      diagramContainer.classList.toggle('expanded');
+    }
+  });
+
+  function activatePhase(phase) {
+    if (phase === currentPhase) return;
+    currentPhase = phase;
+
+    if (svg) {
+      if (phase >= 1 && phase <= 8) {
+        svg.setAttribute('data-active-phase', phase);
+      } else {
+        svg.removeAttribute('data-active-phase');
+      }
+    }
+
+    sections.forEach(function(s) {
+      var sp = parseInt(s.dataset.phase);
+      s.classList.toggle('active', sp === phase);
+    });
+  }
+
+  function getRootMargin() {
+    if (isDesktop()) return '-30% 0px -30% 0px';
+    if (window.matchMedia('(min-width: 600px)').matches) return '-45% 0px -15% 0px';
+    return '-40% 0px -15% 0px';
+  }
+
+  var currentObserver = null;
+  function setupObserver() {
+    if (currentObserver) {
+      sections.forEach(function(s) { currentObserver.unobserve(s); });
+    }
+
+    currentObserver = new IntersectionObserver(function(entries) {
+      var best = null;
+      var bestRatio = 0;
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+          bestRatio = entry.intersectionRatio;
+          best = entry;
+        }
+      });
+      if (best) {
+        activatePhase(parseInt(best.target.dataset.phase));
+      }
+    }, {
+      rootMargin: getRootMargin(),
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    });
+
+    sections.forEach(function(section) {
+      currentObserver.observe(section);
+    });
+  }
+
+  fetch(svgSrc)
+    .then(function(r) { return r.text(); })
+    .then(function(svgText) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(svgText, 'image/svg+xml');
+      svg = doc.documentElement;
+
+      var internalStyle = svg.querySelector('style');
+      if (internalStyle) internalStyle.remove();
+
+      svg.querySelectorAll('animateMotion, animate').forEach(function(el) {
+        var parent = el.parentElement;
+        el.remove();
+        if (parent && parent.tagName === 'circle' && parent.children.length === 0) {
+          parent.remove();
+        }
+      });
+
+      diagramContainer.appendChild(svg);
+
+      svg.querySelectorAll('[data-follow]').forEach(function(dot) {
+        var pathEl = svg.getElementById(dot.dataset.follow);
+        if (pathEl) {
+          dot.style.offsetPath = "path('" + pathEl.getAttribute('d') + "')";
+          dot.style.offsetRotate = '0deg';
+        }
+      });
+
+      setupObserver();
+      activatePhase(0);
+    });
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      setupObserver();
+      if (isDesktop()) {
+        diagramContainer.classList.remove('expanded');
+      }
+    }, 250);
+  });
+})();
+</script>

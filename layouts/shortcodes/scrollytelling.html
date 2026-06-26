@@ -63,6 +63,7 @@
   /* === Narrative column === */
   .st-narrative {
     padding: 0 16px;
+    overflow-x: hidden;
   }
 
   /* === Sections === */
@@ -98,6 +99,11 @@
     margin-top: 0 !important;
     padding-left: 15px;
   }
+  .st-step pre {
+    max-width: 100%;
+    overflow-x: auto;
+    font-size: 13px;
+  }
   .st-step .badge {
     display: inline-block;
     font-size: 11px;
@@ -121,6 +127,7 @@
     .st-narrative { padding: 0 24px; }
     .st-step { min-height: 75vh; padding: 50px 16px; }
     .st-step p { max-width: 560px; }
+    .st-step pre { font-size: 12px; }
     .st-step .badge { font-size: 12px; padding: 4px 12px; }
   }
 

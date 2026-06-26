@@ -465,39 +465,36 @@
     });
   }
 
-  function getRootMargin() {
-    if (isDesktop()) return '-30% 0px -30% 0px';
-    if (window.matchMedia('(min-width: 600px)').matches) return '-45% 0px -15% 0px';
-    return '-40% 0px -15% 0px';
+  function getTriggerY() {
+    if (isDesktop()) return window.innerHeight * 0.3;
+    if (window.matchMedia('(min-width: 600px)').matches) return window.innerHeight * 0.45;
+    return window.innerHeight * 0.4;
   }
 
-  var currentObserver = null;
-  function setupObserver() {
-    if (currentObserver) {
-      sections.forEach(function(s) { currentObserver.unobserve(s); });
-    }
-
-    currentObserver = new IntersectionObserver(function(entries) {
-      var best = null;
-      var bestRatio = 0;
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
-          bestRatio = entry.intersectionRatio;
-          best = entry;
-        }
-      });
-      if (best) {
-        activatePhase(parseInt(best.target.dataset.phase));
+  function updateActivePhase() {
+    var best = null;
+    var triggerY = getTriggerY();
+    sections.forEach(function(s) {
+      var rect = s.getBoundingClientRect();
+      if (rect.top <= triggerY && rect.bottom > 0) {
+        best = s;
       }
-    }, {
-      rootMargin: getRootMargin(),
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     });
-
-    sections.forEach(function(section) {
-      currentObserver.observe(section);
-    });
+    if (best) {
+      activatePhase(parseInt(best.dataset.phase));
+    }
   }
+
+  var scrollTicking = false;
+  window.addEventListener('scroll', function() {
+    if (!scrollTicking) {
+      requestAnimationFrame(function() {
+        updateActivePhase();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
 
   fetch(svgSrc)
     .then(function(r) { return r.text(); })
@@ -527,15 +524,14 @@
         }
       });
 
-      setupObserver();
-      activatePhase(0);
+      updateActivePhase();
     });
 
   var resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
-      setupObserver();
+      updateActivePhase();
       if (isDesktop()) {
         diagramContainer.classList.remove('expanded');
       }

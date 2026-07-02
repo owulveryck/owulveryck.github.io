@@ -1,6 +1,6 @@
 ---
 title: "Team Topologies à l'ère agentique : la boucle, la plateforme et l'enabling team"
-slug: "sdlc-team-topologies"
+slug: "sdlc-team-topologies-fr"
 date: 2026-07-02T10:00:00+02:00
 images: [/assets/sdlc-team-topologies/sdlc-team-topologies.svg]
 draft: false
@@ -76,21 +76,17 @@ EDIT: on doit continuer de voir l'animation qui fait tourner
 
 ## Conception de solution
 
-Je veux que tous les éléments soient cachés. 
+Je veux que tous les éléments soient cachés. ..
 Et qu'on affiche que la problématique métier toute la boite jaune avec son contenu sauf "résultat" et "Livraison". Tu vas créer un point qui va de problématique vers conception pui de conception à specs et de specs à expression.
 
 EDIT: enleve la fleche "enrichit la solution" et le fond jaune ainsi que la stream aligned team
 
 {{< /scrollytelling-step >}}
 
-{{< scrollytelling-step phase="7.1" id="phase-7.1" >}}
+{{< scrollytelling-step phase="7.2" id="phase-7.2" >}}
 
-### Conception de solution
-
-Je veux que tous les éléments soient cachés. 
-Et qu'on affiche que la problématique métier toute la boite jaune avec son contenu sauf "résultat" et "Livraison". Tu vas créer un point qui va de problématique vers conception pui de conception à specs et de specs à expression.
-
-
+Je veux que tu ajoutes la boite capter avec le lien, mais au lieu d'écrire "capter", je veux que tu écrives "développement de la solution"
+ 
 {{< /scrollytelling-step >}}
 
 
@@ -106,9 +102,9 @@ EDIT: tu vas enlever le cadre jaune et le stream-aligned team
 
 {{< /scrollytelling-step >}}
 
-## Organisation
 
 {{< scrollytelling-step phase="8.1" id="phase-8.1" >}}
+## Organisation
 
 ### L'équipe stream-aligned
 
@@ -116,6 +112,15 @@ Tu vas alors afficher toute la partie "système agentique" (avec "implémente la
 
 Problématique -> conception -> specs -> expression -> capter -> planifier -> agir -> observer -> resultat 
 
+
+{{< /scrollytelling-step >}}
+
+
+{{< scrollytelling-step phase="8.2" id="phase-8.2" >}}
+
+#### L'équipe stream-aligned constuit aussi des agents
+
+Je veux que que la livraison clignote avec un affichage d'un icone robot dessus
 
 {{< /scrollytelling-step >}}
 
@@ -140,6 +145,7 @@ On a aussi la fleche parametre et pas la fleche contexte technique
 
 On va avoir un point qui va de enabling team vers le système agentique pour le paramétrage
 
+EDIT: dans l'intersection entre enabling et stream-aligned en dessous de collaboration, tu peux écrire aide à la conception de la solution et à la ligne: mise en place des standards pour compléter le contexte
 
 {{< /scrollytelling-step >}}
 
@@ -161,6 +167,8 @@ On fait apparaitre capitalisation (skills agents etc...)
 
 On fait réapparaitre la platefore (tous les éléments précédents). En plus on ajoute le cylindre standards mais sans la courroie.
 
+EDIT: on ajoute l'animation qui fait tourner les roues comme dans la phase 5
+
 {{< /scrollytelling-step >}}
 
 
@@ -169,6 +177,8 @@ On fait réapparaitre la platefore (tous les éléments précédents). En plus o
 ### La standardisation
 
 On ajoute la courroie et on affiche une animation qui montre que la standardisation et le LLM font tourner la roue du système agentique
+
+EDIT: je veux que la ligne "mise en place des standards" descende jusque capitalisation et disapraisse.
 
 {{< /scrollytelling-step >}}
 

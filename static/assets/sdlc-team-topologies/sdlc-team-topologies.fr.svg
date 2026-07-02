@@ -48,6 +48,10 @@
     .st-hl { opacity: 0; }
     circle[data-follow] { opacity: 0; }
     #spin-agent, #spin-llm, #spin-standards, #belt-left-anim, #belt-right-anim { opacity: 0; }
+    .capter-label, .capter-label-alt { transition: opacity 0.5s ease; }
+    .capter-label-alt { opacity: 0; }
+    svg[data-active-phase="7.2"] .capter-label-alt { opacity: 1; }
+    .livraison-robot { opacity: 0; transition: opacity 0.5s ease; }
 
     /* Phases 1-6 : boucle agentique seule (sans le sous-titre "Implémente la solution") + Résultat */
     svg:is([data-active-phase="1"],[data-active-phase="2"],[data-active-phase="3"],[data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"])
@@ -61,21 +65,29 @@
     svg:is([data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.cloud-cloud,.cloud-connaissance,.cloud-si,.xaas) { opacity: 1; }
 
-    /* Phases 7,7.1,8,8.1,9-15 : parcours de conception (boîtes + arc Conception→Specs→Expression) */
-    svg:is([data-active-phase="7"],[data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+    /* Phases 7,7.1,7.2,8,8.1,8.2,9-15 : parcours de conception (boîtes + arc Conception→Specs→Expression) */
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"],[data-active-phase="7.2"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.sa-circle-core,.box-problematique,.arrow-prob-conception,.box-conception,.box-specs,.box-expression) { opacity: 1; }
 
-    /* Phases 7.1,8,8.1,9-15 : fond jaune + arc « enrichit la solution » (cachés en 7) */
-    svg:is([data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+    /* Phase 7.2 : boîte Capter (relibellée « Développement de la solution ») + lien Expression→Capter */
+    svg[data-active-phase="7.2"] :is(.box-capter,.conn-expression-capter) { opacity: 1; }
+    svg[data-active-phase="7.2"] .capter-label { opacity: 0; }
+
+    /* Phases 7.1,8,8.1,8.2,9-15 : fond jaune + arc « enrichit la solution » (cachés en 7) */
+    svg:is([data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.sa-fond,.sa-enrichit) { opacity: 1; }
 
-    /* Phases 7.1,8.1,9-15 : cadre jaune « Stream-Aligned Team » (caché en 7 et 8) */
-    svg:is([data-active-phase="7.1"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+    /* Phases 7.1,8.1,8.2,9-15 : cadre jaune « Stream-Aligned Team » (caché en 7 et 8) */
+    svg:is([data-active-phase="7.1"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       .sa-band { opacity: 1; }
 
-    /* Phases 8,8.1,9-15 : système complet — Résultat, Livraison, lien Expression→Capter, boucle agentique complète */
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+    /* Phases 8,8.1,8.2,9-15 : système complet — Résultat, Livraison, lien Expression→Capter, boucle agentique complète */
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.box-resultat,.arrow-resultat-livraison,.box-livraison,.conn-expression-capter,.agent-circle,.agent-title,.agent-subtitle,.label-autocorrectif,.box-capter,.box-planifier,.box-agir,.box-observer,.loop-correction,.arrow-observer-resultat) { opacity: 1; }
+
+    /* Phase 8.2 : la Livraison clignote, icône robot affichée dessus */
+    svg[data-active-phase="8.2"] .box-livraison { animation: tt-blink 1.2s ease-in-out infinite; }
+    svg[data-active-phase="8.2"] .livraison-robot { opacity: 1; }
 
     /* Phases 9-14 : cadre enabling team + titre (sans les liens ni la description) */
     svg:is([data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
@@ -133,6 +145,15 @@
     /* Tirets circulants : fwd = sens du tracé, rev = sens inverse (144 = multiple des périodes 18 et 24) */
     @keyframes tt-dash-fwd { to { stroke-dashoffset: -144; } }
     @keyframes tt-dash-rev { to { stroke-dashoffset: 144; } }
+    /* Clignotement (phase 8.2 : Livraison) */
+    @keyframes tt-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    /* Descente vers la capitalisation (phase 14 : « mise en place des standards », 156 → 560) */
+    @keyframes tt-descend {
+      0%   { transform: translateY(0); opacity: 1; }
+      75%  { opacity: 1; }
+      95%  { transform: translateY(404px); opacity: 0; }
+      100% { transform: translateY(404px); opacity: 0; }
+    }
 
     /* ============ Points par phase ============ */
     svg[data-active-phase="1"] .dot-p1   { animation: tt-dot 5s linear infinite; }
@@ -182,14 +203,14 @@
     /* Phase 11 : contexte technique → capter, D=3.5s */
     svg[data-active-phase="11"] .box-capter .st-hl       { animation: tt-hl 3.5s linear infinite -0.7s; }
 
-    /* ============ Rotations & courroies (phases 5 et 14) ============ */
-    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="14"],[data-active-phase="15"]) #spin-agent {
+    /* ============ Rotations & courroies (phases 5, 6, 13-15) ============ */
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #spin-agent {
       opacity: 0.9; animation: tt-dash-rev 3.2s linear infinite;
     }
-    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="14"],[data-active-phase="15"]) #spin-llm {
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #spin-llm {
       opacity: 0.9; animation: tt-dash-rev 2.2s linear infinite;
     }
-    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="14"],[data-active-phase="15"]) #belt-right-anim {
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #belt-right-anim {
       opacity: 0.9; animation: tt-dash-fwd 3.2s linear infinite;
     }
     svg:is([data-active-phase="14"],[data-active-phase="15"]) #spin-standards {
@@ -198,6 +219,9 @@
     svg:is([data-active-phase="14"],[data-active-phase="15"]) #belt-left-anim {
       opacity: 0.9; animation: tt-dash-rev 3.2s linear infinite;
     }
+
+    /* Phase 14 : « mise en place des standards » descend jusqu'à la capitalisation puis disparaît */
+    svg[data-active-phase="14"] .ctx-standards { animation: tt-descend 5s linear infinite; }
   ]]></style>
 
   <!-- ================================================================ -->
@@ -282,6 +306,9 @@
     <text x="60" y="58" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">de l&#8217;organisation</text>
   </g>
 
+  <!-- Icône robot sur la Livraison (phase 8.2) -->
+  <text class="livraison-robot" x="710" y="150" text-anchor="middle" font-size="30">&#129302;</text>
+
   <!-- ================================================================ -->
   <!-- PLATFORM TEAM — 3D isom&#233;trique 30° (profonde)                    -->
   <!-- ================================================================ -->
@@ -335,6 +362,8 @@
   </g>
   <g class="enabling-desc">
     <text x="122" y="125" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#0E2356">Collaboration</text>
+    <text x="122" y="142" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">aide &#224; la conception de la solution</text>
+    <text class="ctx-standards" x="122" y="156" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">mise en place des standards</text>
   </g>
   <g class="enabling-capitalisation">
     <text x="122" y="560" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128218; Capitalisation</text>
@@ -385,8 +414,10 @@
   <!-- Capter l'intention (12h) -->
   <g class="box-capter">
     <rect x="405" y="278" width="110" height="44" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
-    <text x="460" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128065; Capter</text>
-    <text x="460" y="312" text-anchor="middle" font-size="9" fill="#586586">l&#8217;intention</text>
+    <text class="capter-label" x="460" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128065; Capter</text>
+    <text class="capter-label" x="460" y="312" text-anchor="middle" font-size="9" fill="#586586">l&#8217;intention</text>
+    <text class="capter-label-alt" x="460" y="298" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">D&#233;veloppement</text>
+    <text class="capter-label-alt" x="460" y="312" text-anchor="middle" font-size="9" fill="#586586">de la solution</text>
     <rect class="st-hl" x="402" y="275" width="116" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
   </g>
 

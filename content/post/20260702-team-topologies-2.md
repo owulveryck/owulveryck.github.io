@@ -82,7 +82,7 @@ Et qu'on affiche que la problématique métier toute la boite jaune avec son con
 
 {{< scrollytelling-step phase="8" id="phase-8" >}}
 
-## Implémentation de la solution
+## Le SDLC Agentique
 
 Tu vas alors afficher toute la partie "système agentique" (avec "implémente la solution") pour que l'on voit le système complet stream-aligned + système agentique avec un point qui va faire le parcours suivant:
 

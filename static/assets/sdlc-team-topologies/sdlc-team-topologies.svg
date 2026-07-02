@@ -33,7 +33,7 @@
 
   <style data-st-keep="true"><![CDATA[
     /* ============ Visibilité par phase (piloté par data-active-phase) ============ */
-    .sa-band, .sa-circle, .box-problematique, .arrow-prob-conception, .box-conception,
+    .sa-band, .sa-fond, .sa-enrichit, .sa-circle-core, .box-problematique, .arrow-prob-conception, .box-conception,
     .box-specs, .box-expression, .box-resultat, .arrow-resultat-livraison, .box-livraison,
     .conn-expression-capter,
     .agent-circle, .agent-title, .agent-subtitle, .label-autocorrectif,
@@ -41,7 +41,7 @@
     .plat-top, .plat-right, .plat-front, .plat-label, .plat-slogan,
     .cyl-standards, .roller-left, .roller-right, .belt-left, .belt-right, .cyl-llm,
     .cloud-cloud, .cloud-connaissance, .cloud-si, .xaas,
-    .enabling-frame, .enabling-capitalisation, .arrow-ctx-technique, .arrow-parametre {
+    .enabling-frame, .enabling-desc, .enabling-capitalisation, .arrow-ctx-technique, .arrow-parametre {
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -53,25 +53,37 @@
     svg:is([data-active-phase="1"],[data-active-phase="2"],[data-active-phase="3"],[data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"])
       :is(.agent-circle,.agent-title,.label-autocorrectif,.box-capter,.box-planifier,.box-agir,.box-observer,.loop-correction,.arrow-observer-resultat,.box-resultat) { opacity: 1; }
 
-    /* Phases 5,6,13,14 : plateforme (sans standards / rouleau gauche / courroie gauche / slogan) */
-    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"])
+    /* Phases 5,6,13,14,15 : plateforme (sans standards / rouleau gauche / courroie gauche / slogan) */
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.plat-top,.plat-right,.plat-front,.plat-label,.cyl-llm,.roller-right,.belt-right) { opacity: 1; }
 
-    /* Phases 6,13,14 : nuages de capacités + X-as-a-Service */
-    svg:is([data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"])
+    /* Phases 6,13,14,15 : nuages de capacités + X-as-a-Service */
+    svg:is([data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.cloud-cloud,.cloud-connaissance,.cloud-si,.xaas) { opacity: 1; }
 
-    /* Phases 7-14 : bloc stream-aligned (sans Résultat/Livraison en 7) */
-    svg:is([data-active-phase="7"],[data-active-phase="8"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
-      :is(.sa-band,.sa-circle,.box-problematique,.arrow-prob-conception,.box-conception,.box-specs,.box-expression) { opacity: 1; }
+    /* Phases 7,7.1,8,8.1,9-15 : parcours de conception (boîtes + arc Conception→Specs→Expression) */
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.sa-circle-core,.box-problematique,.arrow-prob-conception,.box-conception,.box-specs,.box-expression) { opacity: 1; }
 
-    /* Phases 8-14 : système complet — Résultat, Livraison, lien Expression→Capter, boucle agentique complète */
-    svg:is([data-active-phase="8"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+    /* Phases 7.1,8,8.1,9-15 : fond jaune + arc « enrichit la solution » (cachés en 7) */
+    svg:is([data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.sa-fond,.sa-enrichit) { opacity: 1; }
+
+    /* Phases 7.1,8.1,9-15 : cadre jaune « Stream-Aligned Team » (caché en 7 et 8) */
+    svg:is([data-active-phase="7.1"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      .sa-band { opacity: 1; }
+
+    /* Phases 8,8.1,9-15 : système complet — Résultat, Livraison, lien Expression→Capter, boucle agentique complète */
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
       :is(.box-resultat,.arrow-resultat-livraison,.box-livraison,.conn-expression-capter,.agent-circle,.agent-title,.agent-subtitle,.label-autocorrectif,.box-capter,.box-planifier,.box-agir,.box-observer,.loop-correction,.arrow-observer-resultat) { opacity: 1; }
 
-    /* Phases 10-14 : enabling team (Collaboration) + flèche paramètre */
+    /* Phases 9-14 : cadre enabling team + titre (sans les liens ni la description) */
+    svg:is([data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .enabling-frame { opacity: 1; }
+
+    /* Phases 10-14 : Collaboration + description « Pose le cadre… » + flèche paramètre */
     svg:is([data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
-      :is(.enabling-frame,.arrow-parametre) { opacity: 1; }
+      :is(.enabling-desc,.arrow-parametre) { opacity: 1; }
 
     /* Phases 11-14 : flèche contexte technique */
     svg:is([data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
@@ -81,11 +93,11 @@
     svg:is([data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
       .enabling-capitalisation { opacity: 1; }
 
-    /* Phases 13,14 : cylindre standards */
-    svg:is([data-active-phase="13"],[data-active-phase="14"]) .cyl-standards { opacity: 1; }
+    /* Phases 13,14,15 : cylindre standards */
+    svg:is([data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) .cyl-standards { opacity: 1; }
 
-    /* Phase 14 : courroie gauche + rouleau gauche */
-    svg[data-active-phase="14"] :is(.belt-left,.roller-left) { opacity: 1; }
+    /* Phases 14,15 : courroie gauche + rouleau gauche */
+    svg:is([data-active-phase="14"],[data-active-phase="15"]) :is(.belt-left,.roller-left) { opacity: 1; }
 
     /* ============ Keyframes ============ */
     @keyframes tt-dot {
@@ -130,8 +142,8 @@
     svg[data-active-phase="6"] .dot-p6a  { animation: tt-dot 4s linear infinite; }
     svg[data-active-phase="6"] .dot-p6b  { animation: tt-dot 4s linear infinite 1.3s; }
     svg[data-active-phase="6"] .dot-p6c  { animation: tt-dot 4s linear infinite 2.6s; }
-    svg[data-active-phase="7"] .dot-p7   { animation: tt-dot 7s linear infinite; }
-    svg[data-active-phase="8"] .dot-p8   { animation: tt-dot 14s linear infinite; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .dot-p7 { animation: tt-dot 7s linear infinite; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .dot-p8 { animation: tt-dot 14s linear infinite; }
     svg[data-active-phase="10"] .dot-p10 { animation: tt-dot 3s linear infinite; }
     svg[data-active-phase="11"] .dot-p11 { animation: tt-dot 3.5s linear infinite; }
 
@@ -152,38 +164,38 @@
     /* Phase 4 : observer(0%) → resultat(80%), D=5s */
     svg[data-active-phase="4"] .box-observer .st-hl  { animation: tt-hl 5s linear infinite -5s; }
     svg[data-active-phase="4"] .box-resultat .st-hl  { animation: tt-hl 5s linear infinite -1s; }
-    /* Phase 7 : D=7s */
-    svg[data-active-phase="7"] .box-problematique .st-hl { animation: tt-hl 7s linear infinite -7s; }
-    svg[data-active-phase="7"] .box-conception .st-hl    { animation: tt-hl 7s linear infinite -4.4s; }
-    svg[data-active-phase="7"] .box-specs .st-hl         { animation: tt-hl 7s linear infinite -2.9s; }
-    svg[data-active-phase="7"] .box-expression .st-hl    { animation: tt-hl 7s linear infinite -1.4s; }
+    /* Phases 7 et 7.1 : D=7s */
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-problematique .st-hl { animation: tt-hl 7s linear infinite -7s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-conception .st-hl    { animation: tt-hl 7s linear infinite -4.4s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-specs .st-hl         { animation: tt-hl 7s linear infinite -2.9s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-expression .st-hl    { animation: tt-hl 7s linear infinite -1.4s; }
     /* Phase 8 : parcours complet, D=14s */
-    svg[data-active-phase="8"] .box-problematique .st-hl { animation: tt-hl-fast 14s linear infinite -14s; }
-    svg[data-active-phase="8"] .box-conception .st-hl { animation: tt-hl-fast 14s linear infinite -12.3s; }
-    svg[data-active-phase="8"] .box-specs .st-hl { animation: tt-hl-fast 14s linear infinite -11.3s; }
-    svg[data-active-phase="8"] .box-expression .st-hl { animation: tt-hl-fast 14s linear infinite -10.2s; }
-    svg[data-active-phase="8"] .box-capter .st-hl { animation: tt-hl-fast 14s linear infinite -9.7s; }
-    svg[data-active-phase="8"] .box-planifier .st-hl { animation: tt-hl-fast 14s linear infinite -8.1s; }
-    svg[data-active-phase="8"] .box-agir .st-hl { animation: tt-hl-fast 14s linear infinite -6.8s; }
-    svg[data-active-phase="8"] .box-observer .st-hl { animation: tt-hl-fast 14s linear infinite -5s; }
-    svg[data-active-phase="8"] .box-resultat .st-hl { animation: tt-hl-fast 14s linear infinite -2.8s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-problematique .st-hl { animation: tt-hl-fast 14s linear infinite -14s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-conception .st-hl { animation: tt-hl-fast 14s linear infinite -12.3s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-specs .st-hl { animation: tt-hl-fast 14s linear infinite -11.3s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-expression .st-hl { animation: tt-hl-fast 14s linear infinite -10.2s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-capter .st-hl { animation: tt-hl-fast 14s linear infinite -9.7s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-planifier .st-hl { animation: tt-hl-fast 14s linear infinite -8.1s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-agir .st-hl { animation: tt-hl-fast 14s linear infinite -6.8s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-observer .st-hl { animation: tt-hl-fast 14s linear infinite -5s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-resultat .st-hl { animation: tt-hl-fast 14s linear infinite -2.8s; }
     /* Phase 11 : contexte technique → capter, D=3.5s */
     svg[data-active-phase="11"] .box-capter .st-hl       { animation: tt-hl 3.5s linear infinite -0.7s; }
 
     /* ============ Rotations & courroies (phases 5 et 14) ============ */
-    svg:is([data-active-phase="5"],[data-active-phase="14"]) #spin-agent {
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="14"],[data-active-phase="15"]) #spin-agent {
       opacity: 0.9; animation: tt-dash-rev 3.2s linear infinite;
     }
-    svg:is([data-active-phase="5"],[data-active-phase="14"]) #spin-llm {
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="14"],[data-active-phase="15"]) #spin-llm {
       opacity: 0.9; animation: tt-dash-rev 2.2s linear infinite;
     }
-    svg:is([data-active-phase="5"],[data-active-phase="14"]) #belt-right-anim {
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="14"],[data-active-phase="15"]) #belt-right-anim {
       opacity: 0.9; animation: tt-dash-fwd 3.2s linear infinite;
     }
-    svg[data-active-phase="14"] #spin-standards {
+    svg:is([data-active-phase="14"],[data-active-phase="15"]) #spin-standards {
       opacity: 0.9; animation: tt-dash-rev 2.2s linear infinite;
     }
-    svg[data-active-phase="14"] #belt-left-anim {
+    svg:is([data-active-phase="14"],[data-active-phase="15"]) #belt-left-anim {
       opacity: 0.9; animation: tt-dash-rev 3.2s linear infinite;
     }
   ]]></style>
@@ -197,15 +209,19 @@
     <text x="83" y="72" font-size="12" font-weight="bold" font-style="italic" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#FFE066;stroke-width:8px;stroke-linejoin:round;">Con&#231;oit</tspan> la <tspan style="paint-order:stroke;stroke:#FFE066;stroke-width:8px;stroke-linejoin:round;">r&#233;solution</tspan> d&#8217;un probl&#232;me m&#233;tier</text>
   </g>
 
-  <!-- Cercle SA — fond + arc 3/4 visible (sans l'arc Expression→Résultat) -->
-  <g class="sa-circle">
-    <circle cx="460" cy="135" r="90" fill="#FFEDB8" fill-opacity="0.3" stroke="none"/>
-    <path d="M 550,135 A 90,90 0 1,0 460,225" fill="none" stroke="#00D2DD" stroke-width="3"/>
-    <!-- Chevrons SA (anti-horaire) -->
-    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(382, 90) rotate(120)"/>
-    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(384, 183) rotate(58)"/>
+  <!-- Cercle SA — fond jaune (caché en phase 7) -->
+  <circle class="sa-fond" cx="460" cy="135" r="90" fill="#FFEDB8" fill-opacity="0.3" stroke="none"/>
+  <!-- Arc Résultat→Conception « enrichit la solution » (caché en phase 7) -->
+  <g class="sa-enrichit">
+    <path d="M 550,135 A 90,90 0 0 0 460,45" fill="none" stroke="#00D2DD" stroke-width="3"/>
     <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(529, 77) rotate(230)"/>
     <text x="550" y="85" font-size="7" fill="#586586" font-style="italic">enrichit la solution</text>
+  </g>
+  <!-- Arc Conception→Specs→Expression (cœur du parcours de conception) -->
+  <g class="sa-circle-core">
+    <path d="M 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225" fill="none" stroke="#00D2DD" stroke-width="3"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(382, 90) rotate(120)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(384, 183) rotate(58)"/>
   </g>
 
   <!-- Probl&#233;matique m&#233;tier (&#224; cheval sur le bord sup&#233;rieur SA) -->
@@ -310,13 +326,15 @@
   <!-- ================================================================ -->
   <g class="enabling-frame">
     <rect x="40" y="110" width="165" height="600" rx="10" fill="#DFBDCF" fill-opacity="0.25" stroke="#D09CB7" stroke-width="2" stroke-dasharray="8,4"/>
-    <text x="122" y="125" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#0E2356">Collaboration</text>
     <text x="122" y="308" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">Enabling</text>
     <text x="122" y="320" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">Team</text>
     <text x="122" y="340" text-anchor="middle" font-size="12" fill="#586586">Pose le</text>
     <text x="122" y="357" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">cadre contextuel</tspan></text>
     <text x="122" y="374" text-anchor="middle" font-size="12" fill="#586586">de travail et</text>
     <text x="122" y="391" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">facilite</tspan> la <tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">conception</tspan></text>
+  </g>
+  <g class="enabling-desc">
+    <text x="122" y="125" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#0E2356">Collaboration</text>
   </g>
   <g class="enabling-capitalisation">
     <text x="122" y="560" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128218; Capitalisation</text>

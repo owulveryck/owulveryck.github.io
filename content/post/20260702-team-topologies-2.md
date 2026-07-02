@@ -69,6 +69,7 @@ je voudrais une animation qui montre que llm tourne et que c'est lui qui active 
 
 On fait apparaitre les capacités cloud, les connaissances du SI, les capacités du SI ainsi que le X-as-a-service, le API, MCP et A2A et on fait une animation qui part de Agir vers x-as-a-service et vers les capacités
 
+EDIT: on doit continuer de voir l'animation qui fait tourner
 {{< /scrollytelling-step >}}
 
 {{< scrollytelling-step phase="7" id="phase-7" >}}
@@ -78,15 +79,43 @@ On fait apparaitre les capacités cloud, les connaissances du SI, les capacités
 Je veux que tous les éléments soient cachés. 
 Et qu'on affiche que la problématique métier toute la boite jaune avec son contenu sauf "résultat" et "Livraison". Tu vas créer un point qui va de problématique vers conception pui de conception à specs et de specs à expression.
 
+EDIT: enleve la fleche "enrichit la solution" et le fond jaune ainsi que la stream aligned team
+
 {{< /scrollytelling-step >}}
+
+{{< scrollytelling-step phase="7.1" id="phase-7.1" >}}
+
+### Conception de solution
+
+Je veux que tous les éléments soient cachés. 
+Et qu'on affiche que la problématique métier toute la boite jaune avec son contenu sauf "résultat" et "Livraison". Tu vas créer un point qui va de problématique vers conception pui de conception à specs et de specs à expression.
+
+
+{{< /scrollytelling-step >}}
+
 
 {{< scrollytelling-step phase="8" id="phase-8" >}}
 
-## Le SDLC Agentique
+### Le SDLC Agentique
 
 Tu vas alors afficher toute la partie "système agentique" (avec "implémente la solution") pour que l'on voit le système complet stream-aligned + système agentique avec un point qui va faire le parcours suivant:
 
 Problématique -> conception -> specs -> expression -> capter -> planifier -> agir -> observer -> resultat 
+
+EDIT: tu vas enlever le cadre jaune et le stream-aligned team
+
+{{< /scrollytelling-step >}}
+
+## Organisation
+
+{{< scrollytelling-step phase="8.1" id="phase-8.1" >}}
+
+### L'équipe stream-aligned
+
+Tu vas alors afficher toute la partie "système agentique" (avec "implémente la solution") pour que l'on voit le système complet stream-aligned + système agentique avec un point qui va faire le parcours suivant:
+
+Problématique -> conception -> specs -> expression -> capter -> planifier -> agir -> observer -> resultat 
+
 
 {{< /scrollytelling-step >}}
 
@@ -97,6 +126,8 @@ Problématique -> conception -> specs -> expression -> capter -> planifier -> ag
 
 Je ne veux voir que tout le bloc jaune (stream-aligner) et le sytème agentique mais pas la plateforme 
 
+EDIT: faire apparaitre l'équipe enabling avec le titre sans les liens
+EDIT2: je veux aussi voir "pose le cadre conceptuel..."
 
 {{< /scrollytelling-step >}}
 
@@ -138,6 +169,15 @@ On fait réapparaitre la platefore (tous les éléments précédents). En plus o
 ### La standardisation
 
 On ajoute la courroie et on affiche une animation qui montre que la standardisation et le LLM font tourner la roue du système agentique
+
+{{< /scrollytelling-step >}}
+
+
+{{< scrollytelling-step phase="15" id="phase-15" >}}
+
+### La réussite de l'enabling team
+
+On supprime tout ce qui concerne l'enabling team
 
 {{< /scrollytelling-step >}}
 

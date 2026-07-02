@@ -18,7 +18,7 @@ Entre chaque phase, les éléments affichés doivent rester sauf information con
 
 ## Introduction
 
-{{< scrollytelling svg="/assets/sdlc-team-topologies/sdlc-team-topologies.svg" >}}
+{{< scrollytelling svg="/assets/sdlc-team-topologies/sdlc-team-topologies.fr.svg" >}}
 
 {{< scrollytelling-step phase="1" id="phase-1" >}}
 

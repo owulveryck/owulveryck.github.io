@@ -27,6 +27,7 @@
       <rect x="260" y="418" width="120" height="44" rx="8" fill="#000000"/>
       <rect x="380" y="556" width="80" height="36" rx="8" fill="#000000"/>
       <rect x="540" y="418" width="120" height="44" rx="8" fill="#000000"/>
+      <rect x="650" y="105" width="135" height="62" rx="8" fill="#000000"/>
       <rect x="305" y="652" width="90" height="18" rx="4" fill="#000000"/>
     </mask>
   </defs>
@@ -41,12 +42,16 @@
     .plat-top, .plat-right, .plat-front, .plat-label, .plat-slogan,
     .cyl-standards, .roller-left, .roller-right, .belt-left, .belt-right, .cyl-llm,
     .cloud-cloud, .cloud-connaissance, .cloud-si, .xaas,
-    .enabling-frame, .enabling-desc, .enabling-capitalisation, .arrow-ctx-technique, .arrow-parametre {
+    .enabling-frame, .enabling-desc, .enabling-collab, .enabling-capitalisation, .arrow-ctx-technique, .arrow-parametre,
+    .arrow-dev-resultat {
       opacity: 0;
       transition: opacity 0.5s ease;
     }
     .st-hl { opacity: 0; }
     circle[data-follow] { opacity: 0; }
+    @supports not (offset-path: path('M0,0 L1,1')) {
+      circle[data-follow] { display: none; }
+    }
     #spin-agent, #spin-llm, #spin-standards, #belt-left-anim, #belt-right-anim { opacity: 0; }
     .capter-label, .capter-label-alt { transition: opacity 0.5s ease; }
     .capter-label-alt { opacity: 0; }
@@ -72,6 +77,8 @@
     /* Phase 7.2: Capture box (relabeled "Solution Development") + Expression→Capture link */
     svg[data-active-phase="7.2"] :is(.box-capter,.conn-expression-capter) { opacity: 1; }
     svg[data-active-phase="7.2"] .capter-label { opacity: 0; }
+    /* Phase 7.2: Result, Delivery, return arc and Dev→Result arrow */
+    svg[data-active-phase="7.2"] :is(.box-resultat,.arrow-resultat-livraison,.box-livraison,.sa-enrichit,.arrow-dev-resultat) { opacity: 1; }
 
     /* Phases 7.1,8,8.1,8.2,9-15: yellow background + "enriches the solution" arc (hidden in 7) */
     svg:is([data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
@@ -93,9 +100,12 @@
     svg:is([data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
       .enabling-frame { opacity: 1; }
 
+    /* Phase 9: "Collaboration" appears and blinks */
+    svg[data-active-phase="9"] .enabling-collab { opacity: 1; animation: tt-blink 1.2s ease-in-out infinite; }
+
     /* Phases 10-14: Collaboration + "Sets the framework..." description + parameter arrow */
     svg:is([data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
-      :is(.enabling-desc,.arrow-parametre) { opacity: 1; }
+      :is(.enabling-desc,.enabling-collab,.arrow-parametre) { opacity: 1; }
 
     /* Phases 11-14: technical context arrow */
     svg:is([data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
@@ -119,34 +129,68 @@
       80%  { offset-distance: 100%; opacity: 0; }
       100% { offset-distance: 100%; opacity: 0; }
     }
-    @keyframes tt-hl {
-      0%   { opacity: 0; }
-      5%   { opacity: 1; }
-      16%  { opacity: 1; }
-      28%  { opacity: 0; }
-      100% { opacity: 0; }
+    /* Highlight windows: opacity 1 exactly while the dot is inside the box
+       (geometric path/rect intersections, % of cycle; dot covers the path over 0-80%).
+       Terminal boxes hold ~8-10% past arrival since the dot fades under them. */
+    /* Phase 1: capture(start) → plan → act(end) */
+    @keyframes tt-hl-p1-capter { 0%,11.3% {opacity:1;} 12.6%,100% {opacity:0;} }
+    @keyframes tt-hl-p1-plan   { 0%,38.4% {opacity:0;} 39.7%,48.5% {opacity:1;} 49.8%,100% {opacity:0;} }
+    @keyframes tt-hl-p1-agir   { 0%,70.2% {opacity:0;} 71.5%,86% {opacity:1;} 89%,100% {opacity:0;} }
+    /* Phase 2: act(start) → observe → loop → plan → act → observe(end) — dual windows */
+    @keyframes tt-hl-p2-agir { 0%,3.3% {opacity:1;} 4.3%,54.6% {opacity:0;} 55.6%,62.3% {opacity:1;} 63.3%,100% {opacity:0;} }
+    @keyframes tt-hl-p2-obs  { 0%,18.2% {opacity:0;} 19.2%,25.6% {opacity:1;} 26.6%,77.2% {opacity:0;} 78.2%,88% {opacity:1;} 91%,100% {opacity:0;} }
+    @keyframes tt-hl-p2-plan { 0%,40.3% {opacity:0;} 41.3%,46.4% {opacity:1;} 47.4%,100% {opacity:0;} }
+    /* Phase 3: observe(start) → capture → plan → act → observe(end) — dual windows */
+    @keyframes tt-hl-p3-obs    { 0%,4% {opacity:1;} 5%,77% {opacity:0;} 78%,88% {opacity:1;} 91%,100% {opacity:0;} }
+    @keyframes tt-hl-p3-capter { 0%,13.9% {opacity:0;} 14.9%,25.2% {opacity:1;} 26.2%,100% {opacity:0;} }
+    @keyframes tt-hl-p3-plan   { 0%,37% {opacity:0;} 38%,42% {opacity:1;} 43%,100% {opacity:0;} }
+    @keyframes tt-hl-p3-agir   { 0%,51.5% {opacity:0;} 52.5%,60% {opacity:1;} 61%,100% {opacity:0;} }
+    /* Phase 4: capture(start) → plan → act → observe → result(end) */
+    @keyframes tt-hl-p4-capter   { 0%,4.7% {opacity:1;} 5.7%,100% {opacity:0;} }
+    @keyframes tt-hl-p4-plan     { 0%,15.5% {opacity:0;} 16.5%,20.2% {opacity:1;} 21.2%,100% {opacity:0;} }
+    @keyframes tt-hl-p4-agir     { 0%,28.7% {opacity:0;} 29.7%,36.6% {opacity:1;} 37.6%,100% {opacity:0;} }
+    @keyframes tt-hl-p4-obs      { 0%,52.1% {opacity:0;} 53.1%,56.9% {opacity:1;} 57.9%,100% {opacity:0;} }
+    @keyframes tt-hl-p4-resultat { 0%,76.7% {opacity:0;} 78%,90% {opacity:1;} 93%,100% {opacity:0;} }
+    /* Phase 6: Act flashes each time a dot departs to the platform (0s, 1.3s, 2.6s of 4s) */
+    @keyframes tt-hl-p6-agir {
+      0% {opacity:1;} 16%,32.4% {opacity:0;}
+      32.5% {opacity:1;} 48.5%,64.9% {opacity:0;}
+      65% {opacity:1;} 81%,100% {opacity:0;}
     }
-    /* Short window for long cycles (phase 8, 14s): ~1.3s highlight */
-    @keyframes tt-hl-fast {
-      0%   { opacity: 0; }
-      3%   { opacity: 1; }
-      12%  { opacity: 1; }
-      18%  { opacity: 0; }
-      100% { opacity: 0; }
-    }
-    /* Observer highlighted twice in phase 2 (first pass at 21%, arrival at 80%) */
-    @keyframes tt-hl-p2-obs {
-      0%, 17%   { opacity: 0; }
-      21%, 31%  { opacity: 1; }
-      37%, 76%  { opacity: 0; }
-      80%, 92%  { opacity: 1; }
-      98%, 100% { opacity: 0; }
-    }
+    /* Phases 7/7.1: problem(edge start) → design → specs → expression(end) */
+    @keyframes tt-hl-p7-prob       { 0%,6% {opacity:1;} 8%,100% {opacity:0;} }
+    @keyframes tt-hl-p7-conception { 0%,25.5% {opacity:0;} 26.5%,45.9% {opacity:1;} 46.9%,100% {opacity:0;} }
+    @keyframes tt-hl-p7-specs      { 0%,54.2% {opacity:0;} 55.2%,61.4% {opacity:1;} 62.4%,100% {opacity:0;} }
+    @keyframes tt-hl-p7-expression { 0%,69.6% {opacity:0;} 70.6%,88% {opacity:1;} 91%,100% {opacity:0;} }
+    /* Phase 7.2: (design → specs → expression → development → result) ×2 → delivery */
+    @keyframes tt-hl-p72-conception { 0%,3.4% {opacity:1;} 4.1%,35.3% {opacity:0;} 36%,42.9% {opacity:1;} 43.6%,100% {opacity:0;} }
+    @keyframes tt-hl-p72-specs      { 0%,6.1% {opacity:0;} 6.8%,9.1% {opacity:1;} 9.8%,45.6% {opacity:0;} 46.3%,48.6% {opacity:1;} 49.3%,100% {opacity:0;} }
+    @keyframes tt-hl-p72-expression { 0%,11.8% {opacity:0;} 12.5%,17% {opacity:1;} 17.7%,51.2% {opacity:0;} 51.9%,56.5% {opacity:1;} 57.2%,100% {opacity:0;} }
+    @keyframes tt-hl-p72-capter     { 0%,18.2% {opacity:0;} 18.9%,21.6% {opacity:1;} 22.3%,57.7% {opacity:0;} 58.4%,61% {opacity:1;} 61.7%,100% {opacity:0;} }
+    @keyframes tt-hl-p72-resultat   { 0%,29.7% {opacity:0;} 30.4%,32.7% {opacity:1;} 33.4%,69.2% {opacity:0;} 69.9%,74.1% {opacity:1;} 74.8%,100% {opacity:0;} }
+    @keyframes tt-hl-p72-livraison  { 0%,75.9% {opacity:0;} 76.6%,88% {opacity:1;} 90%,100% {opacity:0;} }
+    /* Phases 8/8.1: full path to result */
+    @keyframes tt-hl-p8-prob       { 0%,3% {opacity:1;} 4%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-conception { 0%,8.2% {opacity:0;} 8.9%,15.4% {opacity:1;} 16.1%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-specs      { 0%,17.8% {opacity:0;} 18.5%,20.5% {opacity:1;} 21.2%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-expression { 0%,22.9% {opacity:0;} 23.6%,27.8% {opacity:1;} 28.5%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-capter     { 0%,28.8% {opacity:0;} 29.5%,33.5% {opacity:1;} 34.2%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-plan       { 0%,40.1% {opacity:0;} 40.8%,43.1% {opacity:1;} 43.8%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-agir       { 0%,48.3% {opacity:0;} 49%,53.2% {opacity:1;} 53.9%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-obs        { 0%,62.7% {opacity:0;} 63.4%,65.8% {opacity:1;} 66.5%,100% {opacity:0;} }
+    @keyframes tt-hl-p8-resultat   { 0%,77.3% {opacity:0;} 78%,86% {opacity:1;} 88%,100% {opacity:0;} }
+    /* Phase 11: enabling → capture (arrival flash, path ends at box edge) */
+    @keyframes tt-hl-p11-capter { 0%,74% {opacity:0;} 76%,90% {opacity:1;} 93%,100% {opacity:0;} }
     /* Moving dashes: fwd = along path direction, rev = reverse (144 = multiple of periods 18 and 24) */
     @keyframes tt-dash-fwd { to { stroke-dashoffset: -144; } }
     @keyframes tt-dash-rev { to { stroke-dashoffset: 144; } }
     /* Blinking (phase 8.2: Delivery) */
     @keyframes tt-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    /* Phase 8.1: SA frame first encloses the agentic system, then shrinks to its real perimeter */
+    @keyframes tt-sa-shrink {
+      0%, 35%   { height: 580px; }
+      75%, 100% { height: 240px; }
+    }
     /* Descent to capitalisation (phase 14: "standards implementation", 156 → 560) */
     @keyframes tt-descend {
       0%   { transform: translateY(0); opacity: 1; }
@@ -156,52 +200,66 @@
     }
 
     /* ============ Dots by phase ============ */
-    svg[data-active-phase="1"] .dot-p1   { animation: tt-dot 5s linear infinite; }
-    svg[data-active-phase="2"] .dot-p2   { animation: tt-dot 8s linear infinite; }
-    svg[data-active-phase="3"] .dot-p3   { animation: tt-dot 7s linear infinite; }
-    svg[data-active-phase="4"] .dot-p4   { animation: tt-dot 5s linear infinite; }
-    svg[data-active-phase="6"] .dot-p6a  { animation: tt-dot 4s linear infinite; }
-    svg[data-active-phase="6"] .dot-p6b  { animation: tt-dot 4s linear infinite 1.3s; }
-    svg[data-active-phase="6"] .dot-p6c  { animation: tt-dot 4s linear infinite 2.6s; }
-    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .dot-p7 { animation: tt-dot 7s linear infinite; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .dot-p8 { animation: tt-dot 14s linear infinite; }
-    svg[data-active-phase="10"] .dot-p10 { animation: tt-dot 3s linear infinite; }
-    svg[data-active-phase="11"] .dot-p11 { animation: tt-dot 3.5s linear infinite; }
+    svg[data-active-phase="1"] .tt-dot-p1   { animation: tt-dot 5s linear infinite; }
+    svg[data-active-phase="2"] .tt-dot-p2   { animation: tt-dot 8s linear infinite; }
+    svg[data-active-phase="3"] .tt-dot-p3   { animation: tt-dot 8s linear infinite; }
+    svg[data-active-phase="4"] .tt-dot-p4   { animation: tt-dot 8s linear infinite; }
+    svg[data-active-phase="6"] .tt-dot-p6a  { animation: tt-dot 4s linear infinite; }
+    svg[data-active-phase="6"] .tt-dot-p6b  { animation: tt-dot 4s linear infinite 1.3s; }
+    svg[data-active-phase="6"] .tt-dot-p6c  { animation: tt-dot 4s linear infinite 2.6s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .tt-dot-p7 { animation: tt-dot 7s linear infinite; }
+    svg[data-active-phase="7.2"] .tt-dot-p72 { animation: tt-dot 14s linear infinite; }
+    svg[data-active-phase="8"] .tt-dot-p8 { animation: tt-dot 14s linear infinite; }
+    svg[data-active-phase="10"] .tt-dot-p10 { animation: tt-dot 3s linear infinite; }
+    svg[data-active-phase="11"] .tt-dot-p11 { animation: tt-dot 3.5s linear infinite; }
 
     /* ============ Synchronized highlights along the dot path ============ */
-    /* Phase 1: fractions measured on mp-p1 (path over 0-80% of cycle), D=5s */
-    svg[data-active-phase="1"] .box-capter .st-hl    { animation: tt-hl 5s linear infinite -5s; }
-    svg[data-active-phase="1"] .box-planifier .st-hl { animation: tt-hl 5s linear infinite -2.8s; }
-    svg[data-active-phase="1"] .box-agir .st-hl      { animation: tt-hl 5s linear infinite -1s; }
-    /* Phase 2: observer(21%) → planifier(41%) → agir(59%) → observer(80%), D=8s */
+    /* Each box lights exactly while the dot is inside it (windows in the keyframes above) */
+    /* Phase 1: D=5s */
+    svg[data-active-phase="1"] .box-capter .st-hl    { animation: tt-hl-p1-capter 5s linear infinite; }
+    svg[data-active-phase="1"] .box-planifier .st-hl { animation: tt-hl-p1-plan 5s linear infinite; }
+    svg[data-active-phase="1"] .box-agir .st-hl      { animation: tt-hl-p1-agir 5s linear infinite; }
+    /* Phase 2: D=8s */
     svg[data-active-phase="2"] .box-observer .st-hl  { animation: tt-hl-p2-obs 8s linear infinite; }
-    svg[data-active-phase="2"] .box-planifier .st-hl { animation: tt-hl 8s linear infinite -4.7s; }
-    svg[data-active-phase="2"] .box-agir .st-hl      { animation: tt-hl 8s linear infinite -3.3s; }
-    /* Phase 3: D=7s */
-    svg[data-active-phase="3"] .box-observer .st-hl  { animation: tt-hl 7s linear infinite -7s; }
-    svg[data-active-phase="3"] .box-capter .st-hl    { animation: tt-hl 7s linear infinite -5s; }
-    svg[data-active-phase="3"] .box-planifier .st-hl { animation: tt-hl 7s linear infinite -3s; }
-    svg[data-active-phase="3"] .box-agir .st-hl      { animation: tt-hl 7s linear infinite -1.4s; }
-    /* Phase 4: observer(0%) → result(80%), D=5s */
-    svg[data-active-phase="4"] .box-observer .st-hl  { animation: tt-hl 5s linear infinite -5s; }
-    svg[data-active-phase="4"] .box-resultat .st-hl  { animation: tt-hl 5s linear infinite -1s; }
+    svg[data-active-phase="2"] .box-planifier .st-hl { animation: tt-hl-p2-plan 8s linear infinite; }
+    svg[data-active-phase="2"] .box-agir .st-hl      { animation: tt-hl-p2-agir 8s linear infinite; }
+    /* Phase 3: D=8s, full circle */
+    svg[data-active-phase="3"] .box-observer .st-hl  { animation: tt-hl-p3-obs 8s linear infinite; }
+    svg[data-active-phase="3"] .box-capter .st-hl    { animation: tt-hl-p3-capter 8s linear infinite; }
+    svg[data-active-phase="3"] .box-planifier .st-hl { animation: tt-hl-p3-plan 8s linear infinite; }
+    svg[data-active-phase="3"] .box-agir .st-hl      { animation: tt-hl-p3-agir 8s linear infinite; }
+    /* Phase 4: D=8s, full loop then exit to result */
+    svg[data-active-phase="4"] .box-capter .st-hl    { animation: tt-hl-p4-capter 8s linear infinite; }
+    svg[data-active-phase="4"] .box-planifier .st-hl { animation: tt-hl-p4-plan 8s linear infinite; }
+    svg[data-active-phase="4"] .box-agir .st-hl      { animation: tt-hl-p4-agir 8s linear infinite; }
+    svg[data-active-phase="4"] .box-observer .st-hl  { animation: tt-hl-p4-obs 8s linear infinite; }
+    svg[data-active-phase="4"] .box-resultat .st-hl  { animation: tt-hl-p4-resultat 8s linear infinite; }
+    /* Phase 6: D=4s, synced with the three departing dots */
+    svg[data-active-phase="6"] .box-agir .st-hl { animation: tt-hl-p6-agir 4s linear infinite; }
     /* Phases 7 and 7.1: D=7s */
-    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-problematique .st-hl { animation: tt-hl 7s linear infinite -7s; }
-    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-conception .st-hl    { animation: tt-hl 7s linear infinite -4.4s; }
-    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-specs .st-hl         { animation: tt-hl 7s linear infinite -2.9s; }
-    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-expression .st-hl    { animation: tt-hl 7s linear infinite -1.4s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-problematique .st-hl { animation: tt-hl-p7-prob 7s linear infinite; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-conception .st-hl    { animation: tt-hl-p7-conception 7s linear infinite; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-specs .st-hl         { animation: tt-hl-p7-specs 7s linear infinite; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-expression .st-hl    { animation: tt-hl-p7-expression 7s linear infinite; }
+    /* Phase 7.2: D=14s, two design/dev rounds then delivery */
+    svg[data-active-phase="7.2"] .box-conception .st-hl { animation: tt-hl-p72-conception 14s linear infinite; }
+    svg[data-active-phase="7.2"] .box-specs .st-hl      { animation: tt-hl-p72-specs 14s linear infinite; }
+    svg[data-active-phase="7.2"] .box-expression .st-hl { animation: tt-hl-p72-expression 14s linear infinite; }
+    svg[data-active-phase="7.2"] .box-capter .st-hl     { animation: tt-hl-p72-capter 14s linear infinite; }
+    svg[data-active-phase="7.2"] .box-resultat .st-hl   { animation: tt-hl-p72-resultat 14s linear infinite; }
+    svg[data-active-phase="7.2"] .box-livraison .st-hl  { animation: tt-hl-p72-livraison 14s linear infinite; }
     /* Phase 8: full path, D=14s */
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-problematique .st-hl { animation: tt-hl-fast 14s linear infinite -14s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-conception .st-hl { animation: tt-hl-fast 14s linear infinite -12.3s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-specs .st-hl { animation: tt-hl-fast 14s linear infinite -11.3s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-expression .st-hl { animation: tt-hl-fast 14s linear infinite -10.2s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-capter .st-hl { animation: tt-hl-fast 14s linear infinite -9.7s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-planifier .st-hl { animation: tt-hl-fast 14s linear infinite -8.1s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-agir .st-hl { animation: tt-hl-fast 14s linear infinite -6.8s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-observer .st-hl { animation: tt-hl-fast 14s linear infinite -5s; }
-    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-resultat .st-hl { animation: tt-hl-fast 14s linear infinite -2.8s; }
+    svg[data-active-phase="8"] .box-problematique .st-hl { animation: tt-hl-p8-prob 14s linear infinite; }
+    svg[data-active-phase="8"] .box-conception .st-hl { animation: tt-hl-p8-conception 14s linear infinite; }
+    svg[data-active-phase="8"] .box-specs .st-hl { animation: tt-hl-p8-specs 14s linear infinite; }
+    svg[data-active-phase="8"] .box-expression .st-hl { animation: tt-hl-p8-expression 14s linear infinite; }
+    svg[data-active-phase="8"] .box-capter .st-hl { animation: tt-hl-p8-capter 14s linear infinite; }
+    svg[data-active-phase="8"] .box-planifier .st-hl { animation: tt-hl-p8-plan 14s linear infinite; }
+    svg[data-active-phase="8"] .box-agir .st-hl { animation: tt-hl-p8-agir 14s linear infinite; }
+    svg[data-active-phase="8"] .box-observer .st-hl { animation: tt-hl-p8-obs 14s linear infinite; }
+    svg[data-active-phase="8"] .box-resultat .st-hl { animation: tt-hl-p8-resultat 14s linear infinite; }
     /* Phase 11: technical context → capture, D=3.5s */
-    svg[data-active-phase="11"] .box-capter .st-hl       { animation: tt-hl 3.5s linear infinite -0.7s; }
+    svg[data-active-phase="11"] .box-capter .st-hl       { animation: tt-hl-p11-capter 3.5s linear infinite; }
 
     /* ============ Rotations & belts (phases 5, 6, 13-15) ============ */
     svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #spin-agent {
@@ -222,6 +280,9 @@
 
     /* Phase 14: "standards implementation" descends to capitalisation then disappears */
     svg[data-active-phase="14"] .ctx-standards { animation: tt-descend 5s linear infinite; }
+
+    /* Phase 8.1: SA frame loops from enclosing the agentic system to its actual size */
+    svg[data-active-phase="8.1"] .sa-band rect { animation: tt-sa-shrink 4s ease-in-out infinite; }
   ]]></style>
 
   <!-- ================================================================ -->
@@ -304,6 +365,7 @@
     <text x="60" y="37" text-anchor="middle" font-size="8" fill="#586586">of the feature</text>
     <text x="60" y="49" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">in compliance with standards</text>
     <text x="60" y="58" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">of the organization</text>
+    <rect class="st-hl" x="-3" y="-3" width="141" height="68" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
   </g>
 
   <!-- Robot icon on Delivery (phase 8.2) -->
@@ -360,8 +422,8 @@
     <text x="122" y="374" text-anchor="middle" font-size="12" fill="#586586">and</text>
     <text x="122" y="391" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">facilitates</tspan> <tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">design</tspan></text>
   </g>
+  <text class="enabling-collab" x="122" y="125" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#0E2356">Collaboration</text>
   <g class="enabling-desc">
-    <text x="122" y="125" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#0E2356">Collaboration</text>
     <text x="122" y="142" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">assists in solution design</text>
     <text class="ctx-standards" x="122" y="156" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">standards implementation</text>
   </g>
@@ -518,6 +580,9 @@
   <!-- Expression of intent → Capture intent -->
   <line class="conn-expression-capter" x1="460" y1="245" x2="460" y2="276" stroke="#0E2356" stroke-width="2" marker-end="url(#aDark)"/>
 
+  <!-- Development → Result (phase 7.2) -->
+  <path class="arrow-dev-resultat" d="M 475,275 Q 565,225 552,160" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
+
   <!-- Observe → SA Result (return) -->
   <g class="arrow-observer-resultat">
     <path d="M610,418 Q640,270 555,155" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
@@ -546,16 +611,18 @@
   <path id="mp-p1" d="M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574" fill="none" stroke="none"/>
   <!-- P2: act → observe → (self-correcting) → plan → act → observe -->
   <path id="mp-p2" d="M 420,574 A 140,140 0 0 0 600,440 L 550,460 Q 460,540 380,440 Q 340,448 322,462 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440" fill="none" stroke="none"/>
-  <!-- P3: observe → capture → plan → act -->
-  <path id="mp-p3" d="M 600,440 A 140,140 0 0 0 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574" fill="none" stroke="none"/>
-  <!-- P4: observe → result (along green arrow) -->
-  <path id="mp-p4" d="M 600,440 L 610,418 Q 640,270 555,155" fill="none" stroke="none"/>
+  <!-- P3: observe → capture → plan → act → observe (full circle) -->
+  <path id="mp-p3" d="M 600,440 A 140,140 0 0 0 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440" fill="none" stroke="none"/>
+  <!-- P4: capture → plan → act → observe → result -->
+  <path id="mp-p4" d="M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 640,270 555,155" fill="none" stroke="none"/>
   <!-- P6: act → X-as-a-Service → each cloud -->
   <path id="mp-p6a" d="M 380,592 L 352,652 L 350,670 Q 320,708 200,748" fill="none" stroke="none"/>
   <path id="mp-p6b" d="M 380,592 L 352,652 L 350,670 Q 420,700 420,733" fill="none" stroke="none"/>
   <path id="mp-p6c" d="M 380,592 L 352,652 L 350,670 Q 540,690 650,718" fill="none" stroke="none"/>
   <!-- P7: business problem → design → specs → expression -->
   <path id="mp-p7" d="M 225,18 Q 310,20 393,45 L 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225" fill="none" stroke="none"/>
+  <!-- P7.2: (design → specs → expression → development → result) ×2 → delivery -->
+  <path id="mp-p72" d="M 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225 L 460,300 L 475,275 Q 565,225 552,160 L 550,135 A 90,90 0 0 0 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225 L 460,300 L 475,275 Q 565,225 552,160 L 550,135 L 710,135" fill="none" stroke="none"/>
   <!-- P8: full path to result -->
   <path id="mp-p8" d="M 225,18 Q 310,20 393,45 L 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225 L 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 640,270 555,155" fill="none" stroke="none"/>
   <!-- P10: enabling → agentic system (parameter) -->
@@ -564,16 +631,17 @@
   <path id="mp-p11" d="M 205,170 Q 300,220 403,298" fill="none" stroke="none"/>
 
   <g mask="url(#dot-mask)">
-  <circle class="dot-p1"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p1"/>
-  <circle class="dot-p2"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p2"/>
-  <circle class="dot-p3"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p3"/>
-  <circle class="dot-p4"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p4"/>
-  <circle class="dot-p6a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6a"/>
-  <circle class="dot-p6b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6b"/>
-  <circle class="dot-p6c" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6c"/>
-  <circle class="dot-p7"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p7"/>
-  <circle class="dot-p8"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p8"/>
-  <circle class="dot-p10" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p10"/>
-  <circle class="dot-p11" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p11"/>
+  <circle class="tt-dot-p1"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p1"/>
+  <circle class="tt-dot-p2"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p2"/>
+  <circle class="tt-dot-p3"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p3"/>
+  <circle class="tt-dot-p4"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p4"/>
+  <circle class="tt-dot-p6a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6a"/>
+  <circle class="tt-dot-p6b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6b"/>
+  <circle class="tt-dot-p6c" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6c"/>
+  <circle class="tt-dot-p7"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p7"/>
+  <circle class="tt-dot-p72" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p72"/>
+  <circle class="tt-dot-p8"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p8"/>
+  <circle class="tt-dot-p10" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p10"/>
+  <circle class="tt-dot-p11" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p11"/>
   </g>
 </svg>

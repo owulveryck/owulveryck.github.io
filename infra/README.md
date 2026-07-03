@@ -9,7 +9,7 @@ Distribution ID : `EJVG52EKHMUNU`
 - **HTTP** : HTTP/3 (QUIC)
 - **Cache** : AWS managed Cache Policy `CachingOptimized` (`658327ea-f89d-4fab-a63d-7e88639e58f6`), TTL respecte les headers `Cache-Control` S3
 - **Security headers** : AWS managed Response Headers Policy `SecurityHeadersPolicy` (`67f7725c-6f97-4210-82d7-5512b31e9d03`) — HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, X-XSS-Protection
-- **Logging** : désactivé
+- **Logging** : activé, bucket `logs.blog.owulveryck.info`, préfixe `cf-logs/`, rétention 90 jours
 - **URL rewrite** : CloudFront Function `blog-url-rewrite` sur `viewer-request`
 - **Price Class** : `PriceClass_All`
 
@@ -49,6 +49,74 @@ aws cloudfront update-function \
 aws cloudfront publish-function \
   --name blog-url-rewrite \
   --if-match <ETAG>
+```
+
+## Logging (access logs)
+
+Bucket S3 dédié en `us-east-1`, lifecycle policy de 90 jours.
+
+### Setup (one-time)
+
+```bash
+# 1. Créer le bucket (us-east-1, région par défaut)
+aws s3api create-bucket --bucket logs.blog.owulveryck.info
+
+# 2. Activer les ACL (CloudFront écrit les logs via le compte awslogsdelivery)
+aws s3api put-bucket-ownership-controls \
+  --bucket logs.blog.owulveryck.info \
+  --ownership-controls '{"Rules":[{"ObjectOwnership":"BucketOwnerPreferred"}]}'
+
+# 3. Activer le logging sur la distribution
+# Récupérer l'ETag et extraire uniquement DistributionConfig (sans l'enveloppe)
+ETAG=$(aws cloudfront get-distribution-config --id EJVG52EKHMUNU \
+  | tee /tmp/dist-full.json | jq -r '.ETag')
+jq '.DistributionConfig' /tmp/dist-full.json > /tmp/dist-config.json
+
+# Modifier le bloc "Logging" dans /tmp/dist-config.json :
+#   "Logging": {
+#     "Enabled": true,
+#     "IncludeCookies": false,
+#     "Bucket": "logs.blog.owulveryck.info.s3.amazonaws.com",
+#     "Prefix": "cf-logs/"
+#   }
+# Ou directement avec jq :
+jq '.Logging = {
+  "Enabled": true,
+  "IncludeCookies": false,
+  "Bucket": "logs.blog.owulveryck.info.s3.amazonaws.com",
+  "Prefix": "cf-logs/"
+}' /tmp/dist-config.json > /tmp/dist-config-updated.json
+
+aws cloudfront update-distribution \
+  --id EJVG52EKHMUNU \
+  --if-match "$ETAG" \
+  --distribution-config file:///tmp/dist-config-updated.json
+
+# 4. Lifecycle policy : suppression automatique après 90 jours
+aws s3api put-bucket-lifecycle-configuration \
+  --bucket logs.blog.owulveryck.info \
+  --lifecycle-configuration '{
+    "Rules": [{
+      "ID": "expire-old-logs",
+      "Status": "Enabled",
+      "Filter": {"Prefix": "cf-logs/"},
+      "Expiration": {"Days": 90}
+    }]
+  }'
+```
+
+### Vérification
+
+```bash
+# Bucket existe
+aws s3 ls s3://logs.blog.owulveryck.info/
+
+# Logging activé
+aws cloudfront get-distribution --id EJVG52EKHMUNU \
+  | jq '.Distribution.DistributionConfig.Logging'
+
+# Logs présents (attendre quelques minutes après activation)
+aws s3 ls s3://logs.blog.owulveryck.info/cf-logs/
 ```
 
 ## Stratégie de cache (définie dans `.github/workflows/publish.yml`)

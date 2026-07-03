@@ -452,7 +452,7 @@
     currentPhase = phase;
 
     if (svg) {
-      if (phase >= 1 && phase <= 8) {
+      if (phase >= 1) {
         svg.setAttribute('data-active-phase', phase);
       } else {
         svg.removeAttribute('data-active-phase');
@@ -460,7 +460,7 @@
     }
 
     sections.forEach(function(s) {
-      var sp = parseInt(s.dataset.phase);
+      var sp = parseFloat(s.dataset.phase);
       s.classList.toggle('active', sp === phase);
     });
   }
@@ -481,7 +481,7 @@
       }
     });
     if (best) {
-      activatePhase(parseInt(best.dataset.phase));
+      activatePhase(parseFloat(best.dataset.phase));
     }
   }
 
@@ -503,8 +503,9 @@
       var doc = parser.parseFromString(svgText, 'image/svg+xml');
       svg = doc.documentElement;
 
-      var internalStyle = svg.querySelector('style');
-      if (internalStyle) internalStyle.remove();
+      svg.querySelectorAll('style:not([data-st-keep])').forEach(function(el) {
+        el.remove();
+      });
 
       svg.querySelectorAll('animateMotion, animate').forEach(function(el) {
         var parent = el.parentElement;

@@ -17,13 +17,13 @@ mathjax: false
 
 This article is a follow-up to our deep dive on [Team Topologies](/2026/06/24/who-does-what-team-topologies-for-the-agentic-platform.html). Building reliable software at an organizational scale—across multiple products and teams—requires a fundamental shift in how we operate.
 
-In a modern, AI-driven Software Delivery Lifecycle (SDLC), **the stream-aligned teams** should focus entirely on the *solution*, delegating the actual *implementation* to an AI system. This agentic loop is the engine of modern software, powered directly by a robust internal platform that provides the models and the inference engine.
+In a modern, AI-driven Software Delivery Lifecycle (SDLC), **the stream-aligned team** should focus entirely on the *solution*, delegating the actual *implementation* to an AI system. This agentic loop is the engine of modern software, powered directly by a robust internal platform that provides the models and the inference engine.
 
 But how do we kickstart this engine without it derailing?
 
 Technology alone isn't enough; we need the right human collaboration. To build applications that are functional, reliable, and trustworthy, product experts must initially team up with technical experts. This **enabling team** steps in to structure the AI, establish crucial guardrails, and define the enterprise standards.
 
-Ultimately, this article is a story of loops. The enabling team gathers these technical guardrails and bakes them directly into the platform as automated governance rules. Once the platform absorbs this knowledge, the enabling team can effectively vanish—leaving behind an agentic system capable of producing standard, trustworthy applications out-of-the-box. They will only reappear when a brand-new technical challenge emerges.
+Ultimately, this article is a story of loops. The enabling team gathers these technical guardrails and bakes them directly into the platform as automated governance rules. Once the platform absorbs this knowledge, the enabling team can vanish—leaving behind an agentic system capable of producing standard, trustworthy applications out-of-the-box. They will only reappear when a brand-new technical challenge emerges.
 
 Let’s explore how to build and master these cycles, starting with a quick reminder of how the development engine works: the agentic loop.
 
@@ -97,7 +97,7 @@ Finally, the loop returns to the observation phase one last time, confirming tha
 ### Exiting the loop
 A loop successfully terminates when the observation phase confirms that the original intent has been fulfilled. However, to prevent the agent from getting stuck in an infinite cycle, programmatic guardrails—such as a strict maximum of 10 iterations—will force an exit if triggered.
 
-Once the loop concludes, the agent delivers the final output (we will dive deeper into this handoff later in the article).
+Once the loop concludes, the agent delivers the final output.
 
 While developers typically run this agentic system locally on their machines, it heavily relies on LLMs that are decoupled from the local environment.
 To scale this approach, we need to shift our perspective and introduce this system as part of a centralized runtime platform.
@@ -136,7 +136,7 @@ The platform should expose these capabilities in a way that can be easily consum
 
 Historically, we used REST APIs to expose services, but the Model Context Protocol (MCP) is the current standard for tool access. Think of MCP as a transport layer with universal connectors that easily plug into agentic systems.
 
-In my opinion, the platform will soon provide another kind of service: agentic services. I discussed this type of collaboration in a [previous article on my blog](/2026/06/25/from-isolated-agents-to-agentic-mesh-orchestrating-sdlc-with-a2a-and-ap2.html). Therefore, we must anticipate that the platform will eventually host multiple agentic systems, requiring robust Agent-to-Agent (A2A) transport protocols.
+The platform will soon provide another kind of service: agentic services. I discussed this type of collaboration in a [previous article on my blog](/2026/06/25/from-isolated-agents-to-agentic-mesh-orchestrating-sdlc-with-a2a-and-ap2.html). Therefore, we must anticipate that the platform will eventually host multiple agentic systems, requiring robust Agent-to-Agent (A2A) transport protocols.
 
 Now that we have set up all the plumbing required to develop a solution, let's return to what truly matters—and what remains, as of today, a fundamentally human task: framing the problem and designing the solution.
 
@@ -177,15 +177,13 @@ Now that we have this lifecycle in mind, let's zoom out and look at the big pict
 
 {{< scrollytelling-step phase="8" id="phase-8" >}}
 
-### The Agentic SDLC
+## The Agentic SDLC
 
-Our story of loops is almost complete; here is the full picture. 
+Here is the full picture.
 
 Now, what is truly missing from this representation is the iteration within the design phase, as explained earlier.
 
 The number of loops and the overall optimization are really a matter of execution. They depend heavily on the skills and ability of the human in control to correctly scope the system and react efficiently.
-
-Let's now see how to organize this. 
 
 So far, we have remained vague about the design phase. What about the functional design, the technical design, and the guardrails? Are they all handled and specified in this phase? Can some of them be inherited from elsewhere?
 
@@ -200,7 +198,7 @@ Well, it is a matter of organization. Let's explore how to structure this lifecy
 
 ### The stream-aligned team
 
-Let me assert a strong opinion that may spark some controversy here.
+Here is a strong opinion — one that may spark controversy.
 
 We are facing a massive paradigm shift.
 
@@ -208,7 +206,7 @@ Previously, the stream-aligned team was responsible for the actual development o
 
 Of course, there are nuances to consider, and reaching this state is a goal that requires a transition phase. When bootstrapping AI-based development in an Agentic SDLC as described here, the stream-aligned team will initially own the agentic development.
 
-But as a quick side note—before digging into the organization of this team and explaining how they can **enable agentic development** while remaining purely focused on feature development—let's consider a scenario that will arise in the near future. This shift will have a strong impact on the people and skills required in product management.
+Before digging into the organization of this team, a quick side note about a scenario that will shape product management in the near future.
 
 Adapting to an agentic model means the stream-aligned team must do more than just understand how to pilot the system...
 
@@ -216,11 +214,11 @@ Adapting to an agentic model means the stream-aligned team must do more than jus
 
 {{< scrollytelling-step phase="8.2" id="phase-8.2" >}}
 
-#### Solutions designed by stream-aligned teams will imply building agents
+#### Solutions designed by stream-aligned teams will involve building agents
 
 ...they must also understand how agentic systems work in general. They need to know what escalation processes to set up, what the guardrails are, and how the AI makes its decisions.
 
-Because tomorrow, the digital solution to a problem will likely involve building an agent.
+Because tomorrow, the digital solution to a problem will likely involve **building an agent.**
 
 Now let's get back to the need for enablement.
 
@@ -233,7 +231,7 @@ Now let's get back to the need for enablement.
 
 Steering an agentic system is neither easy nor straightforward. Even setting the system up is a massive undertaking in its own right (and even more difficult if it relies on elements of the platform that are niche or unusual).
 
-We have focused heavily on designing the solution, but the generated output must also adhere to industry best practices. 
+We have focused heavily on designing the solution, but the generated output must also adhere to industry best practices.
 
 More importantly, it must respect **the organization's internal standards**, both in terms of technical architecture and aesthetic design (you don't want the AI generating a blue button if your design system strictly uses purple).
 
@@ -253,9 +251,9 @@ This enabling team is composed of technical experts, tech leads, and solution ar
 
 It is important to understand that the enabling team is not merely a support desk at the service of the stream-aligned team. Instead, both teams work in close collaboration, sharing a unified goal: delivering reliable and trustworthy solutions.
 
-The enabling team's primary task is to set up the agentic system so that it operates with maximum autonomy—empowering the stream-aligned team to achieve the right result right from their very first prompt.
+The enabling team's primary task is to set up the agentic system so that it operates with maximum autonomy—empowering the stream-aligned team to hit the mark on their very first prompt.
 
-If the system requires a specific framework to support not just the application build, but the design phase as well, it is the enabling team's responsibility to integrate it. (For example, if your workflow relies on BMAD, this is the stage where it gets installed and configured.)
+If the system requires a specific framework to support not just the application build, but the design phase as well, it is the enabling team's responsibility to integrate it. (For example, if your workflow relies on BMAD, a spec-driven agentic development framework, this is the stage where it gets installed and configured.)
 
 {{< /scrollytelling-step >}}
 
@@ -321,13 +319,11 @@ If they succeed, they vanish.
 
 ## Measuring the enabling team's success
 
-The true measure of an enabling team's success is its ability to vanish—leaving the stream-aligned team with complete autonomy.
+An enabling team succeeds when it is no longer needed—when the stream-aligned team can operate with complete autonomy.
 
 However, they do not vanish forever. Because industry practices evolve and products constantly change, spinning up and dissolving these teams is a natural part of the organizational lifecycle.
 
 The crucial point is that no institutional knowledge is lost when the enabling team steps away. Because they have codified their expertise into the platform as automated guardrails and reusable services, the stream-aligned team can continue operating safely and autonomously long after the enabling team has moved on.
-
-It is a natural phase of the organizational lifecycle.
 
 {{< /scrollytelling-step >}}
 
@@ -338,12 +334,12 @@ It is a natural phase of the organizational lifecycle.
 
 What we've seen on this journey is a vision for organizing around agentic development, rather than an out-of-the-box implementation plan.
 
-As the saying goes, *Adapt is stronger than Adopt*—there is no magic recipe for this transformation. Take this as my personal conviction and a vision of how an organization could be set up to truly leverage the value of agentic development in the future.
+My conviction: *adapt, don't adopt*—there is no magic recipe for this transformation. Take this as my personal conviction and a vision of how an organization could be set up to truly leverage the value of agentic development in the future.
 
 One final disclaimer: we did not cover the **Complicated-Subsystem Team** in this picture. In *Team Topologies*, this is a specialized team that provides deep expertise at various levels to support different teams:
 
 * They can help the stream-aligned team find the perfect algorithm for their product.
-* They can assist the enabling team in customizing frameworks and tooling (such as BMAD).
+* They can assist the enabling team in customizing frameworks and tooling.
 * They can, and should, bring value to the platform by selecting the best models, optimizing costs, and fine-tuning inference engines.
 
 Ultimately, it is by continuously improving the platform that the organization will be able to deliver software more efficiently and effectively.

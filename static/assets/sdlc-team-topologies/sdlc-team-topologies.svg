@@ -19,7 +19,7 @@
     <mask id="dot-mask" maskUnits="userSpaceOnUse" x="-60" y="-30" width="1000" height="840">
       <rect x="-60" y="-30" width="1000" height="840" fill="#FFFFFF"/>
       <rect x="60" y="-2" width="165" height="40" rx="8" fill="#000000"/>
-      <rect x="395" y="25" width="130" height="40" rx="8" fill="#000000"/>
+      <rect class="mask-conception" x="395" y="25" width="130" height="40" rx="8" fill="#000000"/>
       <rect x="310" y="115" width="120" height="40" rx="8" fill="#000000"/>
       <rect x="395" y="205" width="130" height="40" rx="8" fill="#000000"/>
       <rect x="495" y="115" width="110" height="40" rx="8" fill="#000000"/>
@@ -54,7 +54,14 @@
     @supports not (offset-path: path('M0,0 L1,1')) {
       circle[data-follow] { display: none; }
     }
-    #spin-agent, #spin-llm, #spin-standards, #belt-left-anim, #belt-right-anim { opacity: 0; }
+    #spin-agent, #spin-llm, #spin-standards, #spin-conception, #belt-left-anim, #belt-right-anim { opacity: 0; }
+
+    /* Phase 7: Design box grows to show it is a massive phase; mask rect follows */
+    .box-conception, .mask-conception {
+      transform-box: fill-box; transform-origin: center;
+      transition: transform 0.5s ease;
+    }
+    svg[data-active-phase="7"] :is(.box-conception, .mask-conception) { transform: scale(1.4); }
     .capter-label, .capter-label-alt { transition: opacity 0.5s ease; }
     .capter-label-alt { opacity: 0; }
     svg[data-active-phase="7.2"] .capter-label-alt { opacity: 1; }
@@ -163,7 +170,9 @@
     }
     /* Phases 7/7.1: problem(edge start) → design → specs → expression(end) */
     @keyframes tt-hl-p7-prob       { 0%,6% {opacity:1;} 8%,100% {opacity:0;} }
-    @keyframes tt-hl-p7-conception { 0%,25.5% {opacity:0;} 26.5%,45.9% {opacity:1;} 46.9%,100% {opacity:0;} }
+    @keyframes tt-hl-p7-conception { 0%,21% {opacity:0;} 22%,46.5% {opacity:1;} 47.5%,100% {opacity:0;} }
+    /* Wheel inside the enlarged Design box: visible exactly while the dot is under the box */
+    @keyframes tt-wheel-p7 { 0%,21% {opacity:0;} 22%,46.5% {opacity:0.9;} 47.5%,100% {opacity:0;} }
     @keyframes tt-hl-p7-specs      { 0%,54.2% {opacity:0;} 55.2%,61.4% {opacity:1;} 62.4%,100% {opacity:0;} }
     @keyframes tt-hl-p7-expression { 0%,69.6% {opacity:0;} 70.6%,88% {opacity:1;} 91%,100% {opacity:0;} }
     /* Phase 7.2: (design → specs → expression → development → result) ×2 → delivery */
@@ -259,6 +268,10 @@
     svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-conception .st-hl    { animation: tt-hl-p7-conception 7s linear infinite; }
     svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-specs .st-hl         { animation: tt-hl-p7-specs 7s linear infinite; }
     svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-expression .st-hl    { animation: tt-hl-p7-expression 7s linear infinite; }
+    /* Phase 7: the wheel inside Design spins while the dot cycles under the box */
+    svg[data-active-phase="7"] #spin-conception {
+      animation: tt-wheel-p7 7s linear infinite, tt-dash-rev 1.8s linear infinite;
+    }
     /* Phase 7.2: D=14s, two design/dev rounds then delivery */
     svg[data-active-phase="7.2"] .box-conception .st-hl { animation: tt-hl-p72-conception 14s linear infinite; }
     svg[data-active-phase="7.2"] .box-specs .st-hl      { animation: tt-hl-p72-specs 14s linear infinite; }
@@ -307,7 +320,7 @@
     svg[data-active-phase="13"] .std-build-rect { animation: tt-std-build 5s ease-in-out infinite; }
 
     /* Phase 15: enabling team ghost (frame only, no annotations) */
-    svg[data-active-phase="15"] .enabling-frame { animation: tt-enabling-ghost 6s ease-in-out infinite; }
+    svg[data-active-phase="15"] .enabling-frame { animation: tt-enabling-ghost 4s ease-in-out infinite; }
   ]]></style>
 
   <!-- ================================================================ -->
@@ -350,6 +363,7 @@
     <rect x="395" y="25" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#FFD966" stroke-width="1.5"/>
     <text x="460" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128161; Design</text>
     <text x="460" y="55" text-anchor="middle" font-size="8" fill="#586586">of the solution</text>
+    <circle id="spin-conception" cx="503" cy="45" r="12" fill="none" stroke="#00D2DD" stroke-width="3" stroke-dasharray="10 8"/>
     <rect class="st-hl" x="392" y="22" width="136" height="46" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
   </g>
 

@@ -30,6 +30,8 @@
       <rect x="650" y="105" width="135" height="62" rx="8" fill="#000000"/>
       <rect x="305" y="652" width="90" height="18" rx="4" fill="#000000"/>
     </mask>
+    <!-- Phase 13: progressive reveal of the standards cylinder body (back → front) -->
+    <clipPath id="stdBuildClip"><rect class="std-build-rect" x="92" y="540" width="200" height="130"/></clipPath>
   </defs>
 
   <style data-st-keep="true"><![CDATA[
@@ -114,6 +116,8 @@
     /* Phases 12-14: capitalisation */
     svg:is([data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
       .enabling-capitalisation { opacity: 1; }
+    /* Phase 12: Knowledge Base blinks */
+    svg[data-active-phase="12"] .enabling-capitalisation { animation: tt-blink 1.2s ease-in-out infinite; }
 
     /* Phases 13,14,15: standards cylinder */
     svg:is([data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) .cyl-standards { opacity: 1; }
@@ -186,6 +190,20 @@
     @keyframes tt-dash-rev { to { stroke-dashoffset: 144; } }
     /* Blinking (phase 8.2: Delivery) */
     @keyframes tt-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    /* Phase 13: standards cylinder builds itself — disc slides out from the intersection */
+    @keyframes tt-std-face {
+      0%, 10%   { transform: translate(53px, -30px); }
+      70%, 100% { transform: translate(0px, 0px); }
+    }
+    @keyframes tt-std-build {
+      0%, 10%   { x: 250px; width: 42px; }
+      70%, 100% { x: 92px;  width: 200px; }
+    }
+    /* Phase 15: the enabling team has vanished — its ghost fades in and out */
+    @keyframes tt-enabling-ghost {
+      0%, 100% { opacity: 0; }
+      40%, 60% { opacity: 1; }
+    }
     /* Phase 8.1: SA frame first encloses the agentic system, then shrinks to its real perimeter */
     @keyframes tt-sa-shrink {
       0%, 35%   { height: 580px; }
@@ -283,6 +301,13 @@
 
     /* Phase 8.1: SA frame loops from enclosing the agentic system to its actual size */
     svg[data-active-phase="8.1"] .sa-band rect { animation: tt-sa-shrink 4s ease-in-out infinite; }
+
+    /* Phase 13: build-the-cylinder loop (disc + body reveal in sync) */
+    svg[data-active-phase="13"] .cyl-std-face   { animation: tt-std-face 5s ease-in-out infinite; }
+    svg[data-active-phase="13"] .std-build-rect { animation: tt-std-build 5s ease-in-out infinite; }
+
+    /* Phase 15: enabling team ghost (frame only, no annotations) */
+    svg[data-active-phase="15"] .enabling-frame { animation: tt-enabling-ghost 6s ease-in-out infinite; }
   ]]></style>
 
   <!-- ================================================================ -->
@@ -380,7 +405,7 @@
   <polygon class="plat-right" points="770,670 910,580 910,690 770,780" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="2" stroke-linejoin="round"/>
 
   <!-- Standards Cylinder — back face + rear body -->
-  <g class="cyl-standards">
+  <g class="cyl-standards" clip-path="url(#stdBuildClip)">
     <circle cx="220" cy="580" r="30" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="1"/>
     <path d="M 160,580 L 205,554 A 30,30 0 0,1 235,606 L 190,632 A 30,30 0 0,0 160,580 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
   </g>
@@ -435,9 +460,9 @@
 
   <!-- Standards Cylinder — front body + cut arc + front face -->
   <g class="cyl-standards">
-    <path d="M 107,610 L 160,580 A 30,30 0 0,1 190,632 L 137,662 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
-    <circle cx="175" cy="606" r="30" fill="none" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="5,4"/>
-    <circle cx="122" cy="636" r="30" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+    <path clip-path="url(#stdBuildClip)" d="M 107,610 L 160,580 A 30,30 0 0,1 190,632 L 137,662 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
+    <circle clip-path="url(#stdBuildClip)" cx="175" cy="606" r="30" fill="none" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <circle class="cyl-std-face" cx="122" cy="636" r="30" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
   </g>
   <!-- Belt 1 (Standards ↔ left roller) — ON TOP of cylinder & Enabling -->
   <g class="belt-left">
@@ -447,7 +472,7 @@
           fill="none" stroke="#0E2356" stroke-width="2.5" stroke-dasharray="10 8" stroke-linejoin="round"/>
   </g>
   <!-- Standards text redrawn on top of belt + rotation -->
-  <g class="cyl-standards">
+  <g class="cyl-standards cyl-std-face">
     <text x="122" y="631" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Standards</text>
     <text x="122" y="642" text-anchor="middle" font-size="8" fill="#0E2356">enterprise</text>
     <text x="122" y="653" text-anchor="middle" font-size="7" fill="#586586">Guardrails</text>

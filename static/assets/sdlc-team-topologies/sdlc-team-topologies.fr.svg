@@ -1,0 +1,579 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -30 1000 840" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <rect x="-60" y="-30" width="1000" height="840" fill="#ffffff"/>
+  <defs>
+    <marker id="aCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00D2DD"/></marker>
+    <marker id="aBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6D9EEB"/></marker>
+    <marker id="aDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0E2356"/></marker>
+    <marker id="aGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#34A853"/></marker>
+    <marker id="aRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#EA4335"/></marker>
+    <marker id="aPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#D09CB7"/></marker>
+    <filter id="cloudShadow" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="3" dy="4" stdDeviation="3" flood-color="#4A7FCC" flood-opacity="0.3"/>
+    </filter>
+    <linearGradient id="cloudGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D6E6FA"/>
+    </linearGradient>
+    <!-- Masque : les points disparaissent sous l'emprise des boîtes -->
+    <mask id="dot-mask" maskUnits="userSpaceOnUse" x="-60" y="-30" width="1000" height="840">
+      <rect x="-60" y="-30" width="1000" height="840" fill="#FFFFFF"/>
+      <rect x="60" y="-2" width="165" height="40" rx="8" fill="#000000"/>
+      <rect x="395" y="25" width="130" height="40" rx="8" fill="#000000"/>
+      <rect x="310" y="115" width="120" height="40" rx="8" fill="#000000"/>
+      <rect x="395" y="205" width="130" height="40" rx="8" fill="#000000"/>
+      <rect x="495" y="115" width="110" height="40" rx="8" fill="#000000"/>
+      <rect x="405" y="278" width="110" height="44" rx="8" fill="#000000"/>
+      <rect x="260" y="418" width="120" height="44" rx="8" fill="#000000"/>
+      <rect x="380" y="556" width="80" height="36" rx="8" fill="#000000"/>
+      <rect x="540" y="418" width="120" height="44" rx="8" fill="#000000"/>
+      <rect x="305" y="652" width="90" height="18" rx="4" fill="#000000"/>
+    </mask>
+  </defs>
+
+  <style data-st-keep="true"><![CDATA[
+    /* ============ Visibilité par phase (piloté par data-active-phase) ============ */
+    .sa-band, .sa-fond, .sa-enrichit, .sa-circle-core, .box-problematique, .arrow-prob-conception, .box-conception,
+    .box-specs, .box-expression, .box-resultat, .arrow-resultat-livraison, .box-livraison,
+    .conn-expression-capter,
+    .agent-circle, .agent-title, .agent-subtitle, .label-autocorrectif,
+    .box-capter, .box-planifier, .box-agir, .box-observer, .loop-correction, .arrow-observer-resultat,
+    .plat-top, .plat-right, .plat-front, .plat-label, .plat-slogan,
+    .cyl-standards, .roller-left, .roller-right, .belt-left, .belt-right, .cyl-llm,
+    .cloud-cloud, .cloud-connaissance, .cloud-si, .xaas,
+    .enabling-frame, .enabling-desc, .enabling-capitalisation, .arrow-ctx-technique, .arrow-parametre {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .st-hl { opacity: 0; }
+    circle[data-follow] { opacity: 0; }
+    #spin-agent, #spin-llm, #spin-standards, #belt-left-anim, #belt-right-anim { opacity: 0; }
+    .capter-label, .capter-label-alt { transition: opacity 0.5s ease; }
+    .capter-label-alt { opacity: 0; }
+    svg[data-active-phase="7.2"] .capter-label-alt { opacity: 1; }
+    .livraison-robot { opacity: 0; transition: opacity 0.5s ease; }
+
+    /* Phases 1-6 : boucle agentique seule (sans le sous-titre "Implémente la solution") + Résultat */
+    svg:is([data-active-phase="1"],[data-active-phase="2"],[data-active-phase="3"],[data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"])
+      :is(.agent-circle,.agent-title,.label-autocorrectif,.box-capter,.box-planifier,.box-agir,.box-observer,.loop-correction,.arrow-observer-resultat,.box-resultat) { opacity: 1; }
+
+    /* Phases 5,6,13,14,15 : plateforme (sans standards / rouleau gauche / courroie gauche / slogan) */
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.plat-top,.plat-right,.plat-front,.plat-label,.cyl-llm,.roller-right,.belt-right) { opacity: 1; }
+
+    /* Phases 6,13,14,15 : nuages de capacités + X-as-a-Service */
+    svg:is([data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.cloud-cloud,.cloud-connaissance,.cloud-si,.xaas) { opacity: 1; }
+
+    /* Phases 7,7.1,7.2,8,8.1,8.2,9-15 : parcours de conception (boîtes + arc Conception→Specs→Expression) */
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"],[data-active-phase="7.2"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.sa-circle-core,.box-problematique,.arrow-prob-conception,.box-conception,.box-specs,.box-expression) { opacity: 1; }
+
+    /* Phase 7.2 : boîte Capter (relibellée « Développement de la solution ») + lien Expression→Capter */
+    svg[data-active-phase="7.2"] :is(.box-capter,.conn-expression-capter) { opacity: 1; }
+    svg[data-active-phase="7.2"] .capter-label { opacity: 0; }
+
+    /* Phases 7.1,8,8.1,8.2,9-15 : fond jaune + arc « enrichit la solution » (cachés en 7) */
+    svg:is([data-active-phase="7.1"],[data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.sa-fond,.sa-enrichit) { opacity: 1; }
+
+    /* Phases 7.1,8.1,8.2,9-15 : cadre jaune « Stream-Aligned Team » (caché en 7 et 8) */
+    svg:is([data-active-phase="7.1"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      .sa-band { opacity: 1; }
+
+    /* Phases 8,8.1,8.2,9-15 : système complet — Résultat, Livraison, lien Expression→Capter, boucle agentique complète */
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"])
+      :is(.box-resultat,.arrow-resultat-livraison,.box-livraison,.conn-expression-capter,.agent-circle,.agent-title,.agent-subtitle,.label-autocorrectif,.box-capter,.box-planifier,.box-agir,.box-observer,.loop-correction,.arrow-observer-resultat) { opacity: 1; }
+
+    /* Phase 8.2 : la Livraison clignote, icône robot affichée dessus */
+    svg[data-active-phase="8.2"] .box-livraison { animation: tt-blink 1.2s ease-in-out infinite; }
+    svg[data-active-phase="8.2"] .livraison-robot { opacity: 1; }
+
+    /* Phases 9-14 : cadre enabling team + titre (sans les liens ni la description) */
+    svg:is([data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .enabling-frame { opacity: 1; }
+
+    /* Phases 10-14 : Collaboration + description « Pose le cadre… » + flèche paramètre */
+    svg:is([data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      :is(.enabling-desc,.arrow-parametre) { opacity: 1; }
+
+    /* Phases 11-14 : flèche contexte technique */
+    svg:is([data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .arrow-ctx-technique { opacity: 1; }
+
+    /* Phases 12-14 : capitalisation */
+    svg:is([data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .enabling-capitalisation { opacity: 1; }
+
+    /* Phases 13,14,15 : cylindre standards */
+    svg:is([data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) .cyl-standards { opacity: 1; }
+
+    /* Phases 14,15 : courroie gauche + rouleau gauche */
+    svg:is([data-active-phase="14"],[data-active-phase="15"]) :is(.belt-left,.roller-left) { opacity: 1; }
+
+    /* ============ Keyframes ============ */
+    @keyframes tt-dot {
+      0%   { offset-distance: 0%;   opacity: 0; }
+      4%   { opacity: 1; }
+      76%  { opacity: 1; }
+      80%  { offset-distance: 100%; opacity: 0; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    @keyframes tt-hl {
+      0%   { opacity: 0; }
+      5%   { opacity: 1; }
+      16%  { opacity: 1; }
+      28%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    /* Fenêtre courte pour les cycles longs (phase 8, 14 s) : ~1,3 s de surbrillance */
+    @keyframes tt-hl-fast {
+      0%   { opacity: 0; }
+      3%   { opacity: 1; }
+      12%  { opacity: 1; }
+      18%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    /* Observer en surbrillance deux fois dans la phase 2 (premier passage à 21%, arrivée à 80%) */
+    @keyframes tt-hl-p2-obs {
+      0%, 17%   { opacity: 0; }
+      21%, 31%  { opacity: 1; }
+      37%, 76%  { opacity: 0; }
+      80%, 92%  { opacity: 1; }
+      98%, 100% { opacity: 0; }
+    }
+    /* Tirets circulants : fwd = sens du tracé, rev = sens inverse (144 = multiple des périodes 18 et 24) */
+    @keyframes tt-dash-fwd { to { stroke-dashoffset: -144; } }
+    @keyframes tt-dash-rev { to { stroke-dashoffset: 144; } }
+    /* Clignotement (phase 8.2 : Livraison) */
+    @keyframes tt-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    /* Descente vers la capitalisation (phase 14 : « mise en place des standards », 156 → 560) */
+    @keyframes tt-descend {
+      0%   { transform: translateY(0); opacity: 1; }
+      75%  { opacity: 1; }
+      95%  { transform: translateY(404px); opacity: 0; }
+      100% { transform: translateY(404px); opacity: 0; }
+    }
+
+    /* ============ Points par phase ============ */
+    svg[data-active-phase="1"] .dot-p1   { animation: tt-dot 5s linear infinite; }
+    svg[data-active-phase="2"] .dot-p2   { animation: tt-dot 8s linear infinite; }
+    svg[data-active-phase="3"] .dot-p3   { animation: tt-dot 7s linear infinite; }
+    svg[data-active-phase="4"] .dot-p4   { animation: tt-dot 5s linear infinite; }
+    svg[data-active-phase="6"] .dot-p6a  { animation: tt-dot 4s linear infinite; }
+    svg[data-active-phase="6"] .dot-p6b  { animation: tt-dot 4s linear infinite 1.3s; }
+    svg[data-active-phase="6"] .dot-p6c  { animation: tt-dot 4s linear infinite 2.6s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .dot-p7 { animation: tt-dot 7s linear infinite; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .dot-p8 { animation: tt-dot 14s linear infinite; }
+    svg[data-active-phase="10"] .dot-p10 { animation: tt-dot 3s linear infinite; }
+    svg[data-active-phase="11"] .dot-p11 { animation: tt-dot 3.5s linear infinite; }
+
+    /* ============ Surbrillances synchronisées sur le trajet du point ============ */
+    /* Phase 1 : fractions mesurées sur mp-p1 (trajet sur 0-80% du cycle), D=5s */
+    svg[data-active-phase="1"] .box-capter .st-hl    { animation: tt-hl 5s linear infinite -5s; }
+    svg[data-active-phase="1"] .box-planifier .st-hl { animation: tt-hl 5s linear infinite -2.8s; }
+    svg[data-active-phase="1"] .box-agir .st-hl      { animation: tt-hl 5s linear infinite -1s; }
+    /* Phase 2 : observer(21%) → planifier(41%) → agir(59%) → observer(80%), D=8s */
+    svg[data-active-phase="2"] .box-observer .st-hl  { animation: tt-hl-p2-obs 8s linear infinite; }
+    svg[data-active-phase="2"] .box-planifier .st-hl { animation: tt-hl 8s linear infinite -4.7s; }
+    svg[data-active-phase="2"] .box-agir .st-hl      { animation: tt-hl 8s linear infinite -3.3s; }
+    /* Phase 3 : D=7s */
+    svg[data-active-phase="3"] .box-observer .st-hl  { animation: tt-hl 7s linear infinite -7s; }
+    svg[data-active-phase="3"] .box-capter .st-hl    { animation: tt-hl 7s linear infinite -5s; }
+    svg[data-active-phase="3"] .box-planifier .st-hl { animation: tt-hl 7s linear infinite -3s; }
+    svg[data-active-phase="3"] .box-agir .st-hl      { animation: tt-hl 7s linear infinite -1.4s; }
+    /* Phase 4 : observer(0%) → resultat(80%), D=5s */
+    svg[data-active-phase="4"] .box-observer .st-hl  { animation: tt-hl 5s linear infinite -5s; }
+    svg[data-active-phase="4"] .box-resultat .st-hl  { animation: tt-hl 5s linear infinite -1s; }
+    /* Phases 7 et 7.1 : D=7s */
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-problematique .st-hl { animation: tt-hl 7s linear infinite -7s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-conception .st-hl    { animation: tt-hl 7s linear infinite -4.4s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-specs .st-hl         { animation: tt-hl 7s linear infinite -2.9s; }
+    svg:is([data-active-phase="7"],[data-active-phase="7.1"]) .box-expression .st-hl    { animation: tt-hl 7s linear infinite -1.4s; }
+    /* Phase 8 : parcours complet, D=14s */
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-problematique .st-hl { animation: tt-hl-fast 14s linear infinite -14s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-conception .st-hl { animation: tt-hl-fast 14s linear infinite -12.3s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-specs .st-hl { animation: tt-hl-fast 14s linear infinite -11.3s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-expression .st-hl { animation: tt-hl-fast 14s linear infinite -10.2s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-capter .st-hl { animation: tt-hl-fast 14s linear infinite -9.7s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-planifier .st-hl { animation: tt-hl-fast 14s linear infinite -8.1s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-agir .st-hl { animation: tt-hl-fast 14s linear infinite -6.8s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-observer .st-hl { animation: tt-hl-fast 14s linear infinite -5s; }
+    svg:is([data-active-phase="8"],[data-active-phase="8.1"]) .box-resultat .st-hl { animation: tt-hl-fast 14s linear infinite -2.8s; }
+    /* Phase 11 : contexte technique → capter, D=3.5s */
+    svg[data-active-phase="11"] .box-capter .st-hl       { animation: tt-hl 3.5s linear infinite -0.7s; }
+
+    /* ============ Rotations & courroies (phases 5, 6, 13-15) ============ */
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #spin-agent {
+      opacity: 0.9; animation: tt-dash-rev 3.2s linear infinite;
+    }
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #spin-llm {
+      opacity: 0.9; animation: tt-dash-rev 2.2s linear infinite;
+    }
+    svg:is([data-active-phase="5"],[data-active-phase="6"],[data-active-phase="13"],[data-active-phase="14"],[data-active-phase="15"]) #belt-right-anim {
+      opacity: 0.9; animation: tt-dash-fwd 3.2s linear infinite;
+    }
+    svg:is([data-active-phase="14"],[data-active-phase="15"]) #spin-standards {
+      opacity: 0.9; animation: tt-dash-rev 2.2s linear infinite;
+    }
+    svg:is([data-active-phase="14"],[data-active-phase="15"]) #belt-left-anim {
+      opacity: 0.9; animation: tt-dash-rev 3.2s linear infinite;
+    }
+
+    /* Phase 14 : « mise en place des standards » descend jusqu'à la capitalisation puis disparaît */
+    svg[data-active-phase="14"] .ctx-standards { animation: tt-descend 5s linear infinite; }
+  ]]></style>
+
+  <!-- ================================================================ -->
+  <!-- STREAM-ALIGNED TEAM — bande + cercle (r=90)                      -->
+  <!-- ================================================================ -->
+  <g class="sa-band">
+    <rect x="20" y="18" width="880" height="240" rx="12" fill="#FFEDB8" stroke="#FFD966" stroke-width="1.5"/>
+    <text x="58" y="57" font-size="13" font-weight="bold" fill="#0E2356">Stream-Aligned Team</text>
+    <text x="83" y="72" font-size="12" font-weight="bold" font-style="italic" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#FFE066;stroke-width:8px;stroke-linejoin:round;">Con&#231;oit</tspan> la <tspan style="paint-order:stroke;stroke:#FFE066;stroke-width:8px;stroke-linejoin:round;">r&#233;solution</tspan> d&#8217;un probl&#232;me m&#233;tier</text>
+  </g>
+
+  <!-- Cercle SA — fond jaune (caché en phase 7) -->
+  <circle class="sa-fond" cx="460" cy="135" r="90" fill="#FFEDB8" fill-opacity="0.3" stroke="none"/>
+  <!-- Arc Résultat→Conception « enrichit la solution » (caché en phase 7) -->
+  <g class="sa-enrichit">
+    <path d="M 550,135 A 90,90 0 0 0 460,45" fill="none" stroke="#00D2DD" stroke-width="3"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(529, 77) rotate(230)"/>
+    <text x="550" y="85" font-size="7" fill="#586586" font-style="italic">enrichit la solution</text>
+  </g>
+  <!-- Arc Conception→Specs→Expression (cœur du parcours de conception) -->
+  <g class="sa-circle-core">
+    <path d="M 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225" fill="none" stroke="#00D2DD" stroke-width="3"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(382, 90) rotate(120)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#00D2DD" transform="translate(384, 183) rotate(58)"/>
+  </g>
+
+  <!-- Probl&#233;matique m&#233;tier (&#224; cheval sur le bord sup&#233;rieur SA) -->
+  <g class="box-problematique">
+    <rect x="60" y="-2" width="165" height="40" rx="8" fill="#FFFFFF" stroke="#FFD966" stroke-width="1.5"/>
+    <text x="142" y="15" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#127919; Probl&#233;matique</text>
+    <text x="142" y="28" text-anchor="middle" font-size="8" fill="#586586">m&#233;tier</text>
+    <rect class="st-hl" x="57" y="-5" width="171" height="46" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Fl&#232;che Probl&#233;matique &#8594; Conception -->
+  <path class="arrow-prob-conception" d="M225,18 Q310,20 393,45" fill="none" stroke="#00D2DD" stroke-width="2" marker-end="url(#aCyan)"/>
+
+  <!-- Conception de la solution (N) -->
+  <g class="box-conception">
+    <rect x="395" y="25" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#FFD966" stroke-width="1.5"/>
+    <text x="460" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128161; Conception</text>
+    <text x="460" y="55" text-anchor="middle" font-size="8" fill="#586586">de la solution</text>
+    <rect class="st-hl" x="392" y="22" width="136" height="46" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Specs + D&#233;tourage (W) -->
+  <g class="box-specs">
+    <rect x="310" y="115" width="120" height="40" rx="8" fill="#FFFFFF" stroke="#FFD966" stroke-width="1.5"/>
+    <text x="370" y="132" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128196; Specs</text>
+    <text x="370" y="145" text-anchor="middle" font-size="8" fill="#586586">D&#233;tourage</text>
+    <rect class="st-hl" x="307" y="112" width="126" height="46" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Expression de l'intention (S) -->
+  <g class="box-expression">
+    <rect x="395" y="205" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#0E2356" stroke-width="2.5"/>
+    <text x="460" y="222" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#127775; Expression</text>
+    <text x="460" y="235" text-anchor="middle" font-size="8" fill="#586586">de l&#8217;intention</text>
+    <rect class="st-hl" x="392" y="202" width="136" height="46" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- R&#233;sultat (E) -->
+  <g class="box-resultat">
+    <rect x="495" y="115" width="110" height="40" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="550" y="139" text-anchor="middle" font-size="10" font-weight="bold" fill="#34A853">&#8634; R&#233;sultat</text>
+    <rect class="st-hl" x="492" y="112" width="116" height="46" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Fl&#232;che R&#233;sultat &#8594; Livraison -->
+  <line class="arrow-resultat-livraison" x1="605" y1="135" x2="648" y2="135" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
+
+  <!-- Livraison de la solution (boite 3D) -->
+  <g class="box-livraison" transform="translate(650, 105)">
+    <polygon points="0,12 120,12 120,62 0,62" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <polygon points="0,12 15,0 135,0 120,12" fill="#C8E6C9" stroke="#34A853" stroke-width="1.5"/>
+    <polygon points="120,12 135,0 135,50 120,62" fill="#A5D6A7" stroke="#34A853" stroke-width="1.5"/>
+    <line x1="0" y1="32" x2="120" y2="32" stroke="#34A853" stroke-width="1" stroke-dasharray="4,2"/>
+    <line x1="60" y1="12" x2="67" y2="0" stroke="#34A853" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="60" y="25" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128230; Livraison</text>
+    <text x="60" y="37" text-anchor="middle" font-size="8" fill="#586586">de la fonctionnalit&#233;</text>
+    <text x="60" y="49" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">dans le respect des standards</text>
+    <text x="60" y="58" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">de l&#8217;organisation</text>
+  </g>
+
+  <!-- Icône robot sur la Livraison (phase 8.2) -->
+  <text class="livraison-robot" x="710" y="150" text-anchor="middle" font-size="30">&#129302;</text>
+
+  <!-- ================================================================ -->
+  <!-- PLATFORM TEAM — 3D isom&#233;trique 30° (profonde)                    -->
+  <!-- ================================================================ -->
+  <!-- Face dessus (surface) -->
+  <polygon class="plat-top" points="-40,670 770,670 910,580 100,580" fill="#B7CDF1" fill-opacity="0.55" stroke="#6D9EEB" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Face c&#244;t&#233; droit (&#233;paisseur) -->
+  <polygon class="plat-right" points="770,670 910,580 910,690 770,780" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Cylindre Standards — back face + corps arrière -->
+  <g class="cyl-standards">
+    <circle cx="220" cy="580" r="30" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="1"/>
+    <path d="M 160,580 L 205,554 A 30,30 0 0,1 235,606 L 190,632 A 30,30 0 0,0 160,580 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
+  </g>
+
+  <!-- Rouleau gauche ALLONGÉ — back(415,568) → front(280,645) r=25 -->
+  <g class="roller-left">
+    <circle cx="415" cy="568" r="25" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="1"/>
+    <path d="M 267.6,623.3 L 402.6,546.3 A 25,25 0 0,1 427.4,589.7 L 292.4,666.7 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
+  </g>
+  <!-- Rouleau droit ALLONGÉ — back(555,568) → front(420,645) r=25 -->
+  <g class="roller-right">
+    <circle cx="555" cy="568" r="25" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="1"/>
+    <path d="M 407.6,623.3 L 542.6,546.3 A 25,25 0 0,1 567.4,589.7 L 432.4,666.7 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
+  </g>
+
+  <!-- Cylindre LLM — back face + corps -->
+  <g class="cyl-llm">
+    <circle cx="718" cy="584" r="30" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="1"/>
+    <path d="M 605,614 L 703,558 A 30,30 0 0,1 733,610 L 635,666 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
+  </g>
+
+  <!-- Courroie 2 : rouleau droit ↔ LLM -->
+  <g class="belt-right">
+    <path d="M 618.50,610.04 L 418.75,620.03 A 25,25 0 1,0 420,670 L 620,670 A 30,30 0 1,0 618.50,610.04 Z"
+          fill="#4A7FCC" fill-opacity="0.15" stroke="#4A7FCC" stroke-width="2" stroke-linejoin="round"/>
+    <path id="belt-right-anim" d="M 618.50,610.04 L 418.75,620.03 A 25,25 0 1,0 420,670 L 620,670 A 30,30 0 1,0 618.50,610.04 Z"
+          fill="none" stroke="#0E2356" stroke-width="2.5" stroke-dasharray="10 8" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- ENABLING TEAM (au dessus de Platform pour overlap)               -->
+  <!-- ================================================================ -->
+  <g class="enabling-frame">
+    <rect x="40" y="110" width="165" height="600" rx="10" fill="#DFBDCF" fill-opacity="0.25" stroke="#D09CB7" stroke-width="2" stroke-dasharray="8,4"/>
+    <text x="122" y="308" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">Enabling</text>
+    <text x="122" y="320" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">Team</text>
+    <text x="122" y="340" text-anchor="middle" font-size="12" fill="#586586">Pose le</text>
+    <text x="122" y="357" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">cadre contextuel</tspan></text>
+    <text x="122" y="374" text-anchor="middle" font-size="12" fill="#586586">de travail et</text>
+    <text x="122" y="391" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">facilite</tspan> la <tspan style="paint-order:stroke;stroke:#DFBDCF;stroke-width:9px;stroke-linejoin:round;">conception</tspan></text>
+  </g>
+  <g class="enabling-desc">
+    <text x="122" y="125" text-anchor="middle" font-size="11" font-weight="bold" font-style="italic" fill="#0E2356">Collaboration</text>
+    <text x="122" y="142" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">aide &#224; la conception de la solution</text>
+    <text class="ctx-standards" x="122" y="156" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">mise en place des standards</text>
+  </g>
+  <g class="enabling-capitalisation">
+    <text x="122" y="560" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128218; Capitalisation</text>
+    <text x="122" y="575" text-anchor="middle" font-size="8" fill="#586586">Skills, agents,</text>
+    <text x="122" y="587" text-anchor="middle" font-size="8" fill="#586586">instructions</text>
+  </g>
+
+  <!-- Cylindre Standards — corps avant + arc de coupe + front face -->
+  <g class="cyl-standards">
+    <path d="M 107,610 L 160,580 A 30,30 0 0,1 190,632 L 137,662 Z" fill="#8AB4F0" stroke="#4A7FCC" stroke-width="1.5"/>
+    <circle cx="175" cy="606" r="30" fill="none" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <circle cx="122" cy="636" r="30" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+  </g>
+  <!-- Courroie 1 (Standards ↔ rouleau gauche) — PAR-DESSUS le cylindre & l'Enabling -->
+  <g class="belt-left">
+    <path d="M 124.65,606.12 L 282.21,620.10 A 25,25 0 1,1 279.37,669.99 L 121.24,665.99 A 30,30 0 1,1 124.65,606.12 Z"
+          fill="#4A7FCC" fill-opacity="0.15" stroke="#4A7FCC" stroke-width="2" stroke-linejoin="round"/>
+    <path id="belt-left-anim" d="M 124.65,606.12 L 282.21,620.10 A 25,25 0 1,1 279.37,669.99 L 121.24,665.99 A 30,30 0 1,1 124.65,606.12 Z"
+          fill="none" stroke="#0E2356" stroke-width="2.5" stroke-dasharray="10 8" stroke-linejoin="round"/>
+  </g>
+  <!-- Texte Standards redessiné par-dessus la courroie + rotation -->
+  <g class="cyl-standards">
+    <text x="122" y="631" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Standards</text>
+    <text x="122" y="642" text-anchor="middle" font-size="8" fill="#0E2356">entreprise</text>
+    <text x="122" y="653" text-anchor="middle" font-size="7" fill="#586586">Guardrails</text>
+    <circle id="spin-standards" cx="122" cy="636" r="24" fill="none" stroke="#4A7FCC" stroke-width="3" stroke-dasharray="10 8"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- SYST&#200;ME AGENTIQUE — CERCLE (cx=460, cy=440, r=140)               -->
+  <!-- ================================================================ -->
+  <g class="agent-circle">
+    <circle cx="460" cy="440" r="140" fill="#F0F0FF" fill-opacity="0.6" stroke="#6D9EEB" stroke-width="2"/>
+    <!-- Chevrons agentiques -->
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(361, 341) rotate(135)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(361, 539) rotate(45)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(559, 539) rotate(-45)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(559, 341) rotate(225)"/>
+  </g>
+  <!-- Rotation antihoraire de la roue agentique (phases 5 et 14) -->
+  <circle id="spin-agent" cx="460" cy="440" r="140" fill="none" stroke="#6D9EEB" stroke-width="4" stroke-dasharray="14 10"/>
+
+  <text class="agent-title" x="460" y="355" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#129302; Syst&#232;me agentique (autonome)</text>
+  <text class="agent-subtitle" x="460" y="372" text-anchor="middle" font-size="12" font-weight="bold" font-style="italic" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#B7CDF1;stroke-width:8px;stroke-linejoin:round;">Impl&#233;mente</tspan> la <tspan style="paint-order:stroke;stroke:#B7CDF1;stroke-width:8px;stroke-linejoin:round;">solution</tspan></text>
+
+  <text class="label-autocorrectif" x="460" y="445" text-anchor="middle" font-size="14" font-style="italic" fill="#586586" opacity="0.7">Auto-correctif</text>
+
+  <!-- Capter l'intention (12h) -->
+  <g class="box-capter">
+    <rect x="405" y="278" width="110" height="44" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text class="capter-label" x="460" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128065; Capter</text>
+    <text class="capter-label" x="460" y="312" text-anchor="middle" font-size="9" fill="#586586">l&#8217;intention</text>
+    <text class="capter-label-alt" x="460" y="298" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">D&#233;veloppement</text>
+    <text class="capter-label-alt" x="460" y="312" text-anchor="middle" font-size="9" fill="#586586">de la solution</text>
+    <rect class="st-hl" x="402" y="275" width="116" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Planifier les &#233;tapes (9h) -->
+  <g class="box-planifier">
+    <rect x="260" y="418" width="120" height="44" rx="8" fill="#DAF6F9" stroke="#00D2DD" stroke-width="1.5"/>
+    <text x="320" y="438" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128203; Planifier</text>
+    <text x="320" y="452" text-anchor="middle" font-size="9" fill="#586586">les &#233;tapes</text>
+    <rect class="st-hl" x="257" y="415" width="126" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Agir / Outils (6h) -->
+  <g class="box-agir">
+    <rect x="380" y="556" width="80" height="36" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text x="420" y="572" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128296; Agir</text>
+    <text x="420" y="585" text-anchor="middle" font-size="8" fill="#586586">Outils</text>
+    <rect class="st-hl" x="377" y="553" width="86" height="42" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Observer les r&#233;sultats (3h) -->
+  <g class="box-observer">
+    <rect x="540" y="418" width="120" height="44" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="600" y="438" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128269; Observer</text>
+    <text x="600" y="452" text-anchor="middle" font-size="9" fill="#586586">les r&#233;sultats</text>
+    <rect class="st-hl" x="537" y="415" width="126" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Boucle de correction (tirets rouges) -->
+  <g class="loop-correction">
+    <path d="M550,460 Q460,540 380,440" fill="none" stroke="#EA4335" stroke-width="2.5" stroke-dasharray="10,5" marker-end="url(#aRed)"/>
+    <circle cx="515" cy="500" r="11" fill="#FFFFFF" stroke="#333333" stroke-width="1"/>
+    <text x="515" y="504" text-anchor="middle" font-size="9" fill="#333333">(n)</text>
+    <text x="450" y="518" text-anchor="middle" font-size="8" fill="#EA4335" font-style="italic">R&#233;sultat insatisfaisant</text>
+    <text x="450" y="530" text-anchor="middle" font-size="8" fill="#EA4335" font-style="italic">&#8594; re-plan</text>
+  </g>
+
+  <!-- Cylindre LLM — front face + rotation -->
+  <g class="cyl-llm">
+    <circle cx="620" cy="640" r="30" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+    <text x="620" y="635" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">LLM</text>
+    <text x="620" y="647" text-anchor="middle" font-size="8" fill="#0E2356">inf&#233;rence</text>
+    <circle id="spin-llm" cx="620" cy="640" r="24" fill="none" stroke="#4A7FCC" stroke-width="3" stroke-dasharray="10 8"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PLATEFORME FACE AVANT + nuages de capacit&#233;s                      -->
+  <!-- ================================================================ -->
+  <g class="cloud-cloud">
+    <path d="M200,748 Q320,708 350,670" fill="none" stroke="#6D9EEB" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <path d="M145,768 C145,758 155,748 170,748 C175,738 190,738 200,745 C210,738 225,738 230,748 C245,748 255,758 255,768 Z" fill="url(#cloudGrad)" fill-opacity="0.8" stroke="#6D9EEB" stroke-width="1.5" filter="url(#cloudShadow)"/>
+    <text x="200" y="762" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Capacit&#233;s cloud</text>
+  </g>
+  <g class="cloud-connaissance">
+    <path d="M420,733 Q420,700 350,670" fill="none" stroke="#6D9EEB" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <path d="M360,753 C360,743 370,733 385,733 C390,723 405,723 420,730 C435,723 450,723 455,733 C470,733 480,743 480,753 Z" fill="url(#cloudGrad)" fill-opacity="0.8" stroke="#6D9EEB" stroke-width="1.5" filter="url(#cloudShadow)"/>
+    <text x="420" y="747" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Connaissance du SI</text>
+  </g>
+  <g class="cloud-si">
+    <path d="M650,718 Q540,690 350,670" fill="none" stroke="#6D9EEB" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <path d="M595,738 C595,728 605,718 620,718 C625,708 640,708 650,715 C660,708 675,708 680,718 C695,718 705,728 705,738 Z" fill="url(#cloudGrad)" fill-opacity="0.8" stroke="#6D9EEB" stroke-width="1.5" filter="url(#cloudShadow)"/>
+    <text x="650" y="732" text-anchor="middle" font-size="8" font-weight="bold" fill="#0E2356">Capacit&#233;s du SI</text>
+  </g>
+  <!-- Face avant (semi-transparente pour laisser entrevoir les nuages) -->
+  <polygon class="plat-front" points="-40,670 770,670 770,780 -40,780" fill="#8AB4F0" fill-opacity="0.6" stroke="#6D9EEB" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Textes Platform Team -->
+  <text class="plat-label" x="-10" y="725" font-size="11" font-weight="bold" fill="#0E2356">Platform</text>
+  <g class="plat-slogan">
+    <text x="-10" y="740" font-size="12" font-weight="bold" font-style="italic" fill="#0E2356">Garantit <tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">coh&#233;rence</tspan>,</text>
+    <text x="-10" y="755" font-size="12" font-weight="bold" font-style="italic" fill="#0E2356"><tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">fiabilit&#233;</tspan> et <tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">confiance</tspan></text>
+  </g>
+
+  <!-- Faces avant (hubs) des ROULEAUX — par-dessus les courroies -->
+  <g class="roller-left">
+    <circle cx="280" cy="645" r="25" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+    <circle cx="280" cy="645" r="18" fill="none" stroke="#6D9EEB" stroke-width="1.5"/>
+    <circle cx="280" cy="645" r="5" fill="#4A7FCC" stroke="#3A6AB5" stroke-width="1.5"/>
+  </g>
+  <g class="roller-right">
+    <circle cx="420" cy="645" r="25" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+    <circle cx="420" cy="645" r="18" fill="none" stroke="#6D9EEB" stroke-width="1.5"/>
+    <circle cx="420" cy="645" r="5" fill="#4A7FCC" stroke="#3A6AB5" stroke-width="1.5"/>
+  </g>
+
+  <!-- X-as-a-Service + lien API/MCP/A2A (Agir → capacit&#233; plateforme) -->
+  <g class="xaas">
+    <line x1="380" y1="592" x2="352" y2="652" stroke="#6D9EEB" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="376" y="605" text-anchor="middle" font-size="7" fill="#586586" font-style="italic">API</text>
+    <text x="368" y="621" text-anchor="middle" font-size="7" fill="#586586" font-style="italic">MCP</text>
+    <text x="360" y="637" text-anchor="middle" font-size="7" fill="#586586" font-style="italic">A2A</text>
+    <rect x="305" y="652" width="90" height="18" rx="4" fill="#FFFFFF" fill-opacity="0.9" stroke="#6D9EEB" stroke-width="1"/>
+    <text x="350" y="665" text-anchor="middle" font-size="8" font-style="italic" fill="#6D9EEB">X-as-a-Service</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- CONNEXIONS                                                       -->
+  <!-- ================================================================ -->
+
+  <!-- Expression de l'intention &#8594; Capter l'intention -->
+  <line class="conn-expression-capter" x1="460" y1="245" x2="460" y2="276" stroke="#0E2356" stroke-width="2" marker-end="url(#aDark)"/>
+
+  <!-- Observer &#8594; R&#233;sultat SA (retour) -->
+  <g class="arrow-observer-resultat">
+    <path d="M610,418 Q640,270 555,155" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
+    <text x="605" y="390" text-anchor="middle" font-size="8" fill="#34A853" font-weight="bold">condition de</text>
+    <text x="605" y="402" text-anchor="middle" font-size="8" fill="#34A853" font-weight="bold">terminaison &#10003;</text>
+  </g>
+
+  <!-- Enabling &#8594; Capter l'intention (contexte technique) -->
+  <g class="arrow-ctx-technique">
+    <path d="M205,170 Q300,220 403,298" fill="none" stroke="#D09CB7" stroke-width="2" marker-end="url(#aPurple)"/>
+    <text x="220" y="195" text-anchor="middle" font-size="7" fill="#D09CB7" font-weight="bold">contexte</text>
+    <text x="220" y="204" text-anchor="middle" font-size="7" fill="#D09CB7" font-weight="bold">technique</text>
+  </g>
+
+  <!-- Enabling &#8594; Syst&#232;me agentique (param&#232;tre) -->
+  <g class="arrow-parametre">
+    <line x1="205" y1="370" x2="330" y2="370" stroke="#D09CB7" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#aPurple)"/>
+    <text x="250" y="363" text-anchor="middle" font-size="8" fill="#D09CB7" font-weight="bold">&#9881; param&#232;tre</text>
+    <text x="250" y="383" text-anchor="middle" font-size="7" fill="#586586">instructions, skills, ctx</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- CHEMINS DE D&#201;PLACEMENT (invisibles) + POINTS ANIM&#201;S              -->
+  <!-- ================================================================ -->
+  <!-- P1 : capter → planifier → agir -->
+  <path id="mp-p1" d="M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574" fill="none" stroke="none"/>
+  <!-- P2 : agir → observer → (auto-correctif) → planifier → agir → observer -->
+  <path id="mp-p2" d="M 420,574 A 140,140 0 0 0 600,440 L 550,460 Q 460,540 380,440 Q 340,448 322,462 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440" fill="none" stroke="none"/>
+  <!-- P3 : observer → capter → planifier → agir -->
+  <path id="mp-p3" d="M 600,440 A 140,140 0 0 0 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574" fill="none" stroke="none"/>
+  <!-- P4 : observer → r&#233;sultat (le long de la fl&#232;che verte) -->
+  <path id="mp-p4" d="M 600,440 L 610,418 Q 640,270 555,155" fill="none" stroke="none"/>
+  <!-- P6 : agir → X-as-a-Service → chaque nuage -->
+  <path id="mp-p6a" d="M 380,592 L 352,652 L 350,670 Q 320,708 200,748" fill="none" stroke="none"/>
+  <path id="mp-p6b" d="M 380,592 L 352,652 L 350,670 Q 420,700 420,733" fill="none" stroke="none"/>
+  <path id="mp-p6c" d="M 380,592 L 352,652 L 350,670 Q 540,690 650,718" fill="none" stroke="none"/>
+  <!-- P7 : probl&#233;matique → conception → specs → expression -->
+  <path id="mp-p7" d="M 225,18 Q 310,20 393,45 L 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225" fill="none" stroke="none"/>
+  <!-- P8 : parcours complet jusqu'au r&#233;sultat -->
+  <path id="mp-p8" d="M 225,18 Q 310,20 393,45 L 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225 L 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 640,270 555,155" fill="none" stroke="none"/>
+  <!-- P10 : enabling → syst&#232;me agentique (param&#232;tre) -->
+  <path id="mp-p10" d="M 205,370 L 330,370" fill="none" stroke="none"/>
+  <!-- P11 : enabling → capter (contexte technique) -->
+  <path id="mp-p11" d="M 205,170 Q 300,220 403,298" fill="none" stroke="none"/>
+
+  <g mask="url(#dot-mask)">
+  <circle class="dot-p1"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p1"/>
+  <circle class="dot-p2"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p2"/>
+  <circle class="dot-p3"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p3"/>
+  <circle class="dot-p4"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p4"/>
+  <circle class="dot-p6a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6a"/>
+  <circle class="dot-p6b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6b"/>
+  <circle class="dot-p6c" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p6c"/>
+  <circle class="dot-p7"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p7"/>
+  <circle class="dot-p8"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p8"/>
+  <circle class="dot-p10" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p10"/>
+  <circle class="dot-p11" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-p11"/>
+  </g>
+</svg>

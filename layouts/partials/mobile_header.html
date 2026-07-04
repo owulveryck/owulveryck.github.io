@@ -9,7 +9,7 @@
       {{ partial "icons/icon" $icons.menu }}
     </button>
     <div class="mobile-navbar-logo">
-      <a href="{{ " /" | relLangURL }}" class="logo">
+      <a href="{{ "/" | relLangURL }}" class="logo">
         {{- if .Site.Params.logoTitle -}}
         {{ .Site.Params.logoTitle | safeHTML }}
         {{- else -}}

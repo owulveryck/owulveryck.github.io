@@ -173,6 +173,8 @@
     @keyframes tt-hl-p7-conception { 0%,21% {opacity:0;} 22%,46.5% {opacity:1;} 47.5%,100% {opacity:0;} }
     /* Wheel inside the enlarged Design box: visible exactly while the dot is under the box */
     @keyframes tt-wheel-p7 { 0%,21% {opacity:0;} 22%,46.5% {opacity:0.9;} 47.5%,100% {opacity:0;} }
+    /* Wheel inside Design box during phase 8: visible while the dot is under the box */
+    @keyframes tt-wheel-p8 { 0%,8.2% {opacity:0;} 8.9%,15.4% {opacity:0.9;} 16.1%,100% {opacity:0;} }
     @keyframes tt-hl-p7-specs      { 0%,54.2% {opacity:0;} 55.2%,61.4% {opacity:1;} 62.4%,100% {opacity:0;} }
     @keyframes tt-hl-p7-expression { 0%,69.6% {opacity:0;} 70.6%,88% {opacity:1;} 91%,100% {opacity:0;} }
     /* Phase 7.2: (design → specs → expression → development → result) ×2 → delivery */
@@ -192,6 +194,12 @@
     @keyframes tt-hl-p8-agir       { 0%,48.3% {opacity:0;} 49%,53.2% {opacity:1;} 53.9%,100% {opacity:0;} }
     @keyframes tt-hl-p8-obs        { 0%,62.7% {opacity:0;} 63.4%,65.8% {opacity:1;} 66.5%,100% {opacity:0;} }
     @keyframes tt-hl-p8-resultat   { 0%,77.3% {opacity:0;} 78%,86% {opacity:1;} 88%,100% {opacity:0;} }
+    /* Phase 8: Design box + its mask grow to 1.4x only while the dot passes through */
+    @keyframes tt-scale-p8-conception {
+      0%, 8.2%   { transform: scale(1); }
+      8.9%,15.4% { transform: scale(1.4); }
+      16.1%,100% { transform: scale(1); }
+    }
     /* Phase 11: enabling → capture (arrival flash, path ends at box edge) */
     @keyframes tt-hl-p11-capter { 0%,74% {opacity:0;} 76%,90% {opacity:1;} 93%,100% {opacity:0;} }
     /* Moving dashes: fwd = along path direction, rev = reverse (144 = multiple of periods 18 and 24) */
@@ -271,6 +279,14 @@
     /* Phase 7: the wheel inside Design spins while the dot cycles under the box */
     svg[data-active-phase="7"] #spin-conception {
       animation: tt-wheel-p7 7s linear infinite, tt-dash-rev 1.8s linear infinite;
+    }
+    /* Phase 8: enlarge Design box (and its mask) only while the dot is inside */
+    svg[data-active-phase="8"] :is(.box-conception, .mask-conception) {
+      animation: tt-scale-p8-conception 14s linear infinite;
+    }
+    /* Phase 8: wheel inside Design spins during the same window */
+    svg[data-active-phase="8"] #spin-conception {
+      animation: tt-wheel-p8 14s linear infinite, tt-dash-rev 1.8s linear infinite;
     }
     /* Phase 7.2: D=14s, two design/dev rounds then delivery */
     svg[data-active-phase="7.2"] .box-conception .st-hl { animation: tt-hl-p72-conception 14s linear infinite; }

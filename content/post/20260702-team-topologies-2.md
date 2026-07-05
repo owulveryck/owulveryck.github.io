@@ -330,6 +330,22 @@ The crucial point is that no institutional knowledge is lost when the enabling t
 
 {{< /scrollytelling >}}
 
+**Edit (July 5, 2026):** Following several discussions, I realized it would be valuable to provide concrete metrics to measure the success of these teams—specifically, to define the exact "vanishing conditions" for the enabling team.
+
+Here is an example of what these OKRs (Objectives and Key Results) might look like:
+
+| Team | Objective | Key Results |
+| :---- | :---- | :---- |
+| **Stream-aligned** | Maximize the efficiency of product value delivery. | **KR1:** Reduce average lead time from intent to production from 10 to 3 days. **KR2:** Achieve a 70% "first-prompt" success rate (spec executed without human rework). **KR3:** Maintain user satisfaction score ≥ 8/10 (CSAT/NPS). **KR4:** Reduce time spent on manual implementation (vs. design/scoping) to under 20%. |
+| **Enabling** | Optimize stream-aligned team efficiency by removing execution friction and cognitive load. | **KR1:** Reduce agentic loop rework (feature request retries) to zero. **KR2:** Reduce stream-aligned team toil (tasks unrelated to direct feature delivery) to under 10% of their workload. **KR3:** Integrate 8 key guardrails/standards into the platform as self-service capabilities. **KR4:** Reduce average mission lifespan to 12 weeks, with confirmed team dissolution. |
+| **Platform** | Guarantee internal and regulatory compliance by design. | **KR1:** Cover 90% of critical guardrails (security, architecture, design system) via automated validation. **KR2:** Achieve 0 compliance incidents detected in production. **KR3:** Reduce validation gateway false-negative rate to under 2%. **KR4:** Automatically certify 95% of agentic loop outputs (planning, tool execution, observation) with no human intervention. |
+
+**Notes:**
+
+* The metrics used above (10→3 days, 70%, etc.) are purely illustrative examples designed to spark the conversation. They must be calibrated against your own baseline data (current cycle times, incident volumes, etc.).  
+* The fourth Key Result (KR4) for the enabling team is intentionally radical. It makes the abstract concept of "self-dissolution"—which is the ultimate proof of their success—concrete and measurable.
+
+
 ## Conclusion
 
 What we've seen on this journey is a vision for organizing around agentic development, rather than an out-of-the-box implementation plan.

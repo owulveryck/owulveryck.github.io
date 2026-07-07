@@ -3,7 +3,7 @@ title: "The Amplified Agentic Loop: Guardrails as Accelerators"
 slug: "amplified-agentic-loop"
 date: 2026-07-07T10:00:00+02:00
 images: [/assets/amplified-agentic-loop/amplified-agentic-loop.svg]
-draft: true
+draft: false
 summary: "Today, our interaction with coding agents is asymmetric and front-loaded: all the control, context, and governance rules are concentrated in the initial prompt, and the remaining guardrails only kick in after the fact (blocking a commit, rejecting a build). This article flips that paradigm. By injecting governance, architectural context, and safety directly inside each step of the agentic loop (amplified planning, contextual in-tool execution, retroactive observation), the platform turns guardrails from brakes into accelerators. It closes with a working proof of concept: a Platform Planning Gateway that lints agent plans deterministically and issues capability tickets that smart tools verify before acting."
 tags: ["architecture", "agents", "platform", "team-topologies"]
 categories: ["dev"]
@@ -259,7 +259,7 @@ One question the code answers clearly: *how does the agent know what plan to sub
 | Layer | Source | Controls |
 |---|---|---|
 | **When** to call `lock_in_plan` | `CLAUDE.md` | Behavioral rule |
-| **How** to format the plan | MCP tool schema (auto-generated from `plan.Plan`) | JSON structure |
+| **How** to format the plan | MCP tool schema (auto-generated from [`plan.Plan`](https://pkg.go.dev/github.com/owulveryck/poc-agentic-platform@v0.0.1/internal/plan#Plan)) | JSON structure |
 | **What** the plan must contain | `enrich()` invariants | Semantic content |
 
 The schema validates structure deterministically; the linter validates ADR compliance deterministically; the model fills in the business content from the enriched context. None of the layers overlap. The full reasoning behind each design decision is in the repository's [explanation](https://github.com/owulveryck/poc-agentic-platform/blob/main/docs/explanation.md).
@@ -347,5 +347,7 @@ The front-loaded model (a wall of instructions, then hope, then a late gate) tre
 For the platform team deciding where to invest, the heuristic from [See, Act, Correct](/2026/06/04/see-act-correct-three-levers-for-working-with-a-code-agent.html) remains the compass: *will this be more useful, or useless, when the model is twice as intelligent?* Fund the bottom-right cell of the matrix (plan linters of semantic invariants, capability tickets, semantic feedback), tag the rest as scaffolding, and give every piece of scaffolding a sunset date.
 
 What remains open is the third pillar at scale: agentic telemetry, measuring across thousands of loop executions which guardrails amplify and which merely compensate, and feeding that back into the ADR store. That closing of the outer loop deserves its own article.
+
+*One side note for the future: the intent does not have to come from a human. It could arrive from another agent — an enterprise architect agent delegating a sub-task, a platform orchestrator breaking down a larger plan. [That direction](/2026/06/25/from-isolated-agents-to-agentic-mesh-orchestrating-sdlc-with-a2a-and-ap2/) is where agent-to-agent protocols (A2A, AP2) come in; the governed loop described here becomes one node in a governed mesh.*
 
 *Let's make AI work* ~~*on your machine*~~ *in your organization — and let the platform hold the rails.*

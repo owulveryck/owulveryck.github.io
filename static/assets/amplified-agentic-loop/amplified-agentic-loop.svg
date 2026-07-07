@@ -1,0 +1,708 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -30 1000 840" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <rect x="-60" y="-30" width="1000" height="840" fill="#ffffff"/>
+  <defs>
+    <marker id="aCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00D2DD"/></marker>
+    <marker id="aBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6D9EEB"/></marker>
+    <marker id="aDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0E2356"/></marker>
+    <marker id="aGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#34A853"/></marker>
+    <marker id="aRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#EA4335"/></marker>
+    <marker id="aOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#FF8F00"/></marker>
+    <!-- Mask: dots disappear under boxes -->
+    <mask id="dot-mask" maskUnits="userSpaceOnUse" x="-60" y="-30" width="1000" height="840">
+      <rect x="-60" y="-30" width="1000" height="840" fill="#FFFFFF"/>
+      <rect x="395" y="150" width="130" height="44" rx="8" fill="#000000"/>
+      <rect x="620" y="120" width="120" height="44" rx="8" fill="#000000"/>
+      <rect x="600" y="234" width="114" height="30" rx="4" fill="#000000"/>
+      <rect x="405" y="278" width="110" height="44" rx="8" fill="#000000"/>
+      <rect x="260" y="418" width="120" height="44" rx="8" fill="#000000"/>
+      <rect class="mask-act" x="380" y="556" width="80" height="36" rx="8" fill="#000000"/>
+      <rect x="540" y="418" width="120" height="44" rx="8" fill="#000000"/>
+      <rect x="105" y="490" width="170" height="58" rx="8" fill="#000000"/>
+      <rect x="330" y="640" width="180" height="54" rx="8" fill="#000000"/>
+    </mask>
+  </defs>
+
+  <style data-st-keep="true"><![CDATA[
+    /* ============ Visibility by phase (driven by data-active-phase) ============ */
+    .aal-loop, .aal-title, .aal-subtitle-amp, .aal-selfcorrect,
+    .aal-box-capture, .aal-box-plan, .aal-box-act, .aal-box-observe, .aal-correction,
+    .aal-box-intent, .aal-arrow-intent, .aal-frontload, .aal-label-alone, .aal-frontload-small,
+    .aal-arrow-exit, .aal-gate, .aal-bounce, .aal-box-result,
+    .aal-plat, .aal-ch-plan, .aal-ch-act, .aal-ch-obs,
+    .aal-card-plan, .aal-card-act, .aal-card-obs,
+    .aal-error-callout, .aal-arrow-actplan,
+    .aal-intent-ref, .aal-gauge, .aal-feedback {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .st-hl { opacity: 0; }
+    .aal-gate-x { opacity: 0; }
+    circle[data-follow] { opacity: 0; }
+    @supports not (offset-path: path('M0,0 L1,1')) {
+      circle[data-follow] { display: none; }
+    }
+    #aal-spin { opacity: 0; }
+
+    /* Phase 6: Act box grows to reveal the smart tool; its mask rect follows */
+    .aal-box-act, .mask-act {
+      transform-box: fill-box; transform-origin: center;
+      transition: transform 0.5s ease;
+    }
+    /* The gauge needle pivots around its own center (the invisible circle centers the bbox on the pivot) */
+    .aal-needle { transform-box: fill-box; transform-origin: center; }
+    svg[data-active-phase="6"] :is(.aal-box-act, .mask-act) { transform: scale(1.6); }
+
+    /* Phases 1-8: the agentic loop core */
+    svg:is([data-active-phase="1"],[data-active-phase="2"],[data-active-phase="3"],[data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"])
+      :is(.aal-loop,.aal-title,.aal-selfcorrect,.aal-box-capture,.aal-box-plan,.aal-box-act,.aal-box-observe) { opacity: 1; }
+
+    /* Phases 1-6: red correction loop (replaced by the green structured feedback in 7-8) */
+    svg:is([data-active-phase="1"],[data-active-phase="2"],[data-active-phase="3"],[data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"])
+      .aal-correction { opacity: 1; }
+
+    /* Phases 2-8: intent declaration feeding the loop */
+    svg:is([data-active-phase="2"],[data-active-phase="3"],[data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"])
+      :is(.aal-box-intent,.aal-arrow-intent) { opacity: 1; }
+
+    /* Phases 2-3: the front-loaded context stack (status quo) */
+    svg:is([data-active-phase="2"],[data-active-phase="3"])
+      :is(.aal-frontload,.aal-label-alone) { opacity: 1; }
+
+    /* Phases 3 and 8: exit path and Result (blocked in 3, free in 8) */
+    svg:is([data-active-phase="3"],[data-active-phase="8"])
+      :is(.aal-arrow-exit,.aal-box-result) { opacity: 1; }
+
+    /* Phase 3 only: compensating gate + bounce-back */
+    svg[data-active-phase="3"] :is(.aal-gate,.aal-bounce) { opacity: 1; }
+
+    /* Phases 4-8: platform + in-loop channels + shrunken context card + "amplified" subtitle */
+    svg:is([data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"])
+      :is(.aal-plat,.aal-ch-plan,.aal-ch-act,.aal-ch-obs,.aal-frontload-small,.aal-subtitle-amp) { opacity: 1; }
+
+    /* Pillar cards */
+    svg:is([data-active-phase="5"],[data-active-phase="8"]) .aal-card-plan { opacity: 1; }
+    svg:is([data-active-phase="6"],[data-active-phase="8"]) .aal-card-act { opacity: 1; }
+    svg:is([data-active-phase="7"],[data-active-phase="8"]) .aal-card-obs { opacity: 1; }
+
+    /* Phase 6 only: semantic error callout + actionable-error arrow back to Plan */
+    svg[data-active-phase="6"] :is(.aal-error-callout,.aal-arrow-actplan) { opacity: 1; }
+
+    /* Phase 8: green execution-level feedback replaces the red correction
+       (hidden in phase 7, where the intent-gap path returns to Capture instead) */
+    svg[data-active-phase="8"] .aal-feedback { opacity: 1; }
+
+    /* Phase 7 only: intent reference line + gap gauge */
+    svg[data-active-phase="7"] :is(.aal-intent-ref,.aal-gauge) { opacity: 1; }
+
+    /* ---- Dim overrides (must come after the generic opacity:1 rules) ---- */
+    /* Phase 2: once the intent is dumped, the rest of the loop is left in the dark */
+    svg[data-active-phase="2"] :is(.aal-box-plan,.aal-box-act,.aal-box-observe,.aal-correction) { opacity: 0.45; }
+    /* Phase 3: the Result is never truly reached */
+    svg[data-active-phase="3"] .aal-box-result { opacity: 0.35; }
+
+    /* ============ Keyframes ============ */
+    @keyframes aal-dot {
+      0%   { offset-distance: 0%;   opacity: 0; }
+      4%   { opacity: 1; }
+      76%  { opacity: 1; }
+      80%  { offset-distance: 100%; opacity: 0; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    /* Highlight windows: opacity 1 exactly while the dot is inside the box
+       (dot covers the path over 0-80% of the cycle; windows are % of cycle). */
+    /* Phase 1: capture(start) -> plan -> act -> observe -> capture(end), circle 879.6px */
+    @keyframes aal-hl-p1-capture { 0%,3.5% {opacity:1;} 5%,75.5% {opacity:0;} 77%,86% {opacity:1;} 89%,100% {opacity:0;} }
+    @keyframes aal-hl-p1-plan    { 0%,16% {opacity:0;} 17.5%,22.5% {opacity:1;} 24%,100% {opacity:0;} }
+    @keyframes aal-hl-p1-act     { 0%,32.5% {opacity:0;} 34%,39% {opacity:1;} 40.5%,100% {opacity:0;} }
+    @keyframes aal-hl-p1-obs     { 0%,56% {opacity:0;} 57.5%,62.5% {opacity:1;} 64%,100% {opacity:0;} }
+    /* Phase 2: context stack -> intent -> capture (path ~335px) */
+    @keyframes aal-hl-p2-intent  { 0%,43% {opacity:0;} 45%,57% {opacity:1;} 59%,100% {opacity:0;} }
+    @keyframes aal-hl-p2-capture { 0%,73% {opacity:0;} 75%,90% {opacity:1;} 93%,100% {opacity:0;} }
+    /* Phase 3: loop then exit blocked at the gate (path ~854px) */
+    @keyframes aal-hl-p3-capture { 0%,3.5% {opacity:1;} 5%,100% {opacity:0;} }
+    @keyframes aal-hl-p3-plan    { 0%,18.5% {opacity:0;} 20%,23% {opacity:1;} 24.5%,100% {opacity:0;} }
+    @keyframes aal-hl-p3-act     { 0%,35% {opacity:0;} 36.5%,39.5% {opacity:1;} 41%,100% {opacity:0;} }
+    @keyframes aal-hl-p3-obs     { 0%,59.5% {opacity:0;} 61%,64% {opacity:1;} 65.5%,100% {opacity:0;} }
+    @keyframes aal-hl-p3-gate    { 0%,76% {opacity:0;} 78%,95% {opacity:1;} 98%,100% {opacity:0;} }
+    /* Phase 4: the three channels pulse the boxes they empower (staggered via delay) */
+    @keyframes aal-pulse { 0%,100% {opacity:0;} 45%,55% {opacity:1;} }
+    /* Phase 5: two staggered dots platform->Plan (3s cycle, second dot +1.5s) */
+    @keyframes aal-hl-p5-plan { 0%,22% {opacity:0;} 24%,40% {opacity:1;} 42%,70% {opacity:0;} 72%,90% {opacity:1;} 92%,100% {opacity:0;} }
+    /* Phase 6: dot platform->Act (2.5s cycle) */
+    @keyframes aal-hl-p6-act { 0%,70% {opacity:0;} 72%,92% {opacity:1;} 95%,100% {opacity:0;} }
+    /* Phase 7: context reference reaches the gauge (3.5s); intent-gap feedback reaches Capture (3s) */
+    @keyframes aal-hl-p7-obs     { 0%,70% {opacity:0;} 72%,92% {opacity:1;} 95%,100% {opacity:0;} }
+    @keyframes aal-hl-p7-capture { 0%,70% {opacity:0;} 72%,92% {opacity:1;} 95%,100% {opacity:0;} }
+    /* Phase 8: loop then free exit to Result (path ~944px) */
+    @keyframes aal-hl-p8-capture { 0%,3% {opacity:1;} 4.5%,100% {opacity:0;} }
+    @keyframes aal-hl-p8-plan    { 0%,16.5% {opacity:0;} 18%,20.5% {opacity:1;} 22%,100% {opacity:0;} }
+    @keyframes aal-hl-p8-act     { 0%,31.5% {opacity:0;} 33%,36% {opacity:1;} 37.5%,100% {opacity:0;} }
+    @keyframes aal-hl-p8-obs     { 0%,53.5% {opacity:0;} 55%,58% {opacity:1;} 59.5%,100% {opacity:0;} }
+    @keyframes aal-hl-p8-result  { 0%,76% {opacity:0;} 78%,92% {opacity:1;} 95%,100% {opacity:0;} }
+    /* Moving dashes: fwd = along path direction, rev = reverse (144 = multiple of periods 18 and 24) */
+    @keyframes aal-dash-fwd { to { stroke-dashoffset: -144; } }
+    @keyframes aal-dash-rev { to { stroke-dashoffset: 144; } }
+    @keyframes aal-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    /* Phase 7: the gap gauge needle sweeps while measuring */
+    @keyframes aal-needle-sweep {
+      0%, 100% { transform: rotate(-35deg); }
+      50%      { transform: rotate(30deg); }
+    }
+
+    /* ============ Dots by phase ============ */
+    svg[data-active-phase="1"] .aal-dot-p1  { animation: aal-dot 8s linear infinite; }
+    svg[data-active-phase="2"] .aal-dot-p2  { animation: aal-dot 4s linear infinite; }
+    svg[data-active-phase="3"] .aal-dot-p3  { animation: aal-dot 9s linear infinite; }
+    svg[data-active-phase="5"] .aal-dot-p5a { animation: aal-dot 3s linear infinite; }
+    svg[data-active-phase="5"] .aal-dot-p5b { animation: aal-dot 3s linear infinite 1.5s; }
+    svg[data-active-phase="6"] .aal-dot-p6a { animation: aal-dot 2.5s linear infinite; }
+    svg[data-active-phase="6"] .aal-dot-p6b { animation: aal-dot 2.5s linear infinite 1.25s; }
+    svg[data-active-phase="7"] .aal-dot-p7a { animation: aal-dot 3.5s linear infinite; }
+    svg[data-active-phase="7"] .aal-dot-p7b { animation: aal-dot 3s linear infinite; }
+    svg[data-active-phase="8"] .aal-dot-p8  { animation: aal-dot 10s linear infinite; }
+
+    /* ============ Synchronized highlights along the dot path ============ */
+    /* Phase 1: D=8s */
+    svg[data-active-phase="1"] .aal-box-capture .st-hl { animation: aal-hl-p1-capture 8s linear infinite; }
+    svg[data-active-phase="1"] .aal-box-plan .st-hl    { animation: aal-hl-p1-plan 8s linear infinite; }
+    svg[data-active-phase="1"] .aal-box-act .st-hl     { animation: aal-hl-p1-act 8s linear infinite; }
+    svg[data-active-phase="1"] .aal-box-observe .st-hl { animation: aal-hl-p1-obs 8s linear infinite; }
+    /* Phase 2: D=4s */
+    svg[data-active-phase="2"] .aal-box-intent .st-hl  { animation: aal-hl-p2-intent 4s linear infinite; }
+    svg[data-active-phase="2"] .aal-box-capture .st-hl { animation: aal-hl-p2-capture 4s linear infinite; }
+    /* Phase 3: D=9s, gate flashes when the dot slams into it */
+    svg[data-active-phase="3"] .aal-box-capture .st-hl { animation: aal-hl-p3-capture 9s linear infinite; }
+    svg[data-active-phase="3"] .aal-box-plan .st-hl    { animation: aal-hl-p3-plan 9s linear infinite; }
+    svg[data-active-phase="3"] .aal-box-act .st-hl     { animation: aal-hl-p3-act 9s linear infinite; }
+    svg[data-active-phase="3"] .aal-box-observe .st-hl { animation: aal-hl-p3-obs 9s linear infinite; }
+    svg[data-active-phase="3"] .aal-gate .st-hl        { animation: aal-hl-p3-gate 9s linear infinite; }
+    svg[data-active-phase="3"] .aal-gate-x             { animation: aal-hl-p3-gate 9s linear infinite; }
+    /* Phase 4: staggered pulse of the three empowered boxes */
+    svg[data-active-phase="4"] .aal-box-plan .st-hl    { animation: aal-pulse 2.4s ease-in-out infinite; }
+    svg[data-active-phase="4"] .aal-box-act .st-hl     { animation: aal-pulse 2.4s ease-in-out infinite 0.4s; }
+    svg[data-active-phase="4"] .aal-box-observe .st-hl { animation: aal-pulse 2.4s ease-in-out infinite 0.8s; }
+    /* Phase 5: D=3s */
+    svg[data-active-phase="5"] .aal-box-plan .st-hl    { animation: aal-hl-p5-plan 3s linear infinite; }
+    /* Phase 6: D=2.5s + the semantic error callout blinks */
+    svg[data-active-phase="6"] .aal-box-act .st-hl     { animation: aal-hl-p6-act 2.5s linear infinite; }
+    svg[data-active-phase="6"] .aal-error-callout      { animation: aal-blink 1.6s ease-in-out infinite; }
+    /* Phase 7: the intent-gap feedback arrives at Capture and refills the context */
+    svg[data-active-phase="7"] .aal-box-observe .st-hl { animation: aal-hl-p7-obs 3.5s linear infinite; }
+    svg[data-active-phase="7"] .aal-box-capture .st-hl { animation: aal-hl-p7-capture 3s linear infinite; }
+    svg[data-active-phase="7"] .aal-context .st-hl     { animation: aal-hl-p7-capture 3s linear infinite; }
+    svg[data-active-phase="7"] .aal-needle             { animation: aal-needle-sweep 3s ease-in-out infinite; }
+    /* Phase 8: D=10s */
+    svg[data-active-phase="8"] .aal-box-capture .st-hl { animation: aal-hl-p8-capture 10s linear infinite; }
+    svg[data-active-phase="8"] .aal-box-plan .st-hl    { animation: aal-hl-p8-plan 10s linear infinite; }
+    svg[data-active-phase="8"] .aal-box-act .st-hl     { animation: aal-hl-p8-act 10s linear infinite; }
+    svg[data-active-phase="8"] .aal-box-observe .st-hl { animation: aal-hl-p8-obs 10s linear infinite; }
+    svg[data-active-phase="8"] .aal-box-result .st-hl  { animation: aal-hl-p8-result 10s linear infinite; }
+
+    /* ============ Channels & spin ============ */
+    /* Phases 4-8: governance flows upward from the platform into the loop */
+    svg:is([data-active-phase="4"],[data-active-phase="5"],[data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"])
+      .aal-ch-line { animation: aal-dash-fwd 2.8s linear infinite; }
+    /* Phase 3: the rejected work bounces back down */
+    svg[data-active-phase="3"] .aal-bounce-line { animation: aal-dash-fwd 1.2s linear infinite; }
+    /* Phase 8: the amplified loop spins */
+    svg[data-active-phase="8"] #aal-spin { opacity: 0.9; animation: aal-dash-rev 3.2s linear infinite; }
+
+    /* ================= Phases 9-13 (appended — rules above untouched) ================= */
+    /* New groups default hidden */
+    .aal-matrix, .aal-adr, .aal-enrich, .aal-linter, .aal-plan2linter, .aal-viol,
+    .aal-pass, .aal-ticket, .aal-tollgate, .aal-refusal, .aal-check-ok,
+    .aal-tag-amp, .aal-tag-comp, .aal-debt { opacity: 0; transition: opacity 0.5s ease; }
+
+    /* Phase 9: the durability matrix alone on a blank canvas */
+    svg[data-active-phase="9"] .aal-matrix { opacity: 1; }
+    svg[data-active-phase="9"] .aal-cell-pa .st-hl { animation: aal-blink 2.2s ease-in-out infinite; }
+
+    /* Phases 10-13: loop core + platform baseline (post-pivot era: green feedback, no red correction) */
+    svg:is([data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"])
+      :is(.aal-loop,.aal-title,.aal-selfcorrect,.aal-box-capture,.aal-box-plan,.aal-box-act,.aal-box-observe,
+          .aal-box-intent,.aal-arrow-intent,.aal-frontload-small,.aal-plat,
+          .aal-ch-plan,.aal-ch-act,.aal-ch-obs,.aal-subtitle-amp,.aal-feedback) { opacity: 1; }
+    svg:is([data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"])
+      .aal-ch-line { animation: aal-dash-fwd 2.8s linear infinite; }
+
+    /* Phase 10: the Platform Planning Gateway (card-plan hidden — the Linter uses its region) */
+    svg[data-active-phase="10"]
+      :is(.aal-adr,.aal-enrich,.aal-linter,.aal-plan2linter,.aal-viol,.aal-pass,.aal-ticket) { opacity: 1; }
+    svg[data-active-phase="10"] .aal-dot-p10a { animation: aal-dot 3s linear infinite; }
+    svg[data-active-phase="10"] .aal-dot-p10b { animation: aal-dot 4s linear infinite 1s; }
+    svg[data-active-phase="10"] .aal-box-plan .st-hl { animation: aal-hl-p10-plan 3s linear infinite; }
+    svg[data-active-phase="10"] .aal-linter .st-hl   { animation: aal-hl-p10-linter 4s linear infinite 1s; }
+    svg[data-active-phase="10"] .aal-ticket .st-hl   { animation: aal-hl-p10-ticket 4s linear infinite 1s; }
+    svg[data-active-phase="10"] .aal-viol            { animation: aal-blink 1.6s ease-in-out infinite; opacity: 1; }
+    svg[data-active-phase="10"] .aal-viol-line       { animation: aal-dash-rev 1.2s linear infinite; }
+
+    /* Phase 11: Smart Tools verify the ticket at the door; Act grows like in phase 6 */
+    svg[data-active-phase="11"] :is(.aal-box-act,.mask-act) { transform: scale(1.6); }
+    /* The ticket chip slides left so the tollgate has room at the Act entry */
+    .aal-ticket { transition: opacity 0.5s ease, transform 0.5s ease; }
+    svg[data-active-phase="11"] .aal-ticket { transform: translateX(-85px); }
+    svg[data-active-phase="11"] :is(.aal-card-act,.aal-ticket,.aal-tollgate,.aal-refusal) { opacity: 1; }
+    svg[data-active-phase="11"] .aal-dot-p11 { animation: aal-dot 2.5s linear infinite; }
+    svg[data-active-phase="11"] .aal-check-ok { animation: aal-hl-p11-check 2.5s linear infinite; }
+    svg[data-active-phase="11"] .aal-box-act .st-hl { animation: aal-hl-p11-act 2.5s linear infinite; }
+    svg[data-active-phase="11"] .aal-refusal { animation: aal-blink 1.6s ease-in-out infinite; opacity: 1; }
+    svg[data-active-phase="11"] .aal-refusal-line { animation: aal-dash-rev 1.2s linear infinite; }
+
+    /* Phase 12: transition-debt governance */
+    svg[data-active-phase="12"] :is(.aal-card-plan,.aal-card-act,.aal-card-obs,
+      .aal-ticket,.aal-tag-amp,.aal-tag-comp,.aal-debt) { opacity: 1; }
+    svg[data-active-phase="12"] .aal-tag-comp { animation: aal-blink 2s ease-in-out infinite; }
+    svg[data-active-phase="12"] .aal-debt-line { stroke-dasharray: 200; animation: aal-debt-draw 3s ease-out infinite; }
+
+    /* Phase 13: finale = the phase-8 picture + ticket + nature tags (rules duplicated, phase-8 lists untouched) */
+    svg[data-active-phase="13"]
+      :is(.aal-arrow-exit,.aal-box-result,.aal-card-plan,.aal-card-act,.aal-card-obs,
+          .aal-ticket,.aal-tag-amp,.aal-tag-comp) { opacity: 1; }
+    svg[data-active-phase="13"] .aal-dot-p8 { animation: aal-dot 10s linear infinite; }
+    svg[data-active-phase="13"] .aal-box-capture .st-hl { animation: aal-hl-p8-capture 10s linear infinite; }
+    svg[data-active-phase="13"] .aal-box-plan .st-hl    { animation: aal-hl-p8-plan 10s linear infinite; }
+    svg[data-active-phase="13"] .aal-box-act .st-hl     { animation: aal-hl-p8-act 10s linear infinite; }
+    svg[data-active-phase="13"] .aal-box-observe .st-hl { animation: aal-hl-p8-obs 10s linear infinite; }
+    svg[data-active-phase="13"] .aal-box-result .st-hl  { animation: aal-hl-p8-result 10s linear infinite; }
+    svg[data-active-phase="13"] #aal-spin { opacity: 0.9; animation: aal-dash-rev 3.2s linear infinite; }
+
+    /* Keyframes for phases 10-12 */
+    @keyframes aal-hl-p10-plan   { 0%,70% {opacity:0;} 72%,92% {opacity:1;} 95%,100% {opacity:0;} }
+    @keyframes aal-hl-p10-linter { 0%,70% {opacity:0;} 72%,92% {opacity:1;} 95%,100% {opacity:0;} }
+    @keyframes aal-hl-p10-ticket { 0%,80% {opacity:0;} 82%,96% {opacity:1;} 98%,100% {opacity:0;} }
+    @keyframes aal-hl-p11-check  { 0%,2%  {opacity:0;} 4%,20%  {opacity:1;} 24%,100% {opacity:0;} }
+    @keyframes aal-hl-p11-act    { 0%,34% {opacity:0;} 36%,60% {opacity:1;} 62%,100% {opacity:0;} }
+    @keyframes aal-debt-draw     { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+
+    /* Phase 3 annotation: the late-gate verdict escapes the loop's observation horizon */
+    .aal-blind-note { opacity: 0; transition: opacity 0.5s ease; }
+    svg[data-active-phase="3"] .aal-blind-note { opacity: 1; }
+
+    /* Phase 7: the context chip attached to Capture (the context is born there) */
+    .aal-context { opacity: 0; transition: opacity 0.5s ease; }
+    svg[data-active-phase="7"] .aal-context { opacity: 1; }
+
+    /* Phase 2: the notebook where the initial context is built (same slot as the
+       phase-7 context chip — status quo version: filled once, up-front) */
+    .aal-notebook { opacity: 0; transition: opacity 0.5s ease; }
+    svg[data-active-phase="2"] .aal-notebook { opacity: 1; }
+
+    /* Phases 7/8/13: the intent-gap feedback returns to Capture along the loop itself.
+       Labels in phase 7 only (in 8/13 the arc stays discreet, clear of the exit arrow). */
+    .aal-refill, .aal-refill-note { opacity: 0; transition: opacity 0.5s ease; }
+    svg:is([data-active-phase="7"],[data-active-phase="8"],[data-active-phase="13"]) .aal-refill { opacity: 1; }
+    svg:is([data-active-phase="7"],[data-active-phase="8"],[data-active-phase="13"]) .aal-refill-arc { animation: aal-dash-fwd 2.8s linear infinite; }
+    svg[data-active-phase="7"] .aal-refill-note { opacity: 1; }
+  ]]></style>
+
+  <!-- ================================================================ -->
+  <!-- DURABILITY MATRIX (phase 9 — alone on a blank canvas)            -->
+  <!-- ================================================================ -->
+  <g class="aal-matrix">
+    <!-- Purpose: this is a decision grid for platform investments -->
+    <text x="440" y="15" text-anchor="middle" font-size="24" font-weight="bold" fill="#0E2356">Where should the platform invest?</text>
+    <!-- Entry point: the 2x test routes every artifact into a column -->
+    <text x="440" y="48" text-anchor="middle" font-size="14" font-style="italic" fill="#586586">For each rule or tool you build, ask: will it gain value when the model is twice as smart?</text>
+    <path d="M 330,62 Q 280,80 248,100" fill="none" stroke="#EA4335" stroke-width="2.5" marker-end="url(#aRed)"/>
+    <text x="255" y="78" text-anchor="middle" font-size="16" font-weight="bold" fill="#EA4335">NO</text>
+    <path d="M 550,62 Q 600,80 672,100" fill="none" stroke="#34A853" stroke-width="2.5" marker-end="url(#aGreen)"/>
+    <text x="628" y="78" text-anchor="middle" font-size="16" font-weight="bold" fill="#34A853">YES</text>
+    <!-- Column headers -->
+    <text x="240" y="128" text-anchor="middle" font-size="20" font-weight="bold" fill="#EA4335">COMPENSATORY</text>
+    <text x="240" y="146" text-anchor="middle" font-size="13" fill="#EA4335">scaffolding, built to be removed</text>
+    <text x="680" y="128" text-anchor="middle" font-size="20" font-weight="bold" fill="#34A853">AMPLIFIER</text>
+    <text x="680" y="146" text-anchor="middle" font-size="13" fill="#34A853">durable asset, it compounds</text>
+    <!-- Row labels (rotated) -->
+    <text x="-25" y="260" text-anchor="middle" font-size="14" font-weight="bold" fill="#586586" transform="rotate(-90 -25 260)">DECLARATIVE (text)</text>
+    <text x="-25" y="500" text-anchor="middle" font-size="14" font-weight="bold" fill="#586586" transform="rotate(-90 -25 500)">PROGRAMMATIC (code)</text>
+    <!-- Cell: Declarative x Compensatory -->
+    <rect x="30" y="160" width="420" height="200" rx="12" fill="#FDE8E8" stroke="#EA4335" stroke-width="2"/>
+    <text x="240" y="245" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">A 200-line prompt listing</text>
+    <text x="240" y="268" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">forbidden files</text>
+    <text x="240" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#EA4335">fights the model, rots as it improves</text>
+    <!-- Cell: Declarative x Amplifier -->
+    <rect x="470" y="160" width="420" height="200" rx="12" fill="#E6F4EA" stroke="#34A853" stroke-width="2"/>
+    <text x="680" y="245" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">ADRs: architectural invariants</text>
+    <text x="680" y="268" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">injected at plan time</text>
+    <text x="680" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#34A853">context no model can guess</text>
+    <!-- Cell: Programmatic x Compensatory -->
+    <rect x="30" y="400" width="420" height="200" rx="12" fill="#FDE8E8" stroke="#EA4335" stroke-width="2"/>
+    <text x="240" y="485" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">code that rewrites cryptic tool errors</text>
+    <text x="240" y="508" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">so the model can read them</text>
+    <text x="240" y="540" text-anchor="middle" font-size="14" font-style="italic" fill="#EA4335">deletable once models read raw errors</text>
+    <!-- Cell: Programmatic x Amplifier (the one to invest in) -->
+    <g class="aal-cell-pa">
+      <rect x="470" y="400" width="420" height="200" rx="12" fill="#E6F4EA" stroke="#34A853" stroke-width="2"/>
+      <text x="680" y="485" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">plan linter &#183; semantic feedback</text>
+      <text x="680" y="508" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">capability ticket</text>
+      <text x="680" y="540" text-anchor="middle" font-size="14" font-style="italic" fill="#34A853">gains value as models get smarter</text>
+      <rect class="st-hl" x="464" y="394" width="432" height="212" rx="15" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+    </g>
+    <!-- Verdicts: what to do with each column -->
+    <text x="240" y="648" text-anchor="middle" font-size="14" font-weight="bold" fill="#EA4335">&#8594; tag it &#183; set a sunset date &#183; plan its removal</text>
+    <text x="680" y="648" text-anchor="middle" font-size="14" font-weight="bold" fill="#34A853">&#8594; invest here: it compounds</text>
+    <!-- Footnote -->
+    <text x="440" y="700" text-anchor="middle" font-size="13" font-style="italic" fill="#586586">A gate can be an amplifier: what matters is what it checks, not that it blocks.</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- FRONT-LOADED CONTEXT STACK (status quo, phases 2-3)              -->
+  <!-- ================================================================ -->
+  <g class="aal-frontload">
+    <rect x="65" y="58" width="170" height="34" rx="8" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="150" y="79" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128220; Governance rules</text>
+    <rect x="75" y="100" width="170" height="34" rx="8" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="160" y="121" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#127963; Architecture context</text>
+    <rect x="85" y="142" width="170" height="34" rx="8" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="170" y="163" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128274; Security policies</text>
+    <text x="160" y="194" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">everything injected up-front</text>
+    <path d="M250,117 Q320,135 391,162" fill="none" stroke="#0E2356" stroke-width="4" marker-end="url(#aDark)"/>
+  </g>
+  <g class="aal-label-alone">
+    <text x="350" y="238" text-anchor="end" font-size="10" font-style="italic" fill="#586586">the agent is then on its own &#8212;</text>
+    <text x="350" y="250" text-anchor="end" font-size="10" font-style="italic" fill="#586586">control only at the very end</text>
+  </g>
+
+  <!-- Phase 2: the notebook where the initial context is built (at Capture, once, up-front) -->
+  <g class="aal-notebook">
+    <line x1="515" y1="294" x2="530" y2="292" stroke="#586586" stroke-width="1.5"/>
+    <rect x="532" y="268" width="116" height="48" rx="6" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="590" y="283" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128211; Initial context</text>
+    <text x="590" y="296" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">built here, at Capture,</text>
+    <text x="590" y="308" text-anchor="middle" font-size="9" fill="#586586">from the up-front dump</text>
+  </g>
+
+  <!-- Shrunken context card (phases 4-8): the platform carries the rest -->
+  <g class="aal-frontload-small">
+    <rect x="140" y="120" width="150" height="32" rx="8" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="215" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128206; Initial context</text>
+    <text x="215" y="145" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">light &#8212; intent only</text>
+    <path d="M292,140 Q340,152 391,164" fill="none" stroke="#586586" stroke-width="1.5" marker-end="url(#aDark)"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- INTENT DECLARATION (phases 2-8)                                  -->
+  <!-- ================================================================ -->
+  <g class="aal-box-intent">
+    <rect x="395" y="150" width="130" height="44" rx="8" fill="#FFFFFF" stroke="#0E2356" stroke-width="2.5"/>
+    <text x="460" y="168" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#127775; Intent declaration</text>
+    <text x="460" y="182" text-anchor="middle" font-size="10" fill="#586586">what to build</text>
+    <rect class="st-hl" x="392" y="147" width="136" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+  <line class="aal-arrow-intent" x1="460" y1="194" x2="460" y2="276" stroke="#0E2356" stroke-width="2" marker-end="url(#aDark)"/>
+
+  <!-- ================================================================ -->
+  <!-- RESULT + COMPENSATING GATE (phases 3, 8)                         -->
+  <!-- ================================================================ -->
+  <g class="aal-box-result">
+    <rect x="620" y="120" width="120" height="44" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="680" y="146" text-anchor="middle" font-size="13" font-weight="bold" fill="#34A853">&#9989; Result</text>
+    <rect class="st-hl" x="617" y="117" width="126" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+  <path class="aal-arrow-exit" d="M610,418 Q660,300 660,175" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
+  <g class="aal-gate">
+    <rect x="600" y="234" width="114" height="30" rx="4" fill="#FDE8E8" stroke="#EA4335" stroke-width="2"/>
+    <text x="657" y="246" text-anchor="middle" font-size="11" font-weight="bold" fill="#EA4335">&#128679; Late gate</text>
+    <text x="657" y="259" text-anchor="middle" font-size="9" fill="#EA4335">CI broken &#8594; rejected</text>
+    <rect class="st-hl" x="597" y="231" width="120" height="36" rx="7" fill="none" stroke="#EA4335" stroke-width="3.5"/>
+  </g>
+  <text class="aal-gate-x" x="682" y="280" text-anchor="middle" font-size="14">&#10060;</text>
+  <g class="aal-bounce">
+    <path class="aal-bounce-line" d="M598,250 Q535,226 512,284" fill="none" stroke="#EA4335" stroke-width="2" stroke-dasharray="8,5" marker-end="url(#aRed)"/>
+    <text x="568" y="216" text-anchor="middle" font-size="10" font-style="italic" fill="#EA4335">rework &#8594; frustration</text>
+  </g>
+  <!-- Phase 3: why the red self-correction loop cannot catch this rejection -->
+  <g class="aal-blind-note">
+    <text x="800" y="320" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">the loop corrects only</text>
+    <text x="800" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">what Observe can see &#8212;</text>
+    <text x="800" y="344" text-anchor="middle" font-size="10" font-style="italic" fill="#EA4335">this verdict lands after exit</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PLATFORM — 3D isometric (phases 4-8)                             -->
+  <!-- ================================================================ -->
+  <g class="aal-plat">
+    <polygon points="-40,670 770,670 910,580 100,580" fill="#B7CDF1" fill-opacity="0.55" stroke="#6D9EEB" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="770,670 910,580 910,690 770,780" fill="#6D9EEB" stroke="#4A7FCC" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="-40,670 770,670 770,780 -40,780" fill="#8AB4F0" fill-opacity="0.6" stroke="#6D9EEB" stroke-width="2" stroke-linejoin="round"/>
+    <text x="-10" y="725" font-size="13" font-weight="bold" fill="#0E2356">Platform</text>
+    <text x="-10" y="742" font-size="14" font-weight="bold" font-style="italic" fill="#0E2356">Serves <tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">governance</tspan> as a <tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">product</tspan></text>
+    <text x="-10" y="757" font-size="14" font-weight="bold" font-style="italic" fill="#0E2356">The <tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">guardrail</tspan> is an <tspan style="paint-order:stroke;stroke:#6D9EEB;stroke-width:8px;stroke-linejoin:round;">accelerator</tspan></text>
+  </g>
+
+  <!-- In-loop channels: governance flows INTO each step (phases 4-8) -->
+  <g class="aal-ch-plan">
+    <line class="aal-ch-line" x1="300" y1="642" x2="314" y2="470" stroke="#4A7FCC" stroke-width="2.5" stroke-dasharray="10 8"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#4A7FCC" transform="translate(314, 470) rotate(-85)"/>
+  </g>
+  <g class="aal-ch-act">
+    <line class="aal-ch-line" x1="420" y1="645" x2="420" y2="600" stroke="#4A7FCC" stroke-width="2.5" stroke-dasharray="10 8"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#4A7FCC" transform="translate(420, 600) rotate(-90)"/>
+  </g>
+  <g class="aal-ch-obs">
+    <line class="aal-ch-line" x1="600" y1="642" x2="600" y2="470" stroke="#4A7FCC" stroke-width="2.5" stroke-dasharray="10 8"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#4A7FCC" transform="translate(600, 470) rotate(-90)"/>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PILLAR CARDS (phases 5 / 6 / 7, all in 8)                        -->
+  <!-- ================================================================ -->
+  <g class="aal-card-plan">
+    <rect x="120" y="498" width="170" height="54" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="205" y="514" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128208; Golden Paths</text>
+    <text x="205" y="528" text-anchor="middle" font-size="10" fill="#586586">architecture patterns, critical</text>
+    <text x="205" y="540" text-anchor="middle" font-size="10" fill="#586586">dependencies, valid options</text>
+  </g>
+  <g class="aal-card-act">
+    <rect x="330" y="640" width="180" height="54" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="420" y="656" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128295; Smart Tools</text>
+    <text x="420" y="670" text-anchor="middle" font-size="10" fill="#586586">encapsulated business rules,</text>
+    <text x="420" y="682" text-anchor="middle" font-size="10" fill="#586586">real-time state validation</text>
+  </g>
+  <g class="aal-card-obs">
+    <rect x="700" y="430" width="170" height="54" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="785" y="446" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#127919; Intent Gap</text>
+    <text x="785" y="460" text-anchor="middle" font-size="10" fill="#586586">measures result vs. intent,</text>
+    <text x="785" y="472" text-anchor="middle" font-size="10" fill="#586586">structured feedback</text>
+  </g>
+
+  <!-- Phase 6: semantic error callout + actionable error routed back to Plan -->
+  <g class="aal-error-callout">
+    <rect x="505" y="606" width="200" height="34" rx="6" fill="#FFF8E1" stroke="#FF8F00" stroke-width="1.5"/>
+    <text x="605" y="620" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#9888; semantic error: 'API v1 deprecated</text>
+    <text x="605" y="632" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#8594; use the v2 client'</text>
+  </g>
+  <g class="aal-arrow-actplan">
+    <path d="M378,552 Q330,515 318,466" fill="none" stroke="#FF8F00" stroke-width="2" marker-end="url(#aOrange)"/>
+    <text x="270" y="495" text-anchor="end" font-size="10" font-style="italic" fill="#FF8F00">actionable error</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- PLATFORM PLANNING GATEWAY (phase 10)                             -->
+  <!-- ================================================================ -->
+  <g class="aal-adr">
+    <path d="M 105,332 L 105,382 A 45,11 0 0 0 195,382 L 195,332" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <ellipse cx="150" cy="332" rx="45" ry="11" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="150" y="354" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128451; ADR store</text>
+    <text x="150" y="366" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">architectural</text>
+    <text x="150" y="377" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">invariants</text>
+  </g>
+  <g class="aal-enrich">
+    <path d="M196,352 Q240,385 278,414" fill="none" stroke="#00D2DD" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#aCyan)"/>
+    <text x="205" y="400" text-anchor="middle" font-size="10" font-style="italic" fill="#00A5B0">enrich()</text>
+  </g>
+  <g class="aal-plan2linter">
+    <path d="M285,462 Q245,472 208,488" fill="none" stroke="#0E2356" stroke-width="2" marker-end="url(#aDark)"/>
+    <text x="265" y="484" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">structured plan</text>
+  </g>
+  <g class="aal-linter">
+    <rect x="105" y="490" width="170" height="58" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="190" y="507" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128269; Plan Linter</text>
+    <text x="190" y="521" text-anchor="middle" font-size="10" fill="#586586">lock_in_plan(): checks invariants</text>
+    <text x="190" y="533" text-anchor="middle" font-size="10" fill="#586586">deterministic &#8212; not an LLM</text>
+    <rect class="st-hl" x="102" y="487" width="176" height="64" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+  <g class="aal-viol">
+    <path class="aal-viol-line" d="M140,488 Q148,442 252,436" fill="none" stroke="#EA4335" stroke-width="2" stroke-dasharray="8,5" marker-end="url(#aRed)"/>
+    <text x="128" y="425" font-size="10" font-style="italic" fill="#EA4335">&#10007; semantic violations</text>
+    <text x="128" y="437" font-size="10" font-style="italic" fill="#EA4335">&#8594; self-correct (&#8804; 2 iterations)</text>
+  </g>
+  <g class="aal-pass">
+    <path d="M222,548 Q245,553 262,560" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
+    <text x="240" y="543" text-anchor="middle" font-size="10" font-style="italic" fill="#34A853">pass &#10003;</text>
+  </g>
+  <g class="aal-ticket">
+    <rect x="230" y="560" width="132" height="32" rx="16" fill="#FFFFFF" stroke="#FF8F00" stroke-width="2"/>
+    <text x="296" y="573" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#127915; capability ticket</text>
+    <text x="296" y="584" text-anchor="middle" font-size="9" fill="#586586">JWT: plan_hash + scope</text>
+    <rect class="st-hl" x="227" y="557" width="138" height="38" rx="19" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Phase 11: ticket verification at the Smart Tool entry -->
+  <g class="aal-tollgate">
+    <rect x="296" y="556" width="52" height="34" rx="6" fill="#FFFFFF" stroke="#FF8F00" stroke-width="1.5"/>
+    <text x="322" y="570" text-anchor="middle" font-size="11" fill="#0E2356">&#127915; ?</text>
+    <text x="322" y="582" text-anchor="middle" font-size="9" fill="#586586">verify</text>
+  </g>
+  <text class="aal-check-ok" x="352" y="566" text-anchor="middle" font-size="14" font-weight="bold" fill="#34A853">&#10003;</text>
+  <g class="aal-refusal">
+    <path class="aal-refusal-line" d="M330,644 Q350,624 364,608" fill="none" stroke="#EA4335" stroke-width="2" stroke-dasharray="8,5" marker-end="url(#aRed)"/>
+    <rect x="505" y="606" width="200" height="34" rx="6" fill="#FDE8E8" stroke="#EA4335" stroke-width="1.5"/>
+    <text x="605" y="620" text-anchor="middle" font-size="10" font-weight="bold" fill="#EA4335">&#10007; OUT_OF_PLAN_SCOPE</text>
+    <text x="605" y="632" text-anchor="middle" font-size="10" fill="#EA4335">deterministic refusal &#8212; no damage done</text>
+  </g>
+
+  <!-- Phase 12: transition-debt governance -->
+  <g class="aal-tag-amp">
+    <rect x="120" y="558" width="105" height="20" rx="10" fill="#E6F4EA" stroke="#34A853" stroke-width="1"/>
+    <text x="172" y="571" text-anchor="middle" font-size="10" font-weight="bold" fill="#34A853">amplifier &#183; keep</text>
+  </g>
+  <g class="aal-tag-comp">
+    <rect x="330" y="700" width="190" height="20" rx="10" fill="#FDE8E8" stroke="#EA4335" stroke-width="1"/>
+    <text x="425" y="713" text-anchor="middle" font-size="10" font-weight="bold" fill="#EA4335">compensatory &#183; sunset_condition set</text>
+  </g>
+  <g class="aal-debt">
+    <rect x="690" y="150" width="190" height="130" rx="8" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="785" y="170" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#9878; Transition debt</text>
+    <path class="aal-debt-line" d="M710,195 C750,205 780,228 860,248" fill="none" stroke="#EA4335" stroke-width="2.5"/>
+    <line x1="710" y1="252" x2="860" y2="252" stroke="#34A853" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="868" y="255" font-size="10" fill="#34A853">0</text>
+    <text x="785" y="270" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">compensatory ratio &#8594; 0 as models improve</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- AGENTIC LOOP — CIRCLE (cx=460, cy=440, r=140)                    -->
+  <!-- ================================================================ -->
+  <g class="aal-loop">
+    <circle cx="460" cy="440" r="140" fill="#F0F0FF" fill-opacity="0.6" stroke="#6D9EEB" stroke-width="2"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(361, 341) rotate(135)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(361, 539) rotate(45)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(559, 539) rotate(-45)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(559, 341) rotate(225)"/>
+  </g>
+  <!-- Phase 8: the amplified wheel spins -->
+  <circle id="aal-spin" cx="460" cy="440" r="140" fill="none" stroke="#6D9EEB" stroke-width="4" stroke-dasharray="14 10"/>
+
+  <!-- Intent-gap feedback returns to Capture along the loop itself (phases 7, 8, 13) -->
+  <g class="aal-refill">
+    <path class="aal-refill-arc" d="M 600,440 A 140,140 0 0 0 460,300" fill="none" stroke="#34A853" stroke-width="3.5" stroke-dasharray="10 8"/>
+    <g class="aal-refill-note">
+      <text x="590" y="252" font-size="10" font-style="italic" fill="#34A853">intent gap &#8594; back to Capture:</text>
+      <text x="590" y="264" font-size="10" font-style="italic" fill="#34A853">the context gains new elements</text>
+    </g>
+  </g>
+
+  <text class="aal-title" x="460" y="358" text-anchor="middle" font-size="14" font-weight="bold" fill="#0E2356">&#129302; The agentic loop</text>
+  <text class="aal-subtitle-amp" x="460" y="375" text-anchor="middle" font-size="14" font-weight="bold" font-style="italic" fill="#0E2356">&#9889; <tspan style="paint-order:stroke;stroke:#B7CDF1;stroke-width:8px;stroke-linejoin:round;">Amplified</tspan> by the <tspan style="paint-order:stroke;stroke:#B7CDF1;stroke-width:8px;stroke-linejoin:round;">platform</tspan></text>
+  <text class="aal-selfcorrect" x="460" y="445" text-anchor="middle" font-size="14" font-style="italic" fill="#586586" opacity="0.7">Self-correcting</text>
+
+  <!-- Capture intent (12h) -->
+  <g class="aal-box-capture">
+    <rect x="405" y="278" width="110" height="44" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text x="460" y="298" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128065; Capture</text>
+    <text x="460" y="312" text-anchor="middle" font-size="11" fill="#586586">the intent</text>
+    <rect class="st-hl" x="402" y="275" width="116" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Plan steps (9h) -->
+  <g class="aal-box-plan">
+    <rect x="260" y="418" width="120" height="44" rx="8" fill="#DAF6F9" stroke="#00D2DD" stroke-width="1.5"/>
+    <text x="320" y="438" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128203; Plan</text>
+    <text x="320" y="452" text-anchor="middle" font-size="11" fill="#586586">the steps</text>
+    <rect class="st-hl" x="257" y="415" width="126" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Act / Tools (6h) -->
+  <g class="aal-box-act">
+    <rect x="380" y="556" width="80" height="36" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text x="420" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128296; Act</text>
+    <text x="420" y="585" text-anchor="middle" font-size="10" fill="#586586">Tools</text>
+    <rect class="st-hl" x="377" y="553" width="86" height="42" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Observe results (3h) -->
+  <g class="aal-box-observe">
+    <rect x="540" y="418" width="120" height="44" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="600" y="438" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128269; Observe</text>
+    <text x="600" y="452" text-anchor="middle" font-size="11" fill="#586586">the results</text>
+    <rect class="st-hl" x="537" y="415" width="126" height="50" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+
+  <!-- Correction loop (red dashes, phases 1-6) -->
+  <g class="aal-correction">
+    <path d="M550,460 Q460,540 380,440" fill="none" stroke="#EA4335" stroke-width="2.5" stroke-dasharray="10,5" marker-end="url(#aRed)"/>
+    <circle cx="515" cy="500" r="11" fill="#FFFFFF" stroke="#333333" stroke-width="1"/>
+    <text x="515" y="504" text-anchor="middle" font-size="11" fill="#333333">(n)</text>
+    <text x="450" y="518" text-anchor="middle" font-size="10" fill="#EA4335" font-style="italic">Unsatisfactory result</text>
+    <text x="450" y="530" text-anchor="middle" font-size="10" fill="#EA4335" font-style="italic">&#8594; re-plan</text>
+  </g>
+
+  <!-- Execution-level feedback (green chord, phases 8+): a badly-called tool re-plans the step -->
+  <g class="aal-feedback">
+    <path d="M550,460 Q460,540 380,440" fill="none" stroke="#34A853" stroke-width="2.5" marker-end="url(#aGreen)"/>
+    <text x="450" y="518" text-anchor="middle" font-size="10" fill="#34A853" font-style="italic">semantic tool feedback</text>
+    <text x="450" y="530" text-anchor="middle" font-size="10" fill="#34A853" font-style="italic">&#8594; re-plan the step</text>
+  </g>
+
+  <!-- Phase 7: the context is born at Capture; Observation reads its yardstick from it -->
+  <g class="aal-context">
+    <line x1="515" y1="294" x2="530" y2="292" stroke="#00D2DD" stroke-width="1.5"/>
+    <rect x="532" y="268" width="116" height="48" rx="8" fill="#EBFAFB" stroke="#00D2DD" stroke-width="1.5"/>
+    <text x="590" y="283" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#129504; Context</text>
+    <text x="590" y="296" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">born here at Capture:</text>
+    <text x="590" y="308" text-anchor="middle" font-size="9" fill="#586586">intent + invariants</text>
+    <rect class="st-hl" x="529" y="265" width="122" height="54" rx="11" fill="none" stroke="#FF8F00" stroke-width="3.5"/>
+  </g>
+  <g class="aal-intent-ref">
+    <path d="M640,318 Q678,338 657,368" fill="none" stroke="#00D2DD" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#aCyan)"/>
+    <text x="762" y="320" text-anchor="middle" font-size="10" font-style="italic" fill="#00A5B0">the yardstick: the intent,</text>
+    <text x="762" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#00A5B0">captured into the context</text>
+  </g>
+  <g class="aal-gauge">
+    <path d="M637,390 A 18,18 0 0 1 655,372" fill="none" stroke="#EA4335" stroke-width="3"/>
+    <path d="M655,372 A 18,18 0 0 1 673,390" fill="none" stroke="#34A853" stroke-width="3"/>
+    <g class="aal-needle">
+      <circle cx="655" cy="390" r="17" fill="none" stroke="none"/>
+      <line x1="655" y1="390" x2="655" y2="375" stroke="#0E2356" stroke-width="2"/>
+    </g>
+    <circle cx="655" cy="390" r="2.5" fill="#0E2356"/>
+    <text x="655" y="404" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">gap</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- MOTION PATHS (invisible) + ANIMATED DOTS                         -->
+  <!-- Each dot carries the same path inline (offset-path) so the file  -->
+  <!-- animates standalone; keep d in sync with the inline style.       -->
+  <!-- ================================================================ -->
+  <!-- P1: capture -> plan -> act -> observe -> capture -->
+  <path id="mp-a1" d="M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 A 140,140 0 0 0 460,300" fill="none" stroke="none"/>
+  <!-- P2: context stack -> intent -> capture -->
+  <path id="mp-a2" d="M 250,126 Q 330,150 460,175 L 460,290" fill="none" stroke="none"/>
+  <!-- P3: loop then exit, blocked at the gate -->
+  <path id="mp-a3" d="M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 660,300 662,266" fill="none" stroke="none"/>
+  <!-- P5: platform -> Plan -->
+  <path id="mp-a5" d="M 300,645 L 313,470" fill="none" stroke="none"/>
+  <!-- P6: platform -> Act -->
+  <path id="mp-a6" d="M 420,648 L 420,600" fill="none" stroke="none"/>
+  <!-- P7a: captured context -> gap gauge ; P7b: intent-gap feedback Observe -> Capture (along the loop) -->
+  <path id="mp-a7a" d="M 640,318 Q 678,338 657,368" fill="none" stroke="none"/>
+  <path id="mp-a7b" d="M 600,440 A 140,140 0 0 0 460,300" fill="none" stroke="none"/>
+  <!-- P8: full loop then free exit to Result -->
+  <path id="mp-a8" d="M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 660,300 660,175" fill="none" stroke="none"/>
+  <!-- P10a: ADR store -> Plan (enrich) -->
+  <path id="mp-a10a" d="M 196,352 Q 240,385 278,414" fill="none" stroke="none"/>
+  <!-- P10b: Plan -> Plan Linter -->
+  <path id="mp-a10b" d="M 285,462 Q 245,472 208,490" fill="none" stroke="none"/>
+  <!-- P11: ticket check -> Act (sandbox) -->
+  <path id="mp-a11" d="M 306,573 L 420,574" fill="none" stroke="none"/>
+
+  <g mask="url(#dot-mask)">
+  <circle class="aal-dot-p1"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a1"
+          style="offset-path: path('M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 A 140,140 0 0 0 460,300'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p2"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a2"
+          style="offset-path: path('M 250,126 Q 330,150 460,175 L 460,290'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p3"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a3"
+          style="offset-path: path('M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 660,300 662,266'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p5a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a5"
+          style="offset-path: path('M 300,645 L 313,470'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p5b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a5"
+          style="offset-path: path('M 300,645 L 313,470'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p6a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a6"
+          style="offset-path: path('M 420,648 L 420,600'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p6b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a6"
+          style="offset-path: path('M 420,648 L 420,600'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p7a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a7a"
+          style="offset-path: path('M 640,318 Q 678,338 657,368'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p7b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a7b"
+          style="offset-path: path('M 600,440 A 140,140 0 0 0 460,300'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p8"  r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a8"
+          style="offset-path: path('M 460,300 A 140,140 0 0 0 320,440 A 140,140 0 0 0 420,574 A 140,140 0 0 0 600,440 L 610,418 Q 660,300 660,175'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p10a" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a10a"
+          style="offset-path: path('M 196,352 Q 240,385 278,414'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p10b" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a10b"
+          style="offset-path: path('M 285,462 Q 245,472 208,490'); offset-rotate: 0deg;"/>
+  <circle class="aal-dot-p11" r="6" fill="#FF6D00" stroke="#FFFFFF" stroke-width="1.5" data-follow="mp-a11"
+          style="offset-path: path('M 306,573 L 420,574'); offset-rotate: 0deg;"/>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <rect x="0" y="0" width="900" height="320" fill="#ffffff"/>
+  <defs>
+    <marker id="fDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0E2356"/></marker>
+    <marker id="fGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#586586"/></marker>
+  </defs>
+
+  <!-- ============ The agentic lifecycle (top chain) ============ -->
+  <g>
+    <rect x="20" y="55" width="190" height="52" rx="8" fill="#FFFFFF" stroke="#0E2356" stroke-width="2.5"/>
+    <text x="115" y="77" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#127775; Intent declaration</text>
+    <text x="115" y="93" text-anchor="middle" font-size="11" fill="#586586">what to build</text>
+  </g>
+  <line x1="210" y1="81" x2="243" y2="81" stroke="#0E2356" stroke-width="2" marker-end="url(#fDark)"/>
+  <g>
+    <rect x="245" y="55" width="170" height="52" rx="8" fill="#DAF6F9" stroke="#00D2DD" stroke-width="1.5"/>
+    <text x="330" y="77" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128203; Planning</text>
+    <text x="330" y="93" text-anchor="middle" font-size="11" fill="#586586">the strategy</text>
+  </g>
+  <line x1="415" y1="81" x2="458" y2="81" stroke="#0E2356" stroke-width="2" marker-end="url(#fDark)"/>
+  <g>
+    <rect x="460" y="55" width="190" height="52" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text x="555" y="77" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128296; Execution</text>
+    <text x="555" y="93" text-anchor="middle" font-size="11" fill="#586586">Tools</text>
+  </g>
+  <line x1="650" y1="81" x2="693" y2="81" stroke="#0E2356" stroke-width="2" marker-end="url(#fDark)"/>
+  <g>
+    <rect x="695" y="55" width="185" height="52" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="787" y="77" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">&#128269; Observation</text>
+    <text x="787" y="93" text-anchor="middle" font-size="11" fill="#586586">the results</text>
+  </g>
+
+  <!-- ============ Today: the initial context, and nothing after ============ -->
+  <line x1="115" y1="107" x2="115" y2="158" stroke="#586586" stroke-width="1.5" marker-end="url(#fGray)"/>
+  <g>
+    <rect x="40" y="160" width="150" height="42" rx="8" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="115" y="177" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128206; Initial context</text>
+    <text x="115" y="192" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">today: everything up-front</text>
+  </g>
+
+  <!-- ============ This article: governance injected in-loop ============ -->
+  <!-- Channels rising from the platform into each step -->
+  <g stroke="#4A7FCC" stroke-width="2.5" stroke-dasharray="10 8">
+    <line x1="330" y1="248" x2="330" y2="113"/>
+    <line x1="555" y1="248" x2="555" y2="113"/>
+    <line x1="787" y1="248" x2="787" y2="113"/>
+  </g>
+  <polygon points="-8 -5, 8 0, -8 5" fill="#4A7FCC" transform="translate(330, 111) rotate(-90)"/>
+  <polygon points="-8 -5, 8 0, -8 5" fill="#4A7FCC" transform="translate(555, 111) rotate(-90)"/>
+  <polygon points="-8 -5, 8 0, -8 5" fill="#4A7FCC" transform="translate(787, 111) rotate(-90)"/>
+
+  <!-- Injection cards (drawn over the channels) -->
+  <g>
+    <rect x="248" y="160" width="164" height="42" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="330" y="177" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128208; Dynamic guardrails</text>
+    <text x="330" y="192" text-anchor="middle" font-size="10" fill="#586586">golden paths at plan time</text>
+  </g>
+  <g>
+    <rect x="470" y="160" width="170" height="42" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="555" y="177" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#128295; Guardrails &#38; context</text>
+    <text x="555" y="192" text-anchor="middle" font-size="10" fill="#586586">inside the tools</text>
+  </g>
+  <g>
+    <rect x="700" y="160" width="174" height="42" rx="8" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+    <text x="787" y="177" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#127919; Agentic feedback loop</text>
+    <text x="787" y="192" text-anchor="middle" font-size="10" fill="#586586">gap vs. the original intent</text>
+  </g>
+
+  <!-- The platform serving the three injection points -->
+  <g>
+    <rect x="245" y="250" width="635" height="48" rx="8" fill="#B7CDF1" fill-opacity="0.55" stroke="#6D9EEB" stroke-width="2"/>
+    <text x="562" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">Platform</text>
+    <text x="562" y="286" text-anchor="middle" font-size="12" font-style="italic" fill="#0E2356">serves <tspan style="paint-order:stroke;stroke:#B7CDF1;stroke-width:7px;stroke-linejoin:round;" font-weight="bold">governance</tspan> as a <tspan style="paint-order:stroke;stroke:#B7CDF1;stroke-width:7px;stroke-linejoin:round;" font-weight="bold">product</tspan> &#8212; injected inside the loop, not bolted on at the end</text>
+  </g>
+
+  <!-- Side caption for the left (status quo) column -->
+  <text x="115" y="225" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">the only lever of the</text>
+  <text x="115" y="237" text-anchor="middle" font-size="10" font-style="italic" fill="#586586">front-loaded model</text>
+</svg>

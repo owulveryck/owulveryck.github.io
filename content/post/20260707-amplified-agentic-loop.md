@@ -15,15 +15,17 @@ mathjax: false
 
 ## Introduction
 
-This article closes a trajectory started three posts ago. In [See, Act, Correct](/2026/06/04/see-act-correct-three-levers-for-working-with-a-code-agent.html), I described the three levers that turn a code agent from a gadget into a production tool, and introduced a grid to sort durable platform investments from temporary crutches. In [Who does what?](/2026/06/24/who-does-what-team-topologies-for-the-agentic-platform.html), I mapped the agentic organization onto *Team Topologies*[^tt]. In [Codifying the Rules](/2026/07/02/sdlc-team-topologies.html), the enabling team baked its guardrails into the platform and vanished.
+This article closes a trajectory started three posts ago. In [See, Act, Correct](/2026/06/04/see-act-correct-three-levers-for-working-with-a-code-agent.html), I described the three levers that turn a code agent from a gadget into a production tool, and introduced a grid to sort durable platform investments from temporary crutches. In [Who does what?](/2026/06/24/who-does-what-team-topologies-for-the-agentic-platform.html), I mapped the agentic organization onto [*Team Topologies*](https://teamtopologies.com/). In [Codifying the Rules](/2026/07/02/sdlc-team-topologies.html), the enabling team baked its guardrails into the platform and vanished.
 
-The trajectory is simple to state: to move from individual *vibe coding* (a developer "vibing" with their LLM) to industrialized, at-scale software engineering, the **platform** (in the Platform Engineering sense: an internal product that reduces the cognitive load of stream-aligned teams[^pe]) must become the conductor of the agentic workforce.
+The trajectory is simple to state: to move from individual *vibe coding* (a developer "vibing" with their LLM) to industrialized, at-scale software engineering, the **platform** (in the [Platform Engineering](https://platformengineering.org/) sense: an internal product that reduces the cognitive load of stream-aligned teams) must become the conductor of the agentic workforce.
 
 Here is the problem this final part addresses. Today, all the control is concentrated at the *beginning* of the interaction, and the safety nets only react at the very *end*:
 
 ![The agentic lifecycle and its injection points: initial context under Intent declaration (the only lever of the front-loaded model), and the platform serving dynamic guardrails, in-tool context, and the agentic feedback loop into Planning, Execution, and Observation](/assets/amplified-agentic-loop/lifecycle-injection-points.en.svg)
 
-The left column is where today's tooling operates: a heavy initial context, then nothing until a CI gate says "no". The three blue channels are what this article designs: governance, architectural context, and safety served by the platform **inside** each step of the agentic loop. And because a concept without code is just an opinion, everything below is materialized in a working proof of concept: [poc-agentic-platform](https://github.com/owulveryck/poc-agentic-platform).
+The left column is where today's tooling operates: a heavy initial context, then nothing until a CI gate says "no". The three blue channels are what this article designs: governance, architectural context, and safety served by the platform **inside** each step of the agentic loop.
+
+Several tools already cover parts of this space. [NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/latest/) distributes enforcement across input, dialog, execution, and output rails. [POLARIS](https://arxiv.org/abs/2601.11816) (January 2026) adds typed planning gates with policy-compiled guards. [Agentic JWT](https://arxiv.org/abs/2509.13597) (September 2025) proposes cryptographic action scopes that bind agent actions to user intent. Each addresses one phase. What is absent — and what a [May 2026 survey on trustworthy agentic AI](https://arxiv.org/abs/2605.23989) explicitly lists as an open challenge — is the integrated architecture: live architectural context at planning time, first-class capability tokens at execution time, and structured intent-gap feedback at observation time, combined into a single design where each phase amplifies the next. This article proposes one answer; the companion repository [poc-agentic-platform](https://github.com/owulveryck/poc-agentic-platform) is a working proof of concept, not a finished product.
 
 {{< scrollytelling svg="/assets/amplified-agentic-loop/amplified-agentic-loop.svg" >}}
 
@@ -41,7 +43,7 @@ This loop is the delivery engine of modern software. Everything that follows in 
 
 ## The status quo: everything is front-loaded
 
-Look at how we steer agents today. Governance rules, architecture context, security policies: everything is injected **before** the loop starts, through the initial prompt and global instruction files (`CLAUDE.md`, `.cursorrules`, `copilot-instructions.md`, system prompts[^instr]). These files are the industry's current answer to steering, and they share one property: they act once, at minute zero. The notebook on the diagram marks the spot: the initial context is assembled at **Capture**, once, and everything the stack dumps up-front lands in it.
+Look at how we steer agents today. Governance rules, architecture context, security policies: everything is injected **before** the loop starts, through the initial prompt and global instruction files ([`CLAUDE.md`](https://code.claude.com/docs/en/memory), [`.cursorrules`](https://cursor.com/docs/context/rules), [`copilot-instructions.md`](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot), system prompts). These files are the industry's current answer to steering, and they share one property: they act once, at minute zero. The notebook on the diagram marks the spot: the initial context is assembled at **Capture**, once, and everything the stack dumps up-front lands in it.
 
 The interaction is asymmetric: all the control is spent up-front. Once the loop starts spinning, the agent is on its own. Nothing guides it *while* it plans, *while* it executes, *while* it observes. We write two hundred lines of instructions and then hope.
 
@@ -53,7 +55,7 @@ The interaction is asymmetric: all the control is spent up-front. Once the loop 
 
 The remaining control arrives at the worst possible moment: the end. The commit that breaks the CI is rejected. The forbidden API is flagged in code review. The non-compliant color ships to staging and bounces back.
 
-These late gates do their job (nothing broken reaches production), but look at the cost. The agent has already burned its tokens. The work is done and must be *re*done. Each bounce is a full trip around the loop, plus a human interruption. This is the opposite of what the industry calls **shift-left** (moving verification as early as possible in the delivery process[^shiftleft]), and it frustrates the very flow the agent was supposed to accelerate.
+These late gates do their job (nothing broken reaches production), but look at the cost. The agent has already burned its tokens. The work is done and must be *re*done. Each bounce is a full trip around the loop, plus a human interruption. This is the opposite of what the industry calls [**shift-left**](https://en.wikipedia.org/wiki/Shift-left_testing) (moving verification as early as possible in the delivery process), and it frustrates the very flow the agent was supposed to accelerate.
 
 But wait: is self-correction not precisely the loop's job? It is. The red arrow on the diagram has been doing exactly that since the first phase. The nuance is that **the loop can only correct what its Observe step can see.** The late gate delivers its verdict *after* the loop has exited, outside the agent's observation horizon. So the rejection cannot be absorbed as one more iteration; it re-enters at the top, as a new intent, usually carried by a frustrated human. Same information, wrong side of the loop boundary.
 
@@ -73,7 +75,7 @@ The failure is architectural, not technical: the control exists, it is just *in 
 
 The initial context becomes light again: the intent, and little else. Everything the agent used to receive as a wall of up-front text is now delivered *just in time*, by the step that needs it.
 
-Who builds this? The platform team, and this is Platform Engineering by the book: these mechanisms are designed, versioned, and served as **internal products**[^pe] that stream-aligned teams and their agents consume without friction.
+Who builds this? The platform team, and this is Platform Engineering by the book: these mechanisms are designed, versioned, and served as [**internal products**](https://tag-app-delivery.cncf.io/whitepapers/platforms/) that stream-aligned teams and their agents consume without friction.
 
 {{< /scrollytelling-step >}}
 
@@ -83,7 +85,7 @@ Who builds this? The platform team, and this is Platform Engineering by the book
 
 Do not let the agent plan in the void. At the exact moment it designs its strategy, the platform provides the enterprise architecture patterns, the critical dependencies, and the valid options.
 
-The industry has a name for the shape of this guidance: the **Golden Path**, the paved road, the supported and blessed way of building something, popularized by Spotify and productized by tools like Backstage[^goldenpath]. But today's golden paths are documentation for humans. Here, they become a *planning input for the agent*: instead of discovering conventions by reading thousands of lines of code (or worse, by violating them), the agent receives the map of the terrain before it starts walking.
+The industry has a name for the shape of this guidance: the **Golden Path**, the paved road, the supported and blessed way of building something, popularized by [Spotify](https://engineering.atspotify.com/2020/08/how-we-use-golden-paths-to-solve-fragmentation-in-our-software-ecosystem/) and productized by tools like [Backstage](https://backstage.io/). But today's golden paths are documentation for humans. Here, they become a *planning input for the agent*: instead of discovering conventions by reading thousands of lines of code (or worse, by violating them), the agent receives the map of the terrain before it starts walking.
 
 The nature of the guardrail changes: it guides toward the paved road at planning time, instead of saying "no" at the end.
 
@@ -169,7 +171,7 @@ So the question for every platform investment below is never "does it constrain 
 
 **This is the first concrete proposal of this article.** The Platform Planning Gateway (PPG) intercepts the planning step with two moves: one soft, one hard.
 
-**The soft move, `enrich()`: fetch the rules that apply, before planning.** Think of the fifteen-minute conversation with the staff architect before you start a piece of work (*"anything I should know before touching the payment code?"*), automated. Before planning, the agent asks the platform exactly that question: it sends its **intent** and its **repository context**, and the gateway answers with the **architectural invariants** that apply, retrieved from the organization's Architecture Decision Records[^adr]. Concretely:
+**The soft move, `enrich()`: fetch the rules that apply, before planning.** Think of the fifteen-minute conversation with the staff architect before you start a piece of work (*"anything I should know before touching the payment code?"*), automated. Before planning, the agent asks the platform exactly that question: it sends its **intent** and its **repository context**, and the gateway answers with the **architectural invariants** that apply, retrieved from the organization's [Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions). Concretely:
 
 ```json
 // agent → platform
@@ -187,7 +189,7 @@ How did the gateway know ADR-042 was relevant? Each ADR declares its own *scope 
 
 Note the two things `enrich()` deliberately does **not** do. It does not enforce anything: it *advises*. Enforcement comes next, in the hard move. And it returns no recipe ("modify file X at line Y"), only semantic invariants: the recipes are exactly what a better model derives on its own. Architects write the invariants and the selectors in the ADRs; the gateway only retrieves. That division of labor is what makes `enrich()` a declarative amplifier: a smarter model exploits the same invariants better.
 
-**The hard move: `lock_in_plan()`.** The agent must materialize its plan as a structured document (a JSON contract, not free text) and submit it. The gateway runs a **plan linter**: deterministic code, deliberately *not* an LLM, in the spirit of policy-as-code engines like Open Policy Agent[^opa]. A non-conforming plan is rejected 100% of the time, reproducibly, with semantic violations:
+**The hard move: `lock_in_plan()`.** The agent must materialize its plan as a structured document (a JSON contract, not free text) and submit it. The gateway runs a **plan linter**: deterministic code, deliberately *not* an LLM, in the spirit of policy-as-code engines like [Open Policy Agent](https://www.openpolicyagent.org/). A non-conforming plan is rejected 100% of the time, reproducibly, with semantic violations:
 
 ```json
 {
@@ -202,7 +204,7 @@ Note the two things `enrich()` deliberately does **not** do. It does not enforce
 
 The agent self-corrects, in practice in one or two iterations even with a small model: the linter redresses it like a compiler would.
 
-When the plan passes, the gateway issues the **capability ticket**: an ephemeral signed JWT[^jwt] embedding the plan's fingerprint and the least-privilege scope derived from it (which files may be modified, which tools may be called). This is capability-based security[^cap] applied to the agentic loop, and it is the key that unlocks the next phase.
+When the plan passes, the gateway issues the **capability ticket**: an ephemeral signed [JWT](https://datatracker.ietf.org/doc/html/rfc7519) embedding the plan's fingerprint and the [least-privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) scope derived from it (which files may be modified, which tools may be called). This is [capability-based security](https://en.wikipedia.org/wiki/Capability-based_security) applied to the agentic loop, and it is the key that unlocks the next phase.
 
 {{< /scrollytelling-step >}}
 
@@ -250,7 +252,17 @@ The result flows out of the loop with no gate at the exit: not because control w
 
 ## The proof of concept
 
-Concepts about agent governance are cheap; deterministic behavior is not. The companion repository [**poc-agentic-platform**](https://github.com/owulveryck/poc-agentic-platform) implements pillars 1 and 2 end-to-end in Go: small enough to read in an evening, complete enough to run the whole cycle with `curl`.
+Concepts about agent governance are cheap; deterministic behavior is not. The companion repository [**poc-agentic-platform**](https://github.com/owulveryck/poc-agentic-platform) implements pillars 1 and 2 end-to-end in Go: small enough to read in an evening, complete enough to run the [whole cycle with `curl`](https://github.com/owulveryck/poc-agentic-platform/blob/main/docs/tutorial.md).
+
+One question the code answers clearly: *how does the agent know what plan to submit to `lock_in_plan`?* Three orthogonal layers:
+
+| Layer | Source | Controls |
+|---|---|---|
+| **When** to call `lock_in_plan` | `CLAUDE.md` | Behavioral rule |
+| **How** to format the plan | MCP tool schema (auto-generated from `plan.Plan`) | JSON structure |
+| **What** the plan must contain | `enrich()` invariants | Semantic content |
+
+The schema validates structure deterministically; the linter validates ADR compliance deterministically; the model fills in the business content from the enriched context. None of the layers overlap. The full reasoning behind each design decision is in the repository's [explanation](https://github.com/owulveryck/poc-agentic-platform/blob/main/docs/explanation.md).
 
 The planning side implements the sequence below: enrichment from a real ADR store (four ADRs with YAML front matter, including one deliberately tagged `compensatory` with its sunset condition), a deterministic plan linter, and JWT capability tickets:
 
@@ -269,7 +281,7 @@ Two details worth noticing in the code:
 
 None of this requires a custom agent. The repository ships adapters that wire the gateway into off-the-shelf tools: a few lines of configuration, zero fork.
 
-**Claude Code, pillar 1: planning over MCP.** The gateway is exposed as a stdio MCP server[^mcp] with two tools. One command registers it:
+**Claude Code, pillar 1: planning over MCP.** The gateway is exposed as a stdio [MCP server](https://modelcontextprotocol.io/), built with the official [Go SDK](https://github.com/modelcontextprotocol/go-sdk), with two tools. One command registers it:
 
 ```bash
 claude mcp add ppg -- go run ./adapters/claudecode/mcpserver
@@ -277,7 +289,7 @@ claude mcp add ppg -- go run ./adapters/claudecode/mcpserver
 
 and one line in the project's `CLAUDE.md` states the contract: *"submit your structured plan through `lock_in_plan` before modifying anything."* From there, Claude Code calls `get_platform_guidelines_for_intent` natively, receives the ADR invariants, and locks its plan; on success the capability ticket lands in a `.ppg-ticket` file at the project root.
 
-**Claude Code, pillar 2: gating over hooks.** This is the part I find most satisfying. Claude Code's `PreToolUse` hooks[^hooks] provide exactly the in-tool interception point the Smart Tool contract requires. A `ppg-guard` binary is registered on every `Edit|Write`:
+**Claude Code, pillar 2: gating over hooks.** This is the part I find most satisfying. Claude Code's [`PreToolUse` hooks](https://code.claude.com/docs/en/hooks) provide exactly the in-tool interception point the Smart Tool contract requires. A `ppg-guard` binary is registered on every `Edit|Write`:
 
 ```json
 { "hooks": { "PreToolUse": [ { "matcher": "Edit|Write",
@@ -293,11 +305,11 @@ Nothing was modified. If this change is genuinely needed, re-plan through
 lock_in_plan.
 ```
 
-Read that message as the agent does: it is a deterministic refusal *and* a remediation path. In a live session, Claude reads it and either stays inside the locked plan or goes back through `lock_in_plan`: the drift is corrected by the loop itself, exactly as phase 11 of the diagram describes. An off-the-shelf agent, governed in-loop, without modifying a single line of the agent.
+Read that message as the agent does: it is a deterministic refusal *and* a remediation path. In a live session, Claude reads it and either stays inside the locked plan or goes back through `lock_in_plan`: the drift is corrected by the loop itself, exactly as phase 11 of the diagram describes. An off-the-shelf agent, governed in-loop, without modifying a single line of the agent. The [adapter README](https://github.com/owulveryck/poc-agentic-platform/blob/main/adapters/claudecode/README.md) has the full setup.
 
-**GitHub Copilot: the black-box path.** Copilot exposes no loop to intercept, so the adapter falls back to pre-flight context generation: `go run ./adapters/preflight "add the Seka payment method"` calls `/enrich` and writes the invariants into `.github/copilot-instructions.md`[^instr], which Copilot reads natively as repository custom instructions. The same governance reaches the black box, declaratively only. The honest caveat: without an interception point, hard gating cannot happen in-loop and must fall back to apply time (a pre-push platform check). That gap is the difference between an agent with an open loop and a closed one; it is a good criterion when choosing your tooling.
+**GitHub Copilot: the black-box path.** Copilot exposes no loop to intercept, so the adapter falls back to pre-flight context generation: `go run ./adapters/preflight "add the Seka payment method"` calls `/enrich` and writes the invariants into [`.github/copilot-instructions.md`](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot), which Copilot reads natively as repository custom instructions. The same governance reaches the black box, declaratively only. The honest caveat: without an interception point, hard gating cannot happen in-loop and must fall back to apply time (a pre-push platform check). That gap is the difference between an agent with an open loop and a closed one; it is a good criterion when choosing your tooling.
 
-The documentation follows the Divio/Diátaxis system[^divio] (tutorial, how-to guides, reference, explanation), so the repository doubles as a template for documenting platform products. What the PoC would need to leave PoC status is listed in its `explanation.md`: embedding-based ADR retrieval instead of keywords, asymmetric keys behind a KMS instead of a hard-coded secret, a real copy-on-write sandbox, and the whole observation pillar.
+The documentation follows the [Divio](https://docs.divio.com/documentation-system/)/[Diátaxis](https://diataxis.fr/) documentation system (tutorial, how-to guides, reference, explanation), so the repository doubles as a template for documenting platform products. What the PoC would need to leave PoC status is listed in its [explanation](https://github.com/owulveryck/poc-agentic-platform/blob/main/docs/explanation.md): embedding-based ADR retrieval instead of keywords, asymmetric keys behind a KMS instead of a hard-coded secret, a real copy-on-write sandbox, and the whole observation pillar.
 
 How to judge whether such a gateway works in your organization? The success criteria I would track:
 
@@ -306,9 +318,25 @@ How to judge whether such a gateway works in your organization? The success crit
 | Guidance before action | ADR invariants appear in the agent's plan |
 | Deterministic gating | A non-conforming plan is rejected 100% of the time |
 | Actionable feedback | The agent corrects its plan in ≤ 2 iterations |
-| Multi-tool portability | Works via MCP[^mcp] **and** via pre-flight instruction files |
+| Multi-tool portability | Works via [MCP](https://modelcontextprotocol.io/) **and** via pre-flight instruction files |
 | Traceability | Every locked plan is logged (hash + scope) before execution |
 | Debt governance | Compensatory ratio decreases at each model upgrade |
+
+## Where this fits in the landscape
+
+The table below maps the closest existing systems against the three phases. Columns mark genuine coverage, not aspirational claims.
+
+| System | Planning-time context | Execution-time gating | Capability scopes | Semantic error returns |
+|---|---|---|---|---|
+| [NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/latest/) | Dialog rails (scripted) | Execution rails (pre/post tool) | No | No (blocking/redirect) |
+| [POLARIS](https://arxiv.org/abs/2601.11816) (Jan 2026) | Typed DAG + rubric gate | Compiled policy guards | No | Implicit only |
+| [Agentic JWT](https://arxiv.org/abs/2509.13597) (Sep 2025) | No | Pre-execution scope enforcement | Yes (cryptographic) | No |
+| [Harnessing Embodied Agents](https://arxiv.org/abs/2604.07833) (Apr 2026) | Capability admission | Runtime detection | Proto-tickets | No |
+| **This article** | ADR invariants injected live | Capability ticket verified in-tool | Yes (governance-intent JWT) | Yes (structured, actionable) |
+
+Two things in the bottom row have no column to the left of them in any existing system. First: the integration. Each of the four prior systems covers one phase; the mechanism that makes governance *amplifying* rather than merely *present* is the coherence across phases: the planning context shapes the ticket, the ticket constrains the tool, the tool's semantic errors re-enter the plan. Second: the framing. Every existing system treats safety and productivity as a tradeoff to be managed. The claim here is different: a guardrail placed at the right phase of the loop *removes* friction rather than adding it, because the agent acts with more confidence, fewer late-gate surprises, and less rework. The [trustworthy agentic AI survey](https://arxiv.org/abs/2605.23989) frames the residual problem as a "trust-utility tradeoff"; the argument here is that the tradeoff is an artifact of placing the governance in the wrong place, not an inherent property of governance.
+
+This remains a proof of concept. Keyword-based ADR retrieval would need embedding-based semantic search at scale. The JWT secret is symmetric and hard-coded. The sandbox is simulated. Pillar 3 (observation) is explicitly out of scope. None of that invalidates the architecture; it maps the production path. What the PoC demonstrates is that the three-phase integration is *buildable* with off-the-shelf components (Go, JWT, MCP) and *composable* with existing agents without forking them.
 
 ## Conclusion
 
@@ -321,16 +349,3 @@ For the platform team deciding where to invest, the heuristic from [See, Act, Co
 What remains open is the third pillar at scale: agentic telemetry, measuring across thousands of loop executions which guardrails amplify and which merely compensate, and feeding that back into the ADR store. That closing of the outer loop deserves its own article.
 
 *Let's make AI work* ~~*on your machine*~~ *in your organization — and let the platform hold the rails.*
-
-[^tt]: Matthew Skelton and Manuel Pais, [*Team Topologies*](https://teamtopologies.com/): the reference model for stream-aligned, platform, enabling, and complicated-subsystem teams.
-[^pe]: See [platformengineering.org](https://platformengineering.org/) and the CNCF [Platform Engineering white paper](https://tag-app-delivery.cncf.io/whitepapers/platforms/): a platform is an internal product whose purpose is to reduce the cognitive load of product teams.
-[^instr]: Every major agent vendor converged on the same pattern: [`CLAUDE.md`](https://code.claude.com/docs/en/memory) for Claude Code, [rules files](https://cursor.com/docs/context/rules) for Cursor, [`copilot-instructions.md`](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) for GitHub Copilot.
-[^shiftleft]: [Shift-left testing](https://en.wikipedia.org/wiki/Shift-left_testing): moving verification as early as possible in the delivery lifecycle, where defects are cheapest to fix.
-[^goldenpath]: Spotify Engineering, [*How We Use Golden Paths to Solve Fragmentation in Our Software Ecosystem*](https://engineering.atspotify.com/2020/08/how-we-use-golden-paths-to-solve-fragmentation-in-our-software-ecosystem/); the pattern is productized by portals like [Backstage](https://backstage.io/).
-[^adr]: Michael Nygard, [*Documenting Architecture Decisions*](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions): the original ADR format. The PoC adds machine-readable front matter (nature, sunset condition, scope selectors) on top of it.
-[^opa]: [Open Policy Agent](https://www.openpolicyagent.org/) is the reference policy-as-code engine; the PoC implements the same deterministic policies in plain Go and documents the OPA/Rego production path.
-[^jwt]: [RFC 7519, JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519): a compact, signed claims container; here it carries the plan hash, the allowed scope, and a 15-minute expiry.
-[^cap]: [Capability-based security](https://en.wikipedia.org/wiki/Capability-based_security) and the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege): authority is carried by an unforgeable token scoped to exactly what was granted.
-[^mcp]: The [Model Context Protocol](https://modelcontextprotocol.io/): the open standard for exposing tools and context to agents, natively supported by Claude Code and a growing list of clients. The PoC uses the official [Go SDK](https://github.com/modelcontextprotocol/go-sdk).
-[^hooks]: [Claude Code hooks](https://code.claude.com/docs/en/hooks): a `PreToolUse` hook receives the tool call as JSON on stdin; exit code 2 blocks the call and feeds stderr back to the model as the error message, a deterministic interception point inside the agent's own loop.
-[^divio]: The [Divio documentation system](https://docs.divio.com/documentation-system/), also known as [Diátaxis](https://diataxis.fr/): tutorials, how-to guides, reference, and explanation as four distinct quadrants.

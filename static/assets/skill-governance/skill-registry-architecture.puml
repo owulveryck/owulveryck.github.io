@@ -1,0 +1,46 @@
+@startuml skill-registry-architecture
+' System overview: two phases — distribution, then runtime
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+skinparam ArrowColor #0E2356
+skinparam ComponentBackgroundColor #EAF4FB
+skinparam ComponentBorderColor #0E2356
+skinparam PackageBackgroundColor #F8FBFF
+skinparam PackageBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+skinparam ActorBackgroundColor #EAF4FB
+skinparam ActorBorderColor #0E2356
+
+package "1 — Distribution" as DIST {
+  actor "Skill Author" as AUTHOR
+  database "Skill Repository\n(GitHub / GitLab)" as REPO
+  component "Skill Linter\nPOST /validate_skill" as LINTER
+  database "Skill Registry\nregistry.acme.com" as REGISTRY
+
+  AUTHOR --> REPO : git push
+  REPO --> LINTER : CI triggers
+  LINTER --> REGISTRY : SKILL_VALID
+
+  note bottom of LINTER
+    SKILL_REJECTED:
+    stays in repository
+  end note
+}
+
+package "2 — Runtime" as RT {
+  actor "Developer / Agent" as CONSUMER
+  component "PPG\nPOST /enrich\nPOST /lock_in_plan" as PPG
+  component "Smart Tool\n(verifies JWT in-tool)" as TOOL
+
+  CONSUMER --> PPG : intent + plan
+  PPG --> CONSUMER : JWT capability ticket
+  CONSUMER --> TOOL : tool call + JWT
+}
+
+REGISTRY --> CONSUMER : apm install skill@version
+PPG ..> REGISTRY : loads companion\nSKILL.rego at lock_in_plan
+
+@enduml

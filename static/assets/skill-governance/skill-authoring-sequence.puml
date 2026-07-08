@@ -1,0 +1,47 @@
+@startuml skill-authoring-sequence
+' What happens when an author publishes a skill
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam SequenceArrowColor #0E2356
+skinparam SequenceParticipantBackgroundColor #EAF4FB
+skinparam SequenceParticipantBorderColor #0E2356
+skinparam SequenceBoxBackgroundColor #F8FBFF
+skinparam SequenceBoxBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+
+actor "Skill Author" as AUTHOR
+participant "Repository\ngithub.com/acme-corp/..." as REPO
+participant "Skill Linter\nPOST /validate_skill" as LINTER
+participant "Registry\nregistry.acme.com" as REGISTRY
+
+AUTHOR -> REPO : git push\npatch-payment/SKILL.md\npatch-payment/SKILL.rego
+
+REPO -> LINTER : CI pipeline\nPOST /validate_skill\n{name, description, version, body, rego_policy}
+
+LINTER -> LINTER : check name / description / version
+LINTER -> LINTER : classify tier (0 / 1 / 2)
+LINTER -> LINTER : require SKILL.rego if tier >= 1
+
+alt SKILL_REJECTED — skill stays in the repository
+
+  LINTER --> AUTHOR : 422\n{violations: [{field, message, nature}]}
+
+  note over AUTHOR
+    Fix the violations,
+    push again.
+    The registry is unchanged.
+  end note
+
+else SKILL_VALID — skill is promoted to the registry
+
+  LINTER --> REPO : 200 {status: SKILL_VALID, tier: 1}
+
+  REPO -> REGISTRY : publish(\n  patch-payment@1.2.0,\n  SKILL.md + SKILL.rego,\n  tier: 1,\n  source: github.com/acme-corp/...,\n  commit: a2b3c4d\n)
+
+  REGISTRY --> AUTHOR : registry.acme.com/skills/patch-payment@1.2.0
+
+end
+
+@enduml

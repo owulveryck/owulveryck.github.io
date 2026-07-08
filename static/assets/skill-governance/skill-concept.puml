@@ -1,0 +1,64 @@
+@startuml skill-concept
+' Repository vs. Registry: the core conceptual distinction
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+skinparam ArrowColor #0E2356
+skinparam ComponentBackgroundColor #EAF4FB
+skinparam ComponentBorderColor #0E2356
+skinparam PackageBackgroundColor #F8FBFF
+skinparam PackageBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+
+left to right direction
+
+package "Skill Repositories (decentralized)" as REPOS {
+
+  package "github.com/acme-corp/platform-skills" as P1 {
+    [patch-payment/\nSKILL.md + SKILL.rego] as S1
+    [db-migrate/\nSKILL.md + SKILL.rego] as S2
+  }
+
+  package "github.com/acme-corp/devops-skills" as P2 {
+    [deploy-service/\nSKILL.md + SKILL.rego] as S3
+  }
+
+  package "github.com/community-org/ai-skills" as P3 {
+    [summarize-pr/\nSKILL.md (tier 0)] as S4
+  }
+
+}
+
+component "Policy Gate\n\nPOST /validate_skill\n\nchecks:\n  name / description\n  security tier\n  SKILL.rego (tier >= 1)\n  dependency graph\n\nSKILL_REJECTED:\nstays in repository" as GATE
+
+package "Skill Registry (authoritative)" as REG {
+  [registry.acme.com/skills] as IDX
+  [patch-payment@1.2.0  tier 1] as R1
+  [db-migrate@3.0.0     tier 1] as R2
+  [deploy-service@2.1.0 tier 2] as R3
+  [summarize-pr@0.8.0   tier 0] as R4
+}
+
+note right of REG
+  Dependency graph:
+  deploy-service@2.1.0
+    requires db-migrate >= 3.0.0
+
+  Consumers install from the registry:
+    apm install patch-payment
+  Never directly from a repository.
+end note
+
+S1 --> GATE
+S2 --> GATE
+S3 --> GATE
+S4 --> GATE : git push -> CI triggers
+
+GATE --> R1
+GATE --> R2
+GATE --> R3
+GATE --> R4 : SKILL_VALID -> promoted
+
+@enduml

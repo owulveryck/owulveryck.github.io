@@ -1,0 +1,58 @@
+@startuml skill-runtime-sequence
+' What happens at runtime when an agent invokes a skill
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam SequenceArrowColor #0E2356
+skinparam SequenceParticipantBackgroundColor #EAF4FB
+skinparam SequenceParticipantBorderColor #0E2356
+skinparam SequenceBoxBackgroundColor #F8FBFF
+skinparam SequenceBoxBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+
+actor "Developer / Agent" as AGENT
+participant "Platform Planning\nGateway (PPG)" as PPG
+participant "Registry\nregistry.acme.com" as REGISTRY
+participant "Smart Tool" as TOOL
+
+== Install (once) ==
+
+AGENT -> REGISTRY : apm install patch-payment@1.2.0
+REGISTRY -> PPG : revalidate at install\nPOST /validate_skill
+PPG --> AGENT : installed in .claude/skills/
+
+== Invocation ==
+
+AGENT -> AGENT : /patch-payment "add idempotency key"
+
+AGENT -> PPG : POST /enrich\n{intent, repo_context}
+PPG --> AGENT : ADR invariants\n(amplifier context)
+
+AGENT -> AGENT : produce structured plan
+
+AGENT -> PPG : POST /lock_in_plan\n{plan, skill_id: "patch-payment"}
+PPG -> REGISTRY : load companion SKILL.rego\n(skill-specific plan rules)
+PPG -> PPG : evaluate: ADR policies\n+ companion SKILL.rego
+
+alt PLAN_REJECTED
+
+  PPG --> AGENT : 422 {violations, guidance}
+  AGENT -> AGENT : self-correct → resubmit
+
+else PLAN_LOCKED
+
+  PPG --> AGENT : 200 {status: PLAN_LOCKED, ticket: JWT}
+
+  AGENT -> TOOL : tool call + JWT
+  TOOL -> TOOL : verify ticket scope
+
+  alt in scope
+    TOOL --> AGENT : result
+  else out of scope
+    TOOL --> AGENT : OUT_OF_PLAN_SCOPE
+  end
+
+end
+
+@enduml

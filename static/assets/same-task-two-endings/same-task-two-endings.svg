@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+  <defs>
+    <marker id="s2eDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0E2356"/></marker>
+    <marker id="s2eRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c0392b"/></marker>
+    <marker id="s2eGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#34A853"/></marker>
+    <marker id="s2eCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00A5B0"/></marker>
+  </defs>
+
+  <style data-st-keep="true"><![CDATA[
+    /* ============ Default: scene groups hidden, stage always visible ============ */
+    .s2e-frontload, .s2e-skill, .s2e-work, .s2e-lookfine, .s2e-gate, .s2e-bill,
+    .s2e-plat, .s2e-enrich, .s2e-locks,
+    .s2e-plan, .s2e-plan-rej, .s2e-plan-fix, .s2e-plan-lock,
+    .s2e-scope, .s2e-guard, .s2e-guard-pass, .s2e-guard-block,
+    .s2e-semerr, .s2e-debt, .s2e-compare,
+    .s2e-title-act1, .s2e-title-act2 {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    circle[data-follow] { opacity: 0; }
+    @supports not (offset-path: path('M0,0 L1,1')) {
+      circle[data-follow] { display: none; }
+    }
+
+    /* ============ Act 1 ============ */
+    /* Act 1 title banner: phases 2-5 */
+    svg:is([data-active-phase="2"],[data-active-phase="2.2"],[data-active-phase="3"],[data-active-phase="3.2"],[data-active-phase="4"],[data-active-phase="5"])
+      .s2e-title-act1 { opacity: 1; }
+
+    /* Front-loaded context wall: phases 2-5 (dimmed once the work starts) */
+    svg:is([data-active-phase="2"],[data-active-phase="2.2"],[data-active-phase="3"],[data-active-phase="3.2"],[data-active-phase="4"],[data-active-phase="5"])
+      .s2e-frontload { opacity: 1; }
+    svg:is([data-active-phase="3"],[data-active-phase="3.2"],[data-active-phase="4"],[data-active-phase="5"])
+      .s2e-frontload { opacity: 0.35; }
+
+    /* The skill: injected at 2.2, fades with the rest once the session drags on */
+    svg[data-active-phase="2.2"] .s2e-skill { opacity: 1; }
+    svg:is([data-active-phase="3"],[data-active-phase="3.2"],[data-active-phase="4"],[data-active-phase="5"])
+      .s2e-skill { opacity: 0.35; }
+
+    /* Ungoverned work (diff chips + boundary bypass): phases 3-5 */
+    svg:is([data-active-phase="3"],[data-active-phase="3.2"],[data-active-phase="4"],[data-active-phase="5"])
+      .s2e-work { opacity: 1; }
+
+    /* Local green checks: phase 3.2 only */
+    svg[data-active-phase="3.2"] .s2e-lookfine { opacity: 1; }
+
+    /* Late gate (CI/review) + red flags: phases 4-5 */
+    svg:is([data-active-phase="4"],[data-active-phase="5"]) .s2e-gate { opacity: 1; }
+
+    /* The bill: phase 5 (and echoed at 14); everything else dims at 5 */
+    svg:is([data-active-phase="5"],[data-active-phase="14"]) .s2e-bill { opacity: 1; }
+    svg[data-active-phase="5"] :is(.s2e-work,.s2e-gate,.s2e-stage) { opacity: 0.3; }
+
+    /* ============ Act 2 ============ */
+    /* Act 2 title banner: phases 6-14 */
+    svg:is([data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .s2e-title-act2 { opacity: 1; }
+
+    /* The gateway on stage: phases 6-14 */
+    svg:is([data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .s2e-plat { opacity: 1; }
+
+    /* enrich flow (invariant chips): phase 7 only */
+    svg[data-active-phase="7"] .s2e-enrich { opacity: 1; }
+    /* padlocks on frozen files: phases 7-14 */
+    svg:is([data-active-phase="7"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .s2e-locks { opacity: 1; }
+
+    /* Plan document: phases 8-9 */
+    svg:is([data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"]) .s2e-plan { opacity: 1; }
+    svg[data-active-phase="8"] .s2e-plan-rej { opacity: 1; }
+    svg:is([data-active-phase="8.2"],[data-active-phase="9"]) .s2e-plan-fix { opacity: 1; }
+    svg[data-active-phase="9"] .s2e-plan-lock { opacity: 1; }
+
+    /* Least-privilege scope (green files + via-proxy route): phases 9-14 */
+    svg:is([data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .s2e-scope { opacity: 1; }
+
+    /* Guard shield: phases 10-14; pass state except during the block at 11 */
+    svg:is([data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .s2e-guard { opacity: 1; }
+    svg:is([data-active-phase="10"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+      .s2e-guard-pass { opacity: 1; }
+    svg[data-active-phase="11"] .s2e-guard-block { opacity: 1; }
+
+    /* Semantic tool error: phase 12 only */
+    svg[data-active-phase="12"] .s2e-semerr { opacity: 1; }
+
+    /* Debt gauge: phases 13-14 */
+    svg:is([data-active-phase="13"],[data-active-phase="14"]) .s2e-debt { opacity: 1; }
+
+    /* Final comparison strip: phase 14 */
+    svg[data-active-phase="14"] .s2e-compare { opacity: 1; }
+
+    /* ============ Gentle attention animations ============ */
+    @keyframes s2e-pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+    @keyframes s2e-dot-travel {
+      0% { offset-distance: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    svg[data-active-phase="2"] .s2e-dot-dump { animation: s2e-dot-travel 2.2s ease-in-out infinite; }
+    svg[data-active-phase="2.2"] .s2e-dot-skill { animation: s2e-dot-travel 2.2s ease-in-out infinite; }
+    svg[data-active-phase="7"] .s2e-dot-enrich-a { animation: s2e-dot-travel 2.4s ease-in-out infinite; }
+    svg[data-active-phase="7"] .s2e-dot-enrich-b { animation: s2e-dot-travel 2.4s ease-in-out infinite 1.1s; }
+    svg[data-active-phase="8.2"] .s2e-dot-replan-a { animation: s2e-dot-travel 2.2s ease-in-out infinite; }
+    svg[data-active-phase="8.2"] .s2e-dot-replan-b { animation: s2e-dot-travel 2.2s ease-in-out infinite 1s; }
+    svg[data-active-phase="3"] .s2e-bypass-arrow { animation: s2e-pulse 2.5s ease-in-out infinite; }
+    svg[data-active-phase="11"] .s2e-block-flash { animation: s2e-pulse 1.6s ease-in-out infinite; }
+  ]]></style>
+
+  <!-- ================= STABLE STAGE (always visible) ================= -->
+  <g class="s2e-stage" style="transition: opacity 0.5s ease;">
+    <!-- Goal caption -->
+    <text x="450" y="42" text-anchor="middle" font-size="11" font-style="italic" fill="#586586">Goal: make checkout-service (ours) accept payments through Stripe (external)</text>
+
+    <!-- C4-ish boundary: your organization -->
+    <rect x="15" y="52" width="760" height="293" rx="10" fill="none" stroke="#6D9EEB" stroke-width="1.5" stroke-dasharray="8,6"/>
+    <text x="30" y="70" font-size="10.5" font-weight="700" letter-spacing="1" fill="#6D9EEB">YOUR ORGANIZATION</text>
+
+    <!-- C4-ish external zone -->
+    <rect x="788" y="52" width="106" height="293" rx="10" fill="#F7F8FA" stroke="#B7BDCC" stroke-width="1.5" stroke-dasharray="8,6"/>
+    <text x="841" y="70" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1" fill="#8A93A6">EXTERNAL</text>
+
+    <!-- Stripe API (external system, C4 gray) -->
+    <rect x="806" y="96" width="76" height="56" rx="6" fill="#6B7690"/>
+    <text x="844" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">Stripe API</text>
+    <text x="844" y="132" text-anchor="middle" font-size="8" fill="#DDE2EA">payment provider</text>
+    <text x="844" y="143" text-anchor="middle" font-size="8" fill="#DDE2EA">(SaaS)</text>
+
+    <!-- Egress proxy: the only sanctioned crossing, sits ON the boundary -->
+    <rect x="728" y="100" width="60" height="48" rx="6" fill="#EEF1F6" stroke="#586586" stroke-width="1.5"/>
+    <text x="758" y="118" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#586586">security</text>
+    <text x="758" y="129" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#586586">egress-proxy</text>
+    <text x="758" y="141" text-anchor="middle" font-size="7.5" fill="#8A93A6">the only exit</text>
+
+    <!-- Developer (person) -->
+    <circle cx="62" cy="185" r="13" fill="#DAF6F9" stroke="#0E2356" stroke-width="2"/>
+    <path d="M 42 228 Q 62 202 82 228" fill="#DAF6F9" stroke="#0E2356" stroke-width="2"/>
+    <text x="62" y="246" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#0E2356">Developer</text>
+
+    <!-- Intent bubble -->
+    <rect x="22" y="100" width="146" height="46" rx="10" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <path d="M 55 146 L 60 160 L 68 146" fill="#FFFFFF" stroke="#586586" stroke-width="1.5"/>
+    <text x="95" y="118" text-anchor="middle" font-size="10" fill="#0E2356" font-weight="600">"Add Stripe as a payment</text>
+    <text x="95" y="132" text-anchor="middle" font-size="10" fill="#0E2356" font-weight="600">method to checkout"</text>
+
+    <!-- Coding agent -->
+    <rect x="185" y="170" width="118" height="58" rx="8" fill="#DAF6F9" stroke="#00D2DD" stroke-width="2"/>
+    <text x="244" y="194" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#0E2356">Coding agent</text>
+    <text x="244" y="210" text-anchor="middle" font-size="10" fill="#586586">Claude Code</text>
+    <line x1="104" y1="199" x2="181" y2="199" stroke="#0E2356" stroke-width="2" marker-end="url(#s2eDark)"/>
+
+    <!-- checkout-service: the system we change -->
+    <rect x="545" y="95" width="178" height="210" rx="8" fill="#FFFFFF" stroke="#0E2356" stroke-width="2"/>
+    <text x="634" y="115" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#0E2356">checkout-service</text>
+    <text x="634" y="129" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">the Go service we change</text>
+    <line x1="559" y1="136" x2="709" y2="136" stroke="#B7BDCC" stroke-width="1"/>
+    <text x="561" y="154" font-size="9" fill="#0E2356">migrations/001_stripe.sql</text>
+    <text x="561" y="176" font-size="9" fill="#0E2356">internal/payment/router.go</text>
+    <text x="561" y="198" font-size="9" fill="#0E2356">tests/integration_payment_test.go</text>
+    <line x1="559" y1="210" x2="709" y2="210" stroke="#B7BDCC" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="561" y="228" font-size="9" fill="#586586">internal/old_payment.go</text>
+    <text x="561" y="250" font-size="9" fill="#586586">internal/auth/login.go</text>
+    <text x="561" y="272" font-size="8.5" font-style="italic" fill="#B7BDCC">legacy, frozen by ADR-070</text>
+  </g>
+
+  <!-- ================= ACT TITLES ================= -->
+  <g class="s2e-title-act1">
+    <text x="450" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#c0392b">ACT 1 · rules as text: CLAUDE.md + a skill, no gateway</text>
+  </g>
+  <g class="s2e-title-act2">
+    <text x="450" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#00A5B0">ACT 2 · the same rules as data: the Platform Planning Gateway</text>
+  </g>
+
+  <!-- ================= ACT 1 SCENES ================= -->
+  <!-- Front-loaded context wall (between agent and repo, where the PPG will later stand) -->
+  <g class="s2e-frontload">
+    <rect x="340" y="86" width="150" height="16" rx="3" fill="#EEF1F6" stroke="#586586" stroke-width="1"/>
+    <rect x="346" y="104" width="150" height="16" rx="3" fill="#EEF1F6" stroke="#586586" stroke-width="1"/>
+    <text x="415" y="98" text-anchor="middle" font-size="9" fill="#586586">CLAUDE.md · 214 lines</text>
+    <text x="421" y="116" text-anchor="middle" font-size="9" fill="#586586">wiki: ADR-042, 051, 060, 070…</text>
+    <path id="s2e-path-dump" d="M 400 124 Q 340 150 308 172" fill="none" stroke="#586586" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#s2eDark)"/>
+    <text x="430" y="140" font-size="9" font-style="italic" fill="#586586">read once, at minute zero</text>
+    <circle class="s2e-dot-dump" data-follow="s2e-path-dump" r="4" fill="#586586"/>
+  </g>
+
+  <!-- The skill: the team's best practice, still text in the context -->
+  <g class="s2e-skill">
+    <rect x="352" y="150" width="168" height="16" rx="3" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1.2"/>
+    <text x="436" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="#00A5B0">/add-payment-method · SKILL.md</text>
+    <path id="s2e-path-skill" d="M 400 168 Q 350 182 312 190" fill="none" stroke="#00A5B0" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#s2eCyan)"/>
+    <text x="466" y="182" font-size="9" font-style="italic" fill="#00A5B0">the right rules, injected as text</text>
+    <circle class="s2e-dot-skill" data-follow="s2e-path-skill" r="4" fill="#00A5B0"/>
+  </g>
+
+  <!-- Ungoverned work: diff chips + the bypass that crosses the boundary above the proxy -->
+  <g class="s2e-work">
+    <line x1="307" y1="220" x2="541" y2="220" stroke="#00D2DD" stroke-width="2" marker-end="url(#s2eCyan)"/>
+    <text x="424" y="236" text-anchor="middle" font-size="9.5" fill="#00A5B0" font-weight="600">edits, "while I'm here…"</text>
+    <rect x="676" y="144" width="38" height="13" rx="3" fill="#DAF6F9" stroke="#00A5B0" stroke-width="1"/>
+    <rect x="676" y="166" width="38" height="13" rx="3" fill="#DAF6F9" stroke="#00A5B0" stroke-width="1"/>
+    <rect x="676" y="218" width="38" height="13" rx="3" fill="#DAF6F9" stroke="#00A5B0" stroke-width="1"/>
+    <rect x="676" y="240" width="38" height="13" rx="3" fill="#DAF6F9" stroke="#00A5B0" stroke-width="1"/>
+    <text x="695" y="154" text-anchor="middle" font-size="8" fill="#00A5B0">+42</text>
+    <text x="695" y="176" text-anchor="middle" font-size="8" fill="#00A5B0">+118</text>
+    <text x="695" y="228" text-anchor="middle" font-size="8" fill="#00A5B0">+9</text>
+    <text x="695" y="250" text-anchor="middle" font-size="8" fill="#00A5B0">+17</text>
+    <!-- direct call: leaves the organization without passing through the proxy -->
+    <path class="s2e-bypass-arrow" d="M 272 166 L 272 74 L 700 74 L 806 90" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#s2eRed)"/>
+    <text x="480" y="66" text-anchor="middle" font-size="9.5" font-weight="600" fill="#c0392b">✕ direct call: crosses the boundary, skips the proxy</text>
+  </g>
+
+  <!-- Local checks look fine -->
+  <g class="s2e-lookfine">
+    <rect x="548" y="312" width="172" height="20" rx="10" fill="#E9F7EF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="634" y="326" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1E7B3C">✓ compiles ✓ local tests ✓ clean diff</text>
+  </g>
+
+  <!-- Late gate -->
+  <g class="s2e-gate">
+    <rect x="761" y="200" width="14" height="110" rx="3" fill="#FDE8E8" stroke="#c0392b" stroke-width="2"/>
+    <text x="768" y="326" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#c0392b">CI + review</text>
+    <text x="551" y="231" font-size="10" font-weight="bold" fill="#c0392b">✕</text>
+    <text x="551" y="253" font-size="10" font-weight="bold" fill="#c0392b">✕</text>
+    <text x="700" y="86" font-size="10" font-weight="bold" fill="#c0392b">✕ ADR-042</text>
+    <path d="M 772 315 Q 420 385 92 240" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#s2eRed)"/>
+    <text x="430" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">rework: back to the developer, days later</text>
+  </g>
+
+  <!-- The bill -->
+  <g class="s2e-bill">
+    <rect x="60" y="378" width="360" height="18" rx="4" fill="#c0392b" opacity="0.85"/>
+    <text x="240" y="391" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#FFFFFF">Act 1 feedback: DAYS, outside the loop, full rework</text>
+  </g>
+
+  <!-- ================= ACT 2 SCENES ================= -->
+  <!-- The gateway: between the agent and the work, inside the organization -->
+  <g class="s2e-plat">
+    <rect x="330" y="80" width="200" height="72" rx="10" fill="#E8FAFB" stroke="#00D2DD" stroke-width="2.5"/>
+    <text x="430" y="98" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">Platform Planning Gateway</text>
+    <rect x="342" y="106" width="80" height="16" rx="3" fill="#FFFFFF" stroke="#586586" stroke-width="1"/>
+    <text x="382" y="117" text-anchor="middle" font-size="8.5" fill="#0E2356">ADR store</text>
+    <rect x="428" y="106" width="92" height="16" rx="3" fill="#FFFFFF" stroke="#586586" stroke-width="1"/>
+    <text x="474" y="117" text-anchor="middle" font-size="8.5" fill="#0E2356">plan linter (Rego)</text>
+    <rect x="342" y="126" width="80" height="16" rx="3" fill="#FFFFFF" stroke="#586586" stroke-width="1"/>
+    <text x="382" y="137" text-anchor="middle" font-size="8.5" fill="#0E2356">ticket issuer</text>
+    <text x="440" y="139" font-size="8" font-style="italic" fill="#586586">a platform service</text>
+  </g>
+
+  <!-- enrich: invariant chips flowing to the agent -->
+  <g class="s2e-enrich">
+    <path id="s2e-path-enrich" d="M 336 130 Q 300 150 288 168" fill="none" stroke="#00A5B0" stroke-width="1.5" marker-end="url(#s2eCyan)"/>
+    <rect x="196" y="126" width="66" height="15" rx="7" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1"/>
+    <text x="229" y="137" text-anchor="middle" font-size="8.5" font-weight="600" fill="#00A5B0">ADR-042 proxy</text>
+    <rect x="190" y="144" width="74" height="15" rx="7" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1"/>
+    <text x="227" y="155" text-anchor="middle" font-size="8.5" font-weight="600" fill="#00A5B0">ADR-070 frozen</text>
+    <text x="228" y="120" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">invariants, not recipes</text>
+    <circle class="s2e-dot-enrich-a" data-follow="s2e-path-enrich" r="4" fill="#00A5B0"/>
+    <circle class="s2e-dot-enrich-b" data-follow="s2e-path-enrich" r="4" fill="#00A5B0"/>
+  </g>
+  <!-- padlocks on frozen files -->
+  <g class="s2e-locks">
+    <text x="714" y="229" font-size="10" text-anchor="end">🔒</text>
+    <text x="714" y="251" font-size="10" text-anchor="end">🔒</text>
+  </g>
+
+  <!-- The plan document -->
+  <g class="s2e-plan">
+    <rect x="330" y="248" width="126" height="78" rx="6" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.5"/>
+    <text x="393" y="264" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#0E2356">plan (JSON contract)</text>
+    <text x="340" y="280" font-size="8.5" fill="#0E2356">s1 migration 001_stripe.sql</text>
+    <text x="340" y="294" font-size="8.5" fill="#0E2356">s2 patch payment/router.go</text>
+    <path id="s2e-path-replan" d="M 330 244 Q 340 200 366 156" fill="none" stroke="#00A5B0" stroke-width="1.5"/>
+    <circle class="s2e-dot-replan-a" data-follow="s2e-path-replan" r="4" fill="#00A5B0"/>
+    <circle class="s2e-dot-replan-b" data-follow="s2e-path-replan" r="4" fill="#0E2356"/>
+  </g>
+  <g class="s2e-plan-rej">
+    <rect x="330" y="334" width="160" height="18" rx="9" fill="#FDE8E8" stroke="#c0392b" stroke-width="1.5"/>
+    <text x="410" y="347" text-anchor="middle" font-size="9" font-weight="bold" fill="#c0392b">422 PLAN_REJECTED: go_tests_present</text>
+  </g>
+  <g class="s2e-plan-fix">
+    <text x="340" y="308" font-size="8.5" fill="#1E7B3C" font-weight="600">s3 go test ./...  ← added by the agent</text>
+  </g>
+  <g class="s2e-plan-lock">
+    <rect x="336" y="334" width="130" height="18" rx="9" fill="#E9F7EF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="401" y="347" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E7B3C">PLAN_LOCKED · JWT ticket</text>
+    <text x="308" y="168" font-size="11">🎫</text>
+  </g>
+
+  <!-- Least-privilege scope + the sanctioned route through the proxy -->
+  <g class="s2e-scope">
+    <rect x="557" y="144" width="152" height="14" rx="3" fill="#34A853" opacity="0.14"/>
+    <rect x="557" y="166" width="152" height="14" rx="3" fill="#34A853" opacity="0.14"/>
+    <rect x="557" y="188" width="152" height="14" rx="3" fill="#34A853" opacity="0.14"/>
+    <path d="M 260 166 L 260 64 L 755 64 L 755 96" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#s2eGreen)"/>
+    <line x1="788" y1="124" x2="802" y2="124" stroke="#34A853" stroke-width="2" marker-end="url(#s2eGreen)"/>
+    <text x="500" y="58" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1E7B3C">✓ Stripe call leaves through the egress proxy</text>
+  </g>
+
+  <!-- Guard shield at the door of the service -->
+  <g class="s2e-guard">
+    <path d="M 513 186 l 12 -6 l 12 6 v 12 q 0 10 -12 15 q -12 -5 -12 -15 z" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.8"/>
+    <text x="525" y="232" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0E2356">ppg-guard</text>
+  </g>
+  <g class="s2e-guard-pass">
+    <text x="525" y="201" text-anchor="middle" font-size="11" font-weight="bold" fill="#34A853">✓</text>
+    <text x="525" y="245" text-anchor="middle" font-size="8" fill="#1E7B3C">in scope: silent</text>
+  </g>
+  <g class="s2e-guard-block">
+    <text x="525" y="201" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">✕</text>
+    <g class="s2e-block-flash">
+      <rect x="557" y="240" width="152" height="14" rx="3" fill="#FDE8E8" stroke="#c0392b" stroke-width="1.5"/>
+    </g>
+    <rect x="545" y="316" width="178" height="34" rx="6" fill="#FDE8E8" stroke="#c0392b" stroke-width="1.5"/>
+    <text x="634" y="330" text-anchor="middle" font-size="9" font-weight="bold" fill="#c0392b">OUT_OF_PLAN_SCOPE · exit 2</text>
+    <text x="634" y="343" text-anchor="middle" font-size="8.5" fill="#c0392b">nothing was modified</text>
+  </g>
+
+  <!-- Semantic tool error -->
+  <g class="s2e-semerr">
+    <rect x="545" y="312" width="178" height="46" rx="6" fill="#FFF8E6" stroke="#E8A13C" stroke-width="1.5"/>
+    <text x="634" y="326" text-anchor="middle" font-size="9" font-weight="bold" fill="#9C6B14">GO_SYNTAX_ERROR</text>
+    <text x="634" y="339" text-anchor="middle" font-size="8.5" fill="#9C6B14">remediation_guidance: fix line 2:22,</text>
+    <text x="634" y="351" text-anchor="middle" font-size="8.5" fill="#9C6B14">resubmit the patch</text>
+    <path d="M 541 330 Q 420 350 306 230" fill="none" stroke="#E8A13C" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#s2eDark)"/>
+  </g>
+
+  <!-- Debt gauge -->
+  <g class="s2e-debt">
+    <rect x="428" y="126" width="92" height="16" rx="3" fill="#FDE8E8" stroke="#c0392b" stroke-width="1"/>
+    <text x="474" y="137" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#c0392b">debt 0.4 · ALERT</text>
+    <text x="474" y="166" text-anchor="middle" font-size="8.5" fill="#586586">2 sunsets pending</text>
+  </g>
+
+  <!-- Final comparison strip -->
+  <g class="s2e-compare">
+    <rect x="470" y="378" width="56" height="18" rx="4" fill="#34A853"/>
+    <rect x="534" y="378" width="56" height="18" rx="4" fill="#34A853"/>
+    <rect x="598" y="378" width="56" height="18" rx="4" fill="#34A853"/>
+    <text x="562" y="391" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#FFFFFF">seconds</text>
+    <text x="736" y="391" text-anchor="middle" font-size="10" font-weight="600" fill="#1E7B3C">in-loop iterations</text>
+  </g>
+</svg>

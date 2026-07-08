@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <rect x="0" y="0" width="900" height="240" fill="#ffffff"/>
+  <defs>
+    <marker id="cfDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0E2356"/></marker>
+  </defs>
+
+  <text x="450" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">The cost of feedback depends on where it arrives</text>
+
+  <!-- ===== Without the gateway ===== -->
+  <text x="40" y="66" font-size="12" font-weight="bold" fill="#c0392b">Without the gateway</text>
+  <g>
+    <rect x="40" y="78" width="90" height="30" rx="6" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.5"/>
+    <text x="85" y="97" text-anchor="middle" font-size="10" fill="#0E2356">intent</text>
+    <line x1="130" y1="93" x2="158" y2="93" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+    <rect x="160" y="78" width="120" height="30" rx="6" fill="#DAF6F9" stroke="#00D2DD" stroke-width="1.5"/>
+    <text x="220" y="93" text-anchor="middle" font-size="10" fill="#0E2356">agent + rules as text</text>
+    <text x="220" y="104" text-anchor="middle" font-size="8" fill="#586586">CLAUDE.md, skills</text>
+    <line x1="280" y1="93" x2="308" y2="93" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+    <!-- long red span -->
+    <rect x="310" y="80" width="430" height="26" rx="13" fill="#FDE8E8" stroke="#c0392b" stroke-width="1.5"/>
+    <text x="525" y="97" text-anchor="middle" font-size="10.5" font-weight="600" fill="#c0392b">silence… until CI and code review, days later</text>
+    <rect x="750" y="78" width="110" height="30" rx="6" fill="#c0392b"/>
+    <text x="805" y="97" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">full rework</text>
+  </g>
+
+  <!-- ===== With the gateway ===== -->
+  <text x="40" y="152" font-size="12" font-weight="bold" fill="#1E7B3C">With the gateway</text>
+  <g>
+    <rect x="40" y="164" width="90" height="30" rx="6" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.5"/>
+    <text x="85" y="183" text-anchor="middle" font-size="10" fill="#0E2356">intent</text>
+    <line x1="130" y1="179" x2="158" y2="179" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+
+    <rect x="160" y="164" width="110" height="30" rx="6" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1.5"/>
+    <text x="215" y="179" text-anchor="middle" font-size="9.5" fill="#0E2356">enrich(): invariants</text>
+    <text x="215" y="190" text-anchor="middle" font-size="8" fill="#586586">seconds</text>
+    <line x1="270" y1="179" x2="298" y2="179" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+
+    <rect x="300" y="164" width="130" height="30" rx="6" fill="#E9F7EF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="365" y="179" text-anchor="middle" font-size="9.5" fill="#0E2356">plan rejected → fixed</text>
+    <text x="365" y="190" text-anchor="middle" font-size="8" fill="#586586">seconds, one iteration</text>
+    <line x1="430" y1="179" x2="458" y2="179" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+
+    <rect x="460" y="164" width="120" height="30" rx="6" fill="#E9F7EF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="520" y="179" text-anchor="middle" font-size="9.5" fill="#0E2356">locked plan + ticket</text>
+    <text x="520" y="190" text-anchor="middle" font-size="8" fill="#586586">drift blocked in-tool</text>
+    <line x1="580" y1="179" x2="608" y2="179" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+
+    <rect x="610" y="164" width="120" height="30" rx="6" fill="#E9F7EF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="670" y="179" text-anchor="middle" font-size="9.5" fill="#0E2356">semantic tool errors</text>
+    <text x="670" y="190" text-anchor="middle" font-size="8" fill="#586586">guided self-correction</text>
+    <line x1="730" y1="179" x2="758" y2="179" stroke="#0E2356" stroke-width="1.5" marker-end="url(#cfDark)"/>
+
+    <rect x="760" y="164" width="100" height="30" rx="6" fill="#34A853"/>
+    <text x="810" y="183" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">done, in scope</text>
+  </g>
+
+  <text x="450" y="226" text-anchor="middle" font-size="10.5" font-style="italic" fill="#586586">Same task, same agent: the difference is where the feedback lives.</text>
+</svg>

@@ -137,9 +137,69 @@ Note what failed. Not the rules (they were correct), not their delivery (CLAUDE.
 
 ## Act 2: same task, governed loop
 
-Replay. The repository is reset, the intent is identical, the agent is the same stock Claude Code. One thing has changed: a **Platform Planning Gateway** now sits between the agent and the work, and the four ADRs live inside it. Same rules, different form: no longer prose in a context file or a skill body, but data the platform can retrieve, evaluate, and enforce.
+Replay. The repository is reset, the intent is identical, the agent is the same stock Claude Code. One thing has changed: a **Platform Planning Gateway** now sits between the agent and the work, and the rules changed form. The responsibilities split cleanly in three:
 
-The agent gained two tools (`get_platform_guidelines_for_intent` and `lock_in_plan`, served over [MCP](https://modelcontextprotocol.io/)) and one hook that guards every file edit. Watch what changes.
+- the **platform team** operates the gateway and exposes its gates (over HTTP, and as [MCP](https://modelcontextprotocol.io/) tools the agent sees natively);
+- each **stream team** writes its rules twice (a semantic directive plus an executable policy) and pairs its skills with a policy;
+- the **agent** executes the skill, and every decision it makes passes through the gateway's endpoints.
+
+The next two scenes show what "written twice" and "paired with a policy" mean, concretely.
+
+{{< /scrollytelling-step >}}
+
+{{< scrollytelling-step phase="6.3" id="phase-6-3" >}}
+
+## The rule, written twice
+
+Take ADR-060 ("a Go change ships with tests"). In Act 1 it was one line of prose. In Act 2 it is a **dual-representation artifact**: the Markdown invariant stays (the agent will reason over it at planning time), and next to it the team wrote `ADR-060.rego`, an executable policy in [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/):
+
+```rego
+package ppg.linter
+
+import rego.v1
+
+violation contains v if {
+    input.repository_context.tech_stack[_] == "Go"
+    not plan_has_go_test
+    v := {
+        "policy_id": "go_tests_present",
+        "message":   "SDLC invariant violated: the plan must contain a 'go test' step for a Go stack.",
+        "nature":    "amplifier",
+    }
+}
+
+plan_has_go_test if {
+    input.steps[_].tool == "go-test"
+}
+```
+
+Read it as a sentence: *if the stack is Go and no step uses the `go-test` tool, emit this violation.* The `input` is the agent's plan; the output is the exact message the agent will receive. No LLM anywhere: the gateway loads every ADR-paired `.rego` into an embedded [OPA](https://www.openpolicyagent.org/) engine, and evaluation is deterministic. Keep this policy in mind: you will see it fire three scenes from now.
+
+{{< /scrollytelling-step >}}
+
+{{< scrollytelling-step phase="6.6" id="phase-6-6" >}}
+
+## The skill comes back, with its policy
+
+Remember the skill from Act 1? It is not thrown away: it is **promoted**. The team ships version 2, where the body is no longer a list of rules to remember but a workflow that puts the gateway inside the loop, and pairs it with a companion policy:
+
+```markdown
+---
+name: add-payment-method
+version: 2.0.0
+---
+1. Call get_platform_guidelines_for_intent with the intent and repo context.
+2. Draft the plan honoring the invariants; submit it through lock_in_plan.
+3. Use Edit to implement, staying within the ticket scope.
+```
+
+Publication goes through the platform's validation gate, `POST /validate_skill`. Because the skill instructs file modifications, the gate requires the companion `SKILL.rego`; with it, the gate answers:
+
+```json
+{ "status": "SKILL_VALID", "tier": 1 }
+```
+
+That is the division of labor: **the team ships the capability and its policy; the platform ships the gate**. (In the PoC the companion policy is enforced at this publish gate; evaluating it again when a plan declares which skill built it is the documented next step.)
 
 {{< /scrollytelling-step >}}
 
@@ -147,7 +207,7 @@ The agent gained two tools (`get_platform_guidelines_for_intent` and `lock_in_pl
 
 ## enrich(): the architect chat, automated
 
-Before planning, the agent asks the gateway: *"here is what I am about to do; which of our decisions apply?"* The word "payment" in the intent matches the scope selectors of two ADRs, and the gateway answers with invariants (never recipes):
+The developer types the same command as in Act 1: `/add-payment-method Stripe`. The skill executes, and its first instruction sends the intent to the gateway: *"here is what I am about to do; which of our decisions apply?"* The word "payment" in the intent matches the scope selectors of two ADRs, and the gateway answers with invariants (never recipes):
 
 ```json
 {
@@ -169,11 +229,34 @@ It is the fifteen-minute chat with the staff architect before starting a piece o
 
 {{< /scrollytelling-step >}}
 
+{{< scrollytelling-step phase="7.5" id="phase-7-5" >}}
+
+## The gate publishes its contract
+
+How does the agent know what a valid plan looks like? Nobody explains it in prose. The gateway's Go type for a plan has a language-neutral twin, a JSON Schema, and the MCP server serves it to the agent as the `lock_in_plan` tool schema at session start:
+
+```json
+{
+  "title": "AgentPlan",
+  "required": ["session_id", "intent", "repository_context", "steps"],
+  "properties": {
+    "steps": {
+      "type": "array", "minItems": 1,
+      "items": { "required": ["id", "action", "tool", "targets"] }
+    }
+  }
+}
+```
+
+Three layers, and none of them overlap: the skill says **when** to call the gate; the tool schema says **how** to format the plan; the enrich invariants say **what** the plan must contain. The platform publishes contracts; the agent fills in the content.
+
+{{< /scrollytelling-step >}}
+
 {{< scrollytelling-step phase="8" id="phase-8" >}}
 
 ## First plan: rejected
 
-The agent submits its plan as a structured JSON contract. The gateway's linter (OPA/Rego policies paired with the ADRs; deterministic, deliberately not an LLM) finds a gap: no test step for a Go stack.
+The agent submits its plan as a structured JSON contract. The gateway's linter evaluates every ADR-paired Rego policy against it, and one fires: `ADR-060.rego`, the exact policy you read three scenes ago. No test step for a Go stack.
 
 ```json
 {
@@ -347,6 +430,6 @@ Then follow [tutorial 1](https://github.com/owulveryck/poc-agentic-platform/blob
 
 The difference between the two endings is not intelligence; it is form and placement. The rules were the same in both acts, written by the same architects, violated by the same reflexes. In Act 1 they were text (a context file, a well-crafted skill), read once and enforced by humans after the fact. In Act 2 they were data: retrieved at planning time, compiled into a ticket at lock time, verified inside the tools at execution time.
 
-That is the whole argument of [the amplified agentic loop](/2026/07/07/amplified-agentic-loop.html), told as a story. And note that the skill of Act 1 is not the villain: skills are how capabilities should be distributed. They just need the same treatment as plans (a semantic directive paired with a deterministic policy, validated at a gate), which is the subject of the governed skills registry work in the same repository.
+That is the whole argument of [the amplified agentic loop](/2026/07/07/amplified-agentic-loop.html), told as a story. And note that the skill of Act 1 is not the villain: skills are how capabilities should be distributed. Act 2 kept it and promoted it, which fixes the responsibilities in one line: the team writes the skill and its policy; the platform exposes the gate, the schema, and the enforcement; the agent executes the skill and everything it does passes through the platform's endpoints. That treatment of skills (a semantic directive paired with a deterministic policy, validated at a gate) is the subject of the governed skills registry work in the same repository.
 
 *Let's make AI work* ~~*on your machine*~~ *in your organization — and let the platform hold the rails.*

@@ -11,7 +11,7 @@
   <style data-st-keep="true"><![CDATA[
     /* ============ Default: scene groups hidden, stage always visible ============ */
     .s2e-frontload, .s2e-skill, .s2e-work, .s2e-lookfine, .s2e-gate, .s2e-bill,
-    .s2e-plat, .s2e-enrich, .s2e-locks,
+    .s2e-plat, .s2e-dual, .s2e-skillgate, .s2e-schema, .s2e-enrich, .s2e-locks,
     .s2e-plan, .s2e-plan-rej, .s2e-plan-fix, .s2e-plan-lock,
     .s2e-scope, .s2e-guard, .s2e-guard-pass, .s2e-guard-block,
     .s2e-semerr, .s2e-debt, .s2e-compare,
@@ -56,12 +56,19 @@
 
     /* ============ Act 2 ============ */
     /* Act 2 title banner: phases 6-14 */
-    svg:is([data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+    svg:is([data-active-phase="6"],[data-active-phase="6.3"],[data-active-phase="6.6"],[data-active-phase="7"],[data-active-phase="7.5"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
       .s2e-title-act2 { opacity: 1; }
 
     /* The gateway on stage: phases 6-14 */
-    svg:is([data-active-phase="6"],[data-active-phase="7"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
+    svg:is([data-active-phase="6"],[data-active-phase="6.3"],[data-active-phase="6.6"],[data-active-phase="7"],[data-active-phase="7.5"],[data-active-phase="8"],[data-active-phase="8.2"],[data-active-phase="9"],[data-active-phase="10"],[data-active-phase="11"],[data-active-phase="12"],[data-active-phase="13"],[data-active-phase="14"])
       .s2e-plat { opacity: 1; }
+
+    /* Dual representation of a rule: phase 6.3 only */
+    svg[data-active-phase="6.3"] .s2e-dual { opacity: 1; }
+    /* Skill + policy through the validation gate: phase 6.6 only */
+    svg[data-active-phase="6.6"] .s2e-skillgate { opacity: 1; }
+    /* Published plan schema: phase 7.5 only */
+    svg[data-active-phase="7.5"] .s2e-schema { opacity: 1; }
 
     /* enrich flow (invariant chips): phase 7 only */
     svg[data-active-phase="7"] .s2e-enrich { opacity: 1; }
@@ -194,7 +201,7 @@
     <rect x="352" y="150" width="168" height="16" rx="3" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1.2"/>
     <text x="436" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="#00A5B0">/add-payment-method · SKILL.md</text>
     <path id="s2e-path-skill" d="M 400 168 Q 350 182 312 190" fill="none" stroke="#00A5B0" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#s2eCyan)"/>
-    <text x="466" y="182" font-size="9" font-style="italic" fill="#00A5B0">the right rules, injected as text</text>
+    <text x="436" y="182" text-anchor="middle" font-size="9" font-style="italic" fill="#00A5B0">the right rules, injected as text</text>
     <circle class="s2e-dot-skill" data-follow="s2e-path-skill" r="4" fill="#00A5B0"/>
   </g>
 
@@ -252,6 +259,44 @@
     <text x="440" y="139" font-size="8" font-style="italic" fill="#586586">a platform service</text>
   </g>
 
+  <!-- Dual representation: the same rule as Markdown (agent) and Rego (linter) -->
+  <g class="s2e-dual">
+    <rect x="338" y="170" width="90" height="50" rx="6" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.5"/>
+    <text x="383" y="190" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">ADR-060.md</text>
+    <text x="383" y="205" text-anchor="middle" font-size="8" fill="#586586">why · for the agent</text>
+    <rect x="438" y="170" width="90" height="50" rx="6" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1.5"/>
+    <text x="483" y="190" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">ADR-060.rego</text>
+    <text x="483" y="205" text-anchor="middle" font-size="8" fill="#00A5B0">check · for the linter</text>
+    <line x1="383" y1="168" x2="383" y2="124" stroke="#586586" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <line x1="483" y1="168" x2="412" y2="124" stroke="#00A5B0" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="433" y="245" text-anchor="middle" font-size="9.5" font-style="italic" fill="#586586">every rule is written twice</text>
+  </g>
+
+  <!-- Skill + companion policy through the validation gate -->
+  <g class="s2e-skillgate">
+    <rect x="332" y="175" width="92" height="16" rx="3" fill="#E8FAFB" stroke="#00A5B0" stroke-width="1.2"/>
+    <text x="378" y="187" text-anchor="middle" font-size="8.5" font-weight="600" fill="#00A5B0">SKILL.md · v2</text>
+    <rect x="332" y="197" width="92" height="16" rx="3" fill="#FFFFFF" stroke="#00A5B0" stroke-width="1.2"/>
+    <text x="378" y="209" text-anchor="middle" font-size="8.5" font-weight="600" fill="#00A5B0">SKILL.rego</text>
+    <line x1="428" y1="194" x2="458" y2="194" stroke="#0E2356" stroke-width="1.5" marker-end="url(#s2eDark)"/>
+    <rect x="462" y="172" width="84" height="42" rx="6" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.5"/>
+    <text x="504" y="189" text-anchor="middle" font-size="8" fill="#586586">gate</text>
+    <text x="504" y="203" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0E2356">/validate_skill</text>
+    <rect x="449" y="230" width="110" height="18" rx="9" fill="#E9F7EF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="504" y="243" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E7B3C">SKILL_VALID · tier 1</text>
+    <text x="440" y="272" text-anchor="middle" font-size="9.5" font-style="italic" fill="#586586">the team ships skill + policy,</text>
+    <text x="440" y="285" text-anchor="middle" font-size="9.5" font-style="italic" fill="#586586">the platform ships the gate</text>
+  </g>
+
+  <!-- The published plan schema on the MCP channel -->
+  <g class="s2e-schema">
+    <rect x="316" y="164" width="150" height="17" rx="3" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.2"/>
+    <text x="391" y="176" text-anchor="middle" font-size="8.5" font-weight="600" fill="#0E2356">AgentPlan · JSON Schema</text>
+    <line x1="391" y1="162" x2="391" y2="156" stroke="#0E2356" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="391" y="198" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">generated from plan.Plan,</text>
+    <text x="391" y="210" text-anchor="middle" font-size="8.5" font-style="italic" fill="#586586">served over MCP at session start</text>
+  </g>
+
   <!-- enrich: invariant chips flowing to the agent -->
   <g class="s2e-enrich">
     <path id="s2e-path-enrich" d="M 336 130 Q 300 150 288 168" fill="none" stroke="#00A5B0" stroke-width="1.5" marker-end="url(#s2eCyan)"/>
@@ -299,17 +344,17 @@
     <rect x="557" y="188" width="152" height="14" rx="3" fill="#34A853" opacity="0.14"/>
     <path d="M 260 166 L 260 64 L 755 64 L 755 96" fill="none" stroke="#34A853" stroke-width="2" marker-end="url(#s2eGreen)"/>
     <line x1="788" y1="124" x2="802" y2="124" stroke="#34A853" stroke-width="2" marker-end="url(#s2eGreen)"/>
-    <text x="500" y="58" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1E7B3C">✓ Stripe call leaves through the egress proxy</text>
+    <text x="500" y="56" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1E7B3C">✓ Stripe call leaves through the egress proxy</text>
   </g>
 
   <!-- Guard shield at the door of the service -->
   <g class="s2e-guard">
     <path d="M 513 186 l 12 -6 l 12 6 v 12 q 0 10 -12 15 q -12 -5 -12 -15 z" fill="#FFFFFF" stroke="#0E2356" stroke-width="1.8"/>
-    <text x="525" y="232" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0E2356">ppg-guard</text>
+    <text x="518" y="232" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0E2356">ppg-guard</text>
   </g>
   <g class="s2e-guard-pass">
     <text x="525" y="201" text-anchor="middle" font-size="11" font-weight="bold" fill="#34A853">✓</text>
-    <text x="525" y="245" text-anchor="middle" font-size="8" fill="#1E7B3C">in scope: silent</text>
+    <text x="516" y="245" text-anchor="middle" font-size="8" fill="#1E7B3C">in scope: silent</text>
   </g>
   <g class="s2e-guard-block">
     <text x="525" y="201" text-anchor="middle" font-size="11" font-weight="bold" fill="#c0392b">✕</text>

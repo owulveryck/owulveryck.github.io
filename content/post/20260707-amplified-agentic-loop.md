@@ -189,7 +189,7 @@ How did the gateway know ADR-042 was relevant? Each ADR declares its own *scope 
 
 Note the two things `enrich()` deliberately does **not** do. It does not enforce anything: it *advises*. Enforcement comes next, in the hard move. And it returns no recipe ("modify file X at line Y"), only semantic invariants: the recipes are exactly what a better model derives on its own. Architects write the invariants and the selectors in the ADRs; the gateway only retrieves. That division of labor is what makes `enrich()` a declarative amplifier: a smarter model exploits the same invariants better.
 
-**The hard move: `lock_in_plan()`.** The agent must materialize its plan as a structured document (a JSON contract, not free text) and submit it. The gateway runs a **plan linter**: deterministic code, deliberately *not* an LLM, in the spirit of policy-as-code engines like [Open Policy Agent](https://www.openpolicyagent.org/). A non-conforming plan is rejected 100% of the time, reproducibly, with semantic violations:
+**The hard move: `lock_in_plan()`.** The agent must materialize its plan as a structured document (a JSON contract, not free text) and submit it. The gateway runs a **plan linter** using [Open Policy Agent](https://www.openpolicyagent.org/) / [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) embedded in Go: deterministic code, deliberately *not* an LLM. A non-conforming plan is rejected 100% of the time, reproducibly, with semantic violations:
 
 ```json
 {
@@ -201,6 +201,8 @@ Note the two things `enrich()` deliberately does **not** do. It does not enforce
   }]
 }
 ```
+
+Each ADR with programmatic enforcement is a **dual-representation governance artifact**: it carries a semantic directive (the `InvariantText` Markdown body, injected at `enrich()` time into the agent's planning context) and a paired `.rego` file (evaluated deterministically at `lock_in_plan` time by the OPA engine). The two representations serve different moments in the loop and can have different lifetimes on the durability axis: a semantic directive may be a permanent amplifier while the paired Rego policy is compensatory scaffolding scheduled for retirement. ADR-042 in the PoC is intentionally declarative-only — no `.rego` file — demonstrating that the architecture accommodates both modes.
 
 The agent self-corrects, in practice in one or two iterations even with a small model: the linter redresses it like a compiler would.
 

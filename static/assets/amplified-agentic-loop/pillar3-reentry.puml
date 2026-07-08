@@ -1,0 +1,40 @@
+@startuml pillar3-reentry
+' Three signals, three re-entry points
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+skinparam ArrowColor #0E2356
+skinparam ComponentBackgroundColor #EAF4FB
+skinparam ComponentBorderColor #0E2356
+skinparam PackageBackgroundColor #F8FBFF
+skinparam PackageBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+
+package "The agentic loop" as LOOP {
+  component "Capture\n(the context is born here)" as CAP
+  component "Plan" as PLAN
+  component "Act" as ACT
+  component "Observe\n(gap vs. captured intent)" as OBS
+
+  CAP -right-> PLAN
+  PLAN -right-> ACT
+  ACT -right-> OBS
+}
+
+component "Late gate\n(CI, code review, staging)" as GATE #FFE0E0
+
+OBS -[#B00020]-> PLAN : signal 1 - tool-level error\nthe how failed:\nre-plan, same cycle
+OBS -[#0F7B0F]-> CAP : signal 2 - intent-level gap\nnew knowledge enriches the\ncontext: new full cycle
+
+OBS -down-> GATE : result exits\nthe loop
+GATE .[#808080].> CAP : signal 3 - the verdict lands outside the\nobservation horizon; it re-enters as a\nnew intent, carried by a human
+
+note bottom of GATE
+  same information,
+  wrong side of the
+  loop boundary
+end note
+
+@enduml

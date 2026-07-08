@@ -1,0 +1,44 @@
+@startuml skill-dual-representation
+' One skill, two representations, two moments in the loop
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+skinparam ArrowColor #0E2356
+skinparam ComponentBackgroundColor #EAF4FB
+skinparam ComponentBorderColor #0E2356
+skinparam PackageBackgroundColor #F8FBFF
+skinparam PackageBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+
+left to right direction
+
+package "patch-payment@1.2.0" as SKILL {
+  [SKILL.md\n(semantic directive)] as MD
+  [SKILL.rego\n(governance policy)] as REGO
+}
+
+component "Agent\n(Claude Code)" as AGENT
+component "Skill Linter\nGate 1 - publish" as SL
+component "Plan Linter\nGate 3 - lock_in_plan" as PL
+
+MD --> AGENT : read literally at\ninvocation (planning)
+REGO --> SL : evaluated at\npublication
+REGO --> PL : loaded as extra policy\nbundle at runtime
+
+note bottom of MD
+  durability: amplifier
+  (more useful as the
+  model improves)
+end note
+
+note bottom of REGO
+  content may be compensatory
+  (sunset once the model honors
+  the invariant unaided);
+  the requirement to carry it
+  is an amplifier
+end note
+
+@enduml

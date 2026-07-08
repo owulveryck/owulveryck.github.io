@@ -17,7 +17,7 @@ skinparam ActorBorderColor #0E2356
 package "1 — Distribution" as DIST {
   actor "Skill Author" as AUTHOR
   database "Skill Repository\n(GitHub / GitLab)" as REPO
-  component "Skill Linter\nPOST /validate_skill" as LINTER
+  component "Gate 1 — Skill Linter\nPOST /validate_skill" as LINTER
   database "Skill Registry\nregistry.acme.com" as REGISTRY
 
   AUTHOR --> REPO : git push
@@ -40,7 +40,13 @@ package "2 — Runtime" as RT {
   CONSUMER --> TOOL : tool call + JWT
 }
 
-REGISTRY --> CONSUMER : apm install skill@version
-PPG ..> REGISTRY : loads companion\nSKILL.rego at lock_in_plan
+CONSUMER --> REGISTRY : apm install skill@version
+note on link
+  Gate 2 — install:
+  content hash check
+  + revalidation
+end note
+
+PPG ..> REGISTRY : Gate 3 — loads companion\nSKILL.rego at lock_in_plan
 
 @enduml

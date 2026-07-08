@@ -31,7 +31,18 @@ package "Skill Repositories (decentralized)" as REPOS {
 
 }
 
-component "Policy Gate\n\nPOST /validate_skill\n\nchecks:\n  name / description\n  security tier\n  SKILL.rego (tier >= 1)\n  dependency graph\n\nSKILL_REJECTED:\nstays in repository" as GATE
+component "Policy Gate\nPOST /validate_skill" as GATE
+
+note bottom of GATE
+  checks:
+    name / description
+    security tier
+    SKILL.rego (tier >= 1)
+    dependency graph
+
+  SKILL_REJECTED:
+  stays in repository
+end note
 
 package "Skill Registry (authoritative)" as REG {
   [registry.acme.com/skills] as IDX
@@ -51,14 +62,20 @@ note right of REG
   Never directly from a repository.
 end note
 
-S1 --> GATE
-S2 --> GATE
-S3 --> GATE
-S4 --> GATE : git push -> CI triggers
+S1 --> GATE : CI
+S2 --> GATE : CI
+S3 --> GATE : CI
+S4 --> GATE : CI
 
-GATE --> R1
-GATE --> R2
-GATE --> R3
-GATE --> R4 : SKILL_VALID -> promoted
+GATE --> R1 : SKILL_VALID
+GATE --> R2 : SKILL_VALID
+GATE --> R3 : SKILL_VALID
+GATE --> R4 : SKILL_VALID
+
+note bottom of REPOS
+  git push -> CI triggers
+  POST /validate_skill
+  for every skill
+end note
 
 @enduml

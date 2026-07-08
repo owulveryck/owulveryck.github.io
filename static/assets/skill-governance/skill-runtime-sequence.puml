@@ -14,38 +14,55 @@ skinparam NoteBorderColor #F0A000
 actor "Developer / Agent" as AGENT
 participant "Platform Planning\nGateway (PPG)" as PPG
 participant "Registry\nregistry.acme.com" as REGISTRY
-participant "Smart Tool" as TOOL
+participant "Smart Tool\n(Edit / patch-code / ...)" as TOOL
 
 == Install (once) ==
 
 AGENT -> REGISTRY : apm install patch-payment@1.2.0
-REGISTRY -> PPG : revalidate at install\nPOST /validate_skill
-PPG --> AGENT : installed in .claude/skills/
+REGISTRY -> PPG : Gate 2 — revalidate at install\nPOST /validate_skill
+PPG --> REGISTRY : SKILL_VALID
+REGISTRY --> AGENT : installed in .claude/skills/patch-payment/\n(version + content hash pinned)
 
 == Invocation ==
 
 AGENT -> AGENT : /patch-payment "add idempotency key"
 
-AGENT -> PPG : POST /enrich\n{intent, repo_context}
-PPG --> AGENT : ADR invariants\n(amplifier context)
+note over AGENT
+  Agent reads the skill body literally.
+  The body says:
+    1. call get_platform_guidelines_for_intent
+    2. submit plan via lock_in_plan
+    3. use Edit to apply the patch
+  The tools named in the body are the tools
+  the agent will actually call — step by step.
+end note
 
-AGENT -> AGENT : produce structured plan
+AGENT -> PPG : POST /enrich {intent, repo_context}
+PPG --> AGENT : ADR invariants (amplifier context)
+
+AGENT -> AGENT : produce structured plan\n(following skill body + ADR invariants)
 
 AGENT -> PPG : POST /lock_in_plan\n{plan, skill_id: "patch-payment"}
-PPG -> REGISTRY : load companion SKILL.rego\n(skill-specific plan rules)
-PPG -> PPG : evaluate: ADR policies\n+ companion SKILL.rego
+PPG -> REGISTRY : load companion SKILL.rego\nof the installed version (hash-pinned)
+PPG -> PPG : evaluate: ADR policies + SKILL.rego
 
 alt PLAN_REJECTED
 
   PPG --> AGENT : 422 {violations, guidance}
-  AGENT -> AGENT : self-correct → resubmit
+  AGENT -> AGENT : self-correct -> resubmit
 
 else PLAN_LOCKED
 
   PPG --> AGENT : 200 {status: PLAN_LOCKED, ticket: JWT}
 
-  AGENT -> TOOL : tool call + JWT
-  TOOL -> TOOL : verify ticket scope
+  note over AGENT, TOOL
+    The skill body says "use Edit".
+    The agent calls the smart tool wrapping Edit.
+    The smart tool checks the JWT before acting.
+  end note
+
+  AGENT -> TOOL : Edit(file, patch) + JWT ticket
+  TOOL -> TOOL : verify JWT scope:\n  is this file in the locked plan?
 
   alt in scope
     TOOL --> AGENT : result

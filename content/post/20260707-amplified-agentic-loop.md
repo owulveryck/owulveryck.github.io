@@ -252,6 +252,8 @@ The result flows out of the loop with no gate at the exit: not because control w
 
 {{< /scrollytelling >}}
 
+> **Edit (July 10, 2026):** The conceptual arc of this article ends here, and you can stop reading now. The sections below walk through the proof of concept, but two later articles do that job much better: [Same Task, Two Endings](/2026/07/09/same-task-two-endings.html) shows the gateway in action on a single payment-integration story, with real replayable transcripts, and [The Governed Skills Registry](/2026/07/08/governed-skills-registry.html) extends it to skill governance. If you only read one follow-up, read the first.
+
 ## The proof of concept
 
 Concepts about agent governance are cheap; deterministic behavior is not. The companion repository [**poc-agentic-platform**](https://github.com/owulveryck/poc-agentic-platform) implements pillars 1 and 2 end-to-end in Go: small enough to read in an evening, complete enough to run the [whole cycle with `curl`](https://github.com/owulveryck/poc-agentic-platform/blob/main/docs/tutorial.md).

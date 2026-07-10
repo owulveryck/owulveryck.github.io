@@ -3,7 +3,7 @@ title: "The Governed Skills Registry: Policy-as-Code for Enterprise Agent Capabi
 slug: "governed-skills-registry"
 date: 2026-07-08T10:00:00+02:00
 images: [/assets/skill-governance/skill-registry-architecture.svg]
-draft: true
+draft: false
 summary: "Skills are the distribution unit of the agentic workforce, but today's package managers are capability-blind: they version and distribute without validating governance. This article extends the Platform Planning Gateway with a skill governance linter: a deterministic OPA/Rego gate that classifies every skill by security tier before it reaches the enterprise registry."
 tags: ["architecture", "agents", "platform", "governance", "skills"]
 categories: ["dev"]
@@ -182,6 +182,8 @@ This is the runtime sequence:
 ![Runtime sequence: Agent installs skill, invokes it, calls enrich, produces plan, submits to lock_in_plan with skill companion Rego loaded, receives capability ticket, uses Smart Tool](/assets/skill-governance/skill-runtime-sequence.svg)
 
 The result: a skill-invoked plan is held to both the organizational ADR invariants *and* the skill-specific plan requirements. A `/patch-payment` skill can require, in its companion Rego, that any resulting plan include a `go test` step, on top of the ADR-060 requirement that already enforces this for all Go plans. The governance rules compose without coupling.
+
+One scoping note for the honest reader: the PoC implements Gate 1 end to end (`POST /validate_skill`, replayable against the repository); install-time revalidation (Gate 2) and the `skill_id` wiring at `lock_in_plan` (Gate 3) are the documented production path, tracked in the repository's `AUDIT.md`.
 
 ---
 

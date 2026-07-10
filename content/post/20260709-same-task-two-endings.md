@@ -3,7 +3,7 @@ title: "Same Task, Two Endings: A Payment Integration With and Without the Plann
 slug: "same-task-two-endings"
 date: 2026-07-09T10:00:00+02:00
 images: [/assets/same-task-two-endings/same-task-two-endings.svg]
-draft: true
+draft: false
 summary: "A developer asks a coding agent to add Stripe as a payment method to the checkout service. This article tells that story twice: once with today's state of the art (the rules injected as text, through CLAUDE.md and a dedicated skill; the agent still touches frozen legacy code and bypasses the mandatory egress proxy, and the bill arrives days later in code review), and once through the Platform Planning Gateway, where the same rules live as data and the same mistakes are caught in seconds, inside the loop. Every JSON block is a real transcript from the proof of concept, replayable with curl."
 tags: ["architecture", "agents", "platform", "governance"]
 categories: ["dev"]

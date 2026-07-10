@@ -1,0 +1,58 @@
+@startuml skill-three-gates
+' The three gates of skill governance on a single lifecycle
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+skinparam ArrowColor #0E2356
+skinparam ComponentBackgroundColor #EAF4FB
+skinparam ComponentBorderColor #0E2356
+skinparam PackageBackgroundColor #F8FBFF
+skinparam PackageBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+skinparam ActorBackgroundColor #EAF4FB
+skinparam ActorBorderColor #0E2356
+skinparam DatabaseBackgroundColor #EAF4FB
+skinparam DatabaseBorderColor #0E2356
+
+left to right direction
+
+actor "Skill Author" as AUTHOR
+component "Skill Repository\n(git)" as REPO
+component "Gate 1 - Publish\n\nSkill Linter\nPOST /validate_skill" as G1 #FFE9D6
+database "Skill Registry\n(authoritative)" as REG
+component "Gate 2 - Install\n\nhash check +\nrevalidation" as G2 #FFE9D6
+component ".claude/skills/\n(installed, pinned)" as LOCAL
+component "Gate 3 - Runtime\n\nPlan Linter\nADR + SKILL.rego" as G3 #FFE9D6
+component "Smart Tool\n(JWT verified in-tool)" as TOOL
+
+AUTHOR --> REPO : git push
+REPO --> G1 : CI triggers
+G1 --> REG : SKILL_VALID\n+ tier + content hash
+REG --> G2 : apm install
+G2 --> LOCAL : pinned version
+LOCAL --> G3 : /skill invocation\n-> lock_in_plan
+G3 --> TOOL : capability\nticket (JWT)
+
+note bottom of G1
+  catches: bad structure,
+  wrong security tier,
+  missing SKILL.rego
+  (tier >= 1)
+end note
+
+note bottom of G2
+  catches: tampering
+  (content hash) and
+  policy drift
+  (revalidation)
+end note
+
+note bottom of G3
+  catches: plans violating
+  ADR invariants or the
+  skill's companion rules
+end note
+
+@enduml

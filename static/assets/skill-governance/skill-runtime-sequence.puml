@@ -1,0 +1,75 @@
+@startuml skill-runtime-sequence
+' What happens at runtime when an agent invokes a skill
+
+skinparam defaultFontName monospace
+skinparam backgroundColor white
+skinparam SequenceArrowColor #0E2356
+skinparam SequenceParticipantBackgroundColor #EAF4FB
+skinparam SequenceParticipantBorderColor #0E2356
+skinparam SequenceBoxBackgroundColor #F8FBFF
+skinparam SequenceBoxBorderColor #00D2DD
+skinparam NoteBackgroundColor #FFFBE6
+skinparam NoteBorderColor #F0A000
+
+actor "Developer / Agent" as AGENT
+participant "Platform Planning\nGateway (PPG)" as PPG
+participant "Registry\nregistry.acme.com" as REGISTRY
+participant "Smart Tool\n(Edit / patch-code / ...)" as TOOL
+
+== Install (once) ==
+
+AGENT -> REGISTRY : apm install patch-payment@1.2.0
+REGISTRY -> PPG : Gate 2 — revalidate at install\nPOST /validate_skill
+PPG --> REGISTRY : SKILL_VALID
+REGISTRY --> AGENT : installed in .claude/skills/patch-payment/\n(version + content hash pinned)
+
+== Invocation ==
+
+AGENT -> AGENT : /patch-payment "add idempotency key"
+
+note over AGENT
+  Agent reads the skill body literally.
+  The body says:
+    1. call get_platform_guidelines_for_intent
+    2. submit plan via lock_in_plan
+    3. use Edit to apply the patch
+  The tools named in the body are the tools
+  the agent will actually call — step by step.
+end note
+
+AGENT -> PPG : POST /enrich {intent, repo_context}
+PPG --> AGENT : ADR invariants (amplifier context)
+
+AGENT -> AGENT : produce structured plan\n(following skill body + ADR invariants)
+
+AGENT -> PPG : POST /lock_in_plan\n{plan, skill_id: "patch-payment"}
+PPG -> REGISTRY : load companion SKILL.rego\nof the installed version (hash-pinned)
+PPG -> PPG : evaluate: ADR policies + SKILL.rego
+
+alt PLAN_REJECTED
+
+  PPG --> AGENT : 422 {violations, guidance}
+  AGENT -> AGENT : self-correct -> resubmit
+
+else PLAN_LOCKED
+
+  PPG --> AGENT : 200 {status: PLAN_LOCKED, ticket: JWT}
+
+  note over AGENT, TOOL
+    The skill body says "use Edit".
+    The agent calls the smart tool wrapping Edit.
+    The smart tool checks the JWT before acting.
+  end note
+
+  AGENT -> TOOL : Edit(file, patch) + JWT ticket
+  TOOL -> TOOL : verify JWT scope:\n  is this file in the locked plan?
+
+  alt in scope
+    TOOL --> AGENT : result
+  else out of scope
+    TOOL --> AGENT : OUT_OF_PLAN_SCOPE
+  end
+
+end
+
+@enduml

@@ -163,7 +163,7 @@ violation contains v if {
     not plan_has_go_test
     v := {
         "policy_id": "go_tests_present",
-        "message":   "SDLC invariant violated: the plan must contain a 'go test' step for a Go stack.",
+        "message":   "SDLC invariant violated: the plan has no test step. Add a step whose tool is \"go-test\", or whose action runs 'go test'.",
         "nature":    "amplifier",
     }
 }
@@ -171,9 +171,14 @@ violation contains v if {
 plan_has_go_test if {
     input.steps[_].tool == "go-test"
 }
+
+plan_has_go_test if {
+    some step in input.steps
+    contains(lower(step.action), "go test")
+}
 ```
 
-Read it as a sentence: *if the stack is Go and no step uses the `go-test` tool, emit this violation.* The `input` is the agent's plan; the output is the exact message the agent will receive. No LLM anywhere: the gateway loads every ADR-paired `.rego` into an embedded [OPA](https://www.openpolicyagent.org/) engine, and evaluation is deterministic. Keep this policy in mind: you will see it fire three scenes from now.
+Read it as a sentence: *if the stack is Go and no step satisfies `plan_has_go_test`, emit this violation.* The two helper rules are an OR: the canonical `go-test` tool, or any step whose action runs `go test` (agents describe steps with their own tool names; the policy meets them where they are). Note that the message contains the exact criterion: a rejected agent should never have to guess. The `input` is the agent's plan; no LLM anywhere: the gateway loads every ADR-paired `.rego` into an embedded [OPA](https://www.openpolicyagent.org/) engine, and evaluation is deterministic. Keep this policy in mind: you will see it fire three scenes from now.
 
 {{< /scrollytelling-step >}}
 
@@ -263,15 +268,15 @@ The agent submits its plan as a structured JSON contract. The gateway's linter e
   "status": "PLAN_REJECTED",
   "violations": [
     { "policy_id": "go_tests_present",
-      "message": "SDLC invariant violated: the plan must contain a 'go test'
-       step for a Go stack.",
+      "message": "SDLC invariant violated: the plan has no test step. Add a
+       step whose tool is \"go-test\", or whose action runs 'go test'.",
       "nature": "amplifier" }
   ],
   "guidance": "Fix the violations above and resubmit the plan."
 }
 ```
 
-Note the register: not "no", but "here is what is missing". A semantic violation reads like a compiler error, and agents are very good at compiler errors.
+Note the register: not "no", but "here is what is missing", down to the machine-checkable criterion. A semantic violation reads like a compiler error, and agents are very good at compiler errors; deprive them of the criterion and they guess, give it to them and they fix it in one round-trip.
 
 {{< /scrollytelling-step >}}
 

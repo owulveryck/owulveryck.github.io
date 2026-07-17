@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 430" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- Vignette, pillar 3: same frame, everything dimmed except the two
+       crossing points of the boundary. Autonomy is preserved inside. -->
+  <rect x="0" y="0" width="520" height="430" fill="#ffffff"/>
+  <defs>
+    <marker id="p3Grey" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="11" refX="12" refY="5.5" orient="auto"><polygon points="0 0, 14 5.5, 0 11" fill="#C9CED8"/></marker>
+  </defs>
+
+  <text x="15" y="26" font-size="13" font-weight="bold" fill="#B0578D">Pillar 3 &#8212; Understanding</text>
+  <text x="15" y="40" font-size="9" font-style="italic" fill="#586586">a mutual contract at the two crossings</text>
+
+  <!-- Dimmed frame -->
+  <circle cx="260" cy="100" r="72" fill="none" stroke="#C9CED8" stroke-width="4"/>
+  <polygon points="-11 -8, 13 0, -11 8" fill="#C9CED8" transform="translate(260, 28)"/>
+  <text x="260" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#A9AFBC">Human</text>
+  <line x1="25" y1="207" x2="495" y2="207" stroke="#D9DCE2" stroke-width="4" stroke-dasharray="14,9"/>
+  <circle cx="260" cy="330" r="80" fill="none" stroke="#C9CED8" stroke-width="4" stroke-dasharray="16,9"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(340, 330) rotate(90)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(300, 399) rotate(150)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(220, 399) rotate(210)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(180, 330) rotate(270)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(220, 261) rotate(330)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(300, 261) rotate(30)"/>
+  <text x="260" y="325" text-anchor="middle" font-size="13" font-weight="bold" fill="#A9AFBC">Agent</text>
+  <text x="260" y="342" text-anchor="middle" font-size="9" font-style="italic" fill="#8FA8D8">autonomy preserved inside:</text>
+  <text x="260" y="354" text-anchor="middle" font-size="9" font-style="italic" fill="#8FA8D8">nobody reviews line by line</text>
+
+  <!-- Dimmed crossing arrows -->
+  <line x1="195" y1="140" x2="195" y2="270" stroke="#C9CED8" stroke-width="3" marker-end="url(#p3Grey)"/>
+  <line x1="325" y1="272" x2="325" y2="142" stroke="#C9CED8" stroke-width="3" marker-end="url(#p3Grey)"/>
+
+  <!-- Lit: the two crossing points -->
+  <circle cx="195" cy="207" r="17" fill="none" stroke="#B0578D" stroke-width="2.5"/>
+  <text x="170" y="188" text-anchor="end" font-size="9" font-weight="bold" fill="#B0578D">in: the context</text>
+  <text x="170" y="199" text-anchor="end" font-size="8.5" font-style="italic" fill="#B0578D">chosen by the human,</text>
+  <text x="170" y="210" text-anchor="end" font-size="8.5" font-style="italic" fill="#B0578D">understood by the agent</text>
+
+  <circle cx="325" cy="207" r="17" fill="none" stroke="#B0578D" stroke-width="2.5"/>
+  <text x="350" y="218" text-anchor="start" font-size="9" font-weight="bold" fill="#B0578D">out: the result</text>
+  <text x="350" y="229" text-anchor="start" font-size="8.5" font-style="italic" fill="#B0578D">explained by the agent,</text>
+  <text x="350" y="240" text-anchor="start" font-size="8.5" font-style="italic" fill="#B0578D">understood by the human</text>
+</svg>

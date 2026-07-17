@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 410" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- Vignette, pillar 4: the outer loop grows into the judge,
+       the inner loop shrinks into a producer of volume. -->
+  <rect x="0" y="0" width="520" height="410" fill="#ffffff"/>
+  <defs>
+    <marker id="p4Grey" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><polygon points="0 0, 12 5, 0 10" fill="#C9CED8"/></marker>
+  </defs>
+
+  <text x="15" y="26" font-size="13" font-weight="bold" fill="#34A853">Pillar 4 &#8212; Outcome over Output</text>
+  <text x="15" y="40" font-size="9" font-style="italic" fill="#586586">the inner loop produces; the outer loop judges</text>
+
+  <!-- Lit: the outer loop, grown into the judge -->
+  <circle cx="250" cy="150" r="100" fill="#FFFBEA" stroke="#34A853" stroke-width="6"/>
+  <polygon points="-12 -9, 14 0, -12 9" fill="#34A853" transform="translate(250, 50)"/>
+  <text x="250" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="#0E2356">Outcome</text>
+  <text x="250" y="153" text-anchor="middle" font-size="9" fill="#586586">the business reads it here</text>
+  <text x="250" y="169" text-anchor="middle" font-size="9.5" font-style="italic" fill="#34A853">the only judge, in days</text>
+
+  <!-- Dimmed boundary -->
+  <line x1="25" y1="278" x2="495" y2="278" stroke="#D9DCE2" stroke-width="4" stroke-dasharray="14,9"/>
+
+  <!-- Dimmed crossings -->
+  <line x1="210" y1="255" x2="210" y2="292" stroke="#C9CED8" stroke-width="3" marker-end="url(#p4Grey)"/>
+  <line x1="290" y1="294" x2="290" y2="257" stroke="#C9CED8" stroke-width="3" marker-end="url(#p4Grey)"/>
+
+  <!-- Dimmed inner loop, shrunk, producing volume -->
+  <circle cx="250" cy="345" r="48" fill="none" stroke="#C9CED8" stroke-width="4" stroke-dasharray="10,6"/>
+  <polygon points="-6 -4, 7 0, -6 4" fill="#C9CED8" transform="translate(298, 345) rotate(90)"/>
+  <polygon points="-6 -4, 7 0, -6 4" fill="#C9CED8" transform="translate(274, 387) rotate(150)"/>
+  <polygon points="-6 -4, 7 0, -6 4" fill="#C9CED8" transform="translate(226, 387) rotate(210)"/>
+  <polygon points="-6 -4, 7 0, -6 4" fill="#C9CED8" transform="translate(202, 345) rotate(270)"/>
+  <polygon points="-6 -4, 7 0, -6 4" fill="#C9CED8" transform="translate(226, 303) rotate(330)"/>
+  <polygon points="-6 -4, 7 0, -6 4" fill="#C9CED8" transform="translate(274, 303) rotate(30)"/>
+  <text x="250" y="342" text-anchor="middle" font-size="11" font-weight="bold" fill="#A9AFBC">output</text>
+  <text x="250" y="356" text-anchor="middle" font-size="8" font-style="italic" fill="#A9AFBC">volume, in minutes</text>
+  <text x="335" y="390" text-anchor="start" font-size="8" font-style="italic" fill="#A9AFBC">a volume no team has ever seen:</text>
+  <text x="335" y="401" text-anchor="start" font-size="8" font-style="italic" fill="#A9AFBC">the vanity metric</text>
+</svg>

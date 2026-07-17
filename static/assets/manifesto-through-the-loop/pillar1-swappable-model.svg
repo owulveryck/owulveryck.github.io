@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 430" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- Vignette, pillar 1: same frame as the mental model, everything dimmed
+       except the agent loop and the model plugged into it as a swappable part. -->
+  <rect x="0" y="0" width="520" height="430" fill="#ffffff"/>
+  <defs>
+    <marker id="p1Grey" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="11" refX="12" refY="5.5" orient="auto"><polygon points="0 0, 14 5.5, 0 11" fill="#C9CED8"/></marker>
+    <marker id="p1Blue" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><polygon points="0 0, 12 5, 0 10" fill="#4A7FCC"/></marker>
+  </defs>
+
+  <text x="15" y="26" font-size="13" font-weight="bold" fill="#4A7FCC">Pillar 1 &#8212; Method over Model</text>
+  <text x="15" y="40" font-size="9" font-style="italic" fill="#586586">the model swaps; the loop endures</text>
+
+  <!-- Dimmed frame -->
+  <circle cx="260" cy="100" r="72" fill="none" stroke="#C9CED8" stroke-width="4"/>
+  <polygon points="-11 -8, 13 0, -11 8" fill="#C9CED8" transform="translate(260, 28)"/>
+  <text x="260" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#A9AFBC">Human</text>
+  <line x1="25" y1="207" x2="495" y2="207" stroke="#D9DCE2" stroke-width="4" stroke-dasharray="14,9"/>
+  <line x1="195" y1="140" x2="195" y2="270" stroke="#C9CED8" stroke-width="3" marker-end="url(#p1Grey)"/>
+  <line x1="325" y1="272" x2="325" y2="142" stroke="#C9CED8" stroke-width="3" marker-end="url(#p1Grey)"/>
+
+  <!-- Lit: the agent loop itself endures -->
+  <circle cx="260" cy="330" r="80" fill="#F6F8FE" stroke="#6D9EEB" stroke-width="5" stroke-dasharray="16,9"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(340, 330) rotate(90)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(300, 399) rotate(150)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(220, 399) rotate(210)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(180, 330) rotate(270)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(220, 261) rotate(330)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(300, 261) rotate(30)"/>
+  <text x="260" y="290" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">Agent</text>
+  <text x="260" y="305" text-anchor="middle" font-size="8.5" font-style="italic" fill="#4A7FCC">the loop and its guardrails endure</text>
+
+  <!-- Lit: the model, plugged into a socket -->
+  <circle cx="240" cy="352" r="24" fill="none" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="6,5"/>
+  <circle cx="240" cy="352" r="18" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+  <text x="240" y="350" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0E2356">Model</text>
+  <text x="240" y="360" text-anchor="middle" font-size="6.5" fill="#0E2356">LLM</text>
+  <text x="240" y="390" text-anchor="middle" font-size="7.5" font-style="italic" fill="#4A7FCC">a swappable part</text>
+
+  <!-- The next release waits outside the loop -->
+  <circle cx="435" cy="365" r="17" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="435" y="363" text-anchor="middle" font-size="7" fill="#4A7FCC">next</text>
+  <text x="435" y="372" text-anchor="middle" font-size="7" fill="#4A7FCC">release</text>
+  <path d="M 417,358 Q 340,325 268,346" fill="none" stroke="#4A7FCC" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#p1Blue)"/>
+  <text x="400" y="312" text-anchor="middle" font-size="7.5" font-style="italic" fill="#4A7FCC">swap it, nothing else moves</text>
+</svg>

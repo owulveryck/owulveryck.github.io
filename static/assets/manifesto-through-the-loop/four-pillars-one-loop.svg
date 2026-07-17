@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="230 5 585 650" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- Static adaptation of the Agentic SDLC illustration from
+       /assets/sdlc-team-topologies/sdlc-team-topologies.svg (Codifying the Rules, 2026-07-02),
+       completed with the four AIDD pillars located on (and around) the two loops,
+       and the manifesto outside the system: a flag, not a compass. -->
+  <rect x="230" y="5" width="585" height="650" fill="#ffffff"/>
+  <defs>
+    <marker id="aGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#34A853"/></marker>
+    <marker id="aGreenBig" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="14" refX="16" refY="7" orient="auto"><polygon points="0 0, 18 7, 0 14" fill="#34A853"/></marker>
+    <marker id="aRedBig" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="11" refX="13" refY="5.5" orient="auto"><polygon points="0 0, 14 5.5, 0 11" fill="#EA4335"/></marker>
+  </defs>
+
+  <!-- ============ OUTER LOOP (Design → Design): thick green ============ -->
+  <!-- Yellow stream-aligned circle background -->
+  <circle cx="460" cy="135" r="90" fill="#FFEDB8" fill-opacity="0.3" stroke="none"/>
+
+  <!-- Arc Design → Specs → Expression -->
+  <path d="M 460,45 A 90,90 0 0 0 370,135 A 90,90 0 0 0 460,225" fill="none" stroke="#34A853" stroke-width="5"/>
+  <polygon points="-10 -6, 10 0, -10 6" fill="#34A853" transform="translate(382, 90) rotate(120)"/>
+  <polygon points="-10 -6, 10 0, -10 6" fill="#34A853" transform="translate(384, 183) rotate(58)"/>
+
+  <!-- Arc Result → Design "enriches the solution" -->
+  <path d="M 550,135 A 90,90 0 0 0 460,45" fill="none" stroke="#34A853" stroke-width="5"/>
+  <polygon points="-10 -6, 10 0, -10 6" fill="#34A853" transform="translate(529, 77) rotate(230)"/>
+  <text x="552" y="85" font-size="7" fill="#586586" font-style="italic">enriches the solution</text>
+
+  <!-- Expression of intent → Capture intent -->
+  <line x1="460" y1="245" x2="460" y2="272" stroke="#34A853" stroke-width="5" marker-end="url(#aGreenBig)"/>
+
+  <!-- Observe → Result (exit of the inner loop) -->
+  <path d="M610,418 Q640,270 555,155" fill="none" stroke="#34A853" stroke-width="5" marker-end="url(#aGreenBig)"/>
+  <text x="672" y="385" text-anchor="middle" font-size="8" fill="#34A853" font-weight="bold">termination</text>
+  <text x="672" y="397" text-anchor="middle" font-size="8" fill="#34A853" font-weight="bold">condition &#10003;</text>
+
+  <!-- Pillar 4 annotation (outer loop) -->
+  <g id="pillar4">
+    <text x="628" y="35" font-size="13" font-weight="bold" fill="#34A853">Pillar 4 &#8212; Outcome over output</text>
+    <text x="628" y="48" font-size="9" font-style="italic" fill="#586586">the outer loop is the judge: iterates in</text>
+    <text x="628" y="59" font-size="9" font-style="italic" fill="#586586">days, ship small, the business decides</text>
+  </g>
+
+  <!-- Solution Design -->
+  <g>
+    <rect x="395" y="25" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#FFD966" stroke-width="1.5"/>
+    <text x="460" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128161; Design</text>
+    <text x="460" y="55" text-anchor="middle" font-size="8" fill="#586586">of the solution</text>
+  </g>
+
+  <!-- Specs + Scoping -->
+  <g>
+    <rect x="310" y="115" width="120" height="40" rx="8" fill="#FFFFFF" stroke="#FFD966" stroke-width="1.5"/>
+    <text x="370" y="132" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128196; Specs</text>
+    <text x="370" y="145" text-anchor="middle" font-size="8" fill="#586586">Scoping</text>
+  </g>
+
+  <!-- Expression of intent -->
+  <g>
+    <rect x="395" y="205" width="130" height="40" rx="8" fill="#FFFFFF" stroke="#0E2356" stroke-width="2.5"/>
+    <text x="460" y="222" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#127775; Expression</text>
+    <text x="460" y="235" text-anchor="middle" font-size="8" fill="#586586">of intent</text>
+  </g>
+
+  <!-- Result -->
+  <g>
+    <rect x="495" y="115" width="110" height="40" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="550" y="139" text-anchor="middle" font-size="10" font-weight="bold" fill="#34A853">&#8634; Result</text>
+  </g>
+
+  <!-- Arrow Result → Delivery (exit of the outer loop) -->
+  <line x1="605" y1="135" x2="648" y2="135" stroke="#34A853" stroke-width="2" marker-end="url(#aGreen)"/>
+
+  <!-- Solution Delivery (3D box) -->
+  <g transform="translate(650, 105)">
+    <polygon points="0,12 120,12 120,62 0,62" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <polygon points="0,12 15,0 135,0 120,12" fill="#C8E6C9" stroke="#34A853" stroke-width="1.5"/>
+    <polygon points="120,12 135,0 135,50 120,62" fill="#A5D6A7" stroke="#34A853" stroke-width="1.5"/>
+    <line x1="0" y1="32" x2="120" y2="32" stroke="#34A853" stroke-width="1" stroke-dasharray="4,2"/>
+    <line x1="60" y1="12" x2="67" y2="0" stroke="#34A853" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="60" y="25" text-anchor="middle" font-size="10" font-weight="bold" fill="#0E2356">&#128230; Delivery</text>
+    <text x="60" y="37" text-anchor="middle" font-size="8" fill="#586586">of the feature</text>
+    <text x="60" y="49" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">in compliance with standards</text>
+    <text x="60" y="58" text-anchor="middle" font-size="6" fill="#586586" font-style="italic">of the organization</text>
+  </g>
+
+  <!-- Pillar 2 annotation (ownership at the loop boundary) -->
+  <g id="pillar2">
+    <text x="662" y="195" font-size="13" font-weight="bold" fill="#FF8F00">Pillar 2 &#8212; Ownership</text>
+    <text x="662" y="208" font-size="9" font-style="italic" fill="#586586">lives at the loop boundary:</text>
+    <text x="662" y="219" font-size="9" font-style="italic" fill="#586586">intent in, result accepted;</text>
+    <text x="662" y="230" font-size="9" font-style="italic" fill="#586586">not on each commit</text>
+    <line x1="688" y1="236" x2="624" y2="298" stroke="#FF8F00" stroke-width="2" stroke-dasharray="4,3"/>
+    <circle cx="620" cy="302" r="4" fill="#FF8F00"/>
+  </g>
+
+  <!-- Pillar 3 annotation (understanding at the interface) -->
+  <g id="pillar3">
+    <text x="236" y="245" font-size="13" font-weight="bold" fill="#B0578D">Pillar 3 &#8212; Understanding</text>
+    <text x="236" y="258" font-size="9" font-style="italic" fill="#586586">mutual, at the interface:</text>
+    <text x="236" y="269" font-size="9" font-style="italic" fill="#586586">intent in, verified result out;</text>
+    <text x="236" y="280" font-size="9" font-style="italic" fill="#586586">autonomy inside the loop</text>
+    <line x1="382" y1="258" x2="448" y2="259" stroke="#B0578D" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Manifesto: outside the system, a flag, not a compass -->
+  <g>
+    <rect x="238" y="18" width="122" height="52" rx="8" fill="#EFEFEF" fill-opacity="0.9" stroke="#808080" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <text x="299" y="38" text-anchor="middle" font-size="10" font-weight="bold" fill="#444444">&#128220; Manifesto</text>
+    <text x="299" y="50" text-anchor="middle" font-size="7.5" fill="#586586">signed values,</text>
+    <text x="299" y="60" text-anchor="middle" font-size="7.5" fill="#586586">never executed</text>
+    <text x="238" y="84" font-size="8" font-style="italic" fill="#808080">a flag, not a compass:</text>
+    <text x="238" y="94" font-size="8" font-style="italic" fill="#808080">useful to rally, useless to decide</text>
+  </g>
+
+  <!-- ============ INNER LOOP (the agentic loop): thick blue ============ -->
+  <g>
+    <circle cx="460" cy="440" r="140" fill="#F0F0FF" fill-opacity="0.6" stroke="#6D9EEB" stroke-width="6"/>
+    <!-- Agentic chevrons -->
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(361, 341) rotate(135) scale(1.5)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(361, 539) rotate(45) scale(1.5)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(559, 539) rotate(-45) scale(1.5)"/>
+    <polygon points="-8 -5, 8 0, -8 5" fill="#6D9EEB" transform="translate(559, 341) rotate(225) scale(1.5)"/>
+  </g>
+
+  <text x="460" y="355" text-anchor="middle" font-size="12" font-weight="bold" fill="#0E2356">&#129302; Agentic System (autonomous)</text>
+  <rect x="382" y="361" width="156" height="15" rx="4" fill="#B7CDF1" fill-opacity="0.7"/>
+  <text x="460" y="372" text-anchor="middle" font-size="12" font-weight="bold" font-style="italic" fill="#0E2356">Implements the solution</text>
+
+  <!-- Inner loop label -->
+  <text x="460" y="396" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A7FCC">Inner loop: output</text>
+  <text x="460" y="409" text-anchor="middle" font-size="9" font-style="italic" fill="#586586">iterates in minutes</text>
+
+  <text x="460" y="445" text-anchor="middle" font-size="14" font-style="italic" fill="#586586" opacity="0.7">Self-correcting</text>
+
+  <!-- Model: the swappable part inside the loop (pillar 1) -->
+  <g>
+    <circle cx="368" cy="516" r="29" fill="none" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="6,5"/>
+    <circle cx="368" cy="516" r="24" fill="#B7CDF1" stroke="#4A7FCC" stroke-width="2"/>
+    <text x="368" y="513" text-anchor="middle" font-size="9" font-weight="bold" fill="#0E2356">Model</text>
+    <text x="368" y="524" text-anchor="middle" font-size="7" fill="#0E2356">LLM</text>
+    <line x1="349" y1="497" x2="325" y2="464" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Pillar 1 annotation (method over model) -->
+  <g id="pillar1">
+    <text x="236" y="608" font-size="13" font-weight="bold" fill="#4A7FCC">Pillar 1 &#8212; Method over model</text>
+    <text x="236" y="621" font-size="9" font-style="italic" fill="#586586">the model is a swappable part;</text>
+    <text x="236" y="632" font-size="9" font-style="italic" fill="#586586">the loop and the engineering practices,</text>
+    <text x="236" y="643" font-size="9" font-style="italic" fill="#586586">codified as guardrails, endure</text>
+    <line x1="310" y1="597" x2="350" y2="541" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Capture intent (12h) -->
+  <g>
+    <rect x="405" y="278" width="110" height="44" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text x="460" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128065; Capture</text>
+    <text x="460" y="312" text-anchor="middle" font-size="9" fill="#586586">the intent</text>
+  </g>
+
+  <!-- Plan steps (9h) -->
+  <g>
+    <rect x="260" y="418" width="120" height="44" rx="8" fill="#DAF6F9" stroke="#00D2DD" stroke-width="1.5"/>
+    <text x="320" y="438" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128203; Plan</text>
+    <text x="320" y="452" text-anchor="middle" font-size="9" fill="#586586">the steps</text>
+  </g>
+
+  <!-- Act / Tools (6h) -->
+  <g>
+    <rect x="380" y="556" width="80" height="36" rx="8" fill="#B7CDF1" stroke="#6D9EEB" stroke-width="1.5"/>
+    <text x="420" y="572" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128296; Act</text>
+    <text x="420" y="585" text-anchor="middle" font-size="8" fill="#586586">Tools</text>
+  </g>
+
+  <!-- Observe results (3h) -->
+  <g>
+    <rect x="540" y="418" width="120" height="44" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="600" y="438" text-anchor="middle" font-size="11" font-weight="bold" fill="#0E2356">&#128269; Observe</text>
+    <text x="600" y="452" text-anchor="middle" font-size="9" fill="#586586">the results</text>
+  </g>
+
+  <!-- Correction loop (red dashes) -->
+  <g>
+    <path d="M550,460 Q460,540 380,440" fill="none" stroke="#EA4335" stroke-width="3.5" stroke-dasharray="10,5" marker-end="url(#aRedBig)"/>
+    <circle cx="515" cy="500" r="11" fill="#FFFFFF" stroke="#333333" stroke-width="1"/>
+    <text x="515" y="504" text-anchor="middle" font-size="9" fill="#333333">(n)</text>
+    <text x="470" y="522" text-anchor="middle" font-size="8" fill="#EA4335" font-style="italic">Unsatisfactory result</text>
+    <text x="470" y="534" text-anchor="middle" font-size="8" fill="#EA4335" font-style="italic">&#8594; re-plan</text>
+  </g>
+</svg>

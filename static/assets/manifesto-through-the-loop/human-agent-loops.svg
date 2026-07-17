@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 448" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- The mental model of the agentic collaboration, purified:
+       two loops, one boundary, two rhythms.
+       Shape encodes rhythm: the human loop is one ample solid stroke (days),
+       the agent loop is a dense segmented stroke (minutes).
+       The boundary is the strongest element: ownership & accountability live there. -->
+  <rect x="0" y="0" width="520" height="448" fill="#ffffff"/>
+  <defs>
+    <marker id="mGreen" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="13" refX="14" refY="6.5" orient="auto"><polygon points="0 0, 16 6.5, 0 13" fill="#34A853"/></marker>
+  </defs>
+
+  <!-- ===== Human loop: one ample solid stroke, slow ===== -->
+  <circle cx="260" cy="100" r="72" fill="#FFFBEA" stroke="#34A853" stroke-width="5"/>
+  <polygon points="-11 -8, 13 0, -11 8" fill="#34A853" transform="translate(260, 28)"/>
+  <text x="260" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">Human</text>
+  <text x="260" y="106" text-anchor="middle" font-size="8.5" fill="#586586">expresses intent, accepts results</text>
+  <text x="260" y="121" text-anchor="middle" font-size="9.5" font-style="italic" fill="#34A853">iterates in days</text>
+
+  <!-- ===== The boundary: the strongest element ===== -->
+  <line x1="25" y1="207" x2="495" y2="207" stroke="#FF8F00" stroke-width="5" stroke-dasharray="14,9"/>
+  <text x="25" y="168" text-anchor="start" font-size="11" font-weight="bold" fill="#FF8F00">the boundary</text>
+  <text x="25" y="182" text-anchor="start" font-size="9" font-style="italic" fill="#FF8F00">ownership &amp; accountability</text>
+  <text x="25" y="194" text-anchor="start" font-size="9" font-style="italic" fill="#FF8F00">live here</text>
+
+  <!-- ===== Crossings: intent down, result up ===== -->
+  <line x1="195" y1="140" x2="195" y2="270" stroke="#34A853" stroke-width="4" marker-end="url(#mGreen)"/>
+  <text x="185" y="192" text-anchor="end" font-size="11" font-weight="bold" fill="#34A853">intent</text>
+  <line x1="325" y1="272" x2="325" y2="142" stroke="#34A853" stroke-width="4" marker-end="url(#mGreen)"/>
+  <text x="336" y="192" text-anchor="start" font-size="11" font-weight="bold" fill="#34A853">result</text>
+
+  <!-- ===== Agent loop: dense segmented stroke, fast ===== -->
+  <circle cx="260" cy="330" r="80" fill="#F6F8FE" stroke="#6D9EEB" stroke-width="5" stroke-dasharray="16,9"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(340, 330) rotate(90)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(300, 399) rotate(150)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(220, 399) rotate(210)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(180, 330) rotate(270)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(220, 261) rotate(330)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(300, 261) rotate(30)"/>
+  <text x="260" y="320" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E2356">Agent</text>
+  <text x="260" y="336" text-anchor="middle" font-size="8.5" fill="#586586">implements the solution</text>
+  <text x="260" y="351" text-anchor="middle" font-size="9.5" font-style="italic" fill="#4A7FCC">iterates in minutes, self-correcting</text>
+
+  <!-- ===== Legend: the constant visual vocabulary ===== -->
+  <line x1="25" y1="431" x2="63" y2="431" stroke="#34A853" stroke-width="5"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#34A853" transform="translate(63, 431)"/>
+  <text x="74" y="434" font-size="8.5" fill="#586586">human loop, in days</text>
+  <line x1="192" y1="431" x2="230" y2="431" stroke="#6D9EEB" stroke-width="5" stroke-dasharray="8,5"/>
+  <text x="238" y="434" font-size="8.5" fill="#586586">agent loop, in minutes</text>
+  <line x1="362" y1="431" x2="396" y2="431" stroke="#FF8F00" stroke-width="4" stroke-dasharray="8,6"/>
+  <text x="404" y="434" font-size="8.5" fill="#586586">the boundary</text>
+</svg>

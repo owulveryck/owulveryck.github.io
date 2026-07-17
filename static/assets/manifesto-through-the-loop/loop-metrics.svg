@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 448" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- The loop dashboard: two counters judge the machine.
+       (n) inner re-plans = efficiency, should trend down.
+       Human escalations across the boundary = effectiveness, should trend to zero.
+       The product itself is judged in the outer loop, not by these two numbers. -->
+  <rect x="0" y="0" width="560" height="448" fill="#ffffff"/>
+  <defs>
+    <marker id="mtGreen" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="11" refX="12" refY="5.5" orient="auto"><polygon points="0 0, 14 5.5, 0 11" fill="#34A853"/></marker>
+    <marker id="mtBlue" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#4A7FCC"/></marker>
+    <marker id="mtOrange" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#FF8F00"/></marker>
+  </defs>
+
+  <text x="15" y="26" font-size="13" font-weight="bold" fill="#0E2356">Two numbers judge the machine</text>
+  <text x="15" y="40" font-size="9" font-style="italic" fill="#586586">the product, the outer loop judges elsewhere</text>
+
+  <!-- Human loop -->
+  <circle cx="190" cy="115" r="70" fill="#FFFBEA" stroke="#34A853" stroke-width="4"/>
+  <polygon points="-10 -7, 12 0, -10 7" fill="#34A853" transform="translate(190, 45)"/>
+  <text x="190" y="110" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">Human</text>
+  <text x="190" y="126" text-anchor="middle" font-size="9" font-style="italic" fill="#34A853">iterates in days</text>
+
+  <!-- Boundary -->
+  <line x1="15" y1="222" x2="545" y2="222" stroke="#FF8F00" stroke-width="5" stroke-dasharray="14,9"/>
+
+  <!-- Crossings -->
+  <line x1="130" y1="155" x2="130" y2="285" stroke="#34A853" stroke-width="3.5" marker-end="url(#mtGreen)"/>
+  <text x="122" y="200" text-anchor="end" font-size="9.5" font-weight="bold" fill="#34A853">intent</text>
+  <line x1="250" y1="287" x2="250" y2="157" stroke="#34A853" stroke-width="3.5" marker-end="url(#mtGreen)"/>
+  <text x="259" y="200" text-anchor="start" font-size="9.5" font-weight="bold" fill="#34A853">result</text>
+
+  <!-- Agent loop -->
+  <circle cx="190" cy="345" r="80" fill="#F6F8FE" stroke="#6D9EEB" stroke-width="4" stroke-dasharray="16,9"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(270, 345) rotate(90)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(230, 414) rotate(150)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(150, 414) rotate(210)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(110, 345) rotate(270)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(150, 276) rotate(330)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#6D9EEB" transform="translate(230, 276) rotate(30)"/>
+  <text x="190" y="340" text-anchor="middle" font-size="13" font-weight="bold" fill="#0E2356">Agent</text>
+  <text x="190" y="356" text-anchor="middle" font-size="9" font-style="italic" fill="#4A7FCC">iterates in minutes</text>
+  <circle cx="262" cy="317" r="11" fill="#FFFFFF" stroke="#4A7FCC" stroke-width="1.5"/>
+  <text x="262" y="321" text-anchor="middle" font-size="8.5" fill="#4A7FCC">(n)</text>
+
+  <!-- Counter 1: escalations, at the boundary -->
+  <rect x="360" y="118" width="185" height="86" rx="8" fill="#FFF7EC" stroke="#FF8F00" stroke-width="1.5"/>
+  <text x="371" y="137" font-size="10.5" font-weight="bold" fill="#0E2356">human escalations</text>
+  <text x="371" y="150" font-size="8.5" font-style="italic" fill="#FF8F00">effectiveness of the boundary</text>
+  <polyline points="371,163 391,158 411,165 431,172 451,180 471,186 521,186" fill="none" stroke="#FF8F00" stroke-width="2" marker-end="url(#mtOrange)"/>
+  <line x1="371" y1="186" x2="533" y2="186" stroke="#C9CED8" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="537" y="189" font-size="8" fill="#586586">0</text>
+  <text x="371" y="199" font-size="8" font-style="italic" fill="#586586">a known cause never escalates twice</text>
+  <line x1="360" y1="204" x2="290" y2="222" stroke="#FF8F00" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Counter 2: inner re-plans -->
+  <rect x="360" y="290" width="185" height="86" rx="8" fill="#F0F4FE" stroke="#4A7FCC" stroke-width="1.5"/>
+  <text x="371" y="309" font-size="10.5" font-weight="bold" fill="#0E2356">(n) inner re-plans</text>
+  <text x="371" y="322" font-size="8.5" font-style="italic" fill="#4A7FCC">efficiency of the loop</text>
+  <polyline points="371,335 391,332 411,340 431,344 451,350 471,354 511,358" fill="none" stroke="#4A7FCC" stroke-width="2" marker-end="url(#mtBlue)"/>
+  <text x="371" y="371" font-size="8" font-style="italic" fill="#586586">rises when context or guardrails are weak</text>
+  <line x1="360" y1="322" x2="276" y2="318" stroke="#4A7FCC" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- The product is judged elsewhere -->
+  <text x="360" y="88" font-size="8.5" font-style="italic" fill="#34A853">the product itself is judged up there,</text>
+  <text x="360" y="100" font-size="8.5" font-style="italic" fill="#34A853">in the outer loop; not by these two counters</text>
+</svg>

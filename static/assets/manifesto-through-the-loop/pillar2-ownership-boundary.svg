@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 430" font-family="'Outfit', sans-serif"
+     style="font-variant-ligatures: none;" text-rendering="geometricPrecision">
+  <!-- Vignette, pillar 2: same frame, everything dimmed except the boundary
+       and its two crossings. The commits stay inside, dimmed, out of scope. -->
+  <rect x="0" y="0" width="520" height="430" fill="#ffffff"/>
+  <defs>
+    <marker id="p2Green" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="13" refX="14" refY="6.5" orient="auto"><polygon points="0 0, 16 6.5, 0 13" fill="#34A853"/></marker>
+  </defs>
+
+  <text x="15" y="26" font-size="13" font-weight="bold" fill="#FF8F00">Pillar 2 &#8212; Ownership</text>
+  <text x="15" y="40" font-size="9" font-style="italic" fill="#586586">at the boundary, not on each commit</text>
+
+  <!-- Dimmed frame -->
+  <circle cx="260" cy="100" r="72" fill="none" stroke="#C9CED8" stroke-width="4"/>
+  <polygon points="-11 -8, 13 0, -11 8" fill="#C9CED8" transform="translate(260, 28)"/>
+  <text x="260" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#A9AFBC">Human</text>
+  <circle cx="260" cy="330" r="80" fill="none" stroke="#C9CED8" stroke-width="4" stroke-dasharray="16,9"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(340, 330) rotate(90)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(300, 399) rotate(150)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(220, 399) rotate(210)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(180, 330) rotate(270)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(220, 261) rotate(330)"/>
+  <polygon points="-7 -5, 8 0, -7 5" fill="#C9CED8" transform="translate(300, 261) rotate(30)"/>
+  <text x="260" y="300" text-anchor="middle" font-size="13" font-weight="bold" fill="#A9AFBC">Agent</text>
+
+  <!-- Dimmed commits, inside the loop, out of reach -->
+  <polyline points="220,342 250,354 280,342" fill="none" stroke="#C9CED8" stroke-width="1.5"/>
+  <circle cx="220" cy="342" r="6" fill="#EDEEF1" stroke="#C9CED8" stroke-width="1.5"/>
+  <circle cx="250" cy="354" r="6" fill="#EDEEF1" stroke="#C9CED8" stroke-width="1.5"/>
+  <circle cx="280" cy="342" r="6" fill="#EDEEF1" stroke="#C9CED8" stroke-width="1.5"/>
+  <text x="260" y="378" text-anchor="middle" font-size="8" font-style="italic" fill="#A9AFBC">commits: the agent's working memory</text>
+
+  <!-- Lit: the boundary and its two crossings -->
+  <line x1="25" y1="207" x2="495" y2="207" stroke="#FF8F00" stroke-width="6" stroke-dasharray="14,9"/>
+  <text x="492" y="183" text-anchor="end" font-size="11" font-weight="bold" fill="#FF8F00">ownership &amp; accountability</text>
+  <text x="492" y="196" text-anchor="end" font-size="9" font-style="italic" fill="#FF8F00">live here</text>
+
+  <line x1="195" y1="140" x2="195" y2="270" stroke="#34A853" stroke-width="4" marker-end="url(#p2Green)"/>
+  <circle cx="195" cy="207" r="6" fill="#FF8F00"/>
+  <text x="185" y="176" text-anchor="end" font-size="9.5" font-weight="bold" fill="#34A853">intent</text>
+  <text x="185" y="187" text-anchor="end" font-size="9.5" fill="#34A853">expressed</text>
+
+  <line x1="325" y1="272" x2="325" y2="142" stroke="#34A853" stroke-width="4" marker-end="url(#p2Green)"/>
+  <circle cx="325" cy="207" r="6" fill="#FF8F00"/>
+  <text x="336" y="240" text-anchor="start" font-size="9.5" font-weight="bold" fill="#34A853">result</text>
+  <text x="336" y="251" text-anchor="start" font-size="9.5" fill="#34A853">accepted</text>
+</svg>

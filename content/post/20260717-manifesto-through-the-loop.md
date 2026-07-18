@@ -37,15 +37,12 @@ A manifesto is raw material. Guiding principles are what you refine from it. The
 
 An agent **captures** an intent, **plans** the steps, **acts** through tools and **observes** the results. When the observation is unsatisfactory, it re-plans. The loop is self-correcting. This inner loop is the delivery engine of modern software. Around it, humans run the outer loop: design, specification, expression of intent, acceptance, judgment of the outcome. Stripped to its essence, the collaboration is two loops and a border: intent goes down, the result comes back up.
 
-![The mental model: two loops, one boundary, two rhythms. The human loop is one ample stroke, in days; the agent loop is a dense segmented stroke, in minutes; ownership and accountability live on the boundary.](/assets/manifesto-through-the-loop/human-agent-loops.svg)
-
 This image is the whole model: two loops, one boundary, two rhythms. The loop is a lens, not a law. I will keep to that: the loop proposes a reading of each pillar, and you judge whether the reading holds. Each section below returns to this same frame and lights up the part where its pillar lives.
 
 ## Method over Model
 
 *"Bet on the method, not the model: every LLM release will fade."*
 
-![Pillar 1 on the frame: the model is a swappable part plugged into the agent loop; the next release waits outside; the loop and its guardrails endure.](/assets/manifesto-through-the-loop/pillar1-swappable-model.svg)
 
 Half right. Seen from the loop, the model is a swappable part inside the Plan step. Every release fades, and the loop does not care which brain it runs on. Betting a team's practice on a specific model is building on sand. So far, full agreement.
 
@@ -57,7 +54,6 @@ The line between the two groups is not accidental. A method prescribes a process
 
 *"You own what you ship, even what the AI wrote."*
 
-![Pillar 2 on the frame: only the boundary is lit, with its two crossings (intent expressed, result accepted); the commits stay dimmed inside the agent loop, out of scope.](/assets/manifesto-through-the-loop/pillar2-ownership-boundary.svg)
 
 On the value, full agreement, and the English words carry it better than my native French. French has one word, *responsable*, for what English splits in two; the trick of this pillar hides in that split. The agent is responsible: it does the work. The human is accountable: they answer for what ships. Responsibility moves with delegation; a manager who hands work to a junior hands the doing, not the answering. Accountability does not move, because it needs someone who can answer, and an agent cannot: it cannot be blamed, sanctioned or trusted. When it fails, the failure is corrected inside the loop, and nothing that ships is ever the agent's fault. The accountability that sat on the human before the agent arrived has nowhere else to go. It stays.
 
@@ -69,7 +65,6 @@ To be fair, a signature does more than claim ownership. It gives traceability, n
 
 *"Don't accept what you don't understand. The AI is your collaborator, not your replacement."*
 
-![Pillar 3 on the frame: the two crossing points of the boundary are circled (the context in, the result out); autonomy is preserved inside the agent loop.](/assets/manifesto-through-the-loop/pillar3-mutual-understanding.svg)
 
 The first sentence deserves to survive every era: accepting what you do not understand is how debt enters a system.
 
@@ -81,7 +76,6 @@ Named correctly, understanding is not supervision. It is a contract at the two b
 
 *"Writing code is easy. Building product is not."*
 
-![Pillar 4 on the frame: the outer loop grows into the judge (outcome, in days); the inner loop shrinks into a dimmed producer of volume (output, in minutes).](/assets/manifesto-through-the-loop/pillar4-outcome-judge.svg)
 
 Read through the loop, this pillar holds as written. The loop only adds the structure: the SDLC is nested loops. The inner loop iterates in minutes and produces code at a volume no team has ever seen. That volume is the vanity metric the manifesto warns about. The outer loop iterates in days, and it is the only judge: intent at one end, business result at the other.
 
@@ -111,7 +105,6 @@ None of these fits on a poster. That is their value. And they are not hypothetic
 
 The loop also tells you how to measure these principles. Two numbers are enough. The first is the count of inner-loop re-plans, the *(n)* in the figure: how many times the agent corrected itself before the result was accepted. It measures efficiency, and it rises when the context or the guardrails are weak. The second is the count of human escalations: how many times a problem crossed the boundary and forced a human to re-plan. It measures effectiveness, and for known causes it should trend to zero. Neither is a business number; the outer loop still judges the product. These two judge the machine.
 
-![The loop dashboard: two counters on the frame. Human escalations across the boundary measure effectiveness and should trend to zero; inner re-plans (n) measure efficiency and should trend down. The product is judged in the outer loop.](/assets/manifesto-through-the-loop/loop-metrics.svg)
 
 One objection deserves a direct answer, because it turns my own argument against me. If methods fade with their tooling, and these principles live inside the platform, are they not the most perishable of all? Yes. That is the point. A guiding principle should retire when its tooling does; that is why each one carries a sunset condition and an owner. A manifesto pretends to outlive its era; a principle is honest about its mortality.
 

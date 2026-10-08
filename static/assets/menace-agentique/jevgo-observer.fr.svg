@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 870" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="d3-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57606a"/></marker>
+    <marker id="d3-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <marker id="d3-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8250df"/></marker>
+    <marker id="d3-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a7f37"/></marker>
+  </defs>
+  <rect width="1200" height="870" fill="#ffffff"/>
+
+  <text x="20" y="38" font-size="22" font-weight="bold" fill="#24292f">③ Ajouter jevgo à PPG : un observateur des règles, pas un juge</text>
+  <text x="20" y="64" font-size="14" fill="#57606a">jevgo apprend à imiter la politique Rego. Bien placé, il signale des règles suspectes sans réintroduire d'aléatoire dans la décision.</text>
+
+  <!-- Qu'est-ce que jevgo -->
+  <rect x="20" y="82" width="1160" height="76" rx="10" fill="#f3eefe" stroke="#8250df" stroke-width="1.5"/>
+  <text x="40" y="106" font-size="14" font-weight="bold" fill="#8250df">jevgo en deux phrases</text>
+  <text x="40" y="128" font-size="13" fill="#24292f">Mini-transformer écrit en Go, entraîné sur des exemples étiquetés par OPA lui-même. Il rend un choix fermé ALLOW / DENY avec une probabilité.</text>
+  <text x="40" y="148" font-size="13" fill="#24292f">Il ne fonctionne que sur un espace d'entrées fini (démo : 6 champs, 1128 exemples). Il ne traite pas le langage naturel.</text>
+
+  <!-- Option A -->
+  <rect x="20" y="175" width="570" height="390" rx="12" fill="#fff8f8" stroke="#cf222e" stroke-width="2"/>
+  <text x="40" y="205" font-size="16" font-weight="bold" fill="#cf222e">✗ Option A : jevgo sur le chemin critique</text>
+  <rect x="40" y="235" width="105" height="50" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="92" y="256" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Action</text>
+  <text x="92" y="273" font-size="12" text-anchor="middle" fill="#24292f">de l'agent</text>
+  <line x1="145" y1="260" x2="168" y2="260" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="170" y="235" width="100" height="50" rx="8" fill="#1a7f37"/>
+  <text x="220" y="265" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">Rego</text>
+  <line x1="270" y1="260" x2="293" y2="260" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="295" y="235" width="100" height="50" rx="8" fill="#8250df"/>
+  <text x="345" y="265" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">jevgo</text>
+  <line x1="395" y1="260" x2="418" y2="260" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="420" y="235" width="150" height="50" rx="8" fill="#ffffff" stroke="#cf222e" stroke-width="2"/>
+  <text x="495" y="256" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Décision</text>
+  <text x="495" y="274" font-size="12" font-weight="bold" text-anchor="middle" fill="#cf222e">= statistique ?</text>
+
+  <rect x="40" y="305" width="530" height="100" rx="8" fill="#ffffff" stroke="#cf222e"/>
+  <text x="55" y="330" font-size="13" font-weight="bold" fill="#cf222e">Cas 1 : jevgo peut AUTORISER ce que Rego refuse</text>
+  <text x="55" y="354" font-size="13" fill="#24292f">→ la garantie déterministe disparaît : une erreur</text>
+  <text x="55" y="376" font-size="13" fill="#24292f">statistique laisse passer une modification interdite.</text>
+  <rect x="40" y="420" width="530" height="100" rx="8" fill="#ffffff" stroke="#cf222e"/>
+  <text x="55" y="445" font-size="13" font-weight="bold" fill="#cf222e">Cas 2 : jevgo peut seulement BLOQUER en plus</text>
+  <text x="55" y="469" font-size="13" fill="#24292f">→ faux blocages aléatoires, et la promesse</text>
+  <text x="55" y="491" font-size="13" fill="#24292f">« une faille corrigée ne revient jamais » ne tient plus.</text>
+  <text x="305" y="550" font-size="14" font-weight="bold" text-anchor="middle" fill="#cf222e">Contredit la raison d'être de PPG.</text>
+
+  <!-- Option B -->
+  <rect x="610" y="175" width="570" height="390" rx="12" fill="#f6fbf7" stroke="#1a7f37" stroke-width="2"/>
+  <text x="630" y="205" font-size="16" font-weight="bold" fill="#1a7f37">✓ Option B : jevgo en mode shadow (observateur)</text>
+  <rect x="630" y="230" width="110" height="45" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="685" y="249" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Action</text>
+  <text x="685" y="266" font-size="12" text-anchor="middle" fill="#24292f">de l'agent</text>
+  <line x1="740" y1="252" x2="778" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="780" y="230" width="110" height="45" rx="8" fill="#1a7f37"/>
+  <text x="835" y="258" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">Rego</text>
+  <line x1="890" y1="252" x2="928" y2="252" stroke="#1a7f37" stroke-width="3" marker-end="url(#d3-g)"/>
+  <rect x="930" y="230" width="230" height="45" rx="8" fill="#e6f4ea" stroke="#1a7f37" stroke-width="3"/>
+  <text x="1045" y="249" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a7f37">Décision appliquée</text>
+  <text x="1045" y="266" font-size="11" text-anchor="middle" fill="#24292f">Rego seul fait autorité</text>
+
+  <!-- branche shadow -->
+  <path d="M685,275 L685,342 L778,342" stroke="#8250df" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#d3-p)"/>
+  <rect x="780" y="320" width="110" height="45" rx="8" fill="#f3eefe" stroke="#8250df" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="835" y="339" font-size="13" font-weight="bold" text-anchor="middle" fill="#8250df">jevgo</text>
+  <text x="835" y="356" font-size="11" text-anchor="middle" fill="#24292f">en parallèle</text>
+  <line x1="890" y1="342" x2="928" y2="342" stroke="#8250df" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#d3-p)"/>
+  <line x1="1045" y1="275" x2="1045" y2="313" stroke="#57606a" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#d3-a)"/>
+  <rect x="930" y="315" width="230" height="55" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="1045" y="338" font-size="13" font-weight="bold" text-anchor="middle" fill="#24292f">Comparer les verdicts</text>
+  <text x="1045" y="357" font-size="11" text-anchor="middle" fill="#57606a">Rego vs jevgo (hors chemin critique)</text>
+
+  <text x="935" y="392" font-size="11" fill="#57606a">accord : rien</text>
+  <line x1="1045" y1="370" x2="1045" y2="403" stroke="#d97706" stroke-width="2" marker-end="url(#d3-o)"/>
+  <text x="1053" y="392" font-size="11" font-weight="bold" fill="#d97706">désaccord</text>
+  <rect x="930" y="405" width="230" height="45" rx="8" fill="#fff4e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="1045" y="424" font-size="12" font-weight="bold" text-anchor="middle" fill="#9a5b00">Règle suspecte → escalade</text>
+  <text x="1045" y="441" font-size="11" text-anchor="middle" fill="#24292f" font-family="Menlo, Consolas, monospace">ppg escalations</text>
+  <line x1="1045" y1="450" x2="1045" y2="468" stroke="#d97706" stroke-width="2" marker-end="url(#d3-o)"/>
+  <rect x="930" y="470" width="230" height="50" rx="8" fill="#ffffff" stroke="#24292f" stroke-width="1.5"/>
+  <text x="1045" y="491" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Un humain tranche</text>
+  <text x="1045" y="509" font-size="11" text-anchor="middle" fill="#24292f">et corrige le .rego (définitif)</text>
+  <path d="M930,495 L912,495 L912,268 L894,268" stroke="#1a7f37" stroke-width="1.5" fill="none" marker-end="url(#d3-g)"/>
+  <text x="905" y="420" font-size="11" text-anchor="end" fill="#1a7f37">Rego corrigé,</text>
+  <text x="905" y="435" font-size="11" text-anchor="end" fill="#8250df">jevgo réentraîné</text>
+  <text x="895" y="550" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a7f37">Rego reste seul juge · déterminisme préservé · politique qui s'améliore</text>
+
+  <!-- Exemple -->
+  <rect x="20" y="580" width="1160" height="72" rx="10" fill="#f3eefe" stroke="#8250df"/>
+  <text x="40" y="603" font-size="13" font-weight="bold" fill="#8250df">Exemple tiré de la démo jevgo</text>
+  <text x="40" y="623" font-size="13" fill="#24292f">Faille volontaire dans la règle Rego : un « contractor » peut lire un document d'un autre département.</text>
+  <text x="40" y="643" font-size="13" fill="#24292f"><tspan font-weight="bold" fill="#1a7f37">Rego → ALLOW</tspan> (applique la règle à la lettre)     <tspan font-weight="bold" fill="#8250df">jevgo → DENY</tspan> (généralise à partir des autres règles)     <tspan font-weight="bold" fill="#d97706">⇒ désaccord = signal à examiner</tspan></text>
+
+  <!-- Parallèle Uber -->
+  <rect x="20" y="665" width="700" height="190" rx="10" fill="#ffffff" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="40" y="690" font-size="14" font-weight="bold" fill="#24292f">Le même schéma que la boucle d'amélioration du papier d'Uber</text>
+  <text x="40" y="716" font-size="12" font-weight="bold" fill="#1f6feb">Uber (Persona Guardrail)</text>
+  <text x="380" y="716" font-size="12" font-weight="bold" fill="#1a7f37">PPG + jevgo</text>
+  <line x1="40" y1="724" x2="700" y2="724" stroke="#d0d7de"/>
+  <g font-size="12" fill="#24292f">
+    <text x="40" y="748">Shadow : la candidate observe sans décider</text>
+    <text x="380" y="748">jevgo tourne à côté de Rego sans décider</text>
+    <line x1="40" y1="760" x2="700" y2="760" stroke="#eaeef2"/>
+    <text x="40" y="784">Désaccords avec un juge plus fort → humain</text>
+    <text x="380" y="784">Désaccords Rego / jevgo → ppg escalations</text>
+    <line x1="40" y1="796" x2="700" y2="796" stroke="#eaeef2"/>
+    <text x="40" y="820">Le proposeur ne modifie jamais la politique</text>
+    <text x="380" y="820">jevgo ne modifie jamais le .rego</text>
+  </g>
+  <text x="40" y="845" font-size="11" font-style="italic" fill="#57606a">Différence : chez Uber, le modèle probabiliste décide en prod ; ici, il ne fait que signaler.</text>
+
+  <!-- Limites -->
+  <rect x="740" y="665" width="440" height="190" rx="10" fill="#fff4e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="760" y="690" font-size="14" font-weight="bold" fill="#9a5b00">Limites à garder en tête</text>
+  <g font-size="13" fill="#24292f">
+    <text x="760" y="718">• Un désaccord est un indice, pas une vérité</text>
+    <text x="760" y="742">• Seulement sur des champs structurés et finis</text>
+    <text x="772" y="762" fill="#57606a">(rôle, scope, skill_id, type d'action…)</text>
+    <text x="760" y="788">• Ne repère pas une faille répétée de façon</text>
+    <text x="772" y="808">cohérente dans tout le corpus : les exemples</text>
+    <text x="772" y="828">sont étiquetés par Rego lui-même</text>
+  </g>
+</svg>

@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="d1-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57606a"/></marker>
+    <marker id="d1-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#cf222e"/></marker>
+    <marker id="d1-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a7f37"/></marker>
+  </defs>
+  <rect width="1200" height="780" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="20" y="38" font-size="22" font-weight="bold" fill="#24292f">① Where each guardrail acts in the life of a request</text>
+  <text x="20" y="64" font-size="14" fill="#57606a">Persona Guardrail (Uber) filters what is asked and what is answered. PPG controls what the agent does in between.</text>
+
+  <!-- User -->
+  <rect x="20" y="215" width="120" height="75" rx="10" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5"/>
+  <text x="80" y="242" font-size="14" font-weight="bold" text-anchor="middle" fill="#24292f">User</text>
+  <text x="80" y="262" font-size="12" text-anchor="middle" fill="#57606a">natural-language</text>
+  <text x="80" y="278" font-size="12" text-anchor="middle" fill="#57606a">request</text>
+  <line x1="140" y1="252" x2="168" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d1-a)"/>
+
+  <!-- PG Input -->
+  <text x="265" y="185" font-size="12" font-weight="bold" text-anchor="middle" fill="#1f6feb">Threat targeted: the user</text>
+  <rect x="170" y="195" width="190" height="115" rx="10" fill="#e7f0fe" stroke="#1f6feb" stroke-width="2"/>
+  <text x="265" y="217" font-size="13" font-weight="bold" text-anchor="middle" fill="#1f6feb">Persona Guardrail</text>
+  <text x="265" y="235" font-size="13" font-weight="bold" text-anchor="middle" fill="#1f6feb">INPUT</text>
+  <text x="265" y="257" font-size="12" text-anchor="middle" fill="#24292f">"Is this request within</text>
+  <text x="265" y="273" font-size="12" text-anchor="middle" fill="#24292f">the agent's role?"</text>
+  <text x="265" y="297" font-size="11" text-anchor="middle" fill="#57606a">LLM · allow / block · &lt; 100 ms</text>
+  <line x1="265" y1="310" x2="265" y2="336" stroke="#cf222e" stroke-width="1.5" marker-end="url(#d1-r)"/>
+  <text x="265" y="353" font-size="11" text-anchor="middle" fill="#cf222e">✗ refused: the agent</text>
+  <text x="265" y="368" font-size="11" text-anchor="middle" fill="#cf222e">never sees it</text>
+  <line x1="360" y1="252" x2="406" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d1-a)"/>
+
+  <!-- Agent zone -->
+  <rect x="390" y="110" width="460" height="320" rx="12" fill="#f6f8fa" stroke="#8c959f" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="405" y="132" font-size="13" font-weight="bold" fill="#24292f">Agent (LLM + tools)</text>
+  <text x="838" y="132" font-size="12" font-weight="bold" text-anchor="end" fill="#1a7f37">Threat targeted: the agent itself</text>
+
+  <!-- Blind spot -->
+  <rect x="405" y="145" width="430" height="55" rx="8" fill="#fff4e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="420" y="167" font-size="12" fill="#9a5b00"><tspan font-weight="bold">The paper's acknowledged blind spot:</tspan> intermediate tool calls,</text>
+  <text x="420" y="187" font-size="12" fill="#9a5b00">indirect injection, multi-turn attacks ("future work").</text>
+
+  <!-- Steps -->
+  <rect x="410" y="225" width="120" height="55" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="470" y="248" font-size="14" font-weight="bold" text-anchor="middle" fill="#24292f">Plan</text>
+  <text x="470" y="267" font-size="11" text-anchor="middle" fill="#57606a">(JSON Schema)</text>
+  <line x1="530" y1="252" x2="558" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d1-a)"/>
+  <rect x="560" y="225" width="120" height="55" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="620" y="248" font-size="14" font-weight="bold" text-anchor="middle" fill="#24292f">Edit / Write</text>
+  <text x="620" y="267" font-size="11" text-anchor="middle" fill="#57606a">(file by file)</text>
+  <line x1="680" y1="252" x2="708" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d1-a)"/>
+  <rect x="710" y="225" width="120" height="55" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="770" y="248" font-size="14" font-weight="bold" text-anchor="middle" fill="#24292f">Diff</text>
+  <text x="770" y="267" font-size="11" text-anchor="middle" fill="#57606a">(full change)</text>
+
+  <!-- PPG checkpoints -->
+  <g stroke="#1a7f37" stroke-width="2">
+    <line x1="470" y1="280" x2="470" y2="315"/><line x1="620" y1="280" x2="620" y2="315"/><line x1="770" y1="280" x2="770" y2="315"/>
+  </g>
+  <rect x="410" y="315" width="120" height="95" rx="8" fill="#e6f4ea" stroke="#1a7f37" stroke-width="2"/>
+  <text x="470" y="337" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a7f37" font-family="Menlo, Consolas, monospace">lock_in_plan</text>
+  <text x="470" y="355" font-size="11" text-anchor="middle" fill="#24292f">+ capability ticket</text>
+  <text x="470" y="377" font-size="11" text-anchor="middle" fill="#57606a">no ticket =</text>
+  <text x="470" y="393" font-size="11" text-anchor="middle" fill="#57606a">no change</text>
+  <rect x="560" y="315" width="120" height="95" rx="8" fill="#e6f4ea" stroke="#1a7f37" stroke-width="2"/>
+  <text x="620" y="337" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a7f37" font-family="Menlo, Consolas, monospace">ppg-guard</text>
+  <text x="620" y="355" font-size="11" text-anchor="middle" fill="#24292f">each Edit/Write</text>
+  <text x="620" y="377" font-size="11" text-anchor="middle" fill="#57606a">validated before</text>
+  <text x="620" y="393" font-size="11" text-anchor="middle" fill="#57606a">writing</text>
+  <rect x="710" y="315" width="120" height="95" rx="8" fill="#e6f4ea" stroke="#1a7f37" stroke-width="2"/>
+  <text x="770" y="337" font-size="12" font-weight="bold" text-anchor="middle" fill="#1a7f37" font-family="Menlo, Consolas, monospace">ppg-verify / CI</text>
+  <text x="770" y="355" font-size="11" text-anchor="middle" fill="#24292f">full diff</text>
+  <text x="770" y="377" font-size="11" text-anchor="middle" fill="#57606a">validated before</text>
+  <text x="770" y="393" font-size="11" text-anchor="middle" fill="#57606a">merge</text>
+
+  <!-- OPA server -->
+  <g stroke="#1a7f37" stroke-width="1.5" stroke-dasharray="4 3">
+    <line x1="470" y1="410" x2="470" y2="450"/><line x1="620" y1="410" x2="620" y2="450"/><line x1="770" y1="410" x2="770" y2="450"/>
+  </g>
+  <rect x="420" y="450" width="400" height="40" rx="8" fill="#1a7f37"/>
+  <text x="620" y="475" font-size="12" font-weight="bold" text-anchor="middle" fill="#ffffff">OPA/Rego validation server: same verdict at every point</text>
+
+  <!-- PG Output -->
+  <line x1="830" y1="252" x2="878" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d1-a)"/>
+  <text x="975" y="185" font-size="12" font-weight="bold" text-anchor="middle" fill="#1f6feb">Threat targeted: the user</text>
+  <rect x="880" y="195" width="190" height="115" rx="10" fill="#e7f0fe" stroke="#1f6feb" stroke-width="2"/>
+  <text x="975" y="217" font-size="13" font-weight="bold" text-anchor="middle" fill="#1f6feb">Persona Guardrail</text>
+  <text x="975" y="235" font-size="13" font-weight="bold" text-anchor="middle" fill="#1f6feb">OUTPUT</text>
+  <text x="975" y="257" font-size="12" text-anchor="middle" fill="#24292f">"Is the final answer</text>
+  <text x="975" y="273" font-size="12" text-anchor="middle" fill="#24292f">within scope?"</text>
+  <text x="975" y="297" font-size="11" text-anchor="middle" fill="#57606a">same LLM · allow / block</text>
+  <line x1="975" y1="310" x2="975" y2="336" stroke="#cf222e" stroke-width="1.5" marker-end="url(#d1-r)"/>
+  <text x="975" y="353" font-size="11" text-anchor="middle" fill="#cf222e">✗ blocked: the answer</text>
+  <text x="975" y="368" font-size="11" text-anchor="middle" fill="#cf222e">is never sent</text>
+  <line x1="1070" y1="252" x2="1088" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d1-a)"/>
+  <rect x="1090" y="215" width="95" height="75" rx="10" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5"/>
+  <text x="1137" y="248" font-size="13" font-weight="bold" text-anchor="middle" fill="#24292f">Answer</text>
+  <text x="1137" y="266" font-size="12" text-anchor="middle" fill="#57606a">to the user</text>
+
+  <!-- Cards -->
+  <rect x="20" y="520" width="570" height="215" rx="12" fill="#e7f0fe" stroke="#1f6feb" stroke-width="2"/>
+  <text x="40" y="550" font-size="15" font-weight="bold" fill="#1f6feb">Persona Guardrail (Uber): probabilistic classifier</text>
+  <g font-size="13" fill="#24292f">
+    <text x="40" y="580">• Controls: user message + final answer</text>
+    <text x="40" y="604">• Inputs: natural language → infinite, non-enumerable space</text>
+    <text x="40" y="628">• Mechanism: Qwen3-30B-A3B LLM, 1 token allow / block</text>
+    <text x="40" y="652">• Scope: allowlist of intents, one per agent</text>
+    <text x="40" y="676">• Errors measured in prod: &lt; 1 % false blocks, &lt; 2 % false passes</text>
+    <text x="40" y="700">• Constraint #1: latency (on the user's path)</text>
+  </g>
+  <rect x="610" y="520" width="570" height="215" rx="12" fill="#e6f4ea" stroke="#1a7f37" stroke-width="2"/>
+  <text x="630" y="550" font-size="15" font-weight="bold" fill="#1a7f37">PPG: deterministic policy (OPA/Rego)</text>
+  <g font-size="13" fill="#24292f">
+    <text x="630" y="580">• Controls: plan, each Edit/Write, full diff</text>
+    <text x="630" y="604">• Inputs: structured artifacts (JSON, code, diff)</text>
+    <text x="630" y="628">• Mechanism: Rego rules, no LLM in the decision</text>
+    <text x="630" y="652">• Scope: capability ticket + SKILL.rego + ADR corpus</text>
+    <text x="630" y="676">• Exact verdict for whatever the rule can express</text>
+    <text x="630" y="700">• Constraint #1: fail-closed (no ticket = no change)</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="20" y="752" width="14" height="14" fill="#e7f0fe" stroke="#1f6feb"/><text x="40" y="764" font-size="12" fill="#57606a">Uber (Persona Guardrail)</text>
+  <rect x="210" y="752" width="14" height="14" fill="#e6f4ea" stroke="#1a7f37"/><text x="230" y="764" font-size="12" fill="#57606a">PPG (poc-agentic-platform)</text>
+  <rect x="420" y="752" width="14" height="14" fill="#fff4e0" stroke="#d97706"/><text x="440" y="764" font-size="12" fill="#57606a">Not covered by the paper</text>
+  <text x="1180" y="764" font-size="12" text-anchor="end" fill="#57606a">The two stack up: they do not control the same moment.</text>
+</svg>

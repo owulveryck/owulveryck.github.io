@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 870" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="d3-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57606a"/></marker>
+    <marker id="d3-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <marker id="d3-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8250df"/></marker>
+    <marker id="d3-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a7f37"/></marker>
+  </defs>
+  <rect width="1200" height="870" fill="#ffffff"/>
+
+  <text x="20" y="38" font-size="22" font-weight="bold" fill="#24292f">③ Adding jevgo to PPG: an observer of the rules, not a judge</text>
+  <text x="20" y="64" font-size="14" fill="#57606a">jevgo learns to imitate the Rego policy. Placed correctly, it flags suspicious rules without bringing randomness back into the decision.</text>
+
+  <!-- What jevgo is -->
+  <rect x="20" y="82" width="1160" height="76" rx="10" fill="#f3eefe" stroke="#8250df" stroke-width="1.5"/>
+  <text x="40" y="106" font-size="14" font-weight="bold" fill="#8250df">jevgo in two sentences</text>
+  <text x="40" y="128" font-size="13" fill="#24292f">A mini-transformer written in Go, trained on examples labeled by OPA itself. It returns a closed ALLOW / DENY choice with a probability.</text>
+  <text x="40" y="148" font-size="13" fill="#24292f">It only works on a finite input space (demo: 6 fields, 1128 examples). It does not handle natural language.</text>
+
+  <!-- Option A -->
+  <rect x="20" y="175" width="570" height="390" rx="12" fill="#fff8f8" stroke="#cf222e" stroke-width="2"/>
+  <text x="40" y="205" font-size="16" font-weight="bold" fill="#cf222e">✗ Option A: jevgo on the critical path</text>
+  <rect x="40" y="235" width="105" height="50" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="92" y="256" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Agent</text>
+  <text x="92" y="273" font-size="12" text-anchor="middle" fill="#24292f">action</text>
+  <line x1="145" y1="260" x2="168" y2="260" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="170" y="235" width="100" height="50" rx="8" fill="#1a7f37"/>
+  <text x="220" y="265" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">Rego</text>
+  <line x1="270" y1="260" x2="293" y2="260" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="295" y="235" width="100" height="50" rx="8" fill="#8250df"/>
+  <text x="345" y="265" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">jevgo</text>
+  <line x1="395" y1="260" x2="418" y2="260" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="420" y="235" width="150" height="50" rx="8" fill="#ffffff" stroke="#cf222e" stroke-width="2"/>
+  <text x="495" y="256" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Decision</text>
+  <text x="495" y="274" font-size="12" font-weight="bold" text-anchor="middle" fill="#cf222e">= statistical?</text>
+
+  <rect x="40" y="305" width="530" height="100" rx="8" fill="#ffffff" stroke="#cf222e"/>
+  <text x="55" y="330" font-size="13" font-weight="bold" fill="#cf222e">Case 1: jevgo can ALLOW what Rego denies</text>
+  <text x="55" y="354" font-size="13" fill="#24292f">→ the deterministic guarantee is gone: a statistical</text>
+  <text x="55" y="376" font-size="13" fill="#24292f">error lets a forbidden change through.</text>
+  <rect x="40" y="420" width="530" height="100" rx="8" fill="#ffffff" stroke="#cf222e"/>
+  <text x="55" y="445" font-size="13" font-weight="bold" fill="#cf222e">Case 2: jevgo can only BLOCK more</text>
+  <text x="55" y="469" font-size="13" fill="#24292f">→ random false blocks, and the promise</text>
+  <text x="55" y="491" font-size="13" fill="#24292f">"a fixed flaw never comes back" no longer holds.</text>
+  <text x="305" y="550" font-size="14" font-weight="bold" text-anchor="middle" fill="#cf222e">Contradicts PPG's very reason to exist.</text>
+
+  <!-- Option B -->
+  <rect x="610" y="175" width="570" height="390" rx="12" fill="#f6fbf7" stroke="#1a7f37" stroke-width="2"/>
+  <text x="630" y="205" font-size="16" font-weight="bold" fill="#1a7f37">✓ Option B: jevgo in shadow mode (observer)</text>
+  <rect x="630" y="230" width="110" height="45" rx="8" fill="#ffffff" stroke="#57606a"/>
+  <text x="685" y="249" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">Agent</text>
+  <text x="685" y="266" font-size="12" text-anchor="middle" fill="#24292f">action</text>
+  <line x1="740" y1="252" x2="778" y2="252" stroke="#57606a" stroke-width="2" marker-end="url(#d3-a)"/>
+  <rect x="780" y="230" width="110" height="45" rx="8" fill="#1a7f37"/>
+  <text x="835" y="258" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">Rego</text>
+  <line x1="890" y1="252" x2="928" y2="252" stroke="#1a7f37" stroke-width="3" marker-end="url(#d3-g)"/>
+  <rect x="930" y="230" width="230" height="45" rx="8" fill="#e6f4ea" stroke="#1a7f37" stroke-width="3"/>
+  <text x="1045" y="249" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a7f37">Decision applied</text>
+  <text x="1045" y="266" font-size="11" text-anchor="middle" fill="#24292f">Rego alone is authoritative</text>
+
+  <!-- shadow branch -->
+  <path d="M685,275 L685,342 L778,342" stroke="#8250df" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#d3-p)"/>
+  <rect x="780" y="320" width="110" height="45" rx="8" fill="#f3eefe" stroke="#8250df" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="835" y="339" font-size="13" font-weight="bold" text-anchor="middle" fill="#8250df">jevgo</text>
+  <text x="835" y="356" font-size="11" text-anchor="middle" fill="#24292f">in parallel</text>
+  <line x1="890" y1="342" x2="928" y2="342" stroke="#8250df" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#d3-p)"/>
+  <line x1="1045" y1="275" x2="1045" y2="313" stroke="#57606a" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#d3-a)"/>
+  <rect x="930" y="315" width="230" height="55" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="1045" y="338" font-size="13" font-weight="bold" text-anchor="middle" fill="#24292f">Compare the verdicts</text>
+  <text x="1045" y="357" font-size="11" text-anchor="middle" fill="#57606a">Rego vs jevgo (off the critical path)</text>
+
+  <text x="935" y="392" font-size="11" fill="#57606a">agreement: nothing</text>
+  <line x1="1045" y1="370" x2="1045" y2="403" stroke="#d97706" stroke-width="2" marker-end="url(#d3-o)"/>
+  <text x="1053" y="392" font-size="11" font-weight="bold" fill="#d97706">disagreement</text>
+  <rect x="930" y="405" width="230" height="45" rx="8" fill="#fff4e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="1045" y="424" font-size="12" font-weight="bold" text-anchor="middle" fill="#9a5b00">Suspicious rule → escalation</text>
+  <text x="1045" y="441" font-size="11" text-anchor="middle" fill="#24292f" font-family="Menlo, Consolas, monospace">ppg escalations</text>
+  <line x1="1045" y1="450" x2="1045" y2="468" stroke="#d97706" stroke-width="2" marker-end="url(#d3-o)"/>
+  <rect x="930" y="470" width="230" height="50" rx="8" fill="#ffffff" stroke="#24292f" stroke-width="1.5"/>
+  <text x="1045" y="491" font-size="12" font-weight="bold" text-anchor="middle" fill="#24292f">A human decides</text>
+  <text x="1045" y="509" font-size="11" text-anchor="middle" fill="#24292f">and fixes the .rego (for good)</text>
+  <path d="M930,495 L912,495 L912,268 L894,268" stroke="#1a7f37" stroke-width="1.5" fill="none" marker-end="url(#d3-g)"/>
+  <text x="905" y="420" font-size="11" text-anchor="end" fill="#1a7f37">Rego fixed,</text>
+  <text x="905" y="435" font-size="11" text-anchor="end" fill="#8250df">jevgo retrained</text>
+  <text x="895" y="550" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a7f37">Rego remains sole judge · determinism preserved · policy that improves</text>
+
+  <!-- Example -->
+  <rect x="20" y="580" width="1160" height="72" rx="10" fill="#f3eefe" stroke="#8250df"/>
+  <text x="40" y="603" font-size="13" font-weight="bold" fill="#8250df">Example from the jevgo demo</text>
+  <text x="40" y="623" font-size="13" fill="#24292f">Deliberate flaw in the Rego rule: a "contractor" can read a document from another department.</text>
+  <text x="40" y="643" font-size="13" fill="#24292f"><tspan font-weight="bold" fill="#1a7f37">Rego → ALLOW</tspan> (applies the rule to the letter)     <tspan font-weight="bold" fill="#8250df">jevgo → DENY</tspan> (generalizes from the other rules)     <tspan font-weight="bold" fill="#d97706">⇒ disagreement = signal to examine</tspan></text>
+
+  <!-- Uber parallel -->
+  <rect x="20" y="665" width="700" height="190" rx="10" fill="#ffffff" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="40" y="690" font-size="14" font-weight="bold" fill="#24292f">The same pattern as the improvement loop in Uber's paper</text>
+  <text x="40" y="716" font-size="12" font-weight="bold" fill="#1f6feb">Uber (Persona Guardrail)</text>
+  <text x="380" y="716" font-size="12" font-weight="bold" fill="#1a7f37">PPG + jevgo</text>
+  <line x1="40" y1="724" x2="700" y2="724" stroke="#d0d7de"/>
+  <g font-size="12" fill="#24292f">
+    <text x="40" y="748">Shadow: the candidate observes without deciding</text>
+    <text x="380" y="748">jevgo runs next to Rego without deciding</text>
+    <line x1="40" y1="760" x2="700" y2="760" stroke="#eaeef2"/>
+    <text x="40" y="784">Disagreements with a stronger judge → human</text>
+    <text x="380" y="784">Rego / jevgo disagreements → ppg escalations</text>
+    <line x1="40" y1="796" x2="700" y2="796" stroke="#eaeef2"/>
+    <text x="40" y="820">The proposer never modifies the policy</text>
+    <text x="380" y="820">jevgo never modifies the .rego</text>
+  </g>
+  <text x="40" y="845" font-size="11" font-style="italic" fill="#57606a">Difference: at Uber, the probabilistic model decides in prod; here, it only flags.</text>
+
+  <!-- Limits -->
+  <rect x="740" y="665" width="440" height="190" rx="10" fill="#fff4e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="760" y="690" font-size="14" font-weight="bold" fill="#9a5b00">Limits to keep in mind</text>
+  <g font-size="13" fill="#24292f">
+    <text x="760" y="718">• A disagreement is a hint, not a truth</text>
+    <text x="760" y="742">• Only on structured, finite fields</text>
+    <text x="772" y="762" fill="#57606a">(role, scope, skill_id, action type…)</text>
+    <text x="760" y="788">• Cannot spot a flaw repeated consistently</text>
+    <text x="772" y="808">across the whole corpus: the examples</text>
+    <text x="772" y="828">are labeled by Rego itself</text>
+  </g>
+</svg>

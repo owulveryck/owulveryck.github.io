@@ -54,13 +54,13 @@
         <a class="menu-item-link menu-parent menu-item-lang" href="#">
           {{/* icon globe */}}
           {{ partial "icons/icon" $icons.languages }}
-          {{ .Site.Language.LanguageName }}
+          {{ .Site.Language.Label }}
         </a>
         <ul class="submenu" role="list">
           {{ range .Site.Home.AllTranslations }}
           {{ if ne ($.Scratch.Get "language") .Language }}
           <li class="submenu-item">
-            <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
           </li>
           {{ end }}
           {{ end }}

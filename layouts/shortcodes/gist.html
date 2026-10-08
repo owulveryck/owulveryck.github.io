@@ -1,0 +1,2 @@
+{{- /* Replaces the built-in gist shortcode removed in Hugo v0.156.0 */ -}}
+<script src="https://gist.github.com/{{ index .Params 0 }}/{{ index .Params 1 }}.js{{ if eq (len .Params) 3 }}?file={{ index .Params 2 }}{{ end }}"></script>

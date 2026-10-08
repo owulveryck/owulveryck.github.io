@@ -28,12 +28,12 @@ uglyURLs=true
 
 [languages]
 [languages.en]
-  languageName = "English"
-  languageCode = "en"
+  label = "English"
+  locale = "en"
   weight = 1
 [languages.fr]
-  languageName = "Francais"
-  languageCode = "fr"
+  label = "Francais"
+  locale = "fr"
   weight = 2
 
 [permalinks]
@@ -153,3 +153,7 @@ uglyURLs=true
   [[module.mounts]]
     source = "content"
     target = "content"
+
+[security]
+  # Hugo >= 0.15x denies text/html content files by default (content/assets/dataviz/index.html)
+  allowContent = [".*"]

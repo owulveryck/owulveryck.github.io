@@ -1,6 +1,5 @@
 {
  "compilerOptions": {
-  "baseUrl": ".",
   "paths": {
    "*": [
     "../_vendor/github.com/xianmin/hugo-theme-jane/assets/*"
